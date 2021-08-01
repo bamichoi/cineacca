@@ -3,7 +3,7 @@
 
 ## 서비스 개요 Service Information
 
-이탈리아 영화 아카데미 학생들의 단편 영화를 스트리밍하는 서비스.
+이탈리아 영화 아카데미 학생들의 단편 영화를 스트리밍하는 서비스.  
 A service that streams short films from students of the Italian Academy of Film Arts.
 
 ### 개발 언어 Development Lang
