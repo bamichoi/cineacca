@@ -1,5 +1,5 @@
 from django.db import models
-
+from core import models as core_model
 # Create your models here.
 
 
