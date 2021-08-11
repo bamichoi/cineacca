@@ -9,6 +9,7 @@ class Movie(core_model.TimeStampedModel):
 
     """video info field"""
     video = models.FileField()
+    thumnail = models.ImageField(_("locandina"), null=True, blank=True)
     user = models.ForeignKey(
         "users.user", related_name="movies", on_delete=models.CASCADE
     )
@@ -36,6 +37,7 @@ class Movie(core_model.TimeStampedModel):
 ### title
 ### year
 ### video file
+### thumnail image
 ### description (drama)
 
 ## defualt data - staff info
