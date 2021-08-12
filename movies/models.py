@@ -14,7 +14,7 @@ class Movie(core_model.TimeStampedModel):
         "users.user", related_name="movies", on_delete=models.CASCADE
     )
     title = models.CharField(_("titolo"), max_length=300)
-    description = models.TextField(_("descrizione"), max_length=300)
+    description = models.TextField(_("descrizione"), max_length=1000)
 
     """staff info field"""
     director = models.CharField(_("regista"), max_length=300)
@@ -29,6 +29,19 @@ class Movie(core_model.TimeStampedModel):
     makeup_artist = models.CharField(_("make-up artista"), max_length=300)
     spacial_effect_supervisor = models.CharField(_("effetto speciale"), max_length=300)
     sound_designer = models.CharField(_("sound"), max_length=300)
+
+    def __str__(self):
+        return self.title
+
+    def rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        if len(all_reviews) > 0:
+            for review in all_reviews:
+                all_ratings += review.rate
+            return all_ratings / len(all_reviews)
+        else:
+            return 0
 
 
 # movies

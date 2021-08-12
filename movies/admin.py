@@ -7,6 +7,8 @@ from . import models
 @admin.register(models.Movie)
 class MovieAdmin(admin.ModelAdmin):
 
+    "Movie Admin Definition"
+
     """ """
 
     fieldsets = (
@@ -43,12 +45,7 @@ class MovieAdmin(admin.ModelAdmin):
         ),
     )
 
-    list_display = (
-        "title",
-        "user",
-        "director",
-        "screenwriter",
-    )
+    list_display = ("title", "user", "director", "screenwriter", "rating")
 
     list_filter = (
         "title",
