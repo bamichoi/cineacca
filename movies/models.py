@@ -9,7 +9,9 @@ class Movie(core_model.TimeStampedModel):
 
     """video info field"""
     video = models.FileField()
-    thumnail = models.ImageField(_("locandina"), null=True, blank=True)
+    thumnail = models.ImageField(
+        _("locandina"), upload_to="movie_thumnails", null=True, blank=True
+    )
     user = models.ForeignKey(
         "users.user", related_name="movies", on_delete=models.CASCADE
     )
@@ -17,7 +19,7 @@ class Movie(core_model.TimeStampedModel):
     description = models.TextField(_("descrizione"), max_length=1000)
 
     """staff info field"""
-    director = models.CharField(_("regista"), max_length=300)
+    director = models.CharField(_("regista"), max_length=300, null=True)
     screenwriter = models.CharField(_("sceneggiatore"), max_length=300)
     casting = models.CharField(max_length=300)
     editor = models.CharField(_("montatore"), max_length=300)

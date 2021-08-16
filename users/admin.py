@@ -1,8 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
 from . import models
 from . import forms
+
+admin.site.unregister(Group)
 
 
 @admin.register(models.User)
@@ -57,5 +60,3 @@ class CustomUserAdmin(UserAdmin):
         "is_superuser",
     )
     ordering = ("last_name",)
-
-    pass
