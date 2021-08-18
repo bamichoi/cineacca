@@ -8,9 +8,14 @@ class Movie(core_model.TimeStampedModel):
     """Movie Model Definition"""
 
     """video info field"""
-    video = models.FileField()
+    video = models.FileField(
+        upload_to="movie_files", null=True, blank=True
+    )  # seed 위해 임시로 null=True, Black=True
     thumnail = models.ImageField(
-        _("locandina"), upload_to="movie_thumnails", null=True, blank=True
+        _("locandina"),
+        upload_to="movie_thumnails",
+        null=True,
+        blank=True,  # seed 위해 임시로 null=True, Black=True
     )
     user = models.ForeignKey(
         "users.user", related_name="movies", on_delete=models.CASCADE
