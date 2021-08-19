@@ -1,1 +1,40 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block page_title %}
+    Home
+{% endblock page_title %}
+
+{% block content %}
+<h1>CINEACCA</h1>
+<h2> i nuovi film</h2>
+
+<ul>
+{% for movie in movies %}
+    <li>
+        <div>{{ movie.title }}</div>
+    </li>
+{% endfor %}
+</ul>
+
+<div>
+    <div>
+        {% if start_index != 0 %}
+            <a href="?page={{start_index}}">previous</a>
+        {% endif %}
+    </div>
+    <div>
+        
+            {% for page in page_range %}
+                <span><a href="?page={{page}}">{{page}}</a></span>
+            {% endfor %}
+        
+    </div>
+    <div>
+        {% if next_index < max_index %}
+            <a href="?page={{next_index}}">next</a>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content%}
