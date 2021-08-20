@@ -29,7 +29,7 @@ class Command(BaseCommand):
             {
                 "user": lambda x: random.choice(all_user),
                 "movie": lambda x: random.choice(all_movie),
-                "rate": lambda x: random.randint(1, 6),
+                "rate": lambda x: random.randint(1, 5),
             },
         )
         seeder.execute()

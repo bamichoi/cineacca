@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from . import models
 
 # Create your views here.
@@ -53,3 +53,10 @@ class HomeView(ListView):
         # context["object_number_range"] = object_number_range
 
         return context
+
+
+class MovieDetail(DetailView):
+
+    """MovieDetail Definition"""
+
+    model = models.Movie

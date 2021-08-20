@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    {{movie.title}}
+{% endblock page_title %}
+
+{% block content %}
+
+<h1>{{movie.title}}</h1>
+<h2>{{movie.user}}</h2>
+<!--player-->
+<div style="background-color: black; width: 1000px; height: 500px;"> 
+</div>
+<!--player-->
+<h4>description</h4>
+    <div>
+        <p>{{movie.description}}</p>
+    </div>
+</div>
+<div>
+    <ul>
+        <li>director : {{movie.director}} </li>
+        <li>screenwriter : {{movie.screenwriter}} </li>
+        <li>casting : {{movie.casting}}</li>
+        <li>editor  : {{movie.editor}}</li>
+        <li>director_of_photograpy  : {{movie.director_of_photograpy}}</li>
+        <li>audio_director : {{movie.audio_director}}</li>
+        <li>music : {{movie.music}}</li>
+        <li>art_director : {{movie.art_director}}</li>
+        <li>costume_designer : {{movie.costume_designer}}</li>
+        <li>makeup_artist : {{movie.makeup_artist}}</li>
+        <li>spacial_effect_supervisor : {{movie.special_effect_supervisor}}</li>
+        <li>sound_designer : {{movie.sound_designer}}</li>
+    </ul>
+</div>
+<h4>Reviwes</h4>
+<div>
+    <ul>
+        {% for review in movie.reviews.all %}
+        <li>
+            <h5>{{reviw.title}}</h5>
+            <div>{{review.user}}</div>
+            <div>rate : {{review.rate}}</div>
+            <div>{{review.content}}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    
+        
+</div>
+{% endblock content %}
