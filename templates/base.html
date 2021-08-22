@@ -9,6 +9,10 @@
 <body>
     <header>
         <a href="/"><h1>CINEACCA</h1></a>
+        {% block navigator %}
+            <span>Movies</span>
+            <a href="{% url 'users:list' %}"><span>People</span></a>
+        {% endblock navigator %}
         {% block search_bar %}
             <form method="get" action="{% url 'movies:search' %}">
                 <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search Movies by title or director" />

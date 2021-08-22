@@ -68,7 +68,9 @@ class MovieDetail(DetailView):
     """SearchView Definition"""
 
 
-class SearchVeiw(View):
+class SearchView(View):
+    """SearchView Definition"""
+
     def get(self, request):
 
         keyword = self.request.GET.get("keyword")  # url에서 keyword 파라미터 값 들고오기.

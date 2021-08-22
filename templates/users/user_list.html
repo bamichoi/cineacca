@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Peolple
+{% endblock page_title %}
+
+
+{% block content %}
+    <ul>
+    {% for user in users %}
+        <li>
+            <div>{{ user.first_name }} {{ user.last_name }} </div>
+            <div>@{{ user.school }}</div>
+        </li>
+    {% endfor %}  
+    </ul>
+    <div>
+        <div>
+            {% if start_index != 0 %}
+                <a href="?page={{start_index}}">previous</a>
+            {% endif %}
+        </div>
+        <div>
+            
+                {% for page in page_range %}
+                    <span><a href="?page={{page}}">{{page}}</a></span>
+                {% endfor %}
+            
+        </div>
+        <div>
+            {% if next_index < max_index %}
+                <a href="?page={{next_index}}">next</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
