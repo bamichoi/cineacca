@@ -1,11 +1,24 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from . import models
 
 # Create your views here.
 
 
-class UserList(ListView):
+class StudentProfile(DetailView):
+
+    """UserProfile Definition"""
+
+    model = models.User
+    template_name = "users/student_profile.html"
+
+    def get_queryset(self):
+        return (
+            super().get_queryset().filter(account_type="student")
+        )  # get_quryset 메소드를 orverride 하여 계정타입이 stdunet 인 user들만 가져옴.
+
+
+class StudentList(ListView):
 
     """UserList Definition"""
 
@@ -13,6 +26,7 @@ class UserList(ListView):
     paginate_by = 20
     ordering = None
     context_object_name = "users"
+    template_name = "users/student_list.html"
 
     def get_queryset(self):
         return (

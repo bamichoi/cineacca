@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    {{ user.first_name }} {{ user.last_name }}
+{% endblock page_title %}
+
+{% block content %}
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <h2>{{ user.school }} </h2>
+    <div>{{ user.biography }}</div>
+{% endblock content %}
