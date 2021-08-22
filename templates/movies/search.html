@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Search by {{ keyword }}
+{% endblock page_title %}
+
+{% block content %}
+
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <a href={% url 'movies:detail' movie.pk %}><div>{{ movie.title }} / director : {{ movie.director}}</div></a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div>
+        <div>
+            {% if start_index != 0 %}
+                <a href="?keyword={{keyword}}&page={{start_index}}">previous</a>
+            {% endif %}
+        </div>
+        <div>
+            
+                {% for page in page_range %}
+                    <span><a href="?keyword={{keyword}}&page={{page}}">{{page}}</a></span>
+                {% endfor %}
+            
+        </div>
+        <div>
+            {% if next_index < max_index %}
+                <a href="?keyword={{keyword}}&?page={{next_index}}">next</a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock content %}

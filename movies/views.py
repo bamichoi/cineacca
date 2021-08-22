@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
+from django.core.paginator import Paginator
+from django.db.models import Q
 from . import models
 
 # Create your views here.
@@ -60,3 +62,60 @@ class MovieDetail(DetailView):
     """MovieDetail Definition"""
 
     model = models.Movie
+
+    # class SearchView(View):
+
+    """SearchView Definition"""
+
+
+class SearchVeiw(View):
+    def get(self, request):
+
+        keyword = self.request.GET.get("keyword")  # url에서 keyword 파라미터 값 들고오기.
+
+        if keyword:  # keyword 값이 비어있지 않다면
+
+            result_qs = models.Movie.objects.filter(
+                Q(title__contains=keyword) | Q(director__contains=keyword)
+            ).order_by(
+                "-created"
+            )  # keyword와 일치하는 오브젝트들의 쿼리셋 만들기.
+
+            # paginator 생성
+            page_numbers_range = 10
+            paginator = Paginator(result_qs, page_numbers_range)
+            page = self.request.GET.get("page", 1)
+            max_index = paginator.num_pages
+            movies = paginator.get_page(page)
+
+            if page:
+                current_page = int(page)
+            else:
+                current_page = 1
+
+            start_index = current_page - 3
+            if start_index < 0:
+                start_index = 0
+
+            end_index = start_index + page_numbers_range
+            if end_index >= max_index:
+                end_index = max_index
+
+            page_range = paginator.page_range[start_index:end_index]
+
+            return render(
+                request,
+                "movies/search.html",
+                {
+                    "movies": movies,
+                    "keyword": keyword,
+                    "page_range": page_range,
+                    "start_index": start_index,
+                    "end_index": end_index,
+                    "max_index": max_index,
+                },
+            )
+        else:
+            return render(
+                request, "movies/search.html", {"keyword": keyword, "start_index": 0}
+            )

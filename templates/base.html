@@ -7,6 +7,15 @@
     <title>{% block page_title %} {% endblock page_title %} | Cineacca</title>
 </head>
 <body>
+    <header>
+        <a href="/"><h1>CINEACCA</h1></a>
+        {% block search_bar %}
+            <form method="get" action="{% url 'movies:search' %}">
+                <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search Movies by title or director" />
+                <button>Search</button>
+            </form>
+        {% endblock search_bar %}
+    </header>
     {% block content %}
     {% endblock content %}
 </body>
