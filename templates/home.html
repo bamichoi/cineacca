@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Home
+{% endblock page_title %}
+
+{% block movie_search_bar %}
+{% endblock movie_search_bar %}
+
+{% block content %}
+
+<h1>il film del giorno</h1>
+
+
+<h2> i nuovi film</h2>
+
+<ul>
+{% for movie in movies %}
+    <li>
+        <a href={% url 'movies:detail' movie.pk %}><div>{{ movie.title }}</div></a>
+    </li>
+{% endfor %}
+</ul>
+
+<div>
+    <a href="{% url 'movies:list' %}"><h4>See More</h4></a>
+</div>
+
+
+{% endblock content%}

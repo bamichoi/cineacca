@@ -15,6 +15,17 @@ class HomeView(ListView):
     paginate_by = 10
     ordering = "-created"
     context_object_name = "movies"
+    template_name = "home.html"
+
+
+class MovieList(ListView):
+
+    """HomeView Definition"""
+
+    model = models.Movie
+    paginate_by = 10
+    ordering = "-created"
+    context_object_name = "movies"
 
     def get_context_data(
         self, **kwargs
@@ -107,7 +118,7 @@ class SearchView(View):
 
             return render(
                 request,
-                "movies/search.html",
+                "movies/movie_search.html",
                 {
                     "movies": movies,
                     "keyword": keyword,
@@ -119,5 +130,7 @@ class SearchView(View):
             )
         else:
             return render(
-                request, "movies/search.html", {"keyword": keyword, "start_index": 0}
+                request,
+                "movies/movie_search.html",
+                {"keyword": keyword, "start_index": 0},
             )

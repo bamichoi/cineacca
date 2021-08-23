@@ -3,6 +3,7 @@ from movies import views as movie_views
 
 app_name = "movies"
 urlpatterns = [
-    path("<int:pk>/", movie_views.MovieDetail.as_view(), name="detail"),
-    path("search/", movie_views.SearchView.as_view(), name="search"),
+    path("movies/", movie_views.MovieList.as_view(), name="list"),
+    path("movies/<int:pk>/", movie_views.MovieDetail.as_view(), name="detail"),
+    path("movies/search/", movie_views.SearchView.as_view(), name="search"),
 ]

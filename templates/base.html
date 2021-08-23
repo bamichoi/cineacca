@@ -10,16 +10,16 @@
     <header>
         <a href="/"><h1>CINEACCA</h1></a>
         {% block navigator %}
-            <span>Movies</span>
+            <a href="{% url 'movies:list' %}""><span>Movies</span></a>
             <a href="{% url 'users:list' %}"><span>People</span></a>
         {% endblock navigator %}
-        {% block search_bar %}
-            <form method="get" action="{% url 'movies:search' %}">
-                <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search Movies by title or director" />
-                <button>Search</button>
-            </form>
-        {% endblock search_bar %}
     </header>
+    {% block movie_search_bar %}
+        <form method="get" action="{% url 'movies:search' %}">
+            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search Movies by title or director" />
+            <button>Search</button>
+        </form>
+    {% endblock movie_search_bar %}
     {% block content %}
     {% endblock content %}
 </body>

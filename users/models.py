@@ -8,7 +8,7 @@ class User(AbstractUser):
 
     """User Model Definition"""
 
-    SCHOOL_ACCA_ROMA = "accademia_belle_arti_di_roma"
+    SCHOOL_ACCA_ROMA = "acccademia_belle_arti_di_roma"
     SCHOOL_CHOICES = ((SCHOOL_ACCA_ROMA, "Accademia Belle Arti di Roma"),)
 
     ACCOUNT_TYPE_STUDENT = "student"
