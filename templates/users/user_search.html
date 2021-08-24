@@ -4,15 +4,17 @@
     Search by {{ keyword }}
 {% endblock page_title %}
 
-{% block people_search_bar %}
-{% endblock people_search_bar %}
+{% block movie_search_bar %}
+{% endblock movie_search_bar %}
+
 
 {% block content %}
 
     <ul>
-        {% for movie in movies %}
+        {% for user in users %}
             <li>
-                <a href="{% url 'movies:detail' movie.pk %}"><div>{{ movie.title }} / director : {{ movie.director}}</div></a>
+                <a href="{% url 'users:student_profile' user.pk %}"><div>{{ user.first_name }} {{ user.last_name }} </div></a>
+                <div>@{{ user.school }}</div>
             </li>
         {% endfor %}
     </ul>

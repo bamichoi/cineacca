@@ -1,6 +1,11 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, DetailView, View, FormView
+from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 from . import models
+from . import forms
 
 # Create your views here.
 
@@ -72,3 +77,89 @@ class StudentList(ListView):
         # context["object_number_range"] = object_number_range
 
         return context
+
+
+class SearchView(View):
+
+    """SearchView Definition"""
+
+    def get(self, request):
+
+        keyword = self.request.GET.get("keyword")  # url에서 keyword 파라미터 값 들고오기.
+
+        if keyword:  # keyword 값이 비어있지 않다면
+
+            result_qs = models.User.objects.filter(
+                Q(first_name__contains=keyword) | Q(last_name__contains=keyword)
+            ).order_by(
+                "-date_joined"
+            )  # keyword와 일치하는 오브젝트들의 쿼리셋 만들기.
+
+            # paginator 생성
+            page_numbers_range = 10
+            paginator = Paginator(result_qs, page_numbers_range)
+            page = self.request.GET.get("page", 1)
+            max_index = paginator.num_pages
+            users = paginator.get_page(page)
+
+            if page:
+                current_page = int(page)
+            else:
+                current_page = 1
+
+            start_index = current_page - 3
+            if start_index < 0:
+                start_index = 0
+
+            end_index = start_index + page_numbers_range
+            if end_index >= max_index:
+                end_index = max_index
+
+            page_range = paginator.page_range[start_index:end_index]
+
+            return render(
+                request,
+                "users/user_search.html",
+                {
+                    "users": users,
+                    "keyword": keyword,
+                    "page_range": page_range,
+                    "start_index": start_index,
+                    "end_index": end_index,
+                    "max_index": max_index,
+                },
+            )
+        else:
+            return render(
+                request,
+                "users/user_search.html",
+                {"keyword": keyword, "start_index": 0},
+            )
+
+
+class LoginView(FormView):
+
+    """LoginView Definition"""
+
+    template_name = "users/login.html"
+    form_class = forms.LoginForm
+    success_url = reverse_lazy("core:home")  # !)reverse_lazy 와 reverse 의 차이?
+
+    def form_valid(self, form):
+        email = form.cleaned_data.get("email")  # form으로부터 clean된 email data를 받아옴.
+        password = form.cleaned_data.get(
+            "password"
+        )  # form으로부터 clean된 password data를 받아옴.
+        user = authenticate(
+            self.request, username=email, password=password
+        )  # login 인증 부분
+        if user is not None:
+            login(self.request, user)  # login 시키기
+        return super().form_valid(form)  # 최종적으로 form_valid 가 유효하다면 succes_url로 넘겨주기
+
+    pass
+
+
+def log_out(request):  # logout은 fbv로만 가능.
+    logout(request)
+    return redirect(reverse("core:home"))

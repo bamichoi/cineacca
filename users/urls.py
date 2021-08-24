@@ -7,4 +7,7 @@ urlpatterns = [
     path(
         "students/<int:pk>", user_views.StudentProfile.as_view(), name="student_profile"
     ),
+    path("students/search/", user_views.SearchView.as_view(), name="search"),
+    path("users/login/", user_views.LoginView.as_view(), name="login"),
+    path("users/logout/", user_views.log_out, name="logout"),
 ]
