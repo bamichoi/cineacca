@@ -163,3 +163,25 @@ class LoginView(FormView):
 def log_out(request):  # logout은 fbv로만 가능.
     logout(request)
     return redirect(reverse("core:home"))
+
+
+def sign_up(request):
+    return render(request, "users/signup.html")
+
+
+class StudentSignupView(FormView):
+
+    """StudentSignupView Definition"""
+
+    template_name = "users/student_signup.html"
+    form_class = forms.StudentSignUpForm
+    success_url = reverse_lazy("core:home")
+
+    def form_vaild(self, form):
+        form.save()  # !) form.save 는 왜 하는거야?
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password")
+        user = authenticate(self.request, username=email, password=password)
+        if user is not None:
+            login(self.request, user)
+        return super().form_valid(form)

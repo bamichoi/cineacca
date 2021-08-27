@@ -13,8 +13,6 @@ class CustomUserAdmin(UserAdmin):
 
     """Custom User Admin"""
 
-    add_form = forms.CustomUserCreationForm
-    form = forms.CustomUserChangeForm
     model = models.User
 
     fieldsets = (

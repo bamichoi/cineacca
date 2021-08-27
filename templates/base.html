@@ -14,7 +14,6 @@
         {% else %}
         <a href="{% url 'users:login' %}"><span>Login</span></a>
         {% endif %}
-        <a href="#"><span>Sign up</span></a>
         {% block navigator %}
         <a href="{% url 'movies:list' %}""><span>Movies</span></a>
         <a href="{% url 'users:list' %}"><span>People</span></a>

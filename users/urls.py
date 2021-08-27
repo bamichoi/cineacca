@@ -10,4 +10,10 @@ urlpatterns = [
     path("students/search/", user_views.SearchView.as_view(), name="search"),
     path("users/login/", user_views.LoginView.as_view(), name="login"),
     path("users/logout/", user_views.log_out, name="logout"),
+    path("users/signup/", user_views.sign_up, name="signup"),
+    path(
+        "users/signup/student",
+        user_views.StudentSignupView.as_view(),
+        name="student_signup",
+    ),
 ]
