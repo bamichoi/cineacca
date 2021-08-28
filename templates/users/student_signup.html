@@ -16,8 +16,8 @@
 
     <form method="post" action="{% url 'users:student_signup' %}">
         {% csrf_token %}
-        {{form.as_p}}
-        <button>Sign up</button>
+            {{form.as_p}}
+            <button>Sign up</button>
     </form>
     
 {% endblock content%}

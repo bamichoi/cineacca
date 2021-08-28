@@ -157,8 +157,6 @@ class LoginView(FormView):
             login(self.request, user)  # login 시키기
         return super().form_valid(form)  # 최종적으로 form_valid 가 유효하다면 succes_url로 넘겨주기
 
-    pass
-
 
 def log_out(request):  # logout은 fbv로만 가능.
     logout(request)
@@ -177,8 +175,8 @@ class StudentSignupView(FormView):
     form_class = forms.StudentSignUpForm
     success_url = reverse_lazy("core:home")
 
-    def form_vaild(self, form):
-        form.save()  # !) form.save 는 왜 하는거야?
+    def form_valid(self, form):
+        form.save()
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
         user = authenticate(self.request, username=email, password=password)
