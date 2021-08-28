@@ -10,10 +10,12 @@
 
 
 {% block content %}
+    <h2>Gli studenti</h2>
+    <h4>i creatori ed attori studenteschi</h4>
     <ul>
-    {% for user in users %}
+    {% for student in students %}
         <li>
-            <a href="{% url 'users:student_profile' user.pk %}"><div>{{ user.first_name }} {{ user.last_name }} </div></a>
+            <a href="{% url 'users:student_profile' student.pk %}"><div>{{ student.first_name }} {{ student.last_name }} </div></a>
             <div>@{{ user.school }}</div>
         </li>
     {% endfor %}  

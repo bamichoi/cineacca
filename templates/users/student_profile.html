@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    {{ user.first_name }} {{ user.last_name }}
+    {{ student.first_name }} {{ student.last_name }}
 {% endblock page_title %}
 
 
@@ -9,7 +9,7 @@
 {% endblock movie_search_bar %}
 
 {% block content %}
-    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-    <h2>{{ user.school }} </h2>
-    <div>{{ user.biography }}</div>
+    <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+    <h2>{{ student.school }} </h2>
+    <div>{{ student.biography }}</div>
 {% endblock content %}

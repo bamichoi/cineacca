@@ -3,9 +3,16 @@ from users import views as user_views
 
 app_name = "users"
 urlpatterns = [
-    path("students/", user_views.StudentList.as_view(), name="list"),
+    path("students/", user_views.StudentListView.as_view(), name="list"),
     path(
-        "students/<int:pk>", user_views.StudentProfile.as_view(), name="student_profile"
+        "users/profile/<int:pk>",
+        user_views.UserProfileView.as_view(),
+        name="user_profile",
+    ),
+    path(
+        "students/<int:pk>",
+        user_views.StudentProfileView.as_view(),
+        name="student_profile",
     ),
     path("students/search/", user_views.SearchView.as_view(), name="search"),
     path("users/login/", user_views.LoginView.as_view(), name="login"),

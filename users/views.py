@@ -10,12 +10,22 @@ from . import forms
 # Create your views here.
 
 
-class StudentProfile(DetailView):
+class UserProfileView(DetailView):
 
     """UserProfile Definition"""
 
     model = models.User
+    template_name = "users/user_profile.html"
+    context_object_name = "user_obj"
+
+
+class StudentProfileView(DetailView):
+
+    """StudentProfile Definition"""
+
+    model = models.User
     template_name = "users/student_profile.html"
+    context_object_name = "student"
 
     def get_queryset(self):
         return (
@@ -23,14 +33,14 @@ class StudentProfile(DetailView):
         )  # get_quryset 메소드를 orverride 하여 계정타입이 stdunet 인 user들만 가져옴.
 
 
-class StudentList(ListView):
+class StudentListView(ListView):
 
     """UserList Definition"""
 
     model = models.User
     paginate_by = 20
     ordering = None
-    context_object_name = "users"
+    context_object_name = "students"
     template_name = "users/student_list.html"
 
     def get_queryset(self):
@@ -100,7 +110,7 @@ class SearchView(View):
             paginator = Paginator(result_qs, page_numbers_range)
             page = self.request.GET.get("page", 1)
             max_index = paginator.num_pages
-            users = paginator.get_page(page)
+            students = paginator.get_page(page)
 
             if page:
                 current_page = int(page)
@@ -119,9 +129,9 @@ class SearchView(View):
 
             return render(
                 request,
-                "users/user_search.html",
+                "users/student_search.html",
                 {
-                    "users": users,
+                    "students": students,
                     "keyword": keyword,
                     "page_range": page_range,
                     "start_index": start_index,

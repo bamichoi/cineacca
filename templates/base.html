@@ -11,6 +11,7 @@
         <a href="/"><h1>CINEACCA</h1></a>
         {% if user.is_authenticated %}
         <a href="{% url 'users:logout' %}"><span>Logout</span></a>
+        <a href="{% url 'users:user_profile' user.pk %}"><span>My profile</span></a>
         {% else %}
         <a href="{% url 'users:login' %}"><span>Login</span></a>
         {% endif %}
