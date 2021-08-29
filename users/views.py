@@ -1,9 +1,9 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, View, FormView
+from django.views.generic import ListView, DetailView, View, FormView, UpdateView
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Q
+from django.db.models import Q, fields
 from . import models
 from . import forms
 
@@ -19,9 +19,27 @@ class UserProfileView(DetailView):
     context_object_name = "user_obj"
 
 
+class UpdateProfileView(UpdateView):
+
+    """ChangeProfile View Definition"""
+
+    model = models.User
+    template_name = "users/update_profile.html"
+    fields = (
+        "first_name",
+        "last_name",
+        "avatar",
+        "biography",
+        "school",
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
 class StudentProfileView(DetailView):
 
-    """StudentProfile Definition"""
+    """StudentProfile View Definition"""
 
     model = models.User
     template_name = "users/student_profile.html"
@@ -35,7 +53,7 @@ class StudentProfileView(DetailView):
 
 class StudentListView(ListView):
 
-    """UserList Definition"""
+    """StudentList View Definition"""
 
     model = models.User
     paginate_by = 20
@@ -91,7 +109,7 @@ class StudentListView(ListView):
 
 class SearchView(View):
 
-    """SearchView Definition"""
+    """Search View Definition"""
 
     def get(self, request):
 

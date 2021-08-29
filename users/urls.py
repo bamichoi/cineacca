@@ -5,12 +5,17 @@ app_name = "users"
 urlpatterns = [
     path("students/", user_views.StudentListView.as_view(), name="list"),
     path(
-        "users/profile/<int:pk>",
+        "users/profile/<int:pk>/",
         user_views.UserProfileView.as_view(),
         name="user_profile",
     ),
     path(
-        "students/<int:pk>",
+        "users/profile/update/",
+        user_views.UpdateProfileView.as_view(),
+        name="udapte_profile",
+    ),
+    path(
+        "students/<int:pk>/",
         user_views.StudentProfileView.as_view(),
         name="student_profile",
     ),
@@ -19,7 +24,7 @@ urlpatterns = [
     path("users/logout/", user_views.log_out, name="logout"),
     path("users/signup/", user_views.sign_up, name="signup"),
     path(
-        "users/signup/student",
+        "users/signup/student/",
         user_views.StudentSignupView.as_view(),
         name="student_signup",
     ),
