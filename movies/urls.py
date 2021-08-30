@@ -6,4 +6,5 @@ urlpatterns = [
     path("movies/", movie_views.MovieList.as_view(), name="list"),
     path("movies/<int:pk>/", movie_views.MovieDetail.as_view(), name="detail"),
     path("movies/search/", movie_views.SearchView.as_view(), name="search"),
+    path("movies/upload/", movie_views.MovieUpload.as_view(), name="upload"),
 ]

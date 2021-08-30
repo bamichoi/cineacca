@@ -16,6 +16,6 @@
 <h1>Sign up</h1>
 <div>
     <a href="{% url 'users:student_signup' %}"><h3>Student account sign up</h3></a>
-    <a href="#"><h3>Public account sign up</h3></a>
+    <a href="{% url 'users:public_signup' %}"><h3>Public account sign up</h3></a>
 </div>
 {% endblock content%}

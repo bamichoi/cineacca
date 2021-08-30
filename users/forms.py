@@ -64,4 +64,47 @@ class StudentSignUpForm(forms.Form):
         user = models.User.objects.create_user(email, password)
         user.first_name = first_name
         user.last_name = last_name
+        user.account_type = "student"
+        user.save()
+
+
+class PublicSignUpForm(forms.Form):
+
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"placeholder": "Enter your emaill adress"})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Enter the Password"})
+    )  # password 는 암호화되어 저장되어야 하므로 별도로 작성.
+    password_confirm = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Confirm the Password"})
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        try:
+            models.User.objects.get(email=email)
+            raise forms.ValidationError("This email already exists.")
+        except models.User.DoesNotExist:
+            return email
+
+    def clean_password_confirm(self):  # password 와 password_confrim 이 일치하는지 확인.
+        password = self.cleaned_data.get("password")
+        password_confirm = self.cleaned_data.get("password_confirm")
+        if password != password_confirm:
+            raise forms.ValidationError("Password confirmation does not match.")
+        else:
+            return password
+
+    def save(self):
+        first_name = self.cleaned_data.get("first_name")
+        last_name = self.cleaned_data.get("last_name")
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
+        user = models.User.objects.create_user(email, password)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.account_type = "public"
         user.save()

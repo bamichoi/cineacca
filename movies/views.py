@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import ListView, DetailView, View, FormView
 from django.core.paginator import Paginator
 from django.db.models import Q
 from . import models
@@ -18,9 +18,16 @@ class HomeView(ListView):
     template_name = "home.html"
 
 
+class MovieUpload(FormView):
+
+    """MovieUpload Definition"""
+
+    pass
+
+
 class MovieList(ListView):
 
-    """HomeView Definition"""
+    """MovieList Definition"""
 
     model = models.Movie
     paginate_by = 10

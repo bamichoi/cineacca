@@ -15,6 +15,9 @@
         {% else %}
         <a href="{% url 'users:login' %}"><span>Login</span></a>
         {% endif %}
+        {% if user.account_type == "student" %}
+        <a href="#"><span>Upload movie</span></a>
+        {% endif %}
         {% block navigator %}
         <a href="{% url 'movies:list' %}""><span>Movies</span></a>
         <a href="{% url 'users:list' %}"><span>People</span></a>

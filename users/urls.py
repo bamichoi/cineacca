@@ -33,4 +33,9 @@ urlpatterns = [
         user_views.StudentSignupView.as_view(),
         name="student_signup",
     ),
+    path(
+        "users/signup/public/",
+        user_views.PublicSignupView.as_view(),
+        name="public_signup",
+    ),
 ]

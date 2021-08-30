@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Public Sign up
+{% endblock page_title %}
+
+
+{% block movie_search_bar %}
+{% endblock movie_search_bar %}
+
+
+{% block people_search_bar %}
+{% endblock people_search_bar %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'users:public_signup' %}">
+        {% csrf_token %}
+            {{form.as_p}}
+            <button>Sign up</button>
+    </form>
+    
+{% endblock content%}
