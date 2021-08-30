@@ -12,7 +12,12 @@ urlpatterns = [
     path(
         "users/profile/update/",
         user_views.UpdateProfileView.as_view(),
-        name="udapte_profile",
+        name="update_profile",
+    ),
+    path(
+        "users/profile/change-password/",
+        user_views.ChangePasswordView.as_view(),
+        name="change_password",
     ),
     path(
         "students/<int:pk>/",

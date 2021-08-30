@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
 from django.views.generic import ListView, DetailView, View, FormView, UpdateView
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
@@ -24,7 +25,7 @@ class UpdateProfileView(UpdateView):
     """ChangeProfile View Definition"""
 
     model = models.User
-    template_name = "users/update_profile.html"
+    template_name = "users/update-profile.html"
     fields = (
         "first_name",
         "last_name",
@@ -35,6 +36,27 @@ class UpdateProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class ChangePasswordView(PasswordChangeView):
+
+    """PasswordChange View Definition"""
+
+    # !) Form 을 따로 사용하는게 더 좋을까나?
+
+    template_name = "users/change-password.html"
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["old_password"].widget.attrs = {"placeholder": "Current password"}
+        form.fields["new_password1"].widget.attrs = {"placeholder": "New password"}
+        form.fields["new_password2"].widget.attrs = {
+            "placeholder": "Confrim New password"
+        }
+        return form
+
+    def get_success_url(self):
+        return self.request.user.get_absolute_url()
 
 
 class StudentProfileView(DetailView):
