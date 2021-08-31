@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView, View, FormView
 from django.core.paginator import Paginator
+from django.urls import reverse
 from django.db.models import Q
 from . import models
+from . import forms
 
 # Create your views here.
 
@@ -22,7 +24,14 @@ class MovieUpload(FormView):
 
     """MovieUpload Definition"""
 
-    pass
+    form_class = forms.MovieUploadForm
+    template_name = "movies/movie_upload.html"
+
+    def form_valid(self, form):
+        movie = form.save()
+        movie.user = self.request.user
+        movie.save()
+        return redirect(reverse("movies:detail", kwargs={"pk": movie.pk}))
 
 
 class MovieList(ListView):
