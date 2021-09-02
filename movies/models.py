@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from core import models as core_model
 from django.utils.translation import ugettext_lazy as _
 
@@ -39,6 +40,9 @@ class Movie(core_model.TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("movies:detail", kwargs={"pk": self.pk})
 
     def rating(self):
         all_reviews = self.reviews.all()

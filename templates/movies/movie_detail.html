@@ -37,6 +37,10 @@
         <li>sound_designer : {{movie.sound_designer}}</li>
     </ul>
 </div>
+{% if movie.user == user %}
+<a href="{% url 'movies:update' movie.pk %}"><div>Update this movie</div></a>
+<a href="{% url 'movies:delete' movie.pk %}"><div>Delete this movie</div></a>
+{% endif %}
 <h4>Reviwes</h4>
 <div>
     <ul>
@@ -50,6 +54,6 @@
         {% endfor %}
     </ul>
     
-        
+
 </div>
 {% endblock content %}

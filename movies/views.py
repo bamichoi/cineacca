@@ -1,8 +1,16 @@
 from django.shortcuts import redirect, render
-from django.views.generic import ListView, DetailView, View, FormView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    View,
+    FormView,
+    UpdateView,
+    DeleteView,
+)
 from django.core.paginator import Paginator
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.db.models import Q
+from django.views.generic.edit import UpdateView
 from . import models
 from . import forms
 
@@ -22,7 +30,7 @@ class HomeView(ListView):
 
 class MovieUpload(FormView):
 
-    """MovieUpload Definition"""
+    """MovieUpload View Definition"""
 
     form_class = forms.MovieUploadForm
     template_name = "movies/movie_upload.html"
@@ -32,6 +40,44 @@ class MovieUpload(FormView):
         movie.user = self.request.user
         movie.save()
         return redirect(reverse("movies:detail", kwargs={"pk": movie.pk}))
+
+
+class UpdateMovie(UpdateView):
+
+    """UpdateMovie View Deifinitiom"""
+
+    template_name = "movies/movie_update.html"
+    model = models.Movie
+
+    fields = (
+        "video",
+        "thumnail",
+        "title",
+        "description",
+        "director",
+        "screenwriter",
+        "casting",
+        "editor",
+        "director_of_photograpy",
+        "audio_director",
+        "music",
+        "art_director",
+        "costume_designer",
+        "makeup_artist",
+        "spacial_effect_supervisor",
+        "sound_designer",
+    )
+
+    def get_success_url(self):
+        pk = self.kwargs.get("pk")
+        return reverse("movies:detail", kwargs={"pk": pk})
+
+
+class DeleteMovie(DeleteView):
+
+    model = models.Movie
+    template_name = "movies/movie_delete.html"
+    success_url = reverse_lazy("movies:list")
 
 
 class MovieList(ListView):
