@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import fields
 from . import models
 
 
@@ -26,27 +27,17 @@ class LoginForm(forms.Form):
             self.add_error("email", forms.ValidationError("User does not exist."))
 
 
-class StudentSignUpForm(forms.Form):
+class StudentSignUpForm(forms.ModelForm):
+    class Meta:
+        model = models.User
+        fields = ("first_name", "last_name", "school", "email")
 
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": "Enter your emaill adress"})
-    )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={"placeholder": "Enter the Password"})
     )  # password 는 암호화되어 저장되어야 하므로 별도로 작성.
     password_confirm = forms.CharField(
         widget=forms.PasswordInput(attrs={"placeholder": "Confirm the Password"})
     )
-
-    def clean_email(self):
-        email = self.cleaned_data.get("email")
-        try:
-            models.User.objects.get(email=email)
-            raise forms.ValidationError("This email already exists.")
-        except models.User.DoesNotExist:
-            return email
 
     def clean_password_confirm(self):  # password 와 password_confrim 이 일치하는지 확인.
         password = self.cleaned_data.get("password")
@@ -56,15 +47,11 @@ class StudentSignUpForm(forms.Form):
         else:
             return password
 
-    def save(self):
-        first_name = self.cleaned_data.get("first_name")
-        last_name = self.cleaned_data.get("last_name")
-        email = self.cleaned_data.get("email")
+    def save(self, *args, **kwargs):
+        user = super().save(commit=False)
         password = self.cleaned_data.get("password")
-        user = models.User.objects.create_user(email, password)
-        user.first_name = first_name
-        user.last_name = last_name
         user.account_type = "student"
+        user.set_password(password)
         user.save()
 
 

@@ -11,6 +11,9 @@
 {% endblock people_search_bar %}
 
 {% block content %}
+{% if user.avatar %}
+        <div style="width:400px; height:400px; background-image:url({{user.avatar.url}}); background-repeat: no-repeat; background-size: contain;"></div>
+{% endif %}
 <div>
     <div>{{user_obj.first_name}} {{user_obj.last_name}}</div>
     <div>{{user_obj.school}}</div>

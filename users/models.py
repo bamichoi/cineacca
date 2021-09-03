@@ -75,6 +75,9 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
+    def get_absolute_url(self):
+        return reverse("users:user_profile", kwargs={"pk": self.pk})
+
 
 ## necessary data
 ### email (ID) - email certification (only @abaroma.it accept)
