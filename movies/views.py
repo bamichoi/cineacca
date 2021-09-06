@@ -10,7 +10,7 @@ from django.views.generic import (
 from django.core.paginator import Paginator
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q
-from django.views.generic.edit import UpdateView
+from reviews import forms as review_form
 from . import models
 from . import forms
 
@@ -136,9 +136,11 @@ class MovieDetail(DetailView):
 
     model = models.Movie
 
-    # class SearchView(View):
-
-    """SearchView Definition"""
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = review_form.CreateReviewForm
+        context["form"] = form
+        return context
 
 
 class SearchView(View):

@@ -1,0 +1,8 @@
+<form method="POST" action="{% url 'reviews:create' movie.pk %}">
+    {% csrf_token %}
+    <div>{{ user.first_name }} {{ user.last_name }}</div>
+    <div>
+        {{form.as_p}}
+    </div>
+    <button>Write Review</button>
+</form>

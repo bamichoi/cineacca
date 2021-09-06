@@ -43,13 +43,20 @@
 {% endif %}
 <h4>Reviwes</h4>
 <div>
+    {% include "reviews/review_form.html" %}
+</div>
+<div>
     <ul>
         {% for review in movie.reviews.all %}
         <li>
-            <h5>{{reviw.title}}</h5>
+            <h5>{{review.title}}</h5>
             <div>{{review.user}}</div>
             <div>rate : {{review.rate}}</div>
             <div>{{review.content}}</div>
+        {% if review.user == user %}
+            <a href="{% url 'reviews:delete' movie.pk review.pk %}"><span>delete</span></a>
+            <a href="#"><span>modify</span></a>
+        {% endif %}
         </li>
         {% endfor %}
     </ul>
