@@ -48,19 +48,57 @@
 <div>
     <ul>
         {% for review in movie.reviews.all %}
-        <li>
-            <h5>{{review.title}}</h5>
-            <div>{{review.user}}</div>
-            <div>rate : {{review.rate}}</div>
-            <div>{{review.content}}</div>
-        {% if review.user == user %}
-            <a href="{% url 'reviews:delete' movie.pk review.pk %}"><span>delete</span></a>
-            <a href="#"><span>modify</span></a>
-        {% endif %}
+        <li id="{{review.pk}}">
+            <div class="review_box">
+                <div class="review_title">{{review.title}}</div>
+                <div class="review_user">{{review.user}}</div>
+                <div class="review_rate">rate : {{review.rate}}</div>
+                <div class="review_content">{{review.content}}</div>
+            {% if review.user == user %}
+            <a href="{% url 'reviews:delete' movie.pk review.pk %}"><button class= "delete">delete</button></a>
+            <button class="modify" value="{{review.pk}}">modify</button>
+            {% endif %}
+            </div>
+            
+            <form class="modify_form" hidden=true >
+                <p>
+                    <label for="id_title">Title</label>
+                    <input type="text" name="title" maxlengh="300" required id="id_title" value="{{review.title}}">
+                </p>
+                <p>
+                    <label for="id_rate">Rate</label>
+                    <input type="number" name="rate" maxlengh="300" required id="id_rate" value="{{review.rate}}">
+                </p>
+                <p>
+                    <label for="id_content">Text</label>
+                    <textarea name="rate" maxlengh="300" required id="id_rate" >{{review.content}}</textarea>
+                </p>
+                <button>cancel</button>
+                <button>update</button>
+            </form>
+        
         </li>
         {% endfor %}
     </ul>
-    
-
 </div>
+<script>
+    const modifyBtns = document.getElementsByClassName("modify");
+    
+    function handleClickModify(event) {
+        const modifyBtn = event.target;
+        const pk = modifyBtn.value;
+        const reviewLi = document.getElementById(`${pk}`);
+        const reviewBox = reviewLi.querySelector(".review_box");
+        const modifyForm = reviewLi.querySelector(".modify_form");
+
+        reviewBox.hidden = true;
+        modifyForm.hidden = false;
+    
+    }
+
+    for (const modifyBtn of  modifyBtns) {
+        modifyBtn.addEventListener("click", handleClickModify);
+    }
+
+</script>
 {% endblock content %}
