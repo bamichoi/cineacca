@@ -1,8 +1,10 @@
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from movies import models as movie_models
 from reviews import models as review_models
 from . import forms
+from . import models
 
 
 def create_review(request, pk):
@@ -30,3 +32,20 @@ def delete_review(request, pk, review_pk):
         return redirect(reverse("movies:detail", kwargs={"pk": pk}))
     except movie_models.Movie.DoesNotExist:
         redirect(reverse("core:home"))
+
+
+def update_review(request):
+    if request.method == "POST":
+        pk = request.POST.get("pk")
+        title = request.POST.get("title")
+        rate = request.POST.get("rate")
+        content = request.POST.get("content")
+        review = models.Review.objects.get(
+            pk=pk
+        )  # !) filter 로 하면 왜 에러나지? : 'QuerySet' object has no attribute 'save'
+        review.title = title
+        review.rate = rate
+        review.content = content
+        review.save()
+
+    return JsonResponse({"status": "Success"})

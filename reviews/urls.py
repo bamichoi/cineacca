@@ -13,4 +13,9 @@ urlpatterns = [
         review_views.delete_review,
         name="delete",
     ),
+    path(
+        "api/review/update/",
+        review_views.update_review,
+        name="update",
+    ),
 ]

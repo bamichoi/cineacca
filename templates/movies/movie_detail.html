@@ -71,7 +71,7 @@
                 </p>
                 <p>
                     <label for="id_content">Text</label>
-                    <textarea name="rate" maxlengh="300" required id="id_rate" >{{review.content}}</textarea>
+                    <textarea name="rate" maxlengh="300" required id="id_content" >{{review.content}}</textarea>
                 </p>
                 <button class="cancel">cancel</button>
                 <button class="update">update</button>
@@ -81,12 +81,11 @@
         {% endfor %}
     </ul>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> <!-- CDN 말고 직접 import 할 수 있는 방법은 없을까. -->
 <script>
     const modifyBtns = document.getElementsByClassName("modify");
     const updateBtns = document.getElementsByClassName("update");
     const cancelBtns = document.getElementsByClassName("cancel")
-
-
 
     function handleClickModify(event) {
         const modifyBtn = event.target;
@@ -100,31 +99,48 @@
         reviewBox.hidden = true;
         modifyForm.hidden = false;
 
+        // cancel 버튼을 누를 때
         cancelBtn.addEventListener("click", (event) => {
             event.preventDefault();
             reviewBox.hidden = false;
             modifyForm.hidden = true;
         })
 
-        updateBtn.addEventListener("click", (event) => {
+        // update 버튼으로 form을 submit할때 
+        modifyForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            console.log(event.target);
             const titleInput = modifyForm.querySelector("#id_title");
             const rateInput = modifyForm.querySelector("#id_rate");
             const contentInput = modifyForm.querySelector("#id_content");
     
             const reviewTitle = reviewBox.querySelector(".review_title");
-            const reviewRate = reviewBox .querySelector(".review_rate");
-            const reviewContent = reviewBox .querySelector(".review_content");
+            const reviewRate = reviewBox.querySelector(".review_rate");
+            const reviewContent = reviewBox.querySelector(".review_content");
     
             const updateTitle = titleInput.value;
             const updateRate = rateInput.value;
+            const updateContent = contentInput.value;
+
+            let data = new FormData(); 
         
-            reviewTitle.innerText = updateTitle
-            reviewRate.innerText = updateRate
+            reviewTitle.innerText = updateTitle;
+            reviewRate.innerText = `rate : ${updateRate}`;
+            reviewContent.innerText = updateContent;
 
             reviewBox.hidden = false;
             modifyForm.hidden = true;
+
+            data.append("pk", pk);
+            data.append("title", updateTitle);
+            data.append("rate", updateRate);
+            data.append("content", updateContent);
+            data.append("csrfmiddlewaretoken", '{{csrf_token}}');
+
+           
+            axios.post("/api/review/update/", data)
+            .then(res => alert("Form Submitted"))
+            .catch(errors => console.log(errors.response.data))
+            
         });
     
     }
