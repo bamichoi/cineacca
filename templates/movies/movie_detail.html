@@ -73,8 +73,8 @@
                     <label for="id_content">Text</label>
                     <textarea name="rate" maxlengh="300" required id="id_rate" >{{review.content}}</textarea>
                 </p>
-                <button>cancel</button>
-                <button>update</button>
+                <button class="cancel">cancel</button>
+                <button class="update">update</button>
             </form>
         
         </li>
@@ -83,22 +83,56 @@
 </div>
 <script>
     const modifyBtns = document.getElementsByClassName("modify");
-    
+    const updateBtns = document.getElementsByClassName("update");
+    const cancelBtns = document.getElementsByClassName("cancel")
+
+
+
     function handleClickModify(event) {
         const modifyBtn = event.target;
         const pk = modifyBtn.value;
         const reviewLi = document.getElementById(`${pk}`);
         const reviewBox = reviewLi.querySelector(".review_box");
         const modifyForm = reviewLi.querySelector(".modify_form");
+        const cancelBtn = reviewLi.querySelector(".cancel");
+        const updateBtn = reviewLi.querySelector(".update");
 
         reviewBox.hidden = true;
         modifyForm.hidden = false;
+
+        cancelBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            reviewBox.hidden = false;
+            modifyForm.hidden = true;
+        })
+
+        updateBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            console.log(event.target);
+            const titleInput = modifyForm.querySelector("#id_title");
+            const rateInput = modifyForm.querySelector("#id_rate");
+            const contentInput = modifyForm.querySelector("#id_content");
+    
+            const reviewTitle = reviewBox.querySelector(".review_title");
+            const reviewRate = reviewBox .querySelector(".review_rate");
+            const reviewContent = reviewBox .querySelector(".review_content");
+    
+            const updateTitle = titleInput.value;
+            const updateRate = rateInput.value;
+        
+            reviewTitle.innerText = updateTitle
+            reviewRate.innerText = updateRate
+
+            reviewBox.hidden = false;
+            modifyForm.hidden = true;
+        });
     
     }
 
     for (const modifyBtn of  modifyBtns) {
         modifyBtn.addEventListener("click", handleClickModify);
     }
+
 
 </script>
 {% endblock content %}
