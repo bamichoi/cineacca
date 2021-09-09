@@ -4,12 +4,12 @@ from . import views as review_views
 app_name = "reviews"
 urlpatterns = [
     path(
-        "movies/<int:pk>/review/write/",
+        "api/<int:pk>/review/create/",
         review_views.create_review,
         name="create",
     ),
     path(
-        "movies/<int:pk>/review/delete/<int:review_pk>",
+        "api/review/delete/",
         review_views.delete_review,
         name="delete",
     ),

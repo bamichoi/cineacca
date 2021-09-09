@@ -136,12 +136,6 @@ class MovieDetail(DetailView):
 
     model = models.Movie
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        form = review_form.CreateReviewForm
-        context["form"] = form
-        return context
-
 
 class SearchView(View):
     """SearchView Definition"""

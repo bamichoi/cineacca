@@ -1,8 +1,17 @@
-<form method="POST" action="{% url 'reviews:create' movie.pk %}">
+<form id="review_form" method="POST" action="{% url 'reviews:create' movie.pk %}">
     {% csrf_token %}
     <div>{{ user.first_name }} {{ user.last_name }}</div>
-    <div>
-        {{form.as_p}}
-    </div>
+    <p>
+        <label for="review_title">Title</label>
+        <input type="text" name="title" maxlengh="300" required id="review_title">
+    </p>
+    <p>
+        <label for="modify_rate">Rate</label>
+        <input type="number" name="rate" maxlengh="300" required id="review_rate">
+    </p>
+    <p>
+        <label for="modify_content">Text</label>
+        <textarea name="rate" maxlengh="300" required id="review_content" ></textarea>
+    </p>
     <button>Write Review</button>
 </form>
