@@ -12,7 +12,7 @@
 {% endblock movie_search_bar %}
 
 {% block content %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
         {{form.as_p}}
         <button>Update</button>

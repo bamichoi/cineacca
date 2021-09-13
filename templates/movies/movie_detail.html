@@ -13,8 +13,22 @@
 <h1>{{movie.title}}</h1>
 <h2>{{movie.user}}</h2>
 <!--player-->
-<div style="background-color: black; width: 1000px; height: 500px;"> 
+
+<div> 
+    <video src="{{ movie.video.url }}" control></video>
+    <div>
+        <button id="play">Play</button>
+        <button id="mute">Mute</button>
+        <input id="volume" type="range" value=0.5 step="0.1", min="0", max="1" />
+        <div>
+            <span id="currentTime">00:00:00</span>
+            <span>/</span>
+            <span id="totalTime"></span>
+        </div>
+        <input id="timeline" type="range" value=0 step="1" min="0" />
+    </div>
 </div>
+
 <!--player-->
 <h4>description</h4>
     <div>
@@ -272,6 +286,89 @@
     for (const deleteBtn of deleteBtns) {
         deleteBtn.addEventListener("click", handleClickDelete);
     }
+
+</script>
+
+<script>
+    //Video Controller
+    const video = document.querySelector("video");
+    const playBtn = document.getElementById("play");
+    const muteBtn = document.getElementById("mute");
+    const time = document.getElementById("time");
+    const volumeRange = document.getElementById("volume");
+    const currentTime = document.getElementById("currentTime");
+    const totalTime =  document.getElementById("totalTime");
+    const timeline = document.getElementById("timeline")
+
+    let volumeValue = 0.5;
+    video.Volume = volumeValue
+
+    const handlePlayClick = (e) => {
+        if (video.paused) {
+            video.play();
+        } else{
+            video.pause();
+        }
+        playBtn.innerText = video.paused ? "Play" : "Pause";
+    }
+
+    const handleMuteClick = (e) => {
+        if (video.muted) {
+            video.muted = false;
+        } else {
+            video.muted = true;
+        }
+        muteBtn.innerText = video.muted ? "Unmute" : "Mute";
+        volumeRange.value = video.muted ? 0 : volumeValue;
+    }
+
+    const handleVolumeChange = (e) =>{
+        const { target : { value } } = event; 
+        
+        if (video.muted) {
+            video.muted = false;
+            muteBtn.innerText = "Mute";
+        }
+        volumeValue = value;
+        video.volume = value;
+    }
+
+    const formatTime = (seconds) => new Date(seconds * 1000).toISOString().substr(11, 8);
+    // new Date 를 이용한 트릭!
+
+    const handleLoadedMetadata = (e) => {
+        totalTime.innerText = formatTime(Math.floor(video.duration));
+        timeline.max = Math.floor(video.duration);
+    }  // !) e를 쓰는 것과 안쓰는 것의 차이?
+
+    const handleTimeUpdate = (e) => {
+        currentTime.innerText = formatTime(Math.floor(video.currentTime));
+        timeline.value = Math.floor(video.currentTime);
+
+        if (video.currentTime == video.duration) {
+            playBtn.innerText = "Play";
+        }
+    } 
+
+    const handleTimelineChange = (e) => {
+        const { target : { value } } = event; 
+        video.currentTime = value;  
+    }
+
+
+    if (video.readyState == 4) {
+        handleLoadedMetadata();
+        } // JS가 eventListener 를 부착하기 전에 비디오가 완전히 로딩되어버려 MetaData를 받아올 수 없는 경우를 대비.
+
+    playBtn.addEventListener("click", handlePlayClick);
+    muteBtn.addEventListener("click", handleMuteClick);
+    volumeRange.addEventListener("input", handleVolumeChange);
+    video.addEventListener("loadedmetadata", handleLoadedMetadata);
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    timeline.addEventListener("input", handleTimelineChange);
+
+
+
 
 </script>
 {% endblock content %}
