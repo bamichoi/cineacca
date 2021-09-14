@@ -14,9 +14,9 @@
 <h2>{{movie.user}}</h2>
 <!--player-->
 
-<div> 
+<div id=videoPlayer> 
     <video src="{{ movie.video.url }}" control></video>
-    <div>
+    <div id="videoController">
         <button id="play">Play</button>
         <button id="mute">Mute</button>
         <input id="volume" type="range" value=0.5 step="0.1", min="0", max="1" />
@@ -26,6 +26,9 @@
             <span id="totalTime"></span>
         </div>
         <input id="timeline" type="range" value=0 step="1" min="0" />
+        <div>
+            <button id="fullScreen">Enter Fullscreen</button>
+        </div>
     </div>
 </div>
 
@@ -298,10 +301,16 @@
     const volumeRange = document.getElementById("volume");
     const currentTime = document.getElementById("currentTime");
     const totalTime =  document.getElementById("totalTime");
-    const timeline = document.getElementById("timeline")
+    const timeline = document.getElementById("timeline");
+    const fullscreenBtn = document.getElementById("fullScreen");
+    const videoPlayer = document.getElementById("videoPlayer");
+    const videoController = document.getElementById("videoController");
 
     let volumeValue = 0.5;
     video.Volume = volumeValue
+
+    let controllerOutTimeout = null;
+    let controllerMovementTimeout = null;
 
     const handlePlayClick = (e) => {
         if (video.paused) {
@@ -356,6 +365,42 @@
     }
 
 
+    const handleClickFullscreen = () => {
+        const fullscreenPlayer = document.fullscreenElement;
+
+        if (fullscreenPlayer != null){
+            document.exitFullscreen();
+            fullscreenBtn.innerText = "Enter Fullscreen"
+        } else {
+            videoPlayer.requestFullscreen();
+            fullscreenBtn.innerText = "Exit Fullscreen"
+        }
+    }
+
+    const hideController = () => {
+        videoController.classList.remove("showing");
+    }
+
+    const handleMouseMove = (event) => {
+        if (controllerOutTimeout) {
+            clearTimeout(controllerOutTimeout);
+            controllerOutTimeout = null;
+        }
+
+        if (controllerMovementTimeout) {
+            clearTimeout(controllerMovementTimeout);
+            controllerMovementTimeout = null; 
+        } // 마우스가 움직일때마다 timeout 삭제. 더 이상 움직이지 않으면 controllerMovementTimeout은 아래쪽에 추가된 setTimeout의 값이 됨.
+        
+        videoController.classList.add("showing");
+        controllerMovementTimeout = setTimeout(hideController, 3000);  // 마우스가 움직일때마다 timeout 추가
+    }
+
+    const handleMouseLeave = (event) => {
+        controllerOutTimeout = setTimeout( hideController, 3000);  
+        
+    } // setTimeout 은 고유 id를 리턴한다.
+
     if (video.readyState == 4) {
         handleLoadedMetadata();
         } // JS가 eventListener 를 부착하기 전에 비디오가 완전히 로딩되어버려 MetaData를 받아올 수 없는 경우를 대비.
@@ -365,7 +410,11 @@
     volumeRange.addEventListener("input", handleVolumeChange);
     video.addEventListener("loadedmetadata", handleLoadedMetadata);
     video.addEventListener("timeupdate", handleTimeUpdate);
+    video.addEventListener("mousemove", handleMouseMove);
+    video.addEventListener("mouseleave", handleMouseLeave);
     timeline.addEventListener("input", handleTimelineChange);
+    fullscreenBtn.addEventListener("click", handleClickFullscreen);
+    
 
 
 
