@@ -5,8 +5,7 @@ from django.views.generic import ListView, DetailView, View, FormView, UpdateVie
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q, fields
-from . import models
-from . import forms
+from . import models, forms, mixins
 
 # Create your views here.
 
@@ -20,7 +19,7 @@ class UserProfileView(DetailView):
     context_object_name = "user_obj"
 
 
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(mixins.LoggedInOnlyView, UpdateView):
 
     """ChangeProfile View Definition"""
 
@@ -38,7 +37,7 @@ class UpdateProfileView(UpdateView):
         return self.request.user
 
 
-class ChangePasswordView(PasswordChangeView):
+class ChangePasswordView(mixins.LoggedInOnlyView, PasswordChangeView):
 
     """PasswordChange View Definition"""
 
@@ -184,13 +183,13 @@ class SearchView(View):
             )
 
 
-class LoginView(FormView):
+class LoginView(mixins.LoggedOutOnlyView, FormView):
 
     """LoginView Definition"""
 
     template_name = "users/login.html"
     form_class = forms.LoginForm
-    success_url = reverse_lazy("core:home")  # !)reverse_lazy 와 reverse 의 차이?
+    # success_url = reverse_lazy("core:home")  # !)reverse_lazy 와 reverse 의 차이?
 
     def form_valid(self, form):
         email = form.cleaned_data.get("email")  # form으로부터 clean된 email data를 받아옴.
@@ -204,6 +203,13 @@ class LoginView(FormView):
             login(self.request, user)  # login 시키기
         return super().form_valid(form)  # 최종적으로 form_valid 가 유효하다면 succes_url로 넘겨주기
 
+    def get_success_url(self):  # mixin 활용을 위해 success_url 대신 get_success_url 작성.
+        next_arg = self.request.GET.get("next")
+        if next_arg is not None:
+            return next_arg
+        else:
+            return reverse("core:home")
+
 
 def log_out(request):  # logout은 fbv로만 가능.
     logout(request)
@@ -214,7 +220,7 @@ def sign_up(request):
     return render(request, "users/signup.html")
 
 
-class StudentSignupView(FormView):
+class StudentSignupView(mixins.LoggedOutOnlyView, FormView):
 
     """StudentSignupView Definition"""
 
@@ -232,7 +238,7 @@ class StudentSignupView(FormView):
         return super().form_valid(form)
 
 
-class PublicSignupView(FormView):
+class PublicSignupView(mixins.LoggedOutOnlyView, FormView):
 
     """StudentSignupView Definition"""
 

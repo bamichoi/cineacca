@@ -22,6 +22,16 @@ Python with Django Framework and HTML, CSS, JavaScript
 Development in process
 
 
+### TO DO LIST 
+
+- [x] users view 로그인 여부에 따른 권한 Mixin 적용
+- [ ] 패스워드 리셋
+- [ ] 구글 연동 로그인 (student/public 적용 검토)
+- [ ] moives Views 에 로그인 여부에 따른 권한 Mixin 적용
+- [ ] 가입 시 이메일 인증
+- [ ] 영화 좋아요 / 조회수 기능
+- [ ] 리뷰 좋아요 기능
+
 
 
 
