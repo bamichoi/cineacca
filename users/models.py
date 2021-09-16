@@ -1,5 +1,8 @@
+import uuid
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
+from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
@@ -69,6 +72,8 @@ class User(AbstractUser):
         null=True,
         blank=True,
     )
+    email_verified = models.BooleanField(default=False)
+    email_secret = models.CharField(max_length=20, default="", blank=True)
 
     objects = CustomUserManager()
 
@@ -77,6 +82,19 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("users:user_profile", kwargs={"pk": self.pk})
+
+    def verify_email(self):
+        if self.email_verified is False:
+            secret = uuid.uuid4().hex[:20]
+            self.email_secret = secret
+            send_mail(
+                "Verify your Cineacca account",
+                f"Verify account, this is your secret: {secret}",
+                settings.EMAIL_FROM,
+                [self.email],
+                fail_silently=False,
+            )
+        return
 
 
 ## necessary data
