@@ -23,6 +23,7 @@ class Movie(core_model.TimeStampedModel):
     )
     title = models.CharField(_("titolo"), max_length=300)
     description = models.TextField(_("descrizione"), max_length=1000)
+    views = models.IntegerField(default=0)
 
     """staff info field"""
     director = models.CharField(_("regista"), max_length=300, null=True)
@@ -47,7 +48,8 @@ class Movie(core_model.TimeStampedModel):
         if len(all_reviews) > 0:
             for review in all_reviews:
                 all_ratings += review.rate
-            return all_ratings / len(all_reviews)
+                rating_avg = all_ratings / len(all_reviews)
+            return "{0:.1f}".format(rating_avg)  # !) 반올림 없이 버리는 방법은..?
         else:
             return 0
 

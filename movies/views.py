@@ -192,3 +192,14 @@ class SearchView(View):
                 "movies/movie_search.html",
                 {"keyword": keyword, "start_index": 0},
             )
+
+
+def count_view(request, pk):
+    if request.method == "POST":
+        try:
+            movie = models.Movie.objects.get(pk=pk)
+            movie.views += 1
+            movie.save()
+            return JsonResponse({"status": "Success"})
+        except models.Movie.DoesNotExist:
+            return redirect("core:home")

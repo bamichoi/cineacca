@@ -58,6 +58,8 @@
 <a href="{% url 'movies:update' movie.pk %}"><div>Update this movie</div></a>
 <a href="{% url 'movies:delete' movie.pk %}"><div>Delete this movie</div></a>
 {% endif %}
+<div> Rate : {{movie.rating}}</div>
+<div> {{movie.views}} views </div>
 <h4>Reviwes</h4>
 <div>
     {% include "reviews/review_form.html" %}
@@ -419,5 +421,14 @@
 
 
 
+</script>
+<script>
+    // view_count   
+    data = new FormData()
+
+    data.append("csrfmiddlewaretoken", '{{csrf_token}}');
+    axios.post("{% url 'movies:count_view' movie.pk %}", data)
+    .then(res => { return })
+    .catch(errors => console.log(errors.response.data));
 </script>
 {% endblock content %}
