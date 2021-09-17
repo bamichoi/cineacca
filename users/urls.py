@@ -38,4 +38,11 @@ urlpatterns = [
         user_views.PublicSignupView.as_view(),
         name="public_signup",
     ),
+    path("users/signup/success/", user_views.signup_success, name="signup_success"),
+    path("users/verify/<str:key>", user_views.user_verified, name="verficated"),
+    path(
+        "users/profile/<int:pk>/send_verify_email/",
+        user_views.send_verify_email,
+        name="send_verify_email",
+    ),
 ]

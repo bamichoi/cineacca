@@ -14,8 +14,15 @@
 {% if user.avatar %}
         <div style="width:400px; height:400px; background-image:url({{user.avatar.url}}); background-repeat: no-repeat; background-size: contain;"></div>
 {% endif %}
-<div>
     <div>{{user_obj.first_name}} {{user_obj.last_name}}</div>
+    <div>{{user_obj.email}}</div>
+    {% if user_obj.email == request.user.email %}
+        {% if user_obj.email_verified == False %}
+            <a href="{% url 'users:send_verify_email' user_obj.pk %}">Verify email adress</a>
+        {% else %}
+            <em>email verified!</em>
+        {% endif %}
+    {% endif %}
     <div>{{user_obj.school}}</div>
     <div>{{user_obj.biography}}</div>
 </div>

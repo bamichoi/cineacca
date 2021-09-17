@@ -45,7 +45,7 @@ class MovieAdmin(admin.ModelAdmin):
         ),
     )
 
-    list_display = ("title", "user", "director", "screenwriter", "rating")
+    list_display = ("title", "user", "director", "screenwriter", "rating", "views")
 
     list_filter = (
         "title",

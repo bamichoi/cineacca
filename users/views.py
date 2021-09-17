@@ -226,7 +226,7 @@ class StudentSignupView(mixins.LoggedOutOnlyView, FormView):
 
     template_name = "users/student_signup.html"
     form_class = forms.StudentSignUpForm
-    success_url = reverse_lazy("core:home")
+    success_url = reverse_lazy("users:signup_success")
 
     def form_valid(self, form):
         form.save()
@@ -235,7 +235,7 @@ class StudentSignupView(mixins.LoggedOutOnlyView, FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
-        user.verify_email()
+            user.verify_email()
         return super().form_valid(form)
 
 
@@ -255,3 +255,39 @@ class PublicSignupView(mixins.LoggedOutOnlyView, FormView):
         if user is not None:
             login(self.request, user)
         return super().form_valid(form)
+
+
+def signup_success(request):
+    user = request.user
+    user_email = user.email
+    return render(request, "emails/signup_success.html", {"email": user_email})
+
+
+def user_verified(request, key):
+    try:
+        user = models.User.objects.get(email_secret=key)
+        user.email_verified = True
+        user.email_secret = ""
+        user.save()
+        # 성공메세지
+    except models.User.DoesNotExist:
+        # 에러메세지
+        pass
+    return redirect(reverse("core:home"))
+
+
+def send_verify_email(request, pk):
+    if request.user.is_authenticated:
+        try:
+            profile_user = models.User.objects.get(pk=pk)
+            if profile_user == request.user:
+                user_email = profile_user.email
+                profile_user.verify_email()
+                return render(
+                    request, "emails/send_success.html", {"email": user_email}
+                )
+            else:
+                pass
+        except models.User.DoesNotExist:
+            pass
+    return redirect(reverse("core:home"))

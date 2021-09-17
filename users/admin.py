@@ -16,7 +16,18 @@ class CustomUserAdmin(UserAdmin):
     model = models.User
 
     fieldsets = (
-        (None, {"fields": ("email", "password", "first_name", "last_name")}),
+        (
+            None,
+            {
+                "fields": (
+                    "email",
+                    "password",
+                    "first_name",
+                    "last_name",
+                    "email_verified",
+                )
+            },
+        ),
         (
             _("Personal info"),
             {"fields": ("school", "biography", "account_type", "avatar")},
@@ -56,5 +67,6 @@ class CustomUserAdmin(UserAdmin):
         "account_type",
         "is_staff",
         "is_superuser",
+        "email_verified",
     )
     ordering = ("last_name",)

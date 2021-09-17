@@ -3,6 +3,8 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.core.mail import send_mail
+from django.utils.html import strip_tags
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
@@ -87,13 +89,18 @@ class User(AbstractUser):
         if self.email_verified is False:
             secret = uuid.uuid4().hex[:20]
             self.email_secret = secret
+            html_message = render_to_string(
+                "emails/verify_email.html", {"secret": secret}
+            )
             send_mail(
                 "Verify your Cineacca account",
-                f"Verify account, this is your secret: {secret}",
+                strip_tags(html_message),  # html을 제외한 부분을 text로 바꿔주는 기능.
                 settings.EMAIL_FROM,
                 [self.email],
                 fail_silently=False,
+                html_message=html_message,  # 메일안에서 html 태그를 작동하게 함.
             )
+            self.save()
         return
 
 
