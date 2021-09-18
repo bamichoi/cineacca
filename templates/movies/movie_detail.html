@@ -61,9 +61,18 @@
 <div> Rate : {{movie.rating}}</div>
 <div> {{movie.views}} views </div>
 <h4>Reviwes</h4>
-<div>
-    {% include "reviews/review_form.html" %}
-</div>
+{% if user.is_authenticated %}
+    {% if user.email_verified %}
+        <div>
+            {% include "reviews/review_form.html" %}
+        </div>
+    {% else %}
+        <div>only user that have done the email verification could write a review</div>
+    {% endif %}
+{% else %}
+    <div> To write a review you need to do login</div>        
+{% endif %}
+
 <div>
     <ul id="reviews">
         <li class="new_review" hidden="true">

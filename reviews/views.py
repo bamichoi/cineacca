@@ -7,7 +7,7 @@ from . import forms
 from . import models
 from movies import models as movie_models
 
-
+# api 접근 따로 보호처리 해줘야하나?
 def create_review(request, pk):
     if request.method == "POST":
         user = request.user

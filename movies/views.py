@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic import (
     ListView,
@@ -13,6 +14,7 @@ from django.db.models import Q
 from reviews import forms as review_form
 from . import models
 from . import forms
+from users import mixins as user_mixins
 
 # Create your views here.
 
@@ -28,7 +30,7 @@ class HomeView(ListView):
     template_name = "home.html"
 
 
-class MovieUpload(FormView):
+class MovieUpload(user_mixins.MoiveUploadPermissionView, FormView):
 
     """MovieUpload View Definition"""
 
@@ -42,7 +44,7 @@ class MovieUpload(FormView):
         return redirect(reverse("movies:detail", kwargs={"pk": movie.pk}))
 
 
-class UpdateMovie(UpdateView):
+class UpdateMovie(user_mixins.MovieUpdateDeletePermissionView, UpdateView):
 
     """UpdateMovie View Deifinitiom"""
 
@@ -73,7 +75,7 @@ class UpdateMovie(UpdateView):
         return reverse("movies:detail", kwargs={"pk": pk})
 
 
-class DeleteMovie(DeleteView):
+class DeleteMovie(user_mixins.MovieUpdateDeletePermissionView, DeleteView):
 
     model = models.Movie
     template_name = "movies/movie_delete.html"
