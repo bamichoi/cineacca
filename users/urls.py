@@ -45,4 +45,24 @@ urlpatterns = [
         user_views.send_verify_email,
         name="send_verify_email",
     ),
+    path(
+        "users/reset-password",
+        user_views.ResetPasswordView.as_view(),
+        name="reset-password",
+    ),
+    path(
+        "users/reset-password/done",
+        user_views.ResetPasswordDone.as_view(),
+        name="reset-password-done",
+    ),
+    path(
+        "users/reset-password/confirm/<uidb64>/<token>/",
+        user_views.ResetPasswordConfirm.as_view(),
+        name="reset-password-confirm",
+    ),
+    path(
+        "users/reset-password/success",
+        user_views.ResetPasswordSuccess.as_view(),
+        name="reset-password-success",
+    ),
 ]

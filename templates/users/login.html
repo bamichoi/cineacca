@@ -21,6 +21,10 @@
     </form>
 
     <div>
+        <span>Have you forgot the password?</span>
+        <a href="{% url 'users:reset-password' %}"><span>Find password</span></a>
+    </div>
+    <div>
         <span>Haven't you the account yet?</span>
         <a href="{% url 'users:signup' %}"><span>Sign up</span></a>
     </div>

@@ -1,6 +1,12 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import (
+    PasswordChangeView,
+    PasswordResetDoneView,
+    PasswordResetView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView,
+)
 from django.views.generic import ListView, DetailView, View, FormView, UpdateView
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
@@ -291,3 +297,24 @@ def send_verify_email(request, pk):
         except models.User.DoesNotExist:
             pass
     return redirect(reverse("core:home"))
+
+
+class ResetPasswordView(PasswordResetView):
+    template_name = "users/reset-password.html"
+    success_url = reverse_lazy("users:reset-password-done")
+    email_template_name = "emails/reset-password-email.html"
+
+
+class ResetPasswordDone(PasswordResetDoneView):
+    template_name = "users/reset-password-done.html"
+
+
+# 폐기된 인증메일 다시 누르면 너무 못생김.
+class ResetPasswordConfirm(PasswordResetConfirmView):
+    template_name = "users/reset-password-confirm.html"
+    success_url = reverse_lazy("users:reset-password-success")
+    prefix = {"uidb64", "token"}
+
+
+class ResetPasswordSuccess(PasswordResetCompleteView):
+    template_name = "users/reset-password-success.html"
