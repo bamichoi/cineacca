@@ -65,4 +65,10 @@ urlpatterns = [
         user_views.ResetPasswordSuccess.as_view(),
         name="reset-password-success",
     ),
+    path("users/login/google", user_views.google_login, name="google-login"),
+    path(
+        "users/login/google/callback",
+        user_views.google_callback,
+        name="google-callback",
+    ),
 ]

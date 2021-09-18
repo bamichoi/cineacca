@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.views import (
@@ -318,3 +319,17 @@ class ResetPasswordConfirm(PasswordResetConfirmView):
 
 class ResetPasswordSuccess(PasswordResetCompleteView):
     template_name = "users/reset-password-success.html"
+
+
+def google_login(request):
+    client_id = os.environ.get("GOOGLE_OAUTH_ID")
+    redirect_uri = "http://127.0.0.1:8000/users/login/google/callback"
+    scope = "https://www.googleapis.com/auth/drive.metadata.readonly"
+    response_type = "code"
+    return redirect(
+        f"https://accounts.google.com/o/oauth2/auth?client_id={client_id}&redirect_uri={redirect_uri}&response_type={response_type}&scope={scope}"
+    )
+
+
+def google_callback(request):
+    pass
