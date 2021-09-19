@@ -1,3 +1,4 @@
+from config.settings import EMAIL_USE_TLS
 from django import forms
 from django.db.models import fields
 from . import models
@@ -95,3 +96,22 @@ class PublicSignUpForm(forms.Form):
         user.last_name = last_name
         user.account_type = "public"
         user.save()
+
+
+class DeleteAccountForm(forms.Form):
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Password"})
+    )
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
+
+    def clean_password(self):
+        password = self.cleaned_data.get("password")
+        print(password)
+        user = self.user
+        print(user)
+        if not user.check_password(password):
+            raise forms.ValidationError("Password doesn't match")

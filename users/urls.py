@@ -65,6 +65,11 @@ urlpatterns = [
         user_views.ResetPasswordSuccess.as_view(),
         name="reset-password-success",
     ),
+    path(
+        "users/profile/update/delete",
+        user_views.delete_account,
+        name="delete-account",
+    ),
     path("users/login/google", user_views.google_login, name="google-login"),
     path(
         "users/login/google/callback",

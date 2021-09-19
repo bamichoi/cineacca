@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Update Profile
+    Delete my account
 {% endblock page_title %}
 
 {% block movie_search_bar %}
@@ -12,11 +12,9 @@
 
 
 {% block content %}
-<form method="post" enctype="multipart/form-data">
+<form method="post">
     {% csrf_token %}
         {{form.as_p}}
-        <button>Update Profile</button>
+        <button>Delete Account</button>
 </form>
-<a href="{% url 'users:delete-account' %}">Delete Profile</a>
-
 {% endblock content %}

@@ -1,4 +1,7 @@
 import os
+import json
+import requests
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.views import (
@@ -8,7 +11,14 @@ from django.contrib.auth.views import (
     PasswordResetConfirmView,
     PasswordResetCompleteView,
 )
-from django.views.generic import ListView, DetailView, View, FormView, UpdateView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    View,
+    FormView,
+    UpdateView,
+    DeleteView,
+)
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q, fields
@@ -321,15 +331,60 @@ class ResetPasswordSuccess(PasswordResetCompleteView):
     template_name = "users/reset-password-success.html"
 
 
+def delete_account(request):
+
+    if request.method == "POST":
+        form = forms.DeleteAccountForm(
+            request.user, request.POST
+        )  # !) request.POST 넣어줘야하는 이유..?
+
+        if form.is_valid():
+            request.user.delete()
+            logout(request)
+            return redirect(reverse("core:home"))
+    else:
+        form = forms.DeleteAccountForm(request.user)
+
+    return render(request, "users/delete-account.html", {"form": form})
+
+
+# Login with the Google account
+
+
+class GoogleException(Exception):
+    pass
+
+
 def google_login(request):
     client_id = os.environ.get("GOOGLE_OAUTH_ID")
-    redirect_uri = "http://127.0.0.1:8000/users/login/google/callback"
-    scope = "https://www.googleapis.com/auth/drive.metadata.readonly"
+    redirect_uri = os.environ.get("GOOGLE_OAUTH_REDIR_URI")
+    scope = os.environ.get("GOOGLE_OAUTH_SCOPE")
     response_type = "code"
     return redirect(
-        f"https://accounts.google.com/o/oauth2/auth?client_id={client_id}&redirect_uri={redirect_uri}&response_type={response_type}&scope={scope}"
+        f"https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&redirect_uri={redirect_uri}&response_type={response_type}&scope={scope}"
     )
 
 
 def google_callback(request):
-    pass
+    try:
+        data = {
+            "code": request.GET.get("code"),
+            "client_id": os.environ.get("GOOGLE_OAUTH_ID"),
+            "client_secret": os.environ.get("GOOGLE_OAUTH_PW"),
+            "redirect_uri": os.environ.get("GOOGLE_OAUTH_REDIR_URI"),
+            "grant_type": "authorization_code",
+        }
+        request_token = requests.post("https://oauth2.googleapis.com/token", data=data)
+        token_json = request_token.json()
+        print(token_json)
+        error = token_json.get("error", None)
+        if error is not None:
+            raise GoogleException()
+        access_token = token_json.get("access_token")
+        profile_request = requests.get(
+            "https://www.googleapis.com/auth/userinfo.profile",
+            headers={"Authorization": f"Bearer {access_token}"},
+        ).json()
+        print(json.loads(profile_request))
+    except GoogleException:
+        redirect(reverse("users:login"))
