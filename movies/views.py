@@ -138,6 +138,39 @@ class MovieDetail(DetailView):
 
     model = models.Movie
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        movie = self.get_object()
+        all_reviews = movie.reviews.all()
+        page = self.request.GET.get("page", 1)
+        page_numbers_range = 5
+        paginator = Paginator(all_reviews, page_numbers_range)
+        reviews = paginator.get_page(int(page))  # !) page, get_page 차이에 대해서..(맨날 까먹음)
+        max_index = paginator.num_pages
+
+        if page:
+            current_page = int(page)
+        else:
+            current_page = 1
+
+        start_index = current_page - 3
+        if start_index < 0:
+            start_index = 0
+
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+
+        page_range = paginator.page_range[start_index:end_index]
+
+        context["reviews"] = reviews
+        context["page_range"] = page_range
+        context["start_index"] = start_index
+        context["next_index"] = end_index + 1
+        context["max_index"] = max_index
+
+        return context
+
 
 class SearchView(View):
     """SearchView Definition"""

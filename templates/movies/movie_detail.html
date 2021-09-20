@@ -134,6 +134,25 @@
             </form>
         </li>
         {% endfor %}
+        <div>
+            <div>
+                {% if start_index != 0 %}
+                    <a href="?page={{start_index}}">previous</a>
+                {% endif %}
+            </div>
+            <div>
+                
+                    {% for page in page_range %}
+                        <span><a href="?page={{page}}">{{page}}</a></span>
+                    {% endfor %}
+                
+            </div>
+            <div>
+                {% if next_index < max_index %}
+                    <a href="?page={{next_index}}">next</a>
+                {% endif %}
+            </div>
+        </div>
     </ul>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> <!-- CDN 말고 직접 import 할 수 있는 방법은 없을까. -->
