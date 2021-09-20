@@ -4,6 +4,7 @@ import requests
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import (
     PasswordChangeView,
     PasswordResetDoneView,
@@ -17,7 +18,6 @@ from django.views.generic import (
     View,
     FormView,
     UpdateView,
-    DeleteView,
 )
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
@@ -331,6 +331,7 @@ class ResetPasswordSuccess(PasswordResetCompleteView):
     template_name = "users/reset-password-success.html"
 
 
+@login_required(login_url="/users/login/")
 def delete_account(request):
 
     if request.method == "POST":
