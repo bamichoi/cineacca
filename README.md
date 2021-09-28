@@ -24,6 +24,18 @@ Development in process
 
 ### TO DO LIST 
 
+S T Y L E
+
+- [ ] Home
+- [ ] Detail
+- [ ] Movies
+- [ ] Students
+- [ ] Login
+- [ ] Signup
+- [ ] Profile
+
+
+
 - [x] users view 로그인 여부에 따른 권한 Mixin 적용
 - [x] 가입 시 이메일 인증 (현재 학생계정만 되어있음.)
 - [x] 이메일 인증 안된 유저 프로필 페이지에서 인증신청 
