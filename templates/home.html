@@ -21,7 +21,7 @@
 <ul>
 {% for movie in movies %}
     <li>
-        <a href={% url 'movies:detail' movie.pk %}><div>{{ movie.title }}</div></a>
+        <a href={% url 'movies:detail' movie.pk %}><span>{{ movie.title }}</span></a>
     </li>
 {% endfor %}
 </ul>

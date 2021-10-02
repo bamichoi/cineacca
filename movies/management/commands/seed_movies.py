@@ -26,8 +26,9 @@ class Command(BaseCommand):
             Movie,
             number,
             {
-                "video": lambda x: f"/uploads/movie_files/{random.randint(1, 7)}.mov",
-                "thumnail": lambda x: f"/uploads/movie_thumnails/{random.randint(1, 7)}.jpeg",
+                "video": lambda x: f"/movie_files/{random.randint(1, 6)}.mov",
+                "thumnail": lambda x: f"/movie_thumnails/{random.randint(1, 6)}.jpeg",
+                "views": 0,
                 "user": lambda x: random.choice(all_users),
                 "director": lambda x: seeder.faker.name(),
                 "screenwriter": lambda x: seeder.faker.name(),

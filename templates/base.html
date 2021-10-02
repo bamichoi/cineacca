@@ -7,25 +7,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>{% block page_title %} {% endblock page_title %} | Cineacca</title>
+    <title>{% block page_title %} {% endblock page_title %} | CINEACCA</title>
 </head>
 <body>
     <header>
-        <a href="/"><h1>CINEACCA</h1></a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'users:logout' %}"><span>Logout</span></a>
-        <a href="{% url 'users:user_profile' user.pk %}"><span>My profile</span></a>
-        {% else %}
-        <a href="{% url 'users:login' %}"><span>Login</span></a>
-        {% endif %}
-        {% if user.account_type == "student" %}
-        <a href="{% url 'movies:upload' %}"><span>Upload movie</span></a>
-        {% endif %}
+        <div id="title">
+            <div>
+                <a href="/">CINEACCA</a>
+                <span>Il paradiso del cinematografico studentesco</span>
+            </div>
+        </div>
+        
         {% block navigator %}
-        <a href="{% url 'movies:list' %}""><span>Movies</span></a>
-        <a href="{% url 'users:list' %}"><span>People</span></a>
-        {% endblock navigator %}
+        <div id="nav">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'movies:list' %}""><span>I film</span></a></li>
+                    <li><span>|</span></li>
+                    <li><a href="{% url 'users:list' %}"><span>Gli studenti</span></a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#"><span>La festa</span></a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#"><span>About</span></a></li>
+                </ul>
+            </nav>
+        </div>
+        {% endblock navigator %}            
     </header>
+            {% if user.is_authenticated %}
+                <a href="{% url 'users:logout' %}"><span>Logout</span></a>
+                <a href="{% url 'users:user_profile' user.pk %}"><span>My profile</span></a>
+            {% else %}
+                <a href="{% url 'users:login' %}"><span>Login</span></a>
+            {% endif %}
+            {% if user.account_type == "student" %}
+                <a href="{% url 'movies:upload' %}"><span>Upload movie</span></a>
+            {% endif %}  
 
     {% block movie_search_bar %}
         <form method="get" action="{% url 'movies:search' %}">

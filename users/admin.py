@@ -65,8 +65,8 @@ class CustomUserAdmin(UserAdmin):
         "last_name",
         "school",
         "account_type",
+        "email_verified",
         "is_staff",
         "is_superuser",
-        "email_verified",
     )
     ordering = ("last_name",)

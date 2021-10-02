@@ -1,3 +1,51 @@
-body {
-  background-color: orange;
+@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Hanunoo&display=swap");
+
+header {
+  background-color: #3a37ac;
+  height: 8em;
+  margin: 0 10em;
+  padding: 2em 2em;
+  display: flex;
+  flex-direction: column;
+
+  #title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: "Reem Kufi", sans-serif;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      a {
+        text-decoration: none;
+        color: white;
+        font-size: 5em;
+      }
+      span {
+        color: white;
+        font-size: 0.95em;
+      }
+    }
+  }
+
+  #nav {
+    nav ul {
+      padding-top: 1.7em;
+      display: flex;
+      li {
+        margin-right: 1em;
+        a {
+          text-decoration: none;
+        }
+        span {
+          font-family: "Noto Sans Hanunoo", sans-serif;
+          color: white;
+          font-size: 1.3em;
+        }
+      }
+    }
+  }
 }
