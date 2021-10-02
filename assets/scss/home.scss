@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Hanunoo&display=swap");
 
 header {
   background-color: #3a37ac;
@@ -46,6 +45,22 @@ header {
           font-size: 1.3em;
         }
       }
+    }
+  }
+}
+
+#user-menu {
+  margin: 1em 10em;
+  display: flex;
+  justify-content: flex-end;
+  a {
+    text-decoration: none;
+    div {
+      margin-left: 1em;
+      padding: 0 0.2em;
+      padding-bottom: 0.3em;
+      border-bottom: 2px solid #acc0f3;
+      //font
     }
   }
 }
