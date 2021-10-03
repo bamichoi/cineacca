@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>{% block page_title %} {% endblock page_title %} | CINEACCA</title>
 </head>
@@ -39,28 +40,28 @@
             <a href="{% url 'users:logout' %}"><div>Logout</div></a>
             <a href="{% url 'users:user_profile' user.pk %}"><div>My profile</div></a>
         {% else %}
-            <a href="{% url 'users:login' %}"><div>login</div></a>
-            <a href="{% url 'users:signup' %}"><div>sign up</div></a>
+            <a href="{% url 'users:login' %}"><div>Login</div></a>
+            <a href="{% url 'users:signup' %}"><div>Join</div></a>
         {% endif %}
         {% if user.account_type == "student" %}
-            <a href="{% url 'movies:upload' %}"><div>Upload movie</div></a>
+            <a href="{% url 'movies:upload' %}"><div>Carica un film</div></a>
         {% endif %}
     </div>
               
     <main>
-    {% block movie_search_bar %}
-        <form method="get" action="{% url 'movies:search' %}">
-            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search Movies by title or director" />
+        {% block movie_search_bar %}
+            <form method="get" action="{% url 'movies:search' %}">
+                <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search Movies by title or director" />
+                <button>Search</button>
+            </form>
+        {% endblock movie_search_bar %}
+
+        {% block people_search_bar %}
+        <form method="get" action="{% url 'users:search' %}">
+            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search a Person by first name or last name" />
             <button>Search</button>
         </form>
-    {% endblock movie_search_bar %}
-
-    {% block people_search_bar %}
-    <form method="get" action="{% url 'users:search' %}">
-        <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search a Person by first name or last name" />
-        <button>Search</button>
-    </form>
-    {% endblock people_search_bar %}
+        {% endblock people_search_bar %}
 
     
         {% block content %}

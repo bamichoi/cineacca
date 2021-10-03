@@ -13,10 +13,48 @@
 
 {% block content %}
 
-<h1>il film del giorno</h1>
+    <div id="today-movies">
+        <div id="today-movies_title">
+            <h1>&nbsp;I FILM DEL GIORNO&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <div class="today-movies_content">
+            <h1>Il titolo del film</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div>
+                <i class="fas fa-play"></i>
+                <span>Riproduci ora</span>
+            </div>
+        </div>
+    </div>
 
 
-<h2> i nuovi film</h2>
+    <div id="new-movies">
+        <div id="new-movies_title">
+            <div>
+                <h1>&nbsp;I NUOVI FILM&nbsp;&nbsp;&nbsp;</h1>
+            </div>
+            <span><a href="{% url 'movies:list' %}">Scopri di più <i class="fas fa-sign-in-alt"></i></a></span>  
+        </div>
+        
+        <div id="new-movies_grid">
+            <div class="movie-card">
+                <div class="movie-card_thumnail"></div>
+                <div class="movie-card_info">
+                    <span class="info_title">Title</span>
+                    <span class="info_user">user</span>
+                    <div>
+                        <span>year</span>
+                        <span>duration</span>
+                        <span><i class="fas fa-star"></i>rating</span>
+                        <span>views</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
 
 <ul>
 {% for movie in movies %}
@@ -27,7 +65,7 @@
 </ul>
 
 <div>
-    <a href="{% url 'movies:list' %}"><h4>See More</h4></a>
+
 </div>
 
 

@@ -24,7 +24,7 @@ class HomeView(ListView):
     """HomeView Definition"""
 
     model = models.Movie
-    paginate_by = 10
+    paginate_by = 12
     ordering = "-created"
     context_object_name = "movies"
     template_name = "home.html"

@@ -1,66 +1,113 @@
-@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap");
+#today-movies {
+  font-family: "Noto Sans Hanunoo", sans-serif;
 
-header {
-  background-color: #3a37ac;
-  height: 8em;
-  margin: 0 10em;
-  padding: 2em 2em;
-  display: flex;
-  flex-direction: column;
-
-  #title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    font-family: "Reem Kufi", sans-serif;
-
-    div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      a {
-        text-decoration: none;
-        color: white;
-        font-size: 5em;
-      }
-      span {
-        color: white;
-        font-size: 0.95em;
-      }
+  #today-movies_title {
+    background-color: #ddc9e7;
+    height: 1.2rem;
+    width: fit-content;
+    h1 {
+      margin-top: 3rem;
+      font-family: "Reem Kufi", sans-serif;
+      font-size: 2rem;
+      position: relative;
+      top: -1.2rem;
     }
   }
 
-  #nav {
-    nav ul {
-      padding-top: 1.7em;
+  .today-movies_content {
+    margin-top: 1rem;
+    background-color: #c4c4c4;
+    width: inherit;
+    height: 30rem;
+    h1 {
+      padding: 2rem 2rem;
+      color: white;
+      font-size: 3.7rem;
+    }
+    p {
+      padding: 0rem 2.2rem;
+      width: 28rem;
+      color: white;
+      font-size: 1.1rem;
+    }
+    div {
+      margin-top: 7rem;
+      padding: 0 2rem;
+      color: white;
       display: flex;
-      li {
-        margin-right: 1em;
-        a {
-          text-decoration: none;
-        }
-        span {
-          font-family: "Noto Sans Hanunoo", sans-serif;
-          color: white;
-          font-size: 1.3em;
-        }
+      align-items: center;
+      i {
+        font-size: 5rem;
+        margin-right: 1rem;
+      }
+      span {
+        font-size: 2rem;
       }
     }
   }
 }
 
-#user-menu {
-  margin: 1em 10em;
-  display: flex;
-  justify-content: flex-end;
-  a {
-    text-decoration: none;
+#new-movies {
+  margin-top: 4rem;
+  font-family: "Noto Sans Hanunoo", sans-serif;
+  #new-movies_title {
+    display: flex;
+    justify-content: space-between;
+
     div {
-      margin-left: 1em;
-      padding: 0 0.2em;
-      padding-bottom: 0.3em;
-      border-bottom: 2px solid #acc0f3;
-      //font
+      background-color: #ddc9e7;
+      height: 1.2rem;
+      width: fit-content;
+      h1 {
+        margin-top: 3rem;
+        font-family: "Reem Kufi", sans-serif;
+        font-size: 2rem;
+        position: relative;
+        top: -4.2rem;
+      }
+    }
+
+    span a {
+      color: #f07a7a;
+      margin-right: 1rem;
+      text-decoration: none;
+    }
+  }
+
+  #new-movies_grid {
+    margin-top: 1rem;
+    display: grid;
+    height: 60rem;
+    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    .movie-card {
+      display: flex;
+      flex-direction: column;
+      .movie-card_thumnail {
+        width: 16rem;
+        height: 10rem;
+        background-color: gray;
+      }
+      .movie-card_info {
+        display: flex;
+        flex-direction: column;
+
+        .info_title {
+          margin: 1rem 0rem;
+          font-size: 1.7rem;
+        }
+        .info_user {
+          font-size: 1.2rem;
+        }
+        div {
+          margin-top: 1rem;
+          span:nth-child(3) i {
+            color: #edf12c;
+          }
+        }
+      }
     }
   }
 }
