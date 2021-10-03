@@ -85,10 +85,12 @@
     .movie-card {
       display: flex;
       flex-direction: column;
+      margin-bottom: 2rem;
       .movie-card_thumnail {
-        width: 16rem;
+        width: 15rem;
         height: 10rem;
-        background-color: gray;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
       .movie-card_info {
         display: flex;
@@ -96,10 +98,10 @@
 
         .info_title {
           margin: 1rem 0rem;
-          font-size: 1.7rem;
+          font-size: 1.3rem;
         }
         .info_user {
-          font-size: 1.2rem;
+          font-size: 0.8rem;
         }
         div {
           margin-top: 1rem;

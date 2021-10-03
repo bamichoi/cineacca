@@ -37,36 +37,26 @@
         </div>
         
         <div id="new-movies_grid">
-            <div class="movie-card">
-                <div class="movie-card_thumnail"></div>
-                <div class="movie-card_info">
-                    <span class="info_title">Title</span>
-                    <span class="info_user">user</span>
-                    <div>
-                        <span>year</span>
-                        <span>duration</span>
-                        <span><i class="fas fa-star"></i>rating</span>
-                        <span>views</span>
+            {% for movie in movies %}
+                <div class="movie-card">
+                    <a href="{% url 'movies:detail' movie.pk %}">
+                        <div class="movie-card_thumnail" style="background-image: url({{movie.thumnail.url}});"></div>
+                    </a>
+                    <div class="movie-card_info">
+                        <span class="info_title">{{ movie.title }}</span>
+                        <span class="info_user">{{ movie.user }}</span>
+                        <div>
+                            <span>{{ movie.year }}</span>
+                            <span>30 min</span>
+                            <span><i class="fas fa-star"></i>{{ movie.rating }}</span>
+                            <span>{% if movie.views <= 1 %} 
+                                    {{ movie.views }} visto 
+                                  {% else %} 
+                                    {{ movie.views }} visti {% endif %} </span>
+                        </div>
                     </div>
                 </div>
-                
-            </div>
-        </div>
+            {% endfor %}
     </div>
-
-
-
-<ul>
-{% for movie in movies %}
-    <li>
-        <a href={% url 'movies:detail' movie.pk %}><span>{{ movie.title }}</span></a>
-    </li>
-{% endfor %}
-</ul>
-
-<div>
-
-</div>
-
 
 {% endblock content%}

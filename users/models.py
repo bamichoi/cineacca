@@ -80,7 +80,7 @@ class User(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return self.email
+        return f"{self.first_name} {self.last_name}"
 
     def get_absolute_url(self):
         return reverse("users:user_profile", kwargs={"pk": self.pk})

@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MinValueValidator, MaxValueValidator
 from core import models as core_model
 from django.utils.translation import ugettext_lazy as _
 
@@ -23,6 +24,7 @@ class Movie(core_model.TimeStampedModel):
     )
     title = models.CharField(_("titolo"), max_length=300)
     description = models.TextField(_("descrizione"), max_length=1000)
+    year = models.IntegerField(validators=[MinValueValidator(1900)], null=True)
     views = models.IntegerField(default=0)
 
     """staff info field"""

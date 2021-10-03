@@ -66,5 +66,23 @@ header {
 }
 
 main {
-  margin: 0 11em;
+  margin: 0 11rem;
+  margin-bottom: 10rem;
+}
+
+footer {
+  color: #858585;
+  hr {
+    width: 60rem;
+    height: 0.001rem;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10rem 11rem 5rem;
+
+  span {
+    margin-top: 2rem;
+  }
 }
