@@ -8,68 +8,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>{% block page_title %} {% endblock page_title %} | CINEACCA</title>
+    <title>CINEACCA | {% block page_title %} {% endblock page_title %} </title>
 </head>
 <body>
-    <header>
-        <div id="title">
-            <div>
-                <a href="/">CINEACCA</a>
-                <span>Il paradiso del cinematografico studentesco</span>
+    <div id="wrapper">
+        <header>
+            <div id="header_title">
+                <div>
+                    <a href="/">CINEACCA</a>
+                    <span>Il paradiso del cinematografico studentesco</span>
+                </div>
             </div>
+            
+            {% block navigator %}
+            <div id="nav">
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'movies:list' %}""><span>I film</span></a></li>
+                        <li><span>|</span></li>
+                        <li><a href="{% url 'users:list' %}"><span>Gli studenti</span></a></li>
+                        <li><span>|</span></li>
+                        <li><a href="#"><span>La festa</span></a></li>
+                        <li><span>|</span></li>
+                        <li><a href="#"><span>About</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            {% endblock navigator %}            
+        </header>
+        <div id="user-menu">
+            {% if user.is_authenticated %}
+                <div class="user-menu_avatar" 
+                 {% if user.avatar  %} 
+                    style="background-image: url({{user.avatar.url}});"
+                 {% endif %}></div>
+                <a href="{% url 'users:user_profile' user.pk %}"><div>Profilo mio</div></a>
+                {% if user.account_type == "student" %}
+                    <a href="{% url 'movies:upload' %}"><div>Carica un film</div></a>
+                {% endif %}
+                <a href="{% url 'users:logout' %}"><div>Logout</div></a>    
+            {% else %}
+                <a href="{% url 'users:login' %}"><div>Login</div></a>
+                <a href="{% url 'users:signup' %}"><div>Join</div></a>
+            {% endif %}
         </div>
-        
-        {% block navigator %}
-        <div id="nav">
-            <nav>
-                <ul>
-                    <li><a href="{% url 'movies:list' %}""><span>I film</span></a></li>
-                    <li><span>|</span></li>
-                    <li><a href="{% url 'users:list' %}"><span>Gli studenti</span></a></li>
-                    <li><span>|</span></li>
-                    <li><a href="#"><span>La festa</span></a></li>
-                    <li><span>|</span></li>
-                    <li><a href="#"><span>About</span></a></li>
-                </ul>
-            </nav>
-        </div>
-        {% endblock navigator %}            
-    </header>
-    <div id="user-menu">
-        {% if user.is_authenticated %}
-            <a href="{% url 'users:logout' %}"><div>Logout</div></a>
-            <a href="{% url 'users:user_profile' user.pk %}"><div>My profile</div></a>
-        {% else %}
-            <a href="{% url 'users:login' %}"><div>Login</div></a>
-            <a href="{% url 'users:signup' %}"><div>Join</div></a>
-        {% endif %}
-        {% if user.account_type == "student" %}
-            <a href="{% url 'movies:upload' %}"><div>Carica un film</div></a>
-        {% endif %}
-    </div>
-              
-    <main>
-        {% block movie_search_bar %}
-            <form method="get" action="{% url 'movies:search' %}">
-                <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search Movies by title or director" />
-                <button>Search</button>
-            </form>
-        {% endblock movie_search_bar %}
-
         {% block people_search_bar %}
         <form method="get" action="{% url 'users:search' %}">
             <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search a Person by first name or last name" />
             <button>Search</button>
         </form>
         {% endblock people_search_bar %}
-
-    
-        {% block content %}
-        {% endblock content %}
-    </main>
-    <footer>
-        <hr>
-        <span>&copy; 2021 H&B Inc. All rights reserved.</span>
-    </footer>
+        <main>
+            {% block content %}
+            {% endblock content %}
+        </main>
+        <footer>
+            <hr>
+            <span>&copy; 2021 team1283 by Heni&Bami All rights reserved. </span>
+        </footer>
+    </div>
 </body>
 </html>

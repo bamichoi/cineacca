@@ -3,42 +3,71 @@
 {% block page_title %}
     Movies
 {% endblock page_title %}
-
-{% block people_search_bar %}
+{% block people_search_bar %}   
 {% endblock people_search_bar %}
 
 {% block content %}
 
-<h2> I film</h2>
-<h3> i cortometraggi dei nostri studenti</h3>
-
-<ul>
-{% for movie in movies %}
-    <li>
-        <a href={% url 'movies:detail' movie.pk %}><div>{{ movie.title }}</div></a>
-    </li>
-{% endfor %}
-</ul>
-
-<div>
-    <div>
-        {% if start_index != 0 %}
-            <a href="?page={{start_index}}">previous</a>
-        {% endif %}
+    <div id="movie-list_title">
+        <h1>&nbsp;I FILM&nbsp;&nbsp;&nbsp;</h1>
     </div>
-    <div>
-        
-            {% for page in page_range %}
-                <span><a href="?page={{page}}">{{page}}</a></span>
-            {% endfor %}
-        
-    </div>
-    <div>
-        {% if next_index < max_index %}
-            <a href="?page={{next_index}}">next</a>
-        {% endif %}
-    </div>
-</div>
 
+    <p>Trovate dei capolavori stupendi dei nostri studenti</p>
+
+    <div id="movie-search_bar">
+        <form method="get" action="{% url 'movies:search' %}">
+            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca dei film dal titolo o il/la regista." />
+            <button>Cerca!</button>
+        </form>
+    </div>
+    <div id="movie-search_sort-by">
+        <span><i class="fas fa-star"></i> più valutato</span>
+        <span><i class="fab fa-hotjar"></i> più recente</span>
+        <span><i class="fas fa-eye"></i> più visti</span>  
+    </div>
+
+    <div id="movie-list_grid">
+        {% for movie in movies %}
+            <div class="movie-card">
+                <a href="{% url 'movies:detail' movie.pk %}">
+                    <div class="movie-card_thumnail" style="background-image: url({{movie.thumnail.url}});"></div>
+                </a>
+                <div class="movie-card_info">
+                    <span class="info_title">{{ movie.title }}</span>
+                    <span class="info_user">{{ movie.user }}</span>
+                    <div>
+                        <span>{{ movie.year }}</span>
+                        <span>30 min</span>
+                        <span><i class="fas fa-star"></i>{{ movie.rating }}</span>
+                        <span>{% if movie.views <= 1 %} 
+                                {{ movie.views }} visto 
+                              {% else %} 
+                                {{ movie.views }} visti {% endif %} </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="paginator">
+            <div>
+                {% if start_index != 0 %}
+                    <span><a href="?page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
+                {% endif %}
+            </div>
+            <div>
+                    {% for page in page_range %}
+                        {% if current_page == page %}
+                            <div class="current-page"><span>{{page}}</span></div>
+                        {% else %}
+                            <span><a href="?page={{page}}">{{page}}</a></span>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+            <div>
+                {% if next_index < max_index %}
+                    <span><a href="?page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
+                {% endif %}
+            </div>
+        </div>
 
 {% endblock content%}

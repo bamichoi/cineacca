@@ -65,7 +65,7 @@ class User(AbstractUser):
     school = models.CharField(
         _("accademia"), choices=SCHOOL_CHOICES, max_length=50, null=True, blank=True
     )
-    avatar = models.ImageField(upload_to="user_avatars", null=True, blank=True)
+    avatar = models.ImageField(upload_to="user_avatars", default="user_avatars/0.jpeg")
     biography = models.TextField(_("biography"), null=True, blank=True)
     account_type = models.CharField(
         _("tipo d'account"),

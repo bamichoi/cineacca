@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap");
 
+#wrapper {
+  min-width: 1190px;
+}
+
 header {
   background-color: #3a37ac;
   height: 8rem;
@@ -8,7 +12,7 @@ header {
   display: flex;
   flex-direction: column;
 
-  #title {
+  #header_title {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -53,8 +57,16 @@ header {
   margin: 1rem 10rem;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  .user-menu_avatar {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 1.1rem;
+    background-size: cover;
+  }
   a {
     text-decoration: none;
+    color: black;
     div {
       margin-left: 1rem;
       padding: 0 0.2rem;
@@ -66,12 +78,12 @@ header {
 }
 
 main {
-  margin: 0 11rem;
-  margin-bottom: 10rem;
+  margin: 0 10rem;
 }
 
 footer {
   color: #858585;
+  margin: 10rem 0rem;
   hr {
     width: 60rem;
     height: 0.001rem;
@@ -80,7 +92,6 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10rem 11rem 5rem;
 
   span {
     margin-top: 2rem;

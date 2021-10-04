@@ -87,7 +87,7 @@ class MovieList(ListView):
     """MovieList Definition"""
 
     model = models.Movie
-    paginate_by = 10
+    paginate_by = 24
     ordering = "-created"
     context_object_name = "movies"
 
@@ -124,6 +124,7 @@ class MovieList(ListView):
         # current_min_object_number = (max_index - current_page) * 20 + 1
         # object_number_range = range(current_min_object_number, 10)
         context["page_range"] = page_range
+        context["current_page"] = current_page
         context["start_index"] = start_index
         context["next_index"] = end_index + 1
         context["max_index"] = max_index

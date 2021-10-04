@@ -1,0 +1,112 @@
+#movie-list_title {
+  background-color: #ddc9e7;
+  height: 1.2rem;
+  width: fit-content;
+  margin-bottom: 0.5rem;
+  h1 {
+    margin-top: 3rem;
+    font-family: "Reem Kufi", sans-serif;
+    font-size: 2rem;
+    position: relative;
+    top: -1.2rem;
+  }
+}
+
+p {
+  color: #b3b2b2b7;
+}
+#movie-search_bar {
+  height: 3.9rem;
+  background-color: #aacccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  form {
+    input {
+      font-family: "Noto Sans Hanunoo", sans-serif;
+      width: 20rem;
+      height: 2.2rem;
+      border-radius: 2rem;
+      border: none;
+      padding: 0 1rem;
+      font-size: 1rem;
+      margin-right: 0.1rem;
+    }
+    button {
+      font-family: "Reem Kufi", sans-serif;
+      font-size: 1rem;
+      width: 4.6rem;
+      height: 2rem;
+      color: white;
+      background-color: black;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+#movie-search_sort-by {
+  margin: 0.5rem 0.5rem 3rem;
+
+  span {
+    font-family: "Noto Sans Hanunoo", sans-serif;
+    margin-right: 0.7rem;
+    font-size: 0.9rem;
+  }
+  span:first-child i {
+    color: #fac81a;
+  }
+  span:nth-child(2) i {
+    color: #ca5b4c;
+  }
+  span:last-child i {
+    color: #3a37ac;
+  }
+}
+
+#movie-list_grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.paginator {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  span {
+    font-family: "Reem Kufi", sans-serif;
+    margin: 0rem 1rem;
+    color: black;
+    font-size: 2rem;
+    i {
+      color: #c4c4c4;
+    }
+  }
+
+  div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .current-page {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 1.5rem;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        color: white;
+      }
+    }
+  }
+}
