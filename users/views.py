@@ -91,7 +91,7 @@ class StudentListView(ListView):
     """StudentList View Definition"""
 
     model = models.User
-    paginate_by = 20
+    paginate_by = 21
     ordering = None
     context_object_name = "students"
     template_name = "users/student_list.html"
@@ -137,6 +137,7 @@ class StudentListView(ListView):
         context["start_index"] = start_index
         context["next_index"] = end_index + 1
         context["max_index"] = max_index
+        context["current_page"] = current_page
         # context["object_number_range"] = object_number_range
 
         return context

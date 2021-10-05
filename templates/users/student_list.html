@@ -5,37 +5,101 @@
 {% endblock page_title %}
 
 
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
 
 
 {% block content %}
-    <h2>Gli studenti</h2>
-    <h4>i creatori ed attori studenteschi</h4>
-    <ul>
-    {% for student in students %}
-        <li>
-            <a href="{% url 'users:student_profile' student.pk %}"><div>{{ student.first_name }} {{ student.last_name }} </div></a>
-            <div>@{{ user.school }}</div>
-        </li>
-    {% endfor %}  
-    </ul>
-    <div>
+    <div id="student-list_title">
+        <h1>&nbsp;Gli studenti&nbsp;&nbsp;&nbsp;</h1>
+    </div>
+
+    <p class="menu_description">Ecco i futuri del cinematografico italiano, trovate i vostri mebri di troppe</p>
+
+    <div id="student_sort-by">
+        <span>
+            <i class="fas fa-sort-alpha-down"></i>   A-Z
+        </span>
+        <span>
+            <i class="fas fa-sort-alpha-down-alt"></i>   Z-A
+        </span>
+    </div>
+    <div class="search_bar">
+        <form method="get" action="{% url 'users:search' %}">
+            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca un/una artista con il suo nome o cognome" />
+            <button>Cerca!</button>
+        </form>
+    </div>
+    
+    <div id="student_filter-by">
+        <div class="filter-box">
+            <div><i class="fas fa-bullhorn ico_direction"></i> regia</div>
+            <div><i class="fas fa-microphone-alt ico_audio"></i> audio</div>
+        </div>
+        <div class="filter-box">
+            <div><i class="fab fa-hotjar ico_screenwrite"></i> sceneggiatura</div>
+            <div><i class="fas fa-palette ico_art-direction"></i> scenografia</div>
+        </div>
+        <div class="filter-box">
+            <div><i class="far fa-smile-wink ico_acting"></i> recitazione</div>
+            <div><i class="fas fa-mask ico_costume"></i> costume</div>
+        </div>
+        <div class="filter-box">
+            <div><i class="fas fa-video ico_photograph"></i> fotografia</i></div>
+            <div><i class="fas fa-magic ico_makeup"></i> truccatura</div>
+        </div>
+        <div class="filter-box">
+            <div><i class="fas fa-cut ico_editing"></i> montaggio</div>
+            <div><i class="fas fa-music ico_music"></i>  musica</div>
+        </div>
+        <div class="filter-box">
+            <div><i class="fas fa-meteor ico_VFX"></i> VFX</div>
+        </div>
+    </div>
+    
+    <div id="student-list_grid">
+        {% for student in students %}
+            <a href="{% url 'users:student_profile' student.pk %}">
+                <div class="student-namecard">
+                    <div class="namecard_row">
+                        <div class="user_avatar_medium" style="background-image: url({{student.avatar.url}});"></div>
+                        <div class="namecard_fullname">
+                            <div>{{student.first_name}}</div>
+                            <div>{{student.last_name}}</div>
+                        </div>
+                    </div>
+                    <div class="namecard_row">
+                        <span>{{user.school}}</span>
+                    </div>
+                    <div class="namecard_row">
+                        <!-- dei ruoli preferiti -->
+                        <i class="fas fa-bullhorn ico_direction"></i>
+                        <i class="fab fa-hotjar ico_screenwrite"></i>
+                        <i class="far fa-smile-wink ico_acting"></i> 
+                        <i class="fas fa-cut ico_editing"></i>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}  
+    </div>
+    
+
+    <div class="paginator">
         <div>
             {% if start_index != 0 %}
-                <a href="?page={{start_index}}">previous</a>
+                <span><a href="?page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
             {% endif %}
         </div>
         <div>
-            
                 {% for page in page_range %}
-                    <span><a href="?page={{page}}">{{page}}</a></span>
+                    {% if current_page == page %}
+                        <div class="current-page"><span>{{page}}</span></div>
+                    {% else %}
+                        <span><a href="?page={{page}}">{{page}}</a></span>
+                    {% endif %}
                 {% endfor %}
-            
         </div>
         <div>
             {% if next_index < max_index %}
-                <a href="?page={{next_index}}">next</a>
+                <span><a href="?page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
             {% endif %}
         </div>
     </div>

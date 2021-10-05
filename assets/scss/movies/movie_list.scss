@@ -12,10 +12,11 @@
   }
 }
 
-p {
+.menu_description {
   color: #b3b2b2b7;
 }
-#movie-search_bar {
+
+.search_bar {
   height: 3.9rem;
   background-color: #aacccc;
   display: flex;
@@ -45,7 +46,7 @@ p {
     }
   }
 }
-#movie-search_sort-by {
+#movie_sort-by {
   margin: 0.5rem 0.5rem 3rem;
 
   span {

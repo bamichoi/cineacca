@@ -27,10 +27,12 @@ Development in process
 S T Y L E
 
 - [x] Home
-- [ ] : 제목 길때, 영화카드 크기 고정, 화면커질때 가로로 늘어나는거?, 카드 호버 색깔 변하기
+- [ ] : 제목 길때(textfit?), 영화카드 크기 고정, 화면커질때 가로로 늘어나는거?, 카드 호버 색깔 변하기
 - [ ] Detail
-- [ ] Movies
-- [ ] Students
+- [x] Movies
+- [ ] : duration 받아오기
+- [x] Students
+- [ ] 학교이름으로 검색, 역할별 필터링, 알파벳순 정렬, 모델에 네임카드 배경, 역할 추가.
 - [ ] Login
 - [ ] Signup
 - [ ] Profile

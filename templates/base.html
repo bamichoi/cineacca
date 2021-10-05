@@ -16,7 +16,7 @@
             <div id="header_title">
                 <div>
                     <a href="/">CINEACCA</a>
-                    <span>Il paradiso del cinematografico studentesco</span>
+                    <span>Il paradiso del cinematografo studentesco</span>
                 </div>
             </div>
             
@@ -38,7 +38,7 @@
         </header>
         <div id="user-menu">
             {% if user.is_authenticated %}
-                <div class="user-menu_avatar" 
+                <div class="user_avatar_small" 
                  {% if user.avatar  %} 
                     style="background-image: url({{user.avatar.url}});"
                  {% endif %}></div>
@@ -52,12 +52,6 @@
                 <a href="{% url 'users:signup' %}"><div>Join</div></a>
             {% endif %}
         </div>
-        {% block people_search_bar %}
-        <form method="get" action="{% url 'users:search' %}">
-            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Search a Person by first name or last name" />
-            <button>Search</button>
-        </form>
-        {% endblock people_search_bar %}
         <main>
             {% block content %}
             {% endblock content %}

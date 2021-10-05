@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Movies
+    I FILM
 {% endblock page_title %}
 {% block people_search_bar %}   
 {% endblock people_search_bar %}
@@ -9,18 +9,18 @@
 {% block content %}
 
     <div id="movie-list_title">
-        <h1>&nbsp;I FILM&nbsp;&nbsp;&nbsp;</h1>
+        <h1>&nbsp;I film&nbsp;&nbsp;&nbsp;</h1>
     </div>
 
-    <p>Trovate dei capolavori stupendi dei nostri studenti</p>
+    <p class="menu_description">Trovate dei capolavori stupendi dei nostri studenti</p>
 
-    <div id="movie-search_bar">
+    <div class="search_bar">
         <form method="get" action="{% url 'movies:search' %}">
-            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca dei film dal titolo o il/la regista." />
+            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca dei film con il titolo o il/la regista." />
             <button>Cerca!</button>
         </form>
     </div>
-    <div id="movie-search_sort-by">
+    <div id="movie_sort-by">
         <span><i class="fas fa-star"></i> più valutato</span>
         <span><i class="fab fa-hotjar"></i> più recente</span>
         <span><i class="fas fa-eye"></i> più visti</span>  

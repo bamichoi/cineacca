@@ -1,0 +1,144 @@
+#student-list_title {
+  background-color: #ddc9e7;
+  height: 1.2rem;
+  width: fit-content;
+  margin-bottom: 0.5rem;
+  h1 {
+    margin-top: 3rem;
+    font-family: "Reem Kufi", sans-serif;
+    font-size: 2rem;
+    position: relative;
+    top: -1.2rem;
+  }
+}
+
+#student_sort-by {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  span {
+    font-family: "Noto Sans Hanunoo", sans-serif;
+    margin-right: 0.7rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    i {
+      font-size: 1.2rem;
+      margin-right: 0.4rem;
+    }
+  }
+}
+
+#student_filter-by {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-start;
+
+  .filter-box {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0.8rem;
+    div {
+      margin-bottom: 0.7rem;
+    }
+  }
+}
+
+.ico_direction {
+  color: #3a37ac;
+}
+
+.ico_audio {
+  color: #6c2e5b;
+}
+
+.ico_screenwrite {
+  color: #ca5b4c;
+}
+
+.ico_art-direction {
+  color: #f1ba2c;
+}
+
+.ico_acting {
+  color: #76a4aa;
+}
+
+.ico_costume {
+  color: #dc70a4;
+}
+
+.ico_photograph {
+  color: #000000;
+}
+
+.ico_makeup {
+  color: #c39797;
+}
+
+.ico_editing {
+  color: #3c942e;
+}
+
+.ico_music {
+  color: #348dbf;
+}
+
+.ico_VFX {
+  color: #ca5b4c;
+}
+
+#student-list_grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.student-namecard {
+  font-family: "Reem Kufi", sans-serif;
+  width: 22rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.7rem;
+  box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+  .namecard_row {
+    margin: 1rem;
+  }
+  .namecard_row:first-child {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    .user_avatar_medium {
+      width: 4.2rem;
+      height: 4.2rem;
+      border-radius: 2.1rem;
+      background-size: cover;
+    }
+    .namecard_fullname {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      div {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .namecard_row:nth-child(2) {
+    text-align: end;
+    font-size: 0.8rem;
+  }
+  .namecard_row:last-child {
+    display: flex;
+    justify-content: flex-end;
+    i {
+      font-size: 1.5rem;
+      margin-left: 0.8rem;
+    }
+  }
+}

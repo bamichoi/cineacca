@@ -29,7 +29,8 @@ header {
       }
       span {
         color: white;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        font-weight: 100;
       }
     }
   }
@@ -58,7 +59,7 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  .user-menu_avatar {
+  .user_avatar_small {
     width: 2.2rem;
     height: 2.2rem;
     border-radius: 1.1rem;
