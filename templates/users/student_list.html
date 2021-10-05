@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Peolple
+    Gli studenti
 {% endblock page_title %}
 
 
@@ -14,14 +14,7 @@
 
     <p class="menu_description">Ecco i futuri del cinematografico italiano, trovate i vostri mebri di troppe</p>
 
-    <div id="student_sort-by">
-        <span>
-            <i class="fas fa-sort-alpha-down"></i>   A-Z
-        </span>
-        <span>
-            <i class="fas fa-sort-alpha-down-alt"></i>   Z-A
-        </span>
-    </div>
+    
     <div class="search_bar">
         <form method="get" action="{% url 'users:search' %}">
             <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca un/una artista con il suo nome o cognome" />
@@ -35,7 +28,7 @@
             <div><i class="fas fa-microphone-alt ico_audio"></i> audio</div>
         </div>
         <div class="filter-box">
-            <div><i class="fab fa-hotjar ico_screenwrite"></i> sceneggiatura</div>
+            <div><i class="fas fa-pen-nib ico_screenplay"></i></i> sceneggiatura</div>
             <div><i class="fas fa-palette ico_art-direction"></i> scenografia</div>
         </div>
         <div class="filter-box">
@@ -55,6 +48,14 @@
         </div>
     </div>
     
+    <div id="student_sort-by">
+        <span>
+            <i class="fas fa-sort-alpha-down"></i>   A-Z
+        </span>
+        <span>
+            <i class="fas fa-sort-alpha-down-alt"></i>   Z-A
+        </span>
+    </div>
     <div id="student-list_grid">
         {% for student in students %}
             <a href="{% url 'users:student_profile' student.pk %}">
@@ -72,7 +73,7 @@
                     <div class="namecard_row">
                         <!-- dei ruoli preferiti -->
                         <i class="fas fa-bullhorn ico_direction"></i>
-                        <i class="fab fa-hotjar ico_screenwrite"></i>
+                        <i class="fas fa-pen-nib ico_screenplay"></i>
                         <i class="far fa-smile-wink ico_acting"></i> 
                         <i class="fas fa-cut ico_editing"></i>
                     </div>
