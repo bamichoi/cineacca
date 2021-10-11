@@ -4,30 +4,61 @@
     Login
 {% endblock page_title %}
 
+{% block navigator %}
+{% endblock navigator %} 
 
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
-
-
-{% block people_search_bar %}
-{% endblock people_search_bar %}
+{% block usermenu %}
+{% endblock usermenu %} 
 
 {% block content %}
 
-    <form method="post">
-        {% csrf_token %}
-            {{form.as_p}}
-            <button>Login</button>
-    </form>
-
-    <div>
-        <span>Have you forgot the password?</span>
-        <a href="{% url 'users:reset-password' %}"><span>Find password</span></a>
+<div id="login_wrapper">
+    <div id="login_title">
+        <div>
+            <h1>&nbsp;LOG IN&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Inserisci il tuo email e il password</p>    
     </div>
-    <div>
-        <span>Haven't you the account yet?</span>
-        <a href="{% url 'users:signup' %}"><span>Sign up</span></a>
+   
+    <div id="login_container">
+        <form method="post">
+            {% csrf_token %}
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                    <span>{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+                {% for field in form  %}
+                    <div class="login_field">
+                        <div class="login_field-label">
+                            {{field.label}}
+                        </div>
+                        {{field}}
+                        {% if field.errors %}
+                        {% for error in field.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div>
+                    <button>Login</button>
+                </div>            
+                
+        </form>
     </div>
-    <a href="{% url 'users:google-login' %}">Login with your google account.</a>
     
+    <div id="login_help">
+        <div>
+            <a href="{% url 'users:reset-password' %}"><span><i class="fas fa-key find_password"></i> Hai dimenticato il tuo password?</span></a>
+        </div>
+        <div>
+            <a href="{% url 'users:signup' %}"><span><i class="fas fa-sign-in-alt sign_up"></i> Non ce l’hai ancora un account?</span></a>
+        </div>
+    </div>
+
+    
+    <a href="{% url 'users:google-login' %}">Login with your google account.</a>
+
+</div>
 {% endblock content%}

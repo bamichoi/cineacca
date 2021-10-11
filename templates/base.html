@@ -36,22 +36,25 @@
             </div>
             {% endblock navigator %}            
         </header>
-        <div id="user-menu">
-            {% if user.is_authenticated %}
-                <div class="user_avatar_small" 
-                 {% if user.avatar  %} 
-                    style="background-image: url({{user.avatar.url}});"
-                 {% endif %}></div>
-                <a href="{% url 'users:user_profile' user.pk %}"><div>Profilo mio</div></a>
-                {% if user.account_type == "student" %}
-                    <a href="{% url 'movies:upload' %}"><div>Carica un film</div></a>
+
+        {% block usermenu %}
+            <div id="user-menu">
+                {% if user.is_authenticated %}
+                    <div class="user_avatar_small" 
+                    {% if user.avatar  %} 
+                        style="background-image: url({{user.avatar.url}});"
+                    {% endif %}></div>
+                    <a href="{% url 'users:user_profile' user.pk %}"><div>Profilo mio</div></a>
+                    {% if user.account_type == "student" %}
+                        <a href="{% url 'movies:upload' %}"><div>Carica un film</div></a>
+                    {% endif %}
+                    <a href="{% url 'users:logout' %}"><div>Logout</div></a>    
+                {% else %}
+                    <a href="{% url 'users:login' %}"><div>Login</div></a>
+                    <a href="{% url 'users:signup' %}"><div>Join</div></a>
                 {% endif %}
-                <a href="{% url 'users:logout' %}"><div>Logout</div></a>    
-            {% else %}
-                <a href="{% url 'users:login' %}"><div>Login</div></a>
-                <a href="{% url 'users:signup' %}"><div>Join</div></a>
-            {% endif %}
-        </div>
+            </div>
+        {% endblock usermenu %} 
         <main>
             {% block content %}
             {% endblock content %}
