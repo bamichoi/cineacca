@@ -36,8 +36,9 @@ S T Y L E
 - [x] Login
 - [ ] 에러메세지 스타일링, 구글로그인 방치중. 
 - [x] Signup
-- [ ] Student Signup
-- [ ] Publicc Signup
+- [x] Student Signup
+- [x] Publicc Signup
+- [ ] 에러메지 스타일링, form 위젯, 안내문구.
 - [ ] Forget password
 - [ ] Profile
 

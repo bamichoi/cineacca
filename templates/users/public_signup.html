@@ -1,23 +1,47 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Public Sign up
+    Join
 {% endblock page_title %}
 
+{% block navigator %}
+{% endblock navigator %} 
 
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
-
-
-{% block people_search_bar %}
-{% endblock people_search_bar %}
+{% block usermenu %}
+{% endblock usermenu %} 
 
 {% block content %}
-
-    <form method="post" action="{% url 'users:public_signup' %}">
-        {% csrf_token %}
-            {{form.as_p}}
-            <button>Sign up</button>
-    </form>
+<div id="signup_wrapper">
+    <div id="signup_title">
+        <div>
+            <h1>&nbsp;CREARE UN ACCOUNT&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Il modulo per l'account del publico</p>
+    </div>
+    <div class="signup_form">
+        <form method="post" action="{% url 'users:public_signup' %}">
+            {% csrf_token %}
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+                {% for field in form  %}
+                    <div class="signup_form_field">
+                        <div class="signup_form_label">{{field.label}}</div>
+                        {{field}}
+                        {% if field.errors %}
+                        {% for error in field.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="signup_submit">
+                    <button>Join</button>
+                </div>
+        </form> 
+    </div>   
+</div>
     
 {% endblock content%}
