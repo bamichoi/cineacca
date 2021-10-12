@@ -33,8 +33,12 @@ S T Y L E
 - [ ] : duration 받아오기
 - [x] Students
 - [ ] 학교이름으로 검색, 역할별 필터링, 알파벳순 정렬, 모델에 네임카드 배경, 역할 추가. 
-- [ ] Login
-- [ ] Signup
+- [x] Login
+- [ ] 에러메세지 스타일링, 구글로그인 방치중. 
+- [x] Signup
+- [ ] Student Signup
+- [ ] Publicc Signup
+- [ ] Forget password
 - [ ] Profile
 
 -[] avconv

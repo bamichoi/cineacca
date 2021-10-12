@@ -1,21 +1,39 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Sign up
+    Join
 {% endblock page_title %}
 
+{% block navigator %}
+{% endblock navigator %} 
 
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
+{% block usermenu %}
+{% endblock usermenu %} 
 
-{% block people_search_bar %}
-{% endblock people_search_bar %}
 
 {% block content %}
 
-<h1>Sign up</h1>
-<div>
-    <a href="{% url 'users:student_signup' %}"><h3>Student account sign up</h3></a>
-    <a href="{% url 'users:public_signup' %}"><h3>Public account sign up</h3></a>
+<div id="signup_wrapper">
+    <div id="signup_title">
+        <div>
+            <h1>&nbsp;JOIN&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Scegli il tipo d'account. </p>    
+    </div>
+   
+    <div id="signup_type">
+        <a href="{% url 'users:student_signup' %}"><div><i class="fas fa-user-graduate"></i> Studente</div></a>
+        <a href="{% url 'users:public_signup' %}"><div><i class="fas fa-couch"></i> Publico</div></a>
+    </div>
+    <div id="signup_advice">
+        <i class="far fa-lightbulb"></i> consiglio
+    </div>
+    <div id="signup_text">
+        <p>Se tu sei un/una studente iscriviti con l'account di studente. Con l'account di studente puoi caricare il tuo lavoro e il tuo 'Namecard' si vede sul list dei studenti.
+        Se non sei studente scegli l'account di pubblico per semplicemente vedere il film e valutarli.</p>
+    </div>
 </div>
+
+
+
 {% endblock content%}
