@@ -4,30 +4,50 @@
     My profile
 {% endblock page_title %}
 
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
-
-{% block people_search_bar %}
-{% endblock people_search_bar %}
-
 {% block content %}
-{% if user.avatar %}
-        <div style="width:400px; height:400px; background-image:url({{user.avatar.url}}); background-repeat: no-repeat; background-size: contain;"></div>
-{% endif %}
-    <div>{{user_obj.first_name}} {{user_obj.last_name}}</div>
-    <div>{{user_obj.email}}</div>
-    {% if user_obj.email == request.user.email %}
-        {% if user_obj.email_verified == False %}
-            <a href="{% url 'users:send_verify_email' user_obj.pk %}">Verify email adress</a>
-        {% else %}
-            <em>email verified!</em>
-        {% endif %}
-    {% endif %}
-    <div>{{user_obj.school}}</div>
-    <div>{{user_obj.biography}}</div>
-</div>
 
-<a href="{% url 'users:update_profile' %}"><div>Update Profile</div></a>
-<a href="{% url 'users:change_password' %}"><div>Change Password</div></a>
+<div id="profile_wrapper">
+    <div id="profile_title">
+        <div>
+            <h1>&nbsp;Profilo&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Il profilo di {{user_obj.first_name}} {{user_obj.last_name}}</p>    
+    </div>
+    <div id="profile_container">
+        <div class="profile_container_row">
+            {% if user.avatar %}
+                <div id="profile_avatar" style="background-image:url({{user.avatar.url}}); "></div>
+            {% endif %}
+             <div id="profile_info">
+                <div id="profile_info_firstname">{{user_obj.first_name}}</div>
+                <div id="profile_info_lastname">{{user_obj.last_name}}</div>
+                <div id="profile_info_email">
+                    {{user_obj.email}}
+                    {% if user_obj.email_verified == False %}
+                        <span><i class="fas fa-exclamation-circle"></i>E-mail non verificato</span>
+                        {% if user_obj.email == request.user.email %}
+                        <a href="{% url 'users:send_verify_email' user_obj.pk %}"><span id="email_verify_link"><i class="fas fa-sign-in-alt"></i> Verifica l'indirizzo di E-mail.</span></a>
+                        {% endif %}
+                    {% else %}
+                        <span><i class="fas fa-check-circle"></i>E-mail verificato</span>
+                {% endif %}
+                </div>
+                
+                <div>{{user_obj.school}}</div>
+             </div>
+        </div> 
+            <hr>
+        <div class="profile_container_row">
+            <div>Biografo</div>
+            <div>{{user_obj.biography}}</div>
+        </div>
+            
+     </div>
+
+     <div id="profile_modify">
+            <a href="{% url 'users:update_profile' %}"><div id="update-profile_btn">Aggiorna il Profilo</div></a>
+            <a href="{% url 'users:change_password' %}"><div id="change-password_btn">Cambia il Password</div></a>
+     </div>
     
+</div>
 {% endblock content %}

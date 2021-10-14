@@ -28,19 +28,31 @@ S T Y L E
 
 - [x] Home
 - [ ] : 제목 길때(textfit?), 영화카드 크기 고정, 화면커질때 가로로 늘어나는거?, 카드 호버 색깔 변하기
+  
 - [ ] Detail
+  
+
 - [x] Movies
 - [ ] : duration 받아오기
+  
 - [x] Students
 - [ ] 학교이름으로 검색, 역할별 필터링, 알파벳순 정렬, 모델에 네임카드 배경, 역할 추가. 
+  
 - [x] Login
 - [ ] 에러메세지 스타일링, 구글로그인 방치중. 
+  x
 - [x] Signup
 - [x] Student Signup
 - [x] Publicc Signup
 - [ ] 에러메지 스타일링, form 위젯, 안내문구.
+
+- [x] Profile
+- [ ] 디자인개선?, 필모그래피화?, 수상내역,참여작품.., 역할 추가, 좋아하는영화?
+
+
 - [ ] Forget password
-- [ ] Profile
+- [ ] email이 존재하지 않을경우 로직..
+
 
 -[] avconv
 
