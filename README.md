@@ -49,6 +49,8 @@ S T Y L E
 - [x] Profile
 - [ ] 디자인개선?, 필모그래피화?, 수상내역,참여작품.., 역할 추가, 좋아하는영화?
 
+- [ ] Change Password
+- [ ] 에러 스타일링.
 
 - [ ] Forget password
 - [ ] email이 존재하지 않을경우 로직..
