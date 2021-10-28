@@ -4,17 +4,36 @@
     Delete my account
 {% endblock page_title %}
 
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
-
-{% block people_search_bar %}
-{% endblock people_search_bar %}
-
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-        {{form.as_p}}
-        <button>Delete Account</button>
-</form>
+<div id="delete-account_wrapper">
+    <div id="delete-account_title">
+        <div>
+            <h1>&nbsp;RIMUOVERE L'ACCOUNT&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Inserisci il tuo password per rimuovere l'account</p>
+    </div>
+    <form method="post" class="delete-account_form">
+        {% csrf_token %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span>{{error}}</span>
+                {% endfor %}
+            {% endif %}
+            {% for field in form  %}
+                        <div class="delete-account_form_field">
+                            <div class="delete-account_form_label">{{field.label}}</div>
+                            {{field}}
+                            {% if field.errors %}
+                            {% for error in field.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+            <div class="delete-account_submit">
+                <button>Rimuovere l'account</button>
+            </div>
+    </form>
+</div>
 {% endblock content %}

@@ -100,7 +100,7 @@
   a {
     text-decoration: none;
     div {
-      width: 13rem;
+      width: 27rem;
       font-size: 1.2rem;
       border-radius: 0.7rem;
       color: white;
@@ -112,10 +112,11 @@
       box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
     }
     #update-profile_btn {
-      background-color: #3c942e;
+      background-color: #adc0f3;
+      color: black;
     }
     #change-password_btn {
-      background-color: #ca5b4c;
+      background-color: #3a37ac;
     }
   }
 }
