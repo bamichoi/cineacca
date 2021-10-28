@@ -16,7 +16,7 @@
     <div id="profile_container">
         <div class="profile_container_row">
             {% if user.avatar %}
-                <div id="profile_avatar" style="background-image:url({{user.avatar.url}}); "></div>
+                <div class="profile_avatar" style="background-image:url({{user.avatar.url}}); "></div>
             {% endif %}
              <div id="profile_info">
                 <div id="profile_info_firstname">{{user_obj.first_name}}</div>

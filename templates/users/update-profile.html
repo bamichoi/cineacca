@@ -4,19 +4,50 @@
     Update Profile
 {% endblock page_title %}
 
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
-
-{% block people_search_bar %}
-{% endblock people_search_bar %}
 
 
 {% block content %}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-        {{form.as_p}}
-        <button>Update Profile</button>
-</form>
-<a href="{% url 'users:delete-account' %}">Delete Profile</a>
+<div id="update-profile_wrapper">
+    <div id="update-profile_title">
+        <div>
+            <h1>&nbsp;AGGIORNA IL PASSWORD&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Il modulo per aggiornare il tuo profilo</p>
+    </div>
+    <form method="post" class="update-profile_form">
+        <div id="avatar-preview">
+            {% if user.avatar %}
+                <div class="profile_avatar" style="background-image:url({{user.avatar.url}}); "></div>
+            {% endif %}
+        </div>
+        <hr>
+        <br>
+        {% csrf_token %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span>{{error}}</span>
+                {% endfor %}
+            {% endif %}
+            {% for field in form  %}
+                    <div class="update-profile_form_field">
+                        <div class="update-profile_form_label">{{field.label}}</div>
+                        {{field}}
+                        {% if field.errors %}
+                        {% for error in field.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="update-profile_submit">
+                    <button>Aggirona</button>
+                </div>
+                
+    </form>
+
+    <div id="update-profile_delete-account">
+        <a href="{% url 'users:delete-account' %}">Vorresti rimuovere il tuo account? <i class="fas fa-sign-in-alt"></i></a>
+    </div>
+   
 
 {% endblock content %}
