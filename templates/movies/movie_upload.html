@@ -1,20 +1,43 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Upload a Movie
+    Cariacre un video
 {% endblock page_title %}
 
-
-{% block people_search_bar %}
-{% endblock people_search_bar %}
-
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
-
 {% block content %}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-        {{form.as_p}}
-        <button>Upload Movie</button>
-</form>
+<div id="upload_wrapper">
+    <div id="upload_title">
+        <div>
+            <h1>&nbsp;Caricare un video&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Il modulo per caricare un video</p>
+    </div>
+    <div class="upload_form">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+                {% for field in form  %}
+                    <div class="upload_form_field">
+                        <div class="upload_form_label">{{field.label}}</div>
+                        {{field}}
+                        {% if field.errors %}
+                        {% for error in field.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="upload_submit">
+                    <button>Carica</button>
+                </div>
+        </form> 
+    </div>   
+</div>
+
+
+
 {% endblock content %}

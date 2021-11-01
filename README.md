@@ -31,6 +31,10 @@ S T Y L E
   
 - [ ] Detail
   
+- [x] Upload(다시해야함.)
+- [ ] 스크롤 하지 않아도 되도록 video, staff 섹션 횡으로 나누기(no-spoiler처럼) js로 클래스 이름 달아주고 css작업해줘야하는게 최선일까?
+
+- [ ] Update movie : Upload와 같음.
 
 - [x] Movies
 - [ ] : duration 받아오기
@@ -58,6 +62,8 @@ S T Y L E
 
 - [x] Account Delete 
 - [ ] 확인절차 더 만들기.
+
+- [ ] Uploads
 
 
 -[] avconv
