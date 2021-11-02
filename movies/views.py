@@ -88,8 +88,21 @@ class MovieList(ListView):
 
     model = models.Movie
     paginate_by = 24
-    ordering = "-created"
     context_object_name = "movies"
+
+    def get_ordering(self):
+        ordering = super().get_ordering()
+        sort_by = self.request.GET.get("sort_by", "created")
+        if sort_by == "views":
+            ordering = "-views"
+        elif sort_by == "date":
+            ordering = "-created"
+        elif sort_by == "rating":
+            ordering = "-rating"  # FieldError at /movies/ Cannot resolve keyword 'rating' into field. Choices are:
+        else:
+            ordering = "-created"
+
+        return ordering
 
     def get_context_data(
         self, **kwargs
