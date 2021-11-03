@@ -7,6 +7,7 @@ from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+from core import models as core_models
 from django.db import models
 
 
@@ -37,6 +38,24 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("Superuser must have is_superuser=True.")
 
         return self._create_user(email, password, **extra_fields)
+
+
+class AbstractItem(core_models.TimeStampedModel):
+
+    """Abstaract Item"""
+
+    name = models.CharField(max_length=80)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name
+
+
+class Work(AbstractItem):
+
+    """Amenity Model Definition"""
 
 
 class User(AbstractUser):
@@ -76,6 +95,7 @@ class User(AbstractUser):
     )
     email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=20, default="", blank=True)
+    works = models.ManyToManyField("Work", related_name="rooms", blank=True)
 
     objects = CustomUserManager()
 

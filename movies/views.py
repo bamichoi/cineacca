@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic import (
@@ -89,6 +90,16 @@ class MovieList(ListView):
     model = models.Movie
     paginate_by = 24
     context_object_name = "movies"
+    template_name = "movies/movie_list.html"
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        sort_by = self.request.GET.get("sort_by", "created")
+        if sort_by == "rating":
+            sorted_qs = sorted(qs, key=lambda m: float(m.rating))
+            return sorted_qs
+        else:
+            return qs
 
     def get_ordering(self):
         ordering = super().get_ordering()
@@ -97,8 +108,6 @@ class MovieList(ListView):
             ordering = "-views"
         elif sort_by == "date":
             ordering = "-created"
-        elif sort_by == "rating":
-            ordering = "-rating"  # FieldError at /movies/ Cannot resolve keyword 'rating' into field. Choices are:
         else:
             ordering = "-created"
 

@@ -42,13 +42,7 @@ class UpdateProfileView(mixins.LoggedInOnlyView, UpdateView):
 
     model = models.User
     template_name = "users/update-profile.html"
-    fields = (
-        "first_name",
-        "last_name",
-        "avatar",
-        "biography",
-        "school",
-    )
+    fields = ("first_name", "last_name", "avatar", "biography", "school", "works")
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -92,13 +86,21 @@ class StudentListView(ListView):
 
     model = models.User
     paginate_by = 21
-    ordering = None
     context_object_name = "students"
     template_name = "users/student_list.html"
 
+    def get_ordering(self):
+        ordering = super().get_ordering()
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by == "az":
+            ordering = "last_name"
+        elif sort_by == "za":
+            ordering = "-last_name"
+        return ordering
+
     def get_queryset(self):
         return (
-            super().get_queryset().filter(account_type="student")
+            super().get_queryset().filter(account_type="student").order_by("?")
         )  # get_quryset 메소드를 orverride 하여 계정타입이 stdunet 인 user들만 가져옴.
 
     def get_context_data(

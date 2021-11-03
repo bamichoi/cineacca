@@ -44,6 +44,7 @@ class Movie(core_model.TimeStampedModel):
     def __str__(self):
         return self.title
 
+    @property
     def rating(self):
         all_reviews = self.reviews.all()
         all_ratings = 0

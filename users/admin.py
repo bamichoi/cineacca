@@ -30,7 +30,7 @@ class CustomUserAdmin(UserAdmin):
         ),
         (
             _("Personal info"),
-            {"fields": ("school", "biography", "account_type", "avatar")},
+            {"fields": ("school", "biography", "account_type", "avatar", "works")},
         ),
         (
             _("Permissions"),
@@ -69,4 +69,6 @@ class CustomUserAdmin(UserAdmin):
         "is_staff",
         "is_superuser",
     )
+    filter_horizontal = ("works",)
+
     ordering = ("last_name",)

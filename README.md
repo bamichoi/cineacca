@@ -28,6 +28,7 @@ S T Y L E
 
 - [x] Home
 - [ ] : 제목 길때(textfit?), 영화카드 크기 고정, 화면커질때 가로로 늘어나는거?, 카드 호버 색깔 변하기
+- [ ] : movie card 가로로 길게 제작
   
 - [ ] Detail
   
@@ -38,22 +39,41 @@ S T Y L E
 
 - [x] Movies
 - [ ] : duration 받아오기
-- [ ] : 정렬
+- [x] : views, created 정렬
+- [ ] : rating 기준 정렬
+- [ ] : movie card 가로로 길게 제작
   
+- [ ] : Movie Search
+
 - [x] Students
-- [ ] 학교이름으로 검색, 역할별 필터링, 알파벳순 정렬, 모델에 네임카드 배경, 역할 추가. 
+- [ ] 학교이름으로 검색
+- [ ] 역할별 필터링
+- [x] 알파벳순 정렬
+- [ ] 모델에 네임카드 배경, 
+- [ ] 역할 추가. 
+- [x] 랜덤정렬
   
+- [ ] student search
+
+
 - [x] Login
 - [ ] 에러메세지 스타일링, 구글로그인 방치중. 
-  x
+
 - [x] Signup
 - [x] Student Signup
 - [x] Publicc Signup
+- [ ] last_name, first_name 첫글자 대문자변환.
 - [ ] 에러메지 스타일링, form 위젯, 안내문구.
 
 - [x] Profile
-- [ ] 디자인개선?, 필모그래피화?, 수상내역,참여작품.., 역할 추가, 좋아하는영화?
+- [ ] 디자인개선
+- [ ] 필모그래피화?, 수상내역,참여작품.., 
+- [ ] 역할 추가, 
+- [ ] 좋아하는영화?
 - [ ] 기본아바타설정
+
+- [x] Update profile
+- [ ] works 필드 어쩔,.,,?
 
 - [x] Change Password
 - [ ] 에러 스타일링.

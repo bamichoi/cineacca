@@ -49,12 +49,17 @@
     </div>
     
     <div id="student_sort-by">
-        <span>
-            <i class="fas fa-sort-alpha-down"></i>   A-Z
-        </span>
-        <span>
-            <i class="fas fa-sort-alpha-down-alt"></i>   Z-A
-        </span>
+        <a href="?sort_by=az">
+            <span>
+                <i class="fas fa-sort-alpha-down"></i>   A-Z
+            </span>
+        </a>
+        <a href="?sort_by=za">
+            <span>
+                <i class="fas fa-sort-alpha-down-alt"></i>   Z-A
+            </span>
+        </a>
+        
     </div>
     <div id="student-list_grid">
         {% for student in students %}

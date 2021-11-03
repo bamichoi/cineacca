@@ -52,18 +52,22 @@
 #movie_sort-by {
   margin: 0.5rem 0.5rem 3rem;
 
+  a {
+    text-decoration: none;
+    color: black;
+  }
   span {
     font-family: "Noto Sans Hanunoo", sans-serif;
     margin-right: 0.7rem;
     font-size: 0.9rem;
   }
-  span:first-child i {
+  a:first-child span i {
     color: #fac81a;
   }
-  span:nth-child(2) i {
+  a:nth-child(2) span i {
     color: #ca5b4c;
   }
-  span:last-child i {
+  a:last-child span i {
     color: #3a37ac;
   }
 }
