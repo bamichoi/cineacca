@@ -40,21 +40,10 @@ class Movie(core_model.TimeStampedModel):
     makeup_artist = models.CharField(_("make-up artista"), max_length=300)
     spacial_effect_supervisor = models.CharField(_("effetto speciale"), max_length=300)
     sound_designer = models.CharField(_("sound"), max_length=300)
+    rating = models.FloatField(default=0)
 
     def __str__(self):
         return self.title
-
-    @property
-    def rating(self):
-        all_reviews = self.reviews.all()
-        all_ratings = 0
-        if len(all_reviews) > 0:
-            for review in all_reviews:
-                all_ratings += review.rate
-                rating_avg = all_ratings / len(all_reviews)
-            return "{0:.1f}".format(rating_avg)  # !) 반올림 없이 버리는 방법은..?
-        else:
-            return 0
 
 
 # movies

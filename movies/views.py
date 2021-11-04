@@ -92,22 +92,16 @@ class MovieList(ListView):
     context_object_name = "movies"
     template_name = "movies/movie_list.html"
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        sort_by = self.request.GET.get("sort_by", "created")
-        if sort_by == "rating":
-            sorted_qs = sorted(qs, key=lambda m: float(m.rating))
-            return sorted_qs
-        else:
-            return qs
-
     def get_ordering(self):
         ordering = super().get_ordering()
+        qs = models.Movie.objects.all()
         sort_by = self.request.GET.get("sort_by", "created")
         if sort_by == "views":
             ordering = "-views"
         elif sort_by == "date":
             ordering = "-created"
+        elif sort_by == "rating":
+            ordering = "-rating"
         else:
             ordering = "-created"
 

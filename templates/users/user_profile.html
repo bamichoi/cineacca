@@ -40,6 +40,12 @@
         <div class="profile_container_row">
             <div>Biografo</div>
             <div>{{user_obj.biography}}</div>
+            <div>
+                {% for work in user_obj.works.all %}
+                    <span>{{work}}</span>
+                {% endfor %}
+
+            </div>
         </div>
             
      </div>
