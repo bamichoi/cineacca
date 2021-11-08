@@ -19,7 +19,7 @@ Python with Django Framework and HTML, CSS, JavaScript
 ## 현재 상태 Current State
 
 개발중
-Development in process
+Development in progress
 
 
 ## TO DO LIST 
@@ -49,14 +49,13 @@ Development in process
 
 - [ ] duration 받아오기
 - [x] 변경된 movie card 적용
-- [ ] page 변경시 현재 파라미터 적용
+- [x] page 변경시 현재 파라미터 적용
 
 ### Movie Search
 
 - [x] List와 동일한 스타일링
-- [ ] 결과물 정렬
-- [ ] pagination url에 keyword 추가
-- [ ] page 변경시 현재 파라미터 적용
+- [x] 결과물 정렬
+- [x] page 변경시 현재 파라미터 적용
 
 ### Student List
 
@@ -65,14 +64,14 @@ Development in process
 - [ ] 네임카드 배경 커스터마이징
 - [x] 역할 추가 
 - [ ] 노출되는 역할 갯수 핸들링
-- [ ] page 변경시 현재 파라미터 적용
+- [x] page 변경시 현재 파라미터 적용
 
 
 ### Student Search
 - [x] student list와 동일한 스타일링
-- [ ] 결과물 정렬
-- [ ] pagination url에 keyword 추가
-- [ ] page 변경시 현재 파라미터 적용
+- [x] 결과물 정렬
+- [x] pagination url에 keyword 추가
+- [x] page 변경시 현재 파라미터 적용
 
 ### Login
 

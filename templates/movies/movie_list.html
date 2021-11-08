@@ -46,26 +46,49 @@
             </div>
         {% endfor %}
         </div>
-        <div class="paginator">
-            <div>
-                {% if start_index != 0 %}
-                    <span><a href="?page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
-                {% endif %}
+        {% if sort %} <!-- if else 쓸 필요가 없음. sort 없어면 None으로 나오기 때문에 괜춘아 -->
+            <div class="paginator">
+                <div>
+                    {% if start_index != 0 %}
+                        <span><a href="?sort_by={{ sort }}&page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
+                    {% endif %}
+                </div>
+                <div>
+                        {% for page in page_range %}
+                            {% if current_page == page %}
+                                <div class="current-page"><span>{{page}}</span></div>
+                            {% else %}
+                                <span><a href="?sort_by={{ sort }}&page={{page}}">{{page}}</a></span>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+                <div>
+                    {% if next_index < max_index %}
+                        <span><a href="?sort_by={{ sort }}&page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
+                    {% endif %}
+                </div>
             </div>
-            <div>
-                    {% for page in page_range %}
-                        {% if current_page == page %}
-                            <div class="current-page"><span>{{page}}</span></div>
-                        {% else %}
-                            <span><a href="?page={{page}}">{{page}}</a></span>
-                        {% endif %}
-                    {% endfor %}
+        {% else %}
+            <div class="paginator">
+                <div>
+                    {% if start_index != 0 %}
+                        <span><a href="?page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
+                    {% endif %}
+                </div>
+                <div>
+                        {% for page in page_range %}
+                            {% if current_page == page %}
+                                <div class="current-page"><span>{{page}}</span></div>
+                            {% else %}
+                                <span><a href="?page={{page}}">{{page}}</a></span>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+                <div>
+                    {% if next_index < max_index %}
+                        <span><a href="?page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
+                    {% endif %}
+                </div>
             </div>
-            <div>
-                {% if next_index < max_index %}
-                    <span><a href="?page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
-                {% endif %}
-            </div>
-        </div>
-
+        {% endif %}
 {% endblock content%}

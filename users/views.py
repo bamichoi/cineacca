@@ -89,23 +89,26 @@ class StudentListView(ListView):
     context_object_name = "students"
     template_name = "users/student_list.html"
 
-    def get_ordering(self):
-        ordering = super().get_ordering()
-        sort_by = self.request.GET.get("sort_by")
-        if sort_by == "az":
-            ordering = "last_name"
-        elif sort_by == "za":
-            ordering = "-last_name"
-        return ordering
-
     def get_queryset(self):
-        return (
-            super().get_queryset().filter(account_type="student").order_by("?")
-        )  # get_quryset 메소드를 orverride 하여 계정타입이 stdunet 인 user들만 가져옴.
+        filter_by = self.request.GET.get("filter_by")
+        sort_by = self.request.GET.get("sort_by")
+
+        qs = super().get_queryset().filter(account_type="student").order_by("?")
+
+        if filter_by != "None":
+            qs = qs.filter(works=filter_by).order_by("?")
+
+        if sort_by == "az":
+            qs = qs.order_by("last_name")
+        elif sort_by == "za":
+            qs = qs.order_by("-last_name")
+        return qs
 
     def get_context_data(
         self, **kwargs
     ):  # 현재 페이지에 따라 page 범위가 변하는 paginator 를 위해 get_context_data()로 context ovveride.
+        filter_by = self.request.GET.get("filter_by")
+        sort = self.request.GET.get("sort_by")
         context = super().get_context_data(**kwargs)
         paginator = context["paginator"]  # ListView 에 내장된 paginator 들고 와주고
         page_numbers_range = 5  # 한번에 볼 수 있는 페이지 넘버 갯수.
@@ -140,6 +143,8 @@ class StudentListView(ListView):
         context["next_index"] = end_index + 1
         context["max_index"] = max_index
         context["current_page"] = current_page
+        context["sort"] = sort
+        context["filter_by"] = filter_by
         # context["object_number_range"] = object_number_range
 
         return context
@@ -152,6 +157,8 @@ class SearchView(View):
     def get(self, request):
 
         keyword = self.request.GET.get("keyword")  # url에서 keyword 파라미터 값 들고오기.
+        filter_by = self.request.GET.get("filter_by")
+        sort = self.request.GET.get("sort_by")
 
         if keyword:  # keyword 값이 비어있지 않다면
 
@@ -161,8 +168,18 @@ class SearchView(View):
                 "-date_joined"
             )  # keyword와 일치하는 오브젝트들의 쿼리셋 만들기.
 
+            if (
+                filter_by is not None and filter_by != "None"
+            ):  # 이 부분 잘 이해안간다.. 왜 list랑 다르게 is not None을 넣어야 작동할까.
+                result_qs = result_qs.filter(works=filter_by).order_by("?")
+
+            if sort == "az":
+                result_qs = result_qs.order_by("last_name")
+            elif sort == "za":
+                result_qs = result_qs.order_by("-last_name")
+
             # paginator 생성
-            page_numbers_range = 10
+            page_numbers_range = 12
             paginator = Paginator(result_qs, page_numbers_range)
             page = self.request.GET.get("page", 1)
             max_index = paginator.num_pages
@@ -193,6 +210,9 @@ class SearchView(View):
                     "start_index": start_index,
                     "end_index": end_index,
                     "max_index": max_index,
+                    "sort": sort,
+                    "filter_by": filter_by,
+                    "current_page": current_page,
                 },
             )
         else:

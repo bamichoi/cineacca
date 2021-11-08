@@ -88,13 +88,13 @@ class MovieList(ListView):
     """MovieList Definition"""
 
     model = models.Movie
-    paginate_by = 24
+    paginate_by = 15
     context_object_name = "movies"
     template_name = "movies/movie_list.html"
 
     def get_ordering(self):
         ordering = super().get_ordering()
-        sort_by = self.request.GET.get("sort_by", "created")
+        sort_by = self.request.GET.get("sort_by")
         if sort_by == "views":
             ordering = "-views"
         elif sort_by == "date":
@@ -109,6 +109,7 @@ class MovieList(ListView):
     def get_context_data(
         self, **kwargs
     ):  # 현재 페이지에 따라 page 범위가 변하는 paginator 를 위해 get_context_data()로 context ovveride.
+        sort = self.request.GET.get("sort_by")
         context = super().get_context_data(**kwargs)
         paginator = context["paginator"]  # ListView 에 내장된 paginator 들고 와주고
         page_numbers_range = 5  # 한번에 볼 수 있는 페이지 넘버 갯수.
@@ -143,6 +144,7 @@ class MovieList(ListView):
         context["start_index"] = start_index
         context["next_index"] = end_index + 1
         context["max_index"] = max_index
+        context["sort"] = sort
         # context["object_number_range"] = object_number_range
 
         return context
@@ -194,6 +196,7 @@ class SearchView(View):
     def get(self, request):
 
         keyword = self.request.GET.get("keyword")  # url에서 keyword 파라미터 값 들고오기.
+        sort = self.request.GET.get("sort_by")
 
         if keyword:  # keyword 값이 비어있지 않다면
 
@@ -203,8 +206,16 @@ class SearchView(View):
                 "-created"
             )  # keyword와 일치하는 오브젝트들의 쿼리셋 만들기.
 
+            if sort:
+                if sort == "views":
+                    result_qs = result_qs.order_by("-views")
+                elif sort == "date":
+                    result_qs = result_qs.order_by("-created")
+                elif sort == "rating":
+                    result_qs = result_qs.order_by("-rating")
+
             # paginator 생성
-            page_numbers_range = 10
+            page_numbers_range = 15
             paginator = Paginator(result_qs, page_numbers_range)
             page = self.request.GET.get("page", 1)
             max_index = paginator.num_pages
@@ -233,15 +244,17 @@ class SearchView(View):
                     "keyword": keyword,
                     "page_range": page_range,
                     "start_index": start_index,
+                    "current_page": current_page,
                     "end_index": end_index,
                     "max_index": max_index,
+                    "sort": sort,
                 },
             )
         else:
             return render(
                 request,
                 "movies/movie_search.html",
-                {"keyword": keyword, "start_index": 0},
+                {"start_index": 0},
             )
 
 

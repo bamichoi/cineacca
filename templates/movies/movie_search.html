@@ -18,9 +18,9 @@
     </form>
 </div>
 <div id="movie_sort-by">
-    <a href="?sort_by=rating"><span><i class="fas fa-star"></i> più valutato</span></a>
-    <a href="?sort_by=date"><span><i class="fab fa-hotjar"></i> più recente</span></a>
-    <a href="?sort_by=views"><span><i class="fas fa-eye"></i> più visti</span></a>
+    <a href="?keyword={{ keyword }}&sort_by=rating"><span><i class="fas fa-star"></i> più valutato</span></a>
+    <a href="?keyword={{ keyword }}&sort_by=date"><span><i class="fab fa-hotjar"></i> più recente</span></a>
+    <a href="?keyword={{ keyword }}&sort_by=views"><span><i class="fas fa-eye"></i> più visti</span></a>
 </div>
 
 <div id="movie-list_grid">
@@ -45,26 +45,50 @@
         </div>
     {% endfor %}
     </div>
-    <div class="paginator">
-        <div>
-            {% if start_index != 0 %}
-                <span><a href="?page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
-            {% endif %}
+    {% if sort %}
+        <div class="paginator">
+            <div>
+                {% if start_index != 0 %}
+                    <span><a href="?keyword={{ keword }}&sort_by ={{ sort }}&page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
+                {% endif %}
+            </div>
+            <div>
+                    {% for page in page_range %}
+                        {% if current_page == page %}
+                            <div class="current-page"><span>{{page}}</span></div>
+                        {% else %}
+                            <span><a href="?keyword={{ keyword }}&sort_by={{ sort }}&page={{page}}">{{page}}</a></span>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+            <div>
+                {% if next_index < max_index %}
+                    <span><a href="?keyword={{ keyword }}&sort_by ={{ sort }}&page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
+                {% endif %}
+            </div>
         </div>
-        <div>
-                {% for page in page_range %}
-                    {% if current_page == page %}
-                        <div class="current-page"><span>{{page}}</span></div>
-                    {% else %}
-                        <span><a href="?page={{page}}">{{page}}</a></span>
-                    {% endif %}
-                {% endfor %}
-        </div>
-        <div>
-            {% if next_index < max_index %}
-                <span><a href="?page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
-            {% endif %}
-        </div>
-    </div>
 
+    {% else %}
+        <div class="paginator">
+            <div>
+                {% if start_index != 0 %}
+                    <span><a href="?keyword={{ keword }}&sort_by ={{ sort }}&page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
+                {% endif %}
+            </div>
+            <div>
+                    {% for page in page_range %}
+                        {% if current_page == page %}
+                            <div class="current-page"><span>{{page}}</span></div>
+                        {% else %}
+                            <span><a href="?keyword={{ keyword }}&page={{page}}">{{page}}</a></span>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+            <div>
+                {% if next_index < max_index %}
+                    <span><a href="?keyword={{ keyword }}&page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
 {% endblock content %}

@@ -25,37 +25,39 @@
     
     <div id="student_filter-by">
         <div class="filter-box">
-            <div><i class="fas fa-bullhorn ico_direction"></i> regia</div>
-            <div><i class="fas fa-microphone-alt ico_audio"></i> audio</div>
+            <a href="?keyword={{ keyword }}&filter_by=1&sort={{ sort }}"><div><i class="fas fa-bullhorn ico_direction"></i> regia</div></a>
+            <a href="?keyword={{ keyword }}&filter_by=7&sort={{ sort }}"><div><i class="fas fa-microphone-alt ico_audio"></i> audio</div></a>
+            
         </div>
         <div class="filter-box">
-            <div><i class="fas fa-pen-nib ico_screenplay"></i></i> sceneggiatura</div>
-            <div><i class="fas fa-palette ico_art-direction"></i> scenografia</div>
+            <a href="?keyword={{ keyword }}&filter_by=2&sort={{ sort }}"><div><i class="fas fa-pen-nib ico_screenplay"></i></i> sceneggiatura</div></a>
+            <a href="?keyword={{ keyword }}&filter_by=8&sort={{ sort }}"><div><i class="fas fa-palette ico_art-direction"></i> scenografia</div>
         </div>
         <div class="filter-box">
-            <div><i class="far fa-smile-wink ico_acting"></i> recitazione</div>
-            <div><i class="fas fa-mask ico_costume"></i> costume</div>
+            <a href="?keyword={{ keyword }}&filter_by=3&sort={{ sort }}"><div><i class="far fa-smile-wink ico_acting"></i> recitazione</div></a>
+            <a href="?keyword={{ keyword }}&filter_by=9&sort={{ sort }}"><div><i class="fas fa-mask ico_costume"></i> costume</div></a>
         </div>
         <div class="filter-box">
-            <div><i class="fas fa-video ico_photograph"></i> fotografia</i></div>
-            <div><i class="fas fa-magic ico_makeup"></i> truccatura</div>
+            <a href="?keyword={{ keyword }}&filter_by=4&sort={{ sort }}"><div><i class="fas fa-video ico_photograph"></i> fotografia</i></div></a>
+            <a href="?keyword={{ keyword }}&filter_by=10&sort={{ sort }}"><div><i class="fas fa-magic ico_makeup"></i> truccatura</div></a>
         </div>
         <div class="filter-box">
-            <div><i class="fas fa-cut ico_editing"></i> montaggio</div>
-            <div><i class="fas fa-music ico_music"></i>  musica</div>
+            <a href="?keyword={{ keyword }}&filter_by=5&sort={{ sort }}"><div><i class="fas fa-cut ico_editing"></i> montaggio</div></a>
+            <a href="?keyword={{ keyword }}&filter_by=11&sort={{ sort }}"><div><i class="fas fa-music ico_music"></i>  musica</div></a>
         </div>
         <div class="filter-box">
-            <div><i class="fas fa-meteor ico_VFX"></i> VFX</div>
+            <a href="?keyword={{ keyword }}&filter_by=6&sort={{ sort }}"> <div><i class="fas fa-meteor ico_VFX"></i> VFX</div></a>
+           
         </div>
     </div>
     
     <div id="student_sort-by">
-        <a href="?sort_by=az">
+        <a href="?keyword={{ keyword }}&sort_by=az&filter_by={{ filter_by }}">
             <span>
                 <i class="fas fa-sort-alpha-down"></i>   A-Z
             </span>
         </a>
-        <a href="?sort_by=za">
+        <a href="?keyword={{ keyword }}&sort_by=za&filter_by={{ filter_by }}">
             <span>
                 <i class="fas fa-sort-alpha-down-alt"></i>   Z-A
             </span>
@@ -113,7 +115,7 @@
     <div class="paginator">
         <div>
             {% if start_index != 0 %}
-                <span><a href="?page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
+                <span><a href="?keyword={{ keyword }}&sort={{ sort }}&page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
             {% endif %}
         </div>
         <div>
@@ -121,13 +123,13 @@
                     {% if current_page == page %}
                         <div class="current-page"><span>{{page}}</span></div>
                     {% else %}
-                        <span><a href="?page={{page}}">{{page}}</a></span>
+                        <span><a href="?keyword={{ keyword }}&sort={{ sort }}&page={{page}}">{{page}}</a></span>
                     {% endif %}
                 {% endfor %}
         </div>
         <div>
             {% if next_index < max_index %}
-                <span><a href="?page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
+                <span><a href="?keyword={{ keyword }}&sort={{ sort }}&page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
             {% endif %}
         </div>
     </div>
