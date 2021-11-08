@@ -25,7 +25,7 @@ class HomeView(ListView):
     """HomeView Definition"""
 
     model = models.Movie
-    paginate_by = 12
+    paginate_by = 6
     ordering = "-created"
     context_object_name = "movies"
     template_name = "home.html"
@@ -94,7 +94,6 @@ class MovieList(ListView):
 
     def get_ordering(self):
         ordering = super().get_ordering()
-        qs = models.Movie.objects.all()
         sort_by = self.request.GET.get("sort_by", "created")
         if sort_by == "views":
             ordering = "-views"

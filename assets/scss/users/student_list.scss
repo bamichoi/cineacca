@@ -43,6 +43,10 @@
     display: flex;
     flex-direction: column;
     margin-right: 1rem;
+    a {
+      text-decoration: none;
+      color: black;
+    }
     div {
       margin-bottom: 0.7rem;
     }
@@ -108,9 +112,9 @@
 
 .student-namecard {
   font-family: "Reem Kufi", sans-serif;
-  width: 22rem;
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
   border-radius: 0.7rem;
+  height: 10.5rem;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
   .namecard_row {
     margin: 1rem;
@@ -142,8 +146,8 @@
     display: flex;
     justify-content: flex-end;
     i {
-      font-size: 1.5rem;
-      margin-left: 0.8rem;
+      font-size: 1.2rem;
+      margin-left: 0.5rem;
     }
   }
 }

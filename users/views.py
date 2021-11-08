@@ -41,8 +41,8 @@ class UpdateProfileView(mixins.LoggedInOnlyView, UpdateView):
     """ChangeProfile View Definition"""
 
     model = models.User
+    form_class = forms.UpdateProfileForm
     template_name = "users/update-profile.html"
-    fields = ("first_name", "last_name", "avatar", "biography", "school", "works")
 
     def get_object(self, queryset=None):
         return self.request.user

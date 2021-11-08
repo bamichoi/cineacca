@@ -24,7 +24,7 @@
     
     <div id="student_filter-by">
         <div class="filter-box">
-            <div><i class="fas fa-bullhorn ico_direction"></i> regia</div>
+            <a href="filter_by=regia"><div><i class="fas fa-bullhorn ico_direction"></i> regia</div></a>
             <div><i class="fas fa-microphone-alt ico_audio"></i> audio</div>
         </div>
         <div class="filter-box">
@@ -63,7 +63,7 @@
     </div>
     <div id="student-list_grid">
         {% for student in students %}
-            <a href="{% url 'users:student_profile' student.pk %}">
+            <a href="{% url 'users:user_profile' student.pk %}">
                 <div class="student-namecard">
                     <div class="namecard_row">
                         <div class="user_avatar_medium" style="background-image: url({{student.avatar.url}});"></div>
@@ -77,10 +77,31 @@
                     </div>
                     <div class="namecard_row">
                         <!-- dei ruoli preferiti -->
-                        <i class="fas fa-bullhorn ico_direction"></i>
-                        <i class="fas fa-pen-nib ico_screenplay"></i>
-                        <i class="far fa-smile-wink ico_acting"></i> 
-                        <i class="fas fa-cut ico_editing"></i>
+                        {% for work in student.works.all %}
+                            {% if work.name == "regia" %} <!-- {{work}}는 되는데 .name 해줘야하는 이유? -->
+                                <i class="fas fa-bullhorn ico_direction"></i>
+                            {% elif work.name == "sceneggiatura" %}
+                                <i class="fas fa-pen-nib ico_screenplay"></i>
+                            {% elif work.name == "recitazione" %}
+                                <i class="far fa-smile-wink ico_acting"></i>  
+                            {% elif work.name == "fotografia" %}
+                                <i class="fas fa-video ico_photograph"></i>
+                            {% elif work.name == "montaggio" %}
+                                <i class="fas fa-cut ico_editing"></i>
+                            {% elif work.name == "VFX" %}
+                                <i class="fas fa-meteor ico_VFX"></i>
+                            {% elif work.name == "audio" %}
+                                <i class="fas fa-microphone-alt ico_audio"></i>
+                            {% elif work.name == "scenografia" %}
+                                <i class="fas fa-palette ico_art-direction"></i>
+                            {% elif work.name == "costume" %}
+                                <i class="fas fa-mask ico_costume"></i>
+                            {% elif work.name == "truccatura" %}
+                                <i class="fas fa-magic ico_makeup"></i>  
+                            {% elif work.name == "musica" %}
+                                <i class="fas fa-music ico_music"></i>
+                        {% endif %}     
+                    {% endfor %}
                     </div>
                 </div>
             </a>

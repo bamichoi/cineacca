@@ -1,7 +1,15 @@
+from django.forms import widgets
 from config.settings import EMAIL_USE_TLS
 from django import forms
 from django.db.models import fields
 from . import models
+
+
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = models.User
+        fields = ("first_name", "last_name", "avatar", "biography", "school", "works")
+        widgets = {"works": widgets.CheckboxSelectMultiple}
 
 
 class LoginForm(forms.Form):

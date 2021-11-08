@@ -46,6 +46,16 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      #profile_works {
+        text-align: end;
+        width: 13.4rem;
+        i {
+          font-size: 1.2rem;
+          margin-left: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+
       div {
         margin-bottom: 1.2rem;
       }

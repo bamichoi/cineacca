@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.core.mail import send_mail
+from django.forms import widgets
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -95,7 +96,7 @@ class User(AbstractUser):
     )
     email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=20, default="", blank=True)
-    works = models.ManyToManyField("Work", related_name="rooms", blank=True)
+    works = models.ManyToManyField("Work", related_name="users", blank=True)
 
     objects = CustomUserManager()
 

@@ -16,7 +16,7 @@
     <div id="profile_container">
         <div class="profile_container_row">
             {% if user.avatar %}
-                <div class="profile_avatar" style="background-image:url({{user.avatar.url}}); "></div>
+                <div class="profile_avatar" style="background-image:url({{user_obj.avatar.url}}); "></div>
             {% endif %}
              <div id="profile_info">
                 <div id="profile_info_firstname">{{user_obj.first_name}}</div>
@@ -34,18 +34,39 @@
                 </div>
                 
                 <div>{{user_obj.school}}</div>
+                <div id="profile_works">
+                    {% for work in user_obj.works.all %}
+                        {% if work.name == "regia" %} <!-- {{work}}는 되는데 .name 해줘야하는 이유? -->
+                            <i class="fas fa-bullhorn ico_direction"></i>
+                        {% elif work.name == "sceneggiatura" %}
+                            <i class="fas fa-pen-nib ico_screenplay"></i>
+                        {% elif work.name == "recitazione" %}
+                            <i class="far fa-smile-wink ico_acting"></i>  
+                        {% elif work.name == "fotografia" %}
+                            <i class="fas fa-video ico_photograph"></i>
+                        {% elif work.name == "montaggio" %}
+                            <i class="fas fa-cut ico_editing"></i>
+                        {% elif work.name == "VFX" %}
+                            <i class="fas fa-meteor ico_VFX"></i>
+                        {% elif work.name == "audio" %}
+                            <i class="fas fa-microphone-alt ico_audio"></i>
+                        {% elif work.name == "scenografia" %}
+                            <i class="fas fa-palette ico_art-direction"></i>
+                        {% elif work.name == "costume" %}
+                            <i class="fas fa-mask ico_costume"></i>
+                        {% elif work.name == "truccatura" %}
+                            <i class="fas fa-magic ico_makeup"></i>  
+                        {% elif work.name == "musica" %}
+                            <i class="fas fa-music ico_music"></i>
+                        {% endif %}     
+                    {% endfor %}
+                </div>
              </div>
         </div> 
             <hr>
         <div class="profile_container_row">
             <div>Biografo</div>
             <div>{{user_obj.biography}}</div>
-            <div>
-                {% for work in user_obj.works.all %}
-                    <span>{{work}}</span>
-                {% endfor %}
-
-            </div>
         </div>
             
      </div>

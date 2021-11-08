@@ -53,6 +53,7 @@
                                 {{ movie.views }} visto 
                                 {% else %} 
                                 {{ movie.views }} visti {% endif %} </span>
+                        <span>{{ movie.created  | date:"d M Y"  }}</span>
                     </div>
                 </div>
             </div>
