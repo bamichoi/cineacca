@@ -20,17 +20,41 @@
                         <span>{{error}}</span>
                     {% endfor %}
                 {% endif %}
-                {% for field in form  %}
-                    <div class="upload_form_field">
-                        <div class="upload_form_label">{{field.label}}</div>
-                        {{field}}
-                        {% if field.errors %}
-                        {% for error in field.errors %}
-                            <span>{{error}}</span>
-                        {% endfor %}
+            <div class="upload_form__sections">
+                <div class="video-section">
+                    {% for field in form %}
+                        {% if field.name == "video" or field.name == "thumnail" or field.name == "title" or field.name == "description" or field.name == "year"%}
+                            <div class="upload_form_field">
+                                <div class="upload_form_label">{{field.label}}</div>
+                                {{field}}
+                                {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
                         {% endif %}
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="staff-section">
+                    {% for field in form %}
+                        {% if field.name != "video" and field.name != "thumnail" and field.name != "title" and field.name != "description" and field.name != "year"%}
+                            <div class="upload_form_field">
+                                <div class="upload_form_label">{{field.label}}</div>
+                                {{field}}
+                                {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            
+                
                 <div class="upload_submit">
                     <button>Carica</button>
                 </div>

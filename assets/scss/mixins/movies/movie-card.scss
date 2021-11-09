@@ -1,0 +1,50 @@
+.card_link {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    .movie-card {
+      box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
+      transition: box-shadow 0.5s ease-in-out;
+    }
+  }
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding: 1.2rem 0.7rem;
+  border-radius: 0.8rem;
+  box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+  .movie-card_thumnail {
+    height: 10rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .movie-card_info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .info_title {
+      margin: 1rem 0rem 0rem;
+      font-size: 1.2rem;
+    }
+    .info_user {
+      margin: 0.4rem 0rem;
+      font-size: 0.8rem;
+    }
+    div {
+      display: flex;
+      font-size: 0.8rem;
+      justify-content: flex-start;
+      span {
+        margin-right: 1rem;
+      }
+      span:nth-child(3) i {
+        color: #fac81a;
+      }
+    }
+  }
+}

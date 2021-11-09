@@ -1,0 +1,18 @@
+<a class="card_link" href="{% url 'movies:detail' movie.pk %}">
+   <div class="movie-card">
+        <div class="movie-card_thumnail" style="background-image: url({{movie.thumnail.url}});"></div>
+        <div class="movie-card_info">
+            <span class="info_title">{{ movie.formatted.title }}</span>
+            <span class="info_user">{{ movie.user }}</span>
+            <div>
+                <span>{{ movie.year }}</span>
+                <span>30 min</span>
+                <span><i class="fas fa-star"></i>{{ movie.rating }}</span>
+                <span>{% if movie.views <= 1 %} 
+                        {{ movie.views }} visto 
+                    {% else %} 
+                        {{ movie.views }} visti {% endif %} </span>
+            </div>
+        </div>
+    </div>
+</a>

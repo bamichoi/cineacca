@@ -13,7 +13,7 @@ const css = () => {
 };
 
 const watch = () => {
-  gulp.watch(["assets/scss/*", "assets/scss/*/*"], css)
+  gulp.watch(["assets/scss/*", "assets/scss/*/*", "assets/scss/*/*/*" ], css)
 }
 
 exports.default = gulp.series(css, watch);

@@ -3,6 +3,9 @@
 @import "./base.scss";
 @import "./home.scss";
 
+// mixins/movies
+@import "./mixins/movies/movie-card.scss";
+
 // movies
 @import "./movies/movie_list.scss";
 @import "./movies/movie_upload.scss";

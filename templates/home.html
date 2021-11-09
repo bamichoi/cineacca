@@ -38,25 +38,7 @@
 
     <div id="new-movies_grid">
         {% for movie in movies %}
-            <div class="movie-card">
-                <a href="{% url 'movies:detail' movie.pk %}">
-                    <div class="movie-card_thumnail" style="background-image: url({{movie.thumnail.url}});"></div>
-                </a>
-                <div class="movie-card_info">
-                    <span class="info_title">{{ movie.title }}</span>
-                    <span class="info_user">{{ movie.user }}</span>
-                    <div>
-                        <span>{{ movie.year }}</span>
-                        <span>30 min</span>
-                        <span><i class="fas fa-star"></i>{{ movie.rating }}</span>
-                        <span>{% if movie.views <= 1 %} 
-                                {{ movie.views }} visto 
-                                {% else %} 
-                                {{ movie.views }} visti {% endif %} </span>
-                        <span>{{ movie.created  | date:"d M Y"  }}</span>
-                    </div>
-                </div>
-            </div>
+            {% include "./mixins/movies/movie-card.html" %}
         {% endfor %}
     </div>
 </div>

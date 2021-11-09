@@ -45,6 +45,10 @@ class Movie(core_model.TimeStampedModel):
     def __str__(self):
         return self.title
 
+    def formatted(self):
+        title = self.title if len(self.title) < 35 else f"{self.title[:35]}..."
+        return {"title": title}
+
 
 # movies
 

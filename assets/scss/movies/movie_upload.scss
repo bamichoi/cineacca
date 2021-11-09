@@ -6,9 +6,9 @@
 }
 
 #upload_title {
-  width: 28rem;
   margin-top: 1rem;
   margin-bottom: 0.3rem;
+  width: 54rem;
   div {
     background-color: #ddc9e7;
     height: 1.2rem;
@@ -29,46 +29,87 @@
   border: 0.4rem #aacccc solid;
   border-radius: 1rem;
   padding: 2rem;
-  width: 20rem;
+  width: 50rem;
+  form {
+    width: 50rem;
+    display: flex;
+    flex-direction: column;
+    .upload_form__sections {
+      display: flex;
+      justify-content: space-evenly;
 
-  .upload_form_field {
-    margin-bottom: 1.5rem;
-    .upload_form_label {
-      font-size: 1.5rem;
-      font-family: "Reem Kufi", sans-serif;
-      margin-bottom: 0.5rem;
-      font-weight: 800;
-    }
-    input {
-      width: 17rem;
-      height: 2.2rem;
-      border-radius: 0.7rem;
-      border: 0.1rem #c4c4c4 solid;
-      outline: none;
-      font-size: 1.1rem;
-      padding: 0.5rem;
-    }
+      hr {
+        margin: 1rem;
+        height: 59rem;
+      }
 
-    textarea {
-      width: 18rem;
-      border-radius: 0.7rem;
-      border: 0.1rem #c4c4c4 solid;
-      padding: 0.5rem;
+      .video-section {
+        .upload_form_field {
+          margin-bottom: 1.5rem;
+
+          .upload_form_label {
+            font-size: 1.3rem;
+            font-family: "Reem Kufi", sans-serif;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+          }
+
+          input {
+            width: 17rem;
+            height: 2rem;
+            border-radius: 0.7rem;
+            border: 0.1rem #c4c4c4 solid;
+            outline: none;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+          }
+
+          textarea {
+            width: 18rem;
+            border-radius: 0.7rem;
+            border: 0.1rem #c4c4c4 solid;
+            padding: 0.5rem;
+          }
+        }
+      }
+
+      .staff-section {
+        .upload_form_field {
+          margin-bottom: 1.5rem;
+          .upload_form_label {
+            font-size: 1rem;
+            font-family: "Reem Kufi", sans-serif;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+          }
+          input {
+            width: 17rem;
+            height: 1rem;
+            border-radius: 0.7rem;
+            border: 0.1rem #c4c4c4 solid;
+            outline: none;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+          }
+        }
+      }
     }
   }
-  .upload_submit {
-    display: flex;
-    justify-content: center;
-    button {
-      background-color: #ca5b4c;
-      color: white;
-      border: none;
-      padding: 0.5rem 2rem;
-      font-size: 1.5rem;
-      font-family: "Reem Kufi", sans-serif;
-      border-radius: 0.7rem;
-      width: 20rem;
-      cursor: pointer;
-    }
+}
+
+.upload_submit {
+  display: flex;
+  justify-content: center;
+  button {
+    margin-top: 3rem;
+    background-color: #ca5b4c;
+    color: white;
+    border: none;
+    padding: 0.5rem 2rem;
+    font-size: 1.5rem;
+    font-family: "Reem Kufi", sans-serif;
+    border-radius: 0.7rem;
+    width: 20rem;
+    cursor: pointer;
   }
 }

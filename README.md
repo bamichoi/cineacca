@@ -24,12 +24,16 @@ Development in progress
 
 ## TO DO LIST 
 
+### Navigation
+
+- [ ] 디자인 개선
+  
 ### Home
 
 - [x] movie card 크기 가로로 길게 변경
-- [ ] text 길때 줄이기(textfit?)
+- [x] text 길때 줄이기
 - [ ] 창 줄이고 늘일때 핸들링
-- [ ] movie card 호버 애니메이션 추가
+- [x] movie card 호버 애니메이션 추가
 
 ### Detail
   
@@ -38,7 +42,10 @@ Development in progress
 
 ### Upload Movie
   
-- [ ] 리스타일링 : 스크롤 하지 않아도 되도록 video, staff 섹션 횡으로 나누기(no-spoiler처럼)
+- [x] 리스타일링 : 스크롤 하지 않아도 되도록 video, staff 섹션 횡으로 나누기(no-spoiler처럼)
+- [ ] thumnail field 만들기
+- [ ] locandina 미리보기 적용
+- [ ] 파일 업로드***
 
 ### Update Movie
 
@@ -65,6 +72,7 @@ Development in progress
 - [x] 역할 추가 
 - [ ] 노출되는 역할 갯수 핸들링
 - [x] page 변경시 현재 파라미터 적용
+- [ ] student car hover 에니메이션 추가
 
 
 ### Student Search
@@ -85,11 +93,12 @@ Development in progress
 - [ ] last_name, first_name 첫글자 대문자변환
 - [ ] 에러메지 스타일링
 - [ ] form 위젯
+- [ ] 필드이름 정정
 - [ ] 안내문구
 
 
 ### Profile - Student/Pubblic
-- [ ] 별도의 student profile 삭제
+- [x] 별도의 student profile 삭제
 - [ ] 디자인개선
 - [ ] 필모그래피화
 - [ ] 아바타 기본값 추가
@@ -101,6 +110,7 @@ Development in progress
 ### Update profile
 
 - [ ] works 필드 리스타일링
+- [ ] 에러메세지 스타일링
   
 
 ### Change Password
@@ -110,14 +120,13 @@ Development in progress
 ### Forget Password
 
 - [ ] email이 존재하지 않을경우 핸들링
+- [ ] 에러메세지 스타일링
 
 ###  Delete Account
 
 - [ ] 계정삭제 확인절차 추가
+- [ ] 에러메세지 스타일링
 
-### Upload Movie
-
-- [ ] 스타일링
 
 
 
@@ -131,3 +140,8 @@ Development in progress
 - [ ] http404 페이지 작성
 
 
+### 코드 개선
+
+- [ ] CSS 중복제거
+- [ ] student card 부분 mixin 만들기
+- [ ] partials

@@ -9,6 +9,7 @@ class MovieUploadForm(forms.ModelForm):
             "video",
             "thumnail",
             "title",
+            "year",
             "description",
             "director",
             "screenwriter",
