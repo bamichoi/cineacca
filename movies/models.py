@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import widgets
 from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 from core import models as core_model
@@ -11,13 +12,21 @@ class Movie(core_model.TimeStampedModel):
 
     """video info field"""
     video = models.FileField(
-        upload_to="movie_files", null=True, blank=True
+        upload_to="movie_files",
+        null=True,
+        blank=True,
     )  # seed 위해 임시로 null=True, Black=True
-    thumnail = models.ImageField(
-        _("locandina"),
-        upload_to="movie_thumnails",
+    thumbnail = models.ImageField(
+        _("thumbnail"),
+        upload_to="movie_thumbnails",
         null=True,
         blank=True,  # seed 위해 임시로 null=True, Black=True
+    )
+    poster = models.ImageField(
+        _("locandina"),
+        upload_to="movie_posters",
+        null=True,
+        blank=True,
     )
     user = models.ForeignKey(
         "users.user", related_name="movies", on_delete=models.CASCADE

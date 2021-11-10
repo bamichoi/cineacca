@@ -32,31 +32,35 @@ Development in progress
 
 - [x] movie card 크기 가로로 길게 변경
 - [x] text 길때 줄이기
-- [ ] 창 줄이고 늘일때 핸들링
 - [x] movie card 호버 애니메이션 추가
+- [ ] 창 줄이고 늘일때 핸들링
+
 
 ### Detail
   
 - [ ] 스타일링
 - [ ] 리뷰 새로고침없이 pagination
+- [ ] 리뷰 Like it
 
 ### Upload Movie
   
 - [x] 리스타일링 : 스크롤 하지 않아도 되도록 video, staff 섹션 횡으로 나누기(no-spoiler처럼)
-- [ ] thumnail field 만들기
-- [ ] locandina 미리보기 적용
-- [ ] 파일 업로드***
+- [x] thumnail field 만들기
+- [ ] 기본 locandina
+- [ ] 파일 업로드
 
+- [ ] locandina 미리보기 적용(보류)
+  
 ### Update Movie
 
-- [ ] Upload Movie와 동일
+- [x] Upload Movie와 동일
 
 
 ### Movie List
 
-- [ ] duration 받아오기
 - [x] 변경된 movie card 적용
 - [x] page 변경시 현재 파라미터 적용
+- [ ] duration 받아오기
 
 ### Movie Search
 
@@ -66,13 +70,14 @@ Development in progress
 
 ### Student List
 
-- [ ] 학교이름으로 검색 제공
-- [ ] 역할별 필터링
-- [ ] 네임카드 배경 커스터마이징
 - [x] 역할 추가 
-- [ ] 노출되는 역할 갯수 핸들링
 - [x] page 변경시 현재 파라미터 적용
-- [ ] student car hover 에니메이션 추가
+- [x] 역할별 필터링
+- [ ] 네임카드 배경 커스터마이징 *
+- [ ] student card hover 에니메이션 추가 *
+  
+- [ ] 노출되는 역할 갯수 핸들링 (보류)
+- [ ] 학교이름으로 필터링 제공 (보류)
 
 
 ### Student Search
@@ -83,7 +88,7 @@ Development in progress
 
 ### Login
 
-- [ ] 에러메세지 스타일링
+- [ ] 에러메세지 스타일링 *
 - [ ] 구글 연동 로그인
 
 
@@ -98,19 +103,23 @@ Development in progress
 
 
 ### Profile - Student/Pubblic
+
+- [x] 역할 추가
 - [x] 별도의 student profile 삭제
+- [ ] 내 student card 보기
 - [ ] 디자인개선
 - [ ] 필모그래피화
 - [ ] 아바타 기본값 추가
 - [ ] work 클래스 아이콘 필드 추가
 - [ ] 좋아하는 영화 추가
-- [x] 역할 추가
+
 
 
 ### Update profile
 
 - [ ] works 필드 리스타일링
 - [ ] 에러메세지 스타일링
+- [ ] update Movie 처럼 스타일 구조 바꾸기
   
 
 ### Change Password
@@ -133,8 +142,6 @@ Development in progress
 ### 기타 잡다한 문제들
 
 -[] avconv
-
-- [ ] ~~리뷰 좋아요 기능~~
 
 - [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
 - [ ] http404 페이지 작성

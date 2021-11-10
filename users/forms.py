@@ -2,6 +2,7 @@ from django.forms import widgets
 from config.settings import EMAIL_USE_TLS
 from django import forms
 from django.db.models import fields
+from movies import forms as movie_form
 from . import models
 
 
@@ -9,7 +10,10 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = models.User
         fields = ("first_name", "last_name", "avatar", "biography", "school", "works")
-        widgets = {"works": widgets.CheckboxSelectMultiple}
+        widgets = {
+            "works": widgets.CheckboxSelectMultiple,
+            "avatar": movie_form.CustomClearableFileInput,
+        }
 
 
 class LoginForm(forms.Form):

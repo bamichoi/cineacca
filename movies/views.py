@@ -1,4 +1,5 @@
 from django.db.models.query import QuerySet
+from django.forms import widgets
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic import (
@@ -51,25 +52,7 @@ class UpdateMovie(user_mixins.MovieUpdateDeletePermissionView, UpdateView):
 
     template_name = "movies/movie_update.html"
     model = models.Movie
-
-    fields = (
-        "video",
-        "thumnail",
-        "title",
-        "description",
-        "director",
-        "screenwriter",
-        "casting",
-        "editor",
-        "director_of_photograpy",
-        "audio_director",
-        "music",
-        "art_director",
-        "costume_designer",
-        "makeup_artist",
-        "spacial_effect_supervisor",
-        "sound_designer",
-    )
+    form_class = forms.MovieUpdateForm
 
     def get_success_url(self):
         pk = self.kwargs.get("pk")

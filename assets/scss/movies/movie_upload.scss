@@ -46,7 +46,10 @@
       .video-section {
         .upload_form_field {
           margin-bottom: 1.5rem;
-
+          input[type="checkbox"],
+          label {
+            display: none;
+          }
           .upload_form_label {
             font-size: 1.3rem;
             font-family: "Reem Kufi", sans-serif;
