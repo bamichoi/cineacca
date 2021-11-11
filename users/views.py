@@ -58,10 +58,17 @@ class ChangePasswordView(mixins.LoggedInOnlyView, PasswordChangeView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
-        form.fields["old_password"].widget.attrs = {"placeholder": "Current password"}
-        form.fields["new_password1"].widget.attrs = {"placeholder": "New password"}
+        form.fields["old_password"].label = "Password attuale"
+        form.fields["old_password"].widget.attrs = {
+            "placeholder": "Inserisci il tuo password attuale"
+        }
+        form.fields["new_password1"].label = "Password nuovo"
+        form.fields["new_password1"].widget.attrs = {
+            "placeholder": "Inserisci il tuo password nuovo"
+        }
+        form.fields["new_password2"].label = "Verifica password nuovo"
         form.fields["new_password2"].widget.attrs = {
-            "placeholder": "Confrim New password"
+            "placeholder": "Inserisci ancora il password nuovo"
         }
         return form
 

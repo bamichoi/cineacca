@@ -75,8 +75,11 @@ class User(AbstractUser):
 
     username = None  # email을 username으로 사용하기 위해 Abspython manage.py migratetractUser의 username을 none으로 override.
 
+    first_name = models.CharField(_("Nome"), max_length=150, blank=True)
+    last_name = models.CharField(_("Cognome"), max_length=150, blank=True)
+
     email = models.EmailField(
-        _("email address"), unique=True
+        _("Indrizzo di email"), unique=True
     )  # _ 는 ugettext_lazy()의 별칭. 언어설정에 따라 출력되는 문자열을 변환해주는 함수다.
     USERNAME_FIELD = "email"  # email을 username처럼 사용하기.
     REQUIRED_FIELDS = (
@@ -86,7 +89,7 @@ class User(AbstractUser):
         _("accademia"), choices=SCHOOL_CHOICES, max_length=50, null=True, blank=True
     )
     avatar = models.ImageField(upload_to="user_avatars", default="user_avatars/0.jpeg")
-    biography = models.TextField(_("biography"), null=True, blank=True)
+    biography = models.TextField(_("biografia"), null=True, blank=True)
     account_type = models.CharField(
         _("tipo d'account"),
         choices=ACCOUNT_TYPE_CHOICES,
@@ -96,7 +99,11 @@ class User(AbstractUser):
     )
     email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=20, default="", blank=True)
-    works = models.ManyToManyField("Work", related_name="users", blank=True)
+    works = models.ManyToManyField(
+        "Work",
+        related_name="users",
+        blank=True,
+    )
 
     objects = CustomUserManager()
 

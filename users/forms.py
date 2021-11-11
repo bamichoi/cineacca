@@ -1,7 +1,5 @@
 from django.forms import widgets
-from config.settings import EMAIL_USE_TLS
 from django import forms
-from django.db.models import fields
 from movies import forms as movie_form
 from . import models
 
@@ -10,6 +8,7 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = models.User
         fields = ("first_name", "last_name", "avatar", "biography", "school", "works")
+        labels = {"works": "Lavori preferti"}
         widgets = {
             "works": widgets.CheckboxSelectMultiple,
             "avatar": movie_form.CustomClearableFileInput,
@@ -19,10 +18,10 @@ class UpdateProfileForm(forms.ModelForm):
 class LoginForm(forms.Form):
 
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": "Email"})
+        widget=forms.EmailInput(attrs={"placeholder": "ll tuo indrizzo email"})
     )  # 각 필드 생성
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Password"})
+        widget=forms.PasswordInput(attrs={"placeholder": "Il tuo password"})
     )
 
     def clean(self):  # email과 password는 서로 종속되어있다. 이 경우 clean method를 이용한다.
@@ -44,12 +43,27 @@ class StudentSignUpForm(forms.ModelForm):
     class Meta:
         model = models.User
         fields = ("first_name", "last_name", "school", "email")
+        widgets = {
+            "first_name": forms.TextInput(
+                attrs={"placeholder": "Inserisci il tuo nome"}
+            ),
+            "last_name": forms.TextInput(
+                attrs={"placeholder": "Inserisci il tuo cognome"}
+            ),
+            "email": forms.TextInput(
+                attrs={"placeholder": "Inserisci l'indirizzo di email per login"}
+            ),
+            # charfield + choices 의 select field는 어떻게 placeholder를 달까. 아마도 accademia 모델이 하나 있어야할듯.
+        }
 
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Enter the Password"})
+        widget=forms.PasswordInput(attrs={"placeholder": "Inserisci il password"})
     )  # password 는 암호화되어 저장되어야 하므로 별도로 작성.
     password_confirm = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Confirm the Password"})
+        label="Verifica password",
+        widget=forms.PasswordInput(
+            attrs={"placeholder": "Inserisci ancora il password"}
+        ),
     )
 
     def clean_password_confirm(self):  # password 와 password_confrim 이 일치하는지 확인.
@@ -70,16 +84,29 @@ class StudentSignUpForm(forms.ModelForm):
 
 class PublicSignUpForm(forms.Form):
 
-    first_name = forms.CharField()
-    last_name = forms.CharField()
+    first_name = forms.CharField(
+        label="Nome",
+        widget=forms.TextInput(attrs={"placeholder": "Inserisci il tuo nome"}),
+    )
+    last_name = forms.CharField(
+        label="Cognome",
+        widget=forms.TextInput(attrs={"placeholder": "Inserisci il tuo cognome"}),
+    )
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": "Enter your emaill adress"})
+        label="Indrizzo di email",
+        widget=forms.EmailInput(
+            attrs={"placeholder": "Inserisci l'indirizzo di email per login"}
+        ),
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Enter the Password"})
+        label="Password",
+        widget=forms.PasswordInput(attrs={"placeholder": "Inserisci il password"}),
     )  # password 는 암호화되어 저장되어야 하므로 별도로 작성.
     password_confirm = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Confirm the Password"})
+        label="Verifica password",
+        widget=forms.PasswordInput(
+            attrs={"placeholder": "Inserisci ancora il password"}
+        ),
     )
 
     def clean_email(self):
@@ -113,7 +140,7 @@ class PublicSignUpForm(forms.Form):
 class DeleteAccountForm(forms.Form):
 
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Password"})
+        widget=forms.PasswordInput(attrs={"placeholder": "Inserisci il tuo password"})
     )
 
     def __init__(self, user, *args, **kwargs):

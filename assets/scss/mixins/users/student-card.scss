@@ -1,0 +1,41 @@
+.student-namecard {
+  font-family: "Reem Kufi", sans-serif;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.7rem;
+  height: 10.5rem;
+  box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+  .namecard_row {
+    margin: 1rem;
+  }
+  .namecard_row:first-child {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    .user_avatar_medium {
+      width: 4.2rem;
+      height: 4.2rem;
+      border-radius: 2.1rem;
+      background-size: cover;
+    }
+    .namecard_fullname {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      div {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .namecard_row:nth-child(2) {
+    text-align: end;
+    font-size: 0.8rem;
+  }
+  .namecard_row:last-child {
+    display: flex;
+    justify-content: flex-end;
+    i {
+      font-size: 1.2rem;
+      margin-left: 0.5rem;
+    }
+  }
+}

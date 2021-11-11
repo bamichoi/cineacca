@@ -30,75 +30,74 @@ Development in progress
   
 ### Home
 
-- [x] movie card 크기 가로로 길게 변경
-- [x] text 길때 줄이기
-- [x] movie card 호버 애니메이션 추가
+- [ ] 슬라이딩 메뉴 만들기
 - [ ] 창 줄이고 늘일때 핸들링
+- [ ] Reviews (Top/New)
 
+### About
 
+### Festival
+
+### Notice
+
+- [ ] 공지사항 게시판
+
+### MovieTalk
+
+- [ ] 무비토크 게시판
+
+### Join
+
+- [ ] password 규칙
+
+### Email 
+
+- [ ] 관련 페이지 및 이메일 스타일링
+ 
 ### Detail
   
 - [ ] 스타일링
 - [ ] 리뷰 새로고침없이 pagination
 - [ ] 리뷰 Like it
 
-### Upload Movie
+### Upload Movie & Update Movie
   
-- [x] 리스타일링 : 스크롤 하지 않아도 되도록 video, staff 섹션 횡으로 나누기(no-spoiler처럼)
-- [x] thumnail field 만들기
-- [ ] 기본 locandina
+- [ ] 기본 locandina (detail 할때 작업)
 - [ ] 파일 업로드
 
-- [ ] locandina 미리보기 적용(보류)
+- [ ] locandina 미리보기 적용(추후)
   
 ### Update Movie
-
-- [x] Upload Movie와 동일
 
 
 ### Movie List
 
-- [x] 변경된 movie card 적용
-- [x] page 변경시 현재 파라미터 적용
-- [ ] duration 받아오기
+- [ ] duration 받아오기 (ffmpeg)
 
 ### Movie Search
 
-- [x] List와 동일한 스타일링
-- [x] 결과물 정렬
-- [x] page 변경시 현재 파라미터 적용
 
 ### Student List
 
-- [x] 역할 추가 
-- [x] page 변경시 현재 파라미터 적용
-- [x] 역할별 필터링
-- [ ] 네임카드 배경 커스터마이징 *
-- [ ] student card hover 에니메이션 추가 *
-  
+- [ ] 네임카드 배경 커스터마이징 (보류)
 - [ ] 노출되는 역할 갯수 핸들링 (보류)
 - [ ] 학교이름으로 필터링 제공 (보류)
 
 
 ### Student Search
-- [x] student list와 동일한 스타일링
-- [x] 결과물 정렬
-- [x] pagination url에 keyword 추가
-- [x] page 변경시 현재 파라미터 적용
+
 
 ### Login
 
 - [ ] 에러메세지 스타일링 *
-- [ ] 구글 연동 로그인
+  
+- [ ] 구글 연동 로그인(추후)
 
 
 ### Signup - Student/Pubblic
 
-- [ ] 뷰 작동방식 하나로 통일
 - [ ] last_name, first_name 첫글자 대문자변환
 - [ ] 에러메지 스타일링
-- [ ] form 위젯
-- [ ] 필드이름 정정
 - [ ] 안내문구
 
 
@@ -107,11 +106,10 @@ Development in progress
 - [x] 역할 추가
 - [x] 별도의 student profile 삭제
 - [ ] 내 student card 보기
-- [ ] 디자인개선
-- [ ] 필모그래피화
-- [ ] 아바타 기본값 추가
-- [ ] work 클래스 아이콘 필드 추가
-- [ ] 좋아하는 영화 추가
+  
+- [ ] 디자인개선 
+- [ ] 필모그래피화 (추후)
+- [ ] 좋아하는 영화 추가 (추후)
 
 
 
@@ -126,16 +124,21 @@ Development in progress
 
 - [ ] 에러 스타일링
 
-### Forget Password
+### Rest Password
 
 - [ ] email이 존재하지 않을경우 핸들링
 - [ ] 에러메세지 스타일링
+- [ ] 이메일 템플릿 스타일링
 
 ###  Delete Account
 
 - [ ] 계정삭제 확인절차 추가
 - [ ] 에러메세지 스타일링
 
+
+## 각 model
+
+- [ ] blank, null, required 점검
 
 
 
@@ -145,10 +148,10 @@ Development in progress
 
 - [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
 - [ ] http404 페이지 작성
+- [ ] subtitle 문구 개선
 
 
 ### 코드 개선
 
 - [ ] CSS 중복제거
-- [ ] student card 부분 mixin 만들기
 - [ ] partials
