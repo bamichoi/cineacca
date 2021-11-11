@@ -10,7 +10,7 @@
   margin-top: 1rem;
   margin-bottom: 0.3rem;
   div {
-    background-color: #ddc9e7;
+    background-color: #c8d6e5;
     height: 1.2rem;
     width: fit-content;
     margin-bottom: 0.5rem;
@@ -20,6 +20,8 @@
       font-size: 2rem;
       position: relative;
       top: -1.2rem;
+      color: $cineH_black;
+      font-weight: 600;
     }
   }
 }
@@ -33,6 +35,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: $cineH_black;
   .signup_form_field {
     margin-bottom: 1.5rem;
     .signup_form_label {
@@ -62,7 +65,7 @@
     margin-top: 3rem;
     button {
       background-color: #ca5b4c;
-      color: white;
+      color: #f9fafb;
       border: none;
       padding: 0.5rem 2rem;
       font-size: 1.5rem;

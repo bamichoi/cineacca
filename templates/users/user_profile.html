@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    My profile
+    Profilo di {{user_obj.first_name}} {{user_obj.last_name}}
 {% endblock page_title %}
 
 {% block content %}
@@ -15,7 +15,7 @@
     </div>
     <div id="profile_container">
         <div class="profile_container_row">
-            {% if user.avatar %}
+            {% if user_obj.avatar %}
                 <div class="profile_avatar" style="background-image:url({{user_obj.avatar.url}}); "></div>
             {% endif %}
              <div id="profile_info">
@@ -65,7 +65,6 @@
         </div> 
             <hr>
         <div class="profile_container_row">
-            <div>Biografo</div>
             <div>{{user_obj.biography}}</div>
         </div>
             

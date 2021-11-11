@@ -2,7 +2,7 @@
   font-family: "Noto Sans Hanunoo", sans-serif;
 
   #today-movies_title {
-    background-color: #ddc9e7;
+    background-color: $cineH_homeTitleBg_1;
     height: 1.2rem;
     width: fit-content;
     h1 {
@@ -11,6 +11,8 @@
       font-size: 2rem;
       position: relative;
       top: -1.2rem;
+      color: $cineH_black;
+      font-weight: 600;
     }
   }
 
@@ -53,7 +55,7 @@
   #new-movies_title {
     display: flex;
     justify-content: space-between;
-
+    color: $cineH_black;
     div {
       background-color: #ddc9e7;
       height: 1.2rem;
@@ -64,6 +66,7 @@
         font-size: 2rem;
         position: relative;
         top: -4.2rem;
+        font-weight: 600;
       }
     }
 

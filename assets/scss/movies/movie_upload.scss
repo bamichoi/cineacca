@@ -10,7 +10,7 @@
   margin-bottom: 0.3rem;
   width: 54rem;
   div {
-    background-color: #ddc9e7;
+    background-color: #c8d6e5;
     height: 1.2rem;
     width: fit-content;
     margin-bottom: 0.5rem;
@@ -20,6 +20,8 @@
       font-size: 2rem;
       position: relative;
       top: -1.2rem;
+      color: $cineH_black;
+      font-weight: 600;
     }
   }
 }
@@ -30,6 +32,7 @@
   border-radius: 1rem;
   padding: 2rem;
   width: 50rem;
+  color: $cineH_black;
   form {
     width: 50rem;
     display: flex;
@@ -106,7 +109,7 @@
   button {
     margin-top: 3rem;
     background-color: #ca5b4c;
-    color: white;
+    color: #f9fafb;
     border: none;
     padding: 0.5rem 2rem;
     font-size: 1.5rem;

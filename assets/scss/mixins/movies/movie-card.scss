@@ -17,9 +17,12 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-  padding: 1.2rem 0.7rem;
+  padding: 1.2rem 1.2rem;
+  border: 0.1rem solid #dfe4ea;
   border-radius: 0.8rem;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+  background-color: #f1f2f6;
+
   .movie-card_thumbnail {
     height: 10rem;
     background-repeat: no-repeat;

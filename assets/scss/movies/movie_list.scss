@@ -1,5 +1,5 @@
 #movie-list_title {
-  background-color: #ddc9e7;
+  background-color: #c8d6e5;
   height: 1.2rem;
   width: fit-content;
   margin-bottom: 0.5rem;
@@ -9,6 +9,8 @@
     font-size: 2rem;
     position: relative;
     top: -1.2rem;
+    font-weight: 600;
+    color: $cineH_black;
   }
 }
 
@@ -18,7 +20,7 @@
 
 .search_bar {
   height: 3.9rem;
-  background-color: #aacccc;
+  background-color: #b2bec3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +62,7 @@
     font-family: "Noto Sans Hanunoo", sans-serif;
     margin-right: 0.7rem;
     font-size: 0.9rem;
+    color: $cineH_black;
   }
   a:first-child span i {
     color: #fac81a;
@@ -88,15 +91,15 @@
   margin-top: 1rem;
   a {
     text-decoration: none;
-    color: black;
+    color: $cineH_black;
   }
   span {
     font-family: "Reem Kufi", sans-serif;
     margin: 0rem 1rem;
-    color: black;
+    color: $cineH_black;
     font-size: 2rem;
     i {
-      color: #c4c4c4;
+      color: $cineH_black;
     }
   }
 
@@ -108,7 +111,7 @@
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 1.5rem;
-      background-color: black;
+      background-color: $cineH_black;
       display: flex;
       justify-content: center;
       align-items: center;

@@ -69,6 +69,11 @@ Development in progress
   
 ### Update Movie
 
+### Delete Movie
+
+-[ ] 스타일링
+
+
 
 ### Movie List
 
@@ -76,6 +81,7 @@ Development in progress
 
 ### Movie Search
 
+-[ ] regista, uploader 이름으로 검색*
 
 ### Student List
 
@@ -97,7 +103,7 @@ Development in progress
 ### Signup - Student/Pubblic
 
 - [ ] last_name, first_name 첫글자 대문자변환
-- [ ] 에러메지 스타일링
+- [ ] 에러메지 스타일링*
 - [ ] 안내문구
 
 
@@ -133,13 +139,12 @@ Development in progress
 ###  Delete Account
 
 - [ ] 계정삭제 확인절차 추가
-- [ ] 에러메세지 스타일링
+- [ ] 에러메세지 스타일링*
 
 
 ## 각 model
 
 - [ ] blank, null, required 점검
-
 
 
 ### 기타 잡다한 문제들

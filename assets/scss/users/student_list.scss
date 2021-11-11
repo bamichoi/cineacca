@@ -1,5 +1,5 @@
 #student-list_title {
-  background-color: #ddc9e7;
+  background-color: #c8d6e5;
   height: 1.2rem;
   width: fit-content;
   margin-bottom: 0.5rem;
@@ -9,6 +9,8 @@
     font-size: 2rem;
     position: relative;
     top: -1.2rem;
+    color: $cineH_black;
+    font-weight: 600;
   }
 }
 
@@ -18,7 +20,7 @@
   justify-content: flex-end;
   a {
     text-decoration: none;
-    color: black;
+    color: $cineH_black;
   }
   span {
     font-family: "Noto Sans Hanunoo", sans-serif;
@@ -26,6 +28,7 @@
     font-size: 0.9rem;
     display: flex;
     align-items: center;
+    color: $cineH_black;
     i {
       font-size: 1.2rem;
       margin-right: 0.4rem;
@@ -49,6 +52,7 @@
     }
     div {
       margin-bottom: 0.7rem;
+      color: $cineH_black;
     }
   }
 }

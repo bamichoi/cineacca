@@ -9,7 +9,7 @@
   margin-top: 1rem;
   margin-bottom: 0.3rem;
   div {
-    background-color: #ddc9e7;
+    background-color: #c8d6e5;
     height: 1.2rem;
     width: fit-content;
     margin-bottom: 0.5rem;
@@ -19,6 +19,8 @@
       font-size: 2rem;
       position: relative;
       top: -1.2rem;
+      color: $cineH_black;
+      font-weight: 600;
     }
   }
 }
@@ -31,7 +33,6 @@
   padding: 2rem;
   border-radius: 0.7rem;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-
   hr {
     border-color: #ca5b4c;
   }
@@ -113,7 +114,7 @@
       width: 27rem;
       font-size: 1.2rem;
       border-radius: 0.7rem;
-      color: white;
+      color: #f9fafb;
       padding: 1rem;
       display: flex;
       font-family: "Reem Kufi", sans-serif;
@@ -123,7 +124,7 @@
     }
     #update-profile_btn {
       background-color: #adc0f3;
-      color: black;
+      color: $cineH_black;
     }
     #change-password_btn {
       background-color: #3a37ac;

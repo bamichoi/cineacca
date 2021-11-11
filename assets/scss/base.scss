@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap");
 
+body {
+  background-color: #f9fafb;
+}
+
 #wrapper {
   min-width: 1190px;
+  background-color: #f9fafb;
 }
 
 header {
-  background-color: #374151;
+  background-color: $cineH_black;
   height: 8rem;
   margin: 0 10rem;
   padding: 2rem 2rem;
@@ -59,6 +64,7 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
   .user_avatar_small {
     width: 2.2rem;
     height: 2.2rem;
@@ -67,13 +73,30 @@ header {
   }
   a {
     text-decoration: none;
-    color: black;
+    color: $cineH_black;
+    &:hover {
+      div {
+        border-bottom: 0.15rem solid #acc0f3;
+        transition: border-bottom 0.6s ease-in-out;
+      }
+    }
     div {
-      margin-left: 1rem;
-      padding: 0 0.2rem;
+      margin-left: 0.5rem;
+      width: 3rem;
+      text-align: center;
       padding-bottom: 0.3rem;
-      border-bottom: 0.15rem solid #acc0f3;
-      //font
+      box-sizing: border-box;
+      border-bottom: 0.15rem solid #f9fafb;
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    .user-menu__loggedin {
+      width: fit-content;
+      margin-left: 1rem;
+    }
+    .logout_btn {
+      margin-right: 0.5rem;
     }
   }
 }

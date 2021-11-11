@@ -9,7 +9,7 @@
   margin-top: 1rem;
   margin-bottom: 0.3rem;
   div {
-    background-color: #ddc9e7;
+    background-color: #c8d6e5;
     height: 1.2rem;
     width: fit-content;
     margin-bottom: 0.5rem;
@@ -19,6 +19,8 @@
       font-size: 2rem;
       position: relative;
       top: -1.2rem;
+      font-weight: 600;
+      color: $cineH_black;
     }
   }
 }

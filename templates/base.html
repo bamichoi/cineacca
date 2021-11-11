@@ -24,11 +24,11 @@
             <div id="nav">
                 <nav>
                     <ul>
-                        <li><a href="{% url 'movies:list' %}""><span>I film</span></a></li>
+                        <li><a href="{% url 'movies:list' %}""><span>Film</span></a></li>
                         <li><span>|</span></li>
-                        <li><a href="{% url 'users:list' %}"><span>Gli studenti</span></a></li>
+                        <li><a href="{% url 'users:list' %}"><span>Studenti</span></a></li>
                         <li><span>|</span></li>
-                        <li><a href="#"><span>La festa</span></a></li>
+                        <li><a href="#"><span>Festival</span></a></li>
                         <li><span>|</span></li>
                         <li><a href="#"><span>About</span></a></li>
                     </ul>
@@ -44,11 +44,11 @@
                     {% if user.avatar  %} 
                         style="background-image: url({{user.avatar.url}});"
                     {% endif %}></div>
-                    <a href="{% url 'users:user_profile' user.pk %}"><div>Profilo mio</div></a>
+                    <a href="{% url 'users:user_profile' user.pk %}"><div class="user-menu__loggedin">Profilo mio</div></a>
                     {% if user.account_type == "student" %}
-                        <a href="{% url 'movies:upload' %}"><div>Carica un film</div></a>
+                        <a href="{% url 'movies:upload' %}"><div class="user-menu__loggedin" >Carica un film</div></a>
                     {% endif %}
-                    <a href="{% url 'users:logout' %}"><div>Logout</div></a>    
+                    <a href="{% url 'users:logout' %}"><div class="user-menu__loggedin logout_btn">Logout</div></a>    
                 {% else %}
                     <a href="{% url 'users:login' %}"><div>Login</div></a>
                     <a href="{% url 'users:signup' %}"><div>Join</div></a>
