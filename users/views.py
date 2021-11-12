@@ -344,6 +344,7 @@ class ResetPasswordView(PasswordResetView):
     template_name = "users/reset-password.html"
     success_url = reverse_lazy("users:reset-password-done")
     email_template_name = "emails/reset-password-email.html"
+    form_class = forms.CustomPasswordResetForm
 
 
 class ResetPasswordDone(PasswordResetDoneView):

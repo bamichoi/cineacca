@@ -32,12 +32,17 @@ Development in progress
 
 - [ ] 슬라이딩 메뉴 만들기
 - [ ] 창 줄이고 늘일때 핸들링
-- [ ] Reviews (Top/New)
 
 ### About
 
+- [ ] 신설
+  
 ### Festival
+- [ ] 신설
 
+### Reviews
+- [ ] 신설
+  
 ### Notice
 
 - [ ] 공지사항 게시판
@@ -49,6 +54,7 @@ Development in progress
 ### Join
 
 - [ ] password 규칙
+- [ ] signup success
 
 ### Email 
 
@@ -71,17 +77,13 @@ Development in progress
 
 ### Delete Movie
 
--[ ] 스타일링
-
-
+-[ ] 에러메시지 스타일링*
 
 ### Movie List
 
 - [ ] duration 받아오기 (ffmpeg)
 
 ### Movie Search
-
--[ ] regista, uploader 이름으로 검색*
 
 ### Student List
 
@@ -121,24 +123,22 @@ Development in progress
 
 ### Update profile
 
-- [ ] works 필드 리스타일링
-- [ ] 에러메세지 스타일링
+- [ ] 에러메세지 스타일링*
 - [ ] update Movie 처럼 스타일 구조 바꾸기
   
+- [ ] works 필드 리스타일링(추후)
 
 ### Change Password
 
-- [ ] 에러 스타일링
+- [ ] 에러 스타일링*
 
 ### Rest Password
 
-- [ ] email이 존재하지 않을경우 핸들링
-- [ ] 에러메세지 스타일링
+- [ ] 에러메세지 스타일링*
 - [ ] 이메일 템플릿 스타일링
 
 ###  Delete Account
 
-- [ ] 계정삭제 확인절차 추가
 - [ ] 에러메세지 스타일링*
 
 

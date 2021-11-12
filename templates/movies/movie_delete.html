@@ -1,20 +1,50 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Eliminazione del film
+    Cancellazione del film
 {% endblock page_title %}
 
 
-{% block people_search_bar %}
-{% endblock people_search_bar %}
-
-{% block movie_search_bar %}
-{% endblock movie_search_bar %}
-
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-        <p>Are you sure to delete this your movie {{ object }}?</p>
-        <button>Delete</button>
-</form>
+<div id="delete-movie_wrapper">
+    <div id="delete-movie_title">
+        <div>
+            <h1>&nbsp;Eliminazione del film&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Inserisci il password per eliminare questo film</p>
+    </div>
+    <form method="post" class="delete-movie_form">
+        <div id="delete-movie_advice">
+            <i class="fas fa-exclamation-triangle"></i> Attenzione
+        </div>
+        <div id="delete-movie_text">
+            <p>Se elimini questo film, si perde tutte le data riguarda il film e non si può restaurarle.<br>
+                Se l'hai capito bene e sicuramente vuoi eliminarlo, segli checkbox ed inserisci il password. </p>
+        </div>
+        
+        {% csrf_token %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span>{{error}}</span>
+                {% endfor %}
+            {% endif %}
+            {% for field in form  %}
+                        <div class="delete-movie_form_field">
+                            <div class="delete-movie_form_label">{{field.label}}</div>
+                            {{field}}
+                            {% if field.errors %}
+                            {% for error in field.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+            <div class="delete-movie_submit">
+                <button>Elimina questo film</button>
+            </div>
+            <span class="last-caution">
+                <i class="fas fa-exclamation-triangle"></i> Clickando questo bottone, questo film si elimina subito.</span>
+    </form>
+</div>
+
 {% endblock content %}

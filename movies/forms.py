@@ -70,3 +70,30 @@ class MovieUpdateForm(forms.ModelForm):
             "poster": CustomClearableFileInput,
             "thumnail": CustomClearableFileInput,
         }
+
+
+class DeleteMovieForm(forms.Form):
+
+    agree = forms.BooleanField(
+        required=False,
+        label="Sì, ho capito. Sono d'accordo di eliminarlo",
+        widget=forms.CheckboxInput,
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Inserisci il tuo password"})
+    )
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
+
+    def clean_password(self):
+        password = self.cleaned_data.get("password")
+        user = self.user
+        if not user.check_password(password):
+            raise forms.ValidationError("Il password non è corretto")
+
+    def clean_agree(self):
+        agree = self.cleaned_data.get("agree")
+        if agree == False:
+            raise forms.ValidationError("Non sei d'accordo dell'eliminazione")

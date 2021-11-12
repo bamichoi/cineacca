@@ -11,12 +11,13 @@
 // movies
 @import "./movies/movie_list.scss";
 @import "./movies/movie_upload.scss";
+@import "./movies/movie_delete.scss";
 
 // users
 @import "./users/student_list.scss";
 @import "./users/login.scss";
 @import "./users/signup.scss";
-@import "./users/signup_student.scss";
+@import "./users/signup_user.scss";
 @import "./users/user_profile.scss";
 @import "./users/change-password.scss";
 @import "./users/update-profile.scss";

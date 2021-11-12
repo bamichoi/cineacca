@@ -1,20 +1,20 @@
 #login_wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
 #login_title {
   width: 28rem;
-  margin-top: 1rem;
   margin-bottom: 0.3rem;
+  margin-top: 1rem;
   div {
     background-color: #c8d6e5;
     height: 1.2rem;
     width: fit-content;
     margin-bottom: 0.5rem;
     h1 {
-      margin-top: 3rem;
       font-family: "Reem Kufi", sans-serif;
       font-size: 2rem;
       position: relative;

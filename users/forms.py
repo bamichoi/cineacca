@@ -1,6 +1,7 @@
 from django.forms import widgets
 from django import forms
 from movies import forms as movie_form
+from django.contrib.auth.forms import PasswordResetForm
 from . import models
 
 
@@ -51,7 +52,7 @@ class StudentSignUpForm(forms.ModelForm):
                 attrs={"placeholder": "Inserisci il tuo cognome"}
             ),
             "email": forms.TextInput(
-                attrs={"placeholder": "Inserisci l'indirizzo di email per login"}
+                attrs={"placeholder": "Inserisci l'indirizzo email per login"}
             ),
             # charfield + choices 의 select field는 어떻게 placeholder를 달까. 아마도 accademia 모델이 하나 있어야할듯.
         }
@@ -95,7 +96,7 @@ class PublicSignUpForm(forms.Form):
     email = forms.EmailField(
         label="Indrizzo di email",
         widget=forms.EmailInput(
-            attrs={"placeholder": "Inserisci l'indirizzo di email per login"}
+            attrs={"placeholder": "Inserisci l'indirizzo email per login"}
         ),
     )
     password = forms.CharField(
@@ -139,6 +140,12 @@ class PublicSignUpForm(forms.Form):
 
 class DeleteAccountForm(forms.Form):
 
+    agree = forms.BooleanField(
+        required=False,
+        label="Sì, ho capito. Sono d'accordo della secessione.",
+        widget=forms.CheckboxInput,
+    )
+
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={"placeholder": "Inserisci il tuo password"})
     )
@@ -149,8 +156,20 @@ class DeleteAccountForm(forms.Form):
 
     def clean_password(self):
         password = self.cleaned_data.get("password")
-        print(password)
         user = self.user
-        print(user)
         if not user.check_password(password):
-            raise forms.ValidationError("Password doesn't match")
+            raise forms.ValidationError("Il password non è corretto")
+
+    def clean_agree(self):
+        agree = self.cleaned_data.get("agree")
+        if agree == False:
+            raise forms.ValidationError("Non sei d'accordo della secessione")
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        try:
+            models.User.objects.get(email=email)
+        except models.User.DoesNotExist:
+            raise forms.ValidationError("Non esiste un account con questo email.")

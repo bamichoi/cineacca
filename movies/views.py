@@ -2,6 +2,7 @@ from django.db.models.query import QuerySet
 from django.forms import widgets
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 from django.views.generic import (
     ListView,
     DetailView,
@@ -59,11 +60,35 @@ class UpdateMovie(user_mixins.MovieUpdateDeletePermissionView, UpdateView):
         return reverse("movies:detail", kwargs={"pk": pk})
 
 
-class DeleteMovie(user_mixins.MovieUpdateDeletePermissionView, DeleteView):
+""" class DeleteMovie(user_mixins.MovieUpdateDeletePermissionView, DeleteView):
 
     model = models.Movie
     template_name = "movies/movie_delete.html"
-    success_url = reverse_lazy("movies:list")
+    success_url = reverse_lazy("movies:list")"""
+
+
+@login_required(login_url="/users/login/")
+def delete_movie(request, pk):
+    movie = models.Movie.objects.get(pk=pk)
+    user = request.user
+
+    if user == movie.user:
+
+        if request.method == "POST":
+            form = forms.DeleteMovieForm(
+                request.user, request.POST
+            )  # !) request.POST 넣어줘야하는 이유..?
+
+            if form.is_valid():
+                movie.delete()
+                return redirect(reverse("core:home"))
+        else:
+            form = forms.DeleteMovieForm(request.user)
+
+        return render(request, "movies/movie_delete.html", {"form": form})
+
+    else:
+        return redirect("core:home")
 
 
 class MovieList(ListView):
@@ -184,7 +209,10 @@ class SearchView(View):
         if keyword:  # keyword 값이 비어있지 않다면
 
             result_qs = models.Movie.objects.filter(
-                Q(title__contains=keyword) | Q(director__contains=keyword)
+                Q(title__contains=keyword)
+                | Q(director__contains=keyword)
+                | Q(user__last_name__contains=keyword)
+                | Q(user__first_name__contains=keyword)
             ).order_by(
                 "-created"
             )  # keyword와 일치하는 오브젝트들의 쿼리셋 만들기.

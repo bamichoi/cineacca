@@ -14,6 +14,13 @@
         <p class="menu_description">Inserisci il password per rimuovere l'account</p>
     </div>
     <form method="post" class="delete-account_form">
+        <div id="delete-account_advice">
+            <i class="fas fa-exclamation-triangle"></i> Attenzione
+        </div>
+        <div id="delete-account_text">
+            <p>Se elimini il tuo account, si perde tutte le data incluso le tue informazioni, dei film che hai caicato, dei review che hai scritto e tutte le tue attività su Cineacca e non si può restaurarle.<br>
+                Se l'hai capito bene e sicuramente vuoi fare la secessione, segli checkbox ed inserisci il password. </p>
+        </div>
         {% csrf_token %}
             {% if form.non_field_errors %}
                 {% for error in form.non_field_errors %}
@@ -34,6 +41,8 @@
             <div class="delete-account_submit">
                 <button>Rimuovere l'account</button>
             </div>
+            <span class="last-caution">
+                <i class="fas fa-exclamation-triangle"></i> Clickando questo bottone, il tuo account si elimina subito.</span>
     </form>
 </div>
 {% endblock content %}
