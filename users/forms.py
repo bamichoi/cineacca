@@ -2,6 +2,7 @@ from django.forms import widgets
 from django import forms
 from movies import forms as movie_form
 from django.contrib.auth.forms import PasswordResetForm
+from django.utils.translation import ugettext_lazy as _
 from . import models
 
 
@@ -19,7 +20,7 @@ class UpdateProfileForm(forms.ModelForm):
 class LoginForm(forms.Form):
 
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": "ll tuo indrizzo email"})
+        widget=forms.EmailInput(attrs={"placeholder": "ll tuo indrizzo email"}),
     )  # 각 필드 생성
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={"placeholder": "Il tuo password"})
@@ -34,10 +35,10 @@ class LoginForm(forms.Form):
                 return self.cleaned_data  # 동일하다면 cleaned_data 리턴.
             else:
                 self.add_error(
-                    "password", forms.ValidationError("Password is wrong.")
+                    "password", forms.ValidationError("Il password non è corretto.")
                 )  # clean method 에서는 non field 에러를 띄우므로 add_error 로 특정
         except models.User.DoesNotExist:
-            self.add_error("email", forms.ValidationError("User does not exist."))
+            self.add_error("email", forms.ValidationError("Quest'account non esiste."))
 
 
 class StudentSignUpForm(forms.ModelForm):
@@ -71,7 +72,7 @@ class StudentSignUpForm(forms.ModelForm):
         password = self.cleaned_data.get("password")
         password_confirm = self.cleaned_data.get("password_confirm")
         if password != password_confirm:
-            raise forms.ValidationError("Password confirmation does not match.")
+            raise forms.ValidationError("I due campi password non corrispondono.")
         else:
             return password
 
@@ -114,7 +115,9 @@ class PublicSignUpForm(forms.Form):
         email = self.cleaned_data.get("email")
         try:
             models.User.objects.get(email=email)
-            raise forms.ValidationError("This email already exists.")
+            raise forms.ValidationError(
+                "Utente con questo Indrizzo di email esiste già."
+            )
         except models.User.DoesNotExist:
             return email
 
@@ -122,7 +125,7 @@ class PublicSignUpForm(forms.Form):
         password = self.cleaned_data.get("password")
         password_confirm = self.cleaned_data.get("password_confirm")
         if password != password_confirm:
-            raise forms.ValidationError("Password confirmation does not match.")
+            raise forms.ValidationError("I due campi password non corrispondono.")
         else:
             return password
 
@@ -172,4 +175,6 @@ class CustomPasswordResetForm(PasswordResetForm):
         try:
             models.User.objects.get(email=email)
         except models.User.DoesNotExist:
-            raise forms.ValidationError("Non esiste un account con questo email.")
+            raise forms.ValidationError(
+                "Non esiste un account con quest'indirizzo email."
+            )

@@ -75,8 +75,8 @@ class User(AbstractUser):
 
     username = None  # email을 username으로 사용하기 위해 Abspython manage.py migratetractUser의 username을 none으로 override.
 
-    first_name = models.CharField(_("Nome"), max_length=150, blank=True)
-    last_name = models.CharField(_("Cognome"), max_length=150, blank=True)
+    first_name = models.CharField(_("Nome"), max_length=50, blank=False)
+    last_name = models.CharField(_("Cognome"), max_length=50, blank=False)
 
     email = models.EmailField(
         _("Indrizzo di email"), unique=True
@@ -106,6 +106,11 @@ class User(AbstractUser):
     )
 
     objects = CustomUserManager()
+
+    def save(self, *args, **kwargs):
+        self.first_name = str.capitalize(self.first_name)
+        self.last_name = str.capitalize(self.last_name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

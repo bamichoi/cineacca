@@ -6,7 +6,7 @@
 }
 
 #update-profile_title {
-  width: 28rem;
+  width: 29rem;
   margin-top: 2rem;
   margin-bottom: 0.3rem;
   div {
@@ -27,8 +27,8 @@
 
 .update-profile_form {
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-  border: 0.4rem #aacccc solid;
-  border-radius: 1rem;
+  border: 0.8rem #aacccc solid;
+  border-radius: 2rem;
   padding: 2rem;
   width: 23.5rem;
   display: flex;
@@ -37,11 +37,10 @@
   #avatar-preview {
     display: flex;
     justify-content: center;
+    border-bottom: 0.3rem dotted #aacccc;
+    margin-bottom: 1rem;
   }
-  hr {
-    border-color: #ca5b4c;
-    width: 100%;
-  }
+
   .update-profile_form_field {
     margin-bottom: 1.5rem;
     .update-profile_form_label {

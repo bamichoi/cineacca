@@ -20,12 +20,11 @@
                 <div class="profile_avatar" style="background-image:url({{user.avatar.url}}); "></div>
             {% endif %}
         </div>
-        <hr>
         <br>
         {% csrf_token %}
             {% if form.non_field_errors %}
                 {% for error in form.non_field_errors %}
-                    <span>{{error}}</span>
+                    {% include "../mixins/nonfield_error.html" %}
                 {% endfor %}
             {% endif %}
             {% for field in form  %}
@@ -34,7 +33,7 @@
                         {{field}}
                         {% if field.errors %}
                         {% for error in field.errors %}
-                            <span>{{error}}</span>
+                            {% include "../mixins/field_error.html" %}
                         {% endfor %}
                         {% endif %}
                     </div>

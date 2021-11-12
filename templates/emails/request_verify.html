@@ -1,15 +1,25 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Verify Email
+    Servizo bloccato
 {% endblock page_title %}
-
 
 {% block content %}
 
-<h1>Now email of your account is not verified.</h1>
-<h2>this service is need to your email adress verification.</h2>
-<h2>Go to your profile and veify your email!</h2>
-<h2>Thank you!</h2>
+<div class="alarme_wrapper">
+    <div class="alarme_title">
+        <div>
+            <h1>&nbsp;🚫Verifica il tuo email per favore!&nbsp;</h1>
+        </div>
+    </div>
+<div class="alarme_container">
+    <span>Ad accedere questo servizo serve la verficazione di Email.✉️ </span>
+    <span>Ma non hai ancora verificato il tuo indirizzo email.🥲</span>
+    <span>Vai al tuo profilo e completa la verificazione del tuo account.</span>
+    <span>Grazie {{user.first_name}}!🖤</span>
+    
+    <span>CINEACCA</span>
+</div>
+
 
 {% endblock content%}

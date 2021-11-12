@@ -6,7 +6,12 @@
 
 // mixins/movies
 @import "./mixins/movies/movie-card.scss";
+
+// mixins/users
 @import "./mixins/users/student-card.scss";
+
+// mixins/errors
+@import "./mixins/errors.scss";
 
 // movies
 @import "./movies/movie_list.scss";
@@ -23,3 +28,4 @@
 @import "./users/update-profile.scss";
 @import "./users/delete-account.scss";
 @import "./users/reset-password.scss";
+@import "./users/alarme.scss";

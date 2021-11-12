@@ -1,13 +1,26 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Verify Email
+    Benvenuto
 {% endblock page_title %}
 
 {% block content %}
 
-<h1>Signup success!</h1>
-<h2>We send verify-email to {{email}}</h2>
-<h2>Verify your email!</h2>
+<div class="alarme_wrapper">
+    <div class="alarme_title">
+        <div>
+            <h1>&nbsp;Benvenuto {{user.first_name}}!&nbsp;</h1>
+        </div>
+    </div>
+<div class="alarme_container welcome">
+    <span>Siamo molto contenti di essere insieme a te.🥳😘</span>
+    <span>Abbiamo mandato un email a quest'indirizzo per verificazione.</span>
+    <span>✉️ {{email}}</span>
+    <span>Verifica ora per divertirti con le varie attività su Cineacca! </span>
+    <span>Grazie mille per unirci.🖤</span>
+    
+    <span>CINEACCA</span>
+</div>
+
 
 {% endblock content%}

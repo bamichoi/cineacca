@@ -32,6 +32,8 @@ Development in progress
 
 - [ ] 슬라이딩 메뉴 만들기
 - [ ] 창 줄이고 늘일때 핸들링
+- [ ] best review
+- [ ] news
 
 ### About
 
@@ -43,7 +45,7 @@ Development in progress
 ### Reviews
 - [ ] 신설
   
-### Notice
+### News
 
 - [ ] 공지사항 게시판
 
@@ -51,16 +53,16 @@ Development in progress
 
 - [ ] 무비토크 게시판
 
-### Join
+### Signup
 
-- [ ] password 규칙
+- [ ] password 규칙안내
 - [ ] signup success
 
 ### Email 
 
-- [ ] 관련 페이지 및 이메일 스타일링
+- [ ] 이메일 스타일링*
  
-### Detail
+### Detail***
   
 - [ ] 스타일링
 - [ ] 리뷰 새로고침없이 pagination
@@ -77,7 +79,8 @@ Development in progress
 
 ### Delete Movie
 
--[ ] 에러메시지 스타일링*
+-[ ] 동의 체크박스 에러메세지 아래로 내리기(추후)
+
 
 ### Movie List
 
@@ -96,26 +99,15 @@ Development in progress
 
 
 ### Login
-
-- [ ] 에러메세지 스타일링 *
   
 - [ ] 구글 연동 로그인(추후)
 
 
-### Signup - Student/Pubblic
-
-- [ ] last_name, first_name 첫글자 대문자변환
-- [ ] 에러메지 스타일링*
-- [ ] 안내문구
-
-
 ### Profile - Student/Pubblic
 
-- [x] 역할 추가
-- [x] 별도의 student profile 삭제
-- [ ] 내 student card 보기
+- [ ] 내 student card 보기*
   
-- [ ] 디자인개선 
+- [ ] 디자인개선 (추후)
 - [ ] 필모그래피화 (추후)
 - [ ] 좋아하는 영화 추가 (추후)
 
@@ -123,24 +115,19 @@ Development in progress
 
 ### Update profile
 
-- [ ] 에러메세지 스타일링*
-- [ ] update Movie 처럼 스타일 구조 바꾸기
-  
 - [ ] works 필드 리스타일링(추후)
+- [ ] update Movie 처럼 스타일 구조 바꾸기(보류)
 
 ### Change Password
 
-- [ ] 에러 스타일링*
 
-### Rest Password
+### Reset Password
 
-- [ ] 에러메세지 스타일링*
 - [ ] 이메일 템플릿 스타일링
 
 ###  Delete Account
 
-- [ ] 에러메세지 스타일링*
-
+-[ ] 동의 체크박스 에러메세지 아래로 내리기(추후)
 
 ## 각 model
 

@@ -5,7 +5,7 @@
 }
 
 #profile_title {
-  width: 32.5rem;
+  width: 33rem;
   margin-top: 2rem;
   margin-bottom: 0.3rem;
   div {
@@ -28,18 +28,16 @@
   font-family: "Noto Sans Hanunoo", sans-serif;
   width: 28rem;
   height: 30rem;
-  border: 0.4rem #c8d6e5 solid;
+  border: 0.8rem #c8d6e5 solid;
   padding: 2rem;
-  border-radius: 0.7rem;
-  box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-  hr {
-    border-color: #c8d6e5;
-    background-color: #c8d6e5;
-  }
+  border-radius: 2rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+
   .profile_container_row {
     margin-top: 1.2rem;
   }
   .profile_container_row:first-child {
+    border-bottom: 0.3rem dotted #b2bec2;
     display: flex;
     justify-content: space-between;
     margin-top: 0rem;
@@ -79,6 +77,12 @@
           }
           .fa-exclamation-circle {
             color: #e3c007;
+          }
+        }
+        a {
+          text-decoration: none;
+          span {
+            color: #ca5b4c;
           }
         }
       }
