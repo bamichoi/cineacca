@@ -7,175 +7,199 @@
 
 {% block content %}
 <div id="detail_wrapper">
+
+
+<!--Movie Title-->
     <div id="detail_title_container"> 
         <div class="detail_title nowShowing">
+
             <div>
                 <h1>Now Showing. . .&nbsp;</h1>
              </div>
         </div>
+
         <div class="detail_title movieTitle">
             <h1>  {{movie.title}}</h1>
         </div>
+
         <div class="detail_title dir">
-            <h1>dir. {{movie.director}}</h1>
+            <h1>dir. {{movie.director}},&nbsp;&nbsp;&nbsp;&nbsp;{{movie.year}}</h1>
         </div>
+
+        <div class="detail_title metadata">
+            <h1><i class="fas fa-star"></i>&nbsp;{{movie.rating}}&nbsp;&nbsp;&nbsp; 
+                {% if movie.views <= 1 %} 
+                {{ movie.views }} visto 
+                {% else %} 
+                {{ movie.views }}&nbsp;&nbsp;visti {% endif %}</h1>
+        </div>
+
     </div>
     
-   
-    
-    <div id=videoPlayer> 
-        <video src="{{ movie.video.url }}" control></video>
-        <div id="videoController">
-            <div class="videoController_row">
-
-                    <span id="currentTime">00:00:00</span>
-                    <span>/</span>
-                    <span id="totalTime"></span>
-                    <div class="range_container">
-                        <input id="timeline" type="range" value=0 step="1" min="0" />
-                        <div id="timeline_progress"></div>
-                    </div>
-            </div>
-            <div class="videoController_row">
-                <div>
-                    <button id="play"><i class="fas fa-play"></i></button>
-                    <button id="mute"><i class="fas fa-volume-up"></i></button>
-                    <input id="volume" type="range" value=0.5 step="0.1", min="0", max="1" />
+<!--Movie Screen-->   
+    <video id="videoPlayer" 
+               class="video-js">
+               <source src='{{ movie.video.url }}' type="video/mp4"></source>
+<!--Movie Description--> 
+    </video> 
+    <div class="detail_description">
+        <div class="description__title">
+            <h1>Trama</h1>
+        </div>  
+        <div class="description__content">
+            <p>{{movie.description}}</p>
+        </div>
+        <a href="{% url 'users:user_profile' movie.user.pk %}">
+        <div class="description__user">
+                <div class="user_avatar_small" 
+                    {% if movie.user.avatar  %} 
+                        style='background-image: url({{movie.user.avatar.url}});'
+                    {% endif %}>
                 </div>
-                
-                
-                <div>
-                    <button id="fullScreen"><i class="fas fa-expand"></i></button>
+                <div class="descriptrion__user__name">
+                    <div>un film distribuito da&nbsp;&nbsp;</div>
+                    <div>{{movie.user}}</div>
+                </div>
+                    
             </div>
-            </div>
-            
-        </div>
-    </div>   
-          
+        </a>
     </div>
-    <h4>description</h4>
-    <div>
-        <p>{{movie.description}}</p>
-    </div>
-</div>
-<div>
-    <ul>
-        <li>director : {{movie.director}} </li>
-        <li>screenwriter : {{movie.screenwriter}} </li>
-        <li>casting : {{movie.casting}}</li>
-        <li>editor  : {{movie.editor}}</li>
-        <li>director_of_photograpy  : {{movie.director_of_photograpy}}</li>
-        <li>audio_director : {{movie.audio_director}}</li>
-        <li>music : {{movie.music}}</li>
-        <li>art_director : {{movie.art_director}}</li>
-        <li>costume_designer : {{movie.costume_designer}}</li>
-        <li>makeup_artist : {{movie.makeup_artist}}</li>
-        <li>spacial_effect_supervisor : {{movie.special_effect_supervisor}}</li>
-        <li>sound_designer : {{movie.sound_designer}}</li>
-    </ul>
-</div>
-{% if movie.user == user %}
-<a href="{% url 'movies:update' movie.pk %}"><div>Update this movie</div></a>
-<a href="{% url 'movies:delete' movie.pk %}"><div>Delete this movie</div></a>
-{% endif %}
-<div> Rate : {{movie.rating}}</div>
-<div> {{movie.views}} views </div>
-<h4>Reviwes</h4>
-{% if user.is_authenticated %}
-    {% if user.email_verified %}
-        <div>
-            {% include "reviews/review_form.html" %}
+<!--Movie Information--> 
+    <div class="detail_movieInfo">
+        <div class="info__moviePoster">
+            <img class="moviePoster_md"src="{{movie.poster.url}}" />
         </div>
-    {% else %}
-        <div>only user that have done the email verification could write a review</div>
+        <div class="info__staff">
+            <h1>{{movie.title}}&nbsp;({{movie.year}})</h1>
+            <ul>
+                <li><span>regia:</span> {{movie.director}} </li>
+                <li><span>sceneggiatura:</span> {{movie.screenwriter}} </li>
+                <li><span>auttori:</span> {{movie.casting}}</li>
+                <li><span>montaggio:</span> {{movie.editor}}</li>
+                <li><span>fotografia:</span> {{movie.director_of_photograpy}}</li>
+                <li><span>audio:</span> {{movie.audio_director}}</li>
+                <li><span>musica:</span> {{movie.music}}</li>
+                <li><span>scenografia:</span> {{movie.art_director}}</li>
+                <li><span>costume:</span> {{movie.costume_designer}}</li>
+                <li><span>makeup artist:</span> {{movie.makeup_artist}}</li>
+                <li><span>vfx:</span> : {{movie.spacial_effect_supervisor}}</li>
+                <li><span>sound_designer:</span> {{movie.sound_designer}}</li>
+            </ul>
+        </div>
+        
+    </div>
+
+<!--Movie Update/Delete Btn--> 
+    {% if movie.user == user %}
+        <div class="movie__modify">
+            <a href="{% url 'movies:update' movie.pk %}"><div><i class="fas fa-edit"></i>&nbsp;&nbsp;Aggiorna</div></a>
+            <a href="{% url 'movies:delete' movie.pk %}"><div><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Elimina</div></a>
+        </div>
+
     {% endif %}
-{% else %}
-    <div> To write a review you need to do login</div>        
-{% endif %}
 
-<div>
-    <ul id="reviews">
-        <li class="new_review" hidden="true">
-            <div class="review_box">
-                <div class="review_title"></div>
-                <div class="review_user">{{ request.user }}</div>
-                <div class="review_rate">rate : </div>
-                <div class="review_content"></div>
-                <button class= "delete" value="">delete</button></a>
-                <button class="modify" value="">modify</button>
-            </div>
-            <form class="modify_form" hidden=true >
-                {% csrf_token %}
-                <p>
-                    <label for="modify_title">Title</label>
-                    <input type="text" name="title" maxlengh="300" required id="modify_title" value="">
-                </p>
-                <p>
-                    <label for="modify_rate">Rate</label>
-                    <input type="number" name="rate" maxlengh="300" required id="modify_rate" value="">
-                </p>
-                <p>
-                    <label for="modify_content">Text</label>
-                    <textarea name="rate" maxlengh="300" required id="modify_content" ></textarea>
-                </p>
-                <button class="cancel">cancel</button>
-                <button class="update">update</button>
-            </form>
-        </li>
-
-        {% for review in movie.reviews.all %}
-        <li id="{{review.pk}}">
-            <div class="review_box">
-                <div class="review_title">{{review.title}}</div>
-                <div class="review_user">{{review.user}}</div>
-                <div class="review_rate">rate : {{review.rate}}</div>
-                <div class="review_content">{{review.content}}</div>
-            {% if review.user == user %}
-            <button class="delete" value="{{review.pk}}">delete</button></a>
-            <button class="modify" value="{{review.pk}}">modify</button>
+<!--Review Write Form-->
+    <div class="reviewForm_container">
+        
+        {% if user.is_authenticated %}
+            {% if user.email_verified %}
+                    {% include "reviews/review_form.html" %}
+            {% else %}
+                <div>only user that have done the email verification could write a review</div>
             {% endif %}
-            </div>
-            <form class="modify_form" hidden=true >
-                {% csrf_token %}
-                <p>
-                    <label for="modify_title">Title</label>
-                    <input type="text" name="title" maxlengh="300" required id="modify_title" value="{{review.title}}">
-                </p>
-                <p>
-                    <label for="modify_rate">Rate</label>
-                    <input type="number" name="rate" maxlengh="300" required id="modify_rate" value="{{review.rate}}">
-                </p>
-                <p>
-                    <label for="modify_content">Text</label>
-                    <textarea name="rate" maxlengh="300" required id="modify_content" >{{review.content}}</textarea>
-                </p>
-                <button class="cancel">cancel</button>
-                <button class="update">update</button>
-            </form>
-        </li>
-        {% endfor %}
-        <div>
-            <div>
-                {% if start_index != 0 %}
-                    <a href="?page={{start_index}}">previous</a>
+        {% else %}
+            <div> To write a review you need to do login</div>        
+        {% endif %}
+    </div>
+    
+          
+<!--Reviews List and modify and delete-->
+
+    <div>
+        <ul id="reviews">
+            <li class="new_review" hidden="true">
+                <div class="review_box">
+                    <div class="review_title"></div>
+                    <div class="review_user">{{ request.user }}</div>
+                    <div class="review_rate">rate : </div>
+                    <div class="review_content"></div>
+                    <button class= "delete" value="">delete</button></a>
+                    <button class="modify" value="">modify</button>
+                </div>
+                <form class="modify_form" hidden=true >
+                    {% csrf_token %}
+                    <p>
+                        <label for="modify_title">Title</label>
+                        <input type="text" name="title" maxlengh="300" required id="modify_title" value="">
+                    </p>
+                    <p>
+                        <label for="modify_rate">Rate</label>
+                        <input type="number" name="rate" maxlengh="300" required id="modify_rate" value="">
+                    </p>
+                    <p>
+                        <label for="modify_content">Text</label>
+                        <textarea name="rate" maxlengh="300" required id="modify_content" ></textarea>
+                    </p>
+                    <button class="cancel">cancel</button>
+                    <button class="update">update</button>
+                </form>
+            </li>
+
+            {% for review in movie.reviews.all %}
+            <li id="{{review.pk}}">
+                <div class="review_box">
+                    <div class="review_title">{{review.title}}</div>
+                    <div class="review_user">{{review.user}}</div>
+                    <div class="review_rate">rate : {{review.rate}}</div>
+                    <div class="review_content">{{review.content}}</div>
+                {% if review.user == user %}
+                <button class="delete" value="{{review.pk}}">delete</button></a>
+                <button class="modify" value="{{review.pk}}">modify</button>
                 {% endif %}
-            </div>
+                </div>
+                <form class="modify_form" hidden=true >
+                    {% csrf_token %}
+                    <p>
+                        <label for="modify_title">Title</label>
+                        <input type="text" name="title" maxlengh="300" required id="modify_title" value="{{review.title}}">
+                    </p>
+                    <p>
+                        <label for="modify_rate">Rate</label>
+                        <input type="number" name="rate" maxlengh="300" required id="modify_rate" value="{{review.rate}}">
+                    </p>
+                    <p>
+                        <label for="modify_content">Text</label>
+                        <textarea name="rate" maxlengh="300" required id="modify_content" >{{review.content}}</textarea>
+                    </p>
+                    <button class="cancel">cancel</button>
+                    <button class="update">update</button>
+                </form>
+            </li>
+            {% endfor %}
             <div>
-                
-                    {% for page in page_range %}
-                        <span><a href="?page={{page}}">{{page}}</a></span>
-                    {% endfor %}
-                
+                <div>
+                    {% if start_index != 0 %}
+                        <a href="?page={{start_index}}">previous</a>
+                    {% endif %}
+                </div>
+                <div>
+                    
+                        {% for page in page_range %}
+                            <span><a href="?page={{page}}">{{page}}</a></span>
+                        {% endfor %}
+                    
+                </div>
+                <div>
+                    {% if next_index < max_index %}
+                        <a href="?page={{next_index}}">next</a>
+                    {% endif %}
+                </div>
             </div>
-            <div>
-                {% if next_index < max_index %}
-                    <a href="?page={{next_index}}">next</a>
-                {% endif %}
-            </div>
-        </div>
-    </ul>
+        </ul>
+    </div>
 </div>
-</div>
+    
+
 
 
 
@@ -348,147 +372,15 @@
 </script>
 
 <script>
-    //Video Controller
-    const video = document.querySelector("video");
-    const playBtn = document.getElementById("play");
-    const playIco = playBtn.querySelector("i");
-    const muteBtn = document.getElementById("mute");
-    const muteIco = muteBtn.querySelector("i")
-    const time = document.getElementById("time");
-    const volumeRange = document.getElementById("volume");
-    const currentTime = document.getElementById("currentTime");
-    const totalTime =  document.getElementById("totalTime");
-    const timeline = document.getElementById("timeline");
-    const timeLineProgress =document.getElementById("timeline_progress");
-    const fullscreenBtn = document.getElementById("fullScreen");
-    const fullscreenIco = fullscreenBtn.querySelector("i")
-    const videoPlayer = document.getElementById("videoPlayer");
-    const videoController = document.getElementById("videoController");
+    // video player with video.js
+    const options = {
+        controls: true,
+        preload:"metadata",
+        fluid:true,
+        //to do: breakpoints (responsive option)
+    };
 
-    let volumeValue = 0.5;
-    video.Volume = volumeValue
-
-    let controllerOutTimeout = null;
-    let controllerMovementTimeout = null;
-
-    let percentValue = 0;
-
-    const handlePlayClick = (e) => {
-        if (video.paused) {
-            video.play();
-        } else{
-            video.pause();
-        }
-        playIco.className = video.paused ? "fas fa-play" : "fas fa-pause";
-    }
-
-    const handleMuteClick = (e) => {
-        if (video.muted) {
-            video.muted = false;
-        } else {
-            video.muted = true;
-        }
-        muteIco.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
-        volumeRange.value = video.muted ? 0 : volumeValue;
-    }
-
-    const handleVolumeChange = (e) =>{
-        const { target : { value } } = event; 
-        
-        if (video.muted) {
-            video.muted = false;
-            muteIco.className = "fas fa-volume-up";
-        }
-        if ( value == 0 ) {
-            muteIco.className = "fas fa-volume-off"
-        }
-        volumeValue = value;
-        video.volume = value;
-    }
-
-    const formatTime = (seconds) => new Date(seconds * 1000).toISOString().substr(11, 8);
-    // new Date 를 이용한 트릭!
-
-    const handleLoadedMetadata = (e) => {
-        totalTime.innerText = formatTime(Math.floor(video.duration));
-        timeline.max = Math.floor(video.duration);
-    }  // !) e를 쓰는 것과 안쓰는 것의 차이?
-
-    const handleTimeUpdate = (e) => {
-        currentTime.innerText = formatTime(Math.floor(video.currentTime));
-        timeline.value = Math.floor(video.currentTime);
-        percentValue = timeline.value*100 / timeline.max    
-        timeLineProgress.style.width = percentValue + "%";
-
-        if (video.currentTime == video.duration) {
-            playIco.className = "fas fa-play";
-        }
-    } 
-
-    const handleTimelineChange = (e) => {
-        const { target : { value } } = event; 
-        console.log(value, percentValue)
-        percentValue = timeline.value*100 / timeline.max 
-        timeLineProgress.style.width = percentValue + "%";
-        video.currentTime = value;  
-    }
-
-
-    const handleClickFullscreen = () => {
-        const fullscreenPlayer = document.fullscreenElement;
-
-        if (fullscreenPlayer != null){
-            document.exitFullscreen();
-            fullscreenIco.className = "fas fa-expand"
-        } else {
-            videoPlayer.requestFullscreen();
-            fullscreenIco.className = "fas fa-compress"
-        }
-    }
-
-    const hideController = () => {
-        videoController.classList.remove("showing");
-    }
-
-    const handleMouseMove = (event) => {
-        if (controllerOutTimeout) {
-            clearTimeout(controllerOutTimeout);
-            controllerOutTimeout = null;
-        }
-
-        if (controllerMovementTimeout) {
-            clearTimeout(controllerMovementTimeout);
-            controllerMovementTimeout = null; 
-        } // 마우스가 움직일때마다 timeout 삭제. 더 이상 움직이지 않으면 controllerMovementTimeout은 아래쪽에 추가된 setTimeout의 값이 됨.
-        
-        videoController.classList.add("showing");
-        controllerMovementTimeout = setTimeout(hideController, 3000);  // 마우스가 움직일때마다 timeout 추가
-    }
-
-    const handleMouseLeave = (event) => {
-        controllerOutTimeout = setTimeout( hideController, 3000);  
-        
-    } // setTimeout 은 고유 id를 리턴한다.
-
-    if (video.readyState == 4) {
-        handleLoadedMetadata();
-        } // JS가 eventListener 를 부착하기 전에 비디오가 완전히 로딩되어버려 MetaData를 받아올 수 없는 경우를 대비.
-
-   
-    playBtn.addEventListener("click", handlePlayClick);
-    muteBtn.addEventListener("click", handleMuteClick);
-    volumeRange.addEventListener("input", handleVolumeChange);
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    video.addEventListener("mousemove", handleMouseMove);
-    video.addEventListener("mouseleave", handleMouseLeave);
-    timeline.addEventListener("input", handleTimelineChange);
-    fullscreenBtn.addEventListener("click", handleClickFullscreen);
-
-    
-
-
-
+    const player = videojs('videoPlayer', options );
 
 </script>
 <script>
@@ -500,4 +392,24 @@
     .then(res => { return })
     .catch(errors => console.log(errors.response.data));
 </script>
+<script>
+    // rating stars
+
+    const rateInput = document.getElementById("review_rate");
+    const fullStars = document.querySelector(".full_stars")
+    const emptyStars = document.getElementsByClassName("empty_stars")
+    const scroe = document.getElementById("score")
+
+    const handleOninput = (event) => {
+        value = event.target.value;
+        convertValue = value * 20 + "%"
+        fullStars.style.width = convertValue
+
+        score.innerText = value.includes(".") ? `"${value}"` : `"${value}.0"`
+    }
+    
+    rateInput.addEventListener("input", handleOninput)
+
+</script>
 {% endblock content %}
+

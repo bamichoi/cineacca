@@ -74,6 +74,12 @@ header {
     }
   }
 }
+.user_avatar_small {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 1.1rem;
+  background-size: cover;
+}
 
 #user-menu {
   margin: 1rem 10rem;
@@ -81,12 +87,6 @@ header {
   justify-content: flex-end;
   align-items: center;
 
-  .user_avatar_small {
-    width: 2.2rem;
-    height: 2.2rem;
-    border-radius: 1.1rem;
-    background-size: cover;
-  }
   a {
     text-decoration: none;
     color: $cineH_black;

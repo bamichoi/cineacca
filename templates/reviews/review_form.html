@@ -1,17 +1,41 @@
 <form id="review_form" method="POST" action="{% url 'reviews:create' movie.pk %}">
     {% csrf_token %}
-    <div>{{ user.first_name }} {{ user.last_name }}</div>
-    <p>
-        <label for="review_title">Title</label>
+    <div class="review_rating_label">
+        <span>Rating</span>
+    </div>
+    <div class="review_rating_field">
+        <div class="review__score">
+            <span id="score">"0.0"</span>
+        </div>
+        <div class="review_stars_slider">
+            <span class="empty_stars">
+                ★★★★★
+                <span class="full_stars">
+                    ★★★★★
+                </span>
+                <input type="range" 
+                name="rate" 
+                value="0"
+                min="0" 
+                max="5" 
+                step="0.5"
+                required id="review_rate">
+            </span> 
+        </div>
+        
+    </div>
+    
+
+    <div class="review_title_field">
+        <label for="title">Titolo</label>
         <input type="text" name="title" maxlengh="300" required id="review_title">
-    </p>
-    <p>
-        <label for="modify_rate">Rate</label>
-        <input type="number" name="rate" maxlengh="300" required id="review_rate">
-    </p>
-    <p>
-        <label for="modify_content">Text</label>
+    </div>
+    <div class="review_content_field">
+        <label for="content">Commento</label>
         <textarea name="rate" maxlengh="300" required id="review_content" ></textarea>
-    </p>
-    <button>Write Review</button>
+    </div>
+    <div class="write_btn">
+        <button><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Scrivere questo review</button>
+    </div>
+   
 </form>

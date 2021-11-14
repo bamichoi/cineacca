@@ -63,7 +63,9 @@ Development in progress
 - [ ] 이메일 스타일링*
  
 ### Detail
-  
+
+- [ ] 리뷰 스타일링
+- [ ] 리뷰 삭제 한번 더 묻기
 - [ ] 리뷰 새로고침없이 pagination
 - [ ] 리뷰 Like it
 
