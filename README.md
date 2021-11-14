@@ -24,9 +24,9 @@ Development in progress
 
 ## TO DO LIST 
 
-### Navigation
+### Base
 
-- [ ] 디자인 개선
+- [ ] Header 그라데이션
   
 ### Home
 
@@ -62,16 +62,22 @@ Development in progress
 
 - [ ] 이메일 스타일링*
  
-### Detail***
+### Detail
   
-- [ ] 스타일링
 - [ ] 리뷰 새로고침없이 pagination
 - [ ] 리뷰 Like it
+
+### VideoPlayer
+
+- [ ] 자막기능
+- [ ] 포인터 이동시 썸네일, 시간정보 표시
+- [ ] 지속적 기능개선
 
 ### Upload Movie & Update Movie
   
 - [ ] 기본 locandina (detail 할때 작업)
 - [ ] 파일 업로드
+-[ ] placeholder
 
 - [ ] locandina 미리보기 적용(추후)
   

@@ -6,31 +6,54 @@
 
 
 {% block content %}
-
-<h1>{{movie.title}}</h1>
-<h2>{{movie.user}}</h2>
-<!--player-->
-
-<div id=videoPlayer> 
-    <video src="{{ movie.video.url }}" control></video>
-    <div id="videoController">
-        <button id="play">Play</button>
-        <button id="mute">Mute</button>
-        <input id="volume" type="range" value=0.5 step="0.1", min="0", max="1" />
-        <div>
-            <span id="currentTime">00:00:00</span>
-            <span>/</span>
-            <span id="totalTime"></span>
+<div id="detail_wrapper">
+    <div id="detail_title_container"> 
+        <div class="detail_title nowShowing">
+            <div>
+                <h1>Now Showing. . .&nbsp;</h1>
+             </div>
         </div>
-        <input id="timeline" type="range" value=0 step="1" min="0" />
-        <div>
-            <button id="fullScreen">Enter Fullscreen</button>
+        <div class="detail_title movieTitle">
+            <h1>  {{movie.title}}</h1>
+        </div>
+        <div class="detail_title dir">
+            <h1>dir. {{movie.director}}</h1>
         </div>
     </div>
-</div>
+    
+   
+    
+    <div id=videoPlayer> 
+        <video src="{{ movie.video.url }}" control></video>
+        <div id="videoController">
+            <div class="videoController_row">
 
-<!--player-->
-<h4>description</h4>
+                    <span id="currentTime">00:00:00</span>
+                    <span>/</span>
+                    <span id="totalTime"></span>
+                    <div class="range_container">
+                        <input id="timeline" type="range" value=0 step="1" min="0" />
+                        <div id="timeline_progress"></div>
+                    </div>
+            </div>
+            <div class="videoController_row">
+                <div>
+                    <button id="play"><i class="fas fa-play"></i></button>
+                    <button id="mute"><i class="fas fa-volume-up"></i></button>
+                    <input id="volume" type="range" value=0.5 step="0.1", min="0", max="1" />
+                </div>
+                
+                
+                <div>
+                    <button id="fullScreen"><i class="fas fa-expand"></i></button>
+            </div>
+            </div>
+            
+        </div>
+    </div>   
+          
+    </div>
+    <h4>description</h4>
     <div>
         <p>{{movie.description}}</p>
     </div>
@@ -152,6 +175,11 @@
         </div>
     </ul>
 </div>
+</div>
+
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> <!-- CDN 말고 직접 import 할 수 있는 방법은 없을까. -->
 <script>
     // Create Review
@@ -323,13 +351,17 @@
     //Video Controller
     const video = document.querySelector("video");
     const playBtn = document.getElementById("play");
+    const playIco = playBtn.querySelector("i");
     const muteBtn = document.getElementById("mute");
+    const muteIco = muteBtn.querySelector("i")
     const time = document.getElementById("time");
     const volumeRange = document.getElementById("volume");
     const currentTime = document.getElementById("currentTime");
     const totalTime =  document.getElementById("totalTime");
     const timeline = document.getElementById("timeline");
+    const timeLineProgress =document.getElementById("timeline_progress");
     const fullscreenBtn = document.getElementById("fullScreen");
+    const fullscreenIco = fullscreenBtn.querySelector("i")
     const videoPlayer = document.getElementById("videoPlayer");
     const videoController = document.getElementById("videoController");
 
@@ -339,13 +371,15 @@
     let controllerOutTimeout = null;
     let controllerMovementTimeout = null;
 
+    let percentValue = 0;
+
     const handlePlayClick = (e) => {
         if (video.paused) {
             video.play();
         } else{
             video.pause();
         }
-        playBtn.innerText = video.paused ? "Play" : "Pause";
+        playIco.className = video.paused ? "fas fa-play" : "fas fa-pause";
     }
 
     const handleMuteClick = (e) => {
@@ -354,7 +388,7 @@
         } else {
             video.muted = true;
         }
-        muteBtn.innerText = video.muted ? "Unmute" : "Mute";
+        muteIco.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
         volumeRange.value = video.muted ? 0 : volumeValue;
     }
 
@@ -363,7 +397,10 @@
         
         if (video.muted) {
             video.muted = false;
-            muteBtn.innerText = "Mute";
+            muteIco.className = "fas fa-volume-up";
+        }
+        if ( value == 0 ) {
+            muteIco.className = "fas fa-volume-off"
         }
         volumeValue = value;
         video.volume = value;
@@ -380,14 +417,19 @@
     const handleTimeUpdate = (e) => {
         currentTime.innerText = formatTime(Math.floor(video.currentTime));
         timeline.value = Math.floor(video.currentTime);
+        percentValue = timeline.value*100 / timeline.max    
+        timeLineProgress.style.width = percentValue + "%";
 
         if (video.currentTime == video.duration) {
-            playBtn.innerText = "Play";
+            playIco.className = "fas fa-play";
         }
     } 
 
     const handleTimelineChange = (e) => {
         const { target : { value } } = event; 
+        console.log(value, percentValue)
+        percentValue = timeline.value*100 / timeline.max 
+        timeLineProgress.style.width = percentValue + "%";
         video.currentTime = value;  
     }
 
@@ -397,10 +439,10 @@
 
         if (fullscreenPlayer != null){
             document.exitFullscreen();
-            fullscreenBtn.innerText = "Enter Fullscreen"
+            fullscreenIco.className = "fas fa-expand"
         } else {
             videoPlayer.requestFullscreen();
-            fullscreenBtn.innerText = "Exit Fullscreen"
+            fullscreenIco.className = "fas fa-compress"
         }
     }
 
@@ -432,6 +474,7 @@
         handleLoadedMetadata();
         } // JS가 eventListener 를 부착하기 전에 비디오가 완전히 로딩되어버려 MetaData를 받아올 수 없는 경우를 대비.
 
+   
     playBtn.addEventListener("click", handlePlayClick);
     muteBtn.addEventListener("click", handleMuteClick);
     volumeRange.addEventListener("input", handleVolumeChange);
@@ -441,6 +484,7 @@
     video.addEventListener("mouseleave", handleMouseLeave);
     timeline.addEventListener("input", handleTimelineChange);
     fullscreenBtn.addEventListener("click", handleClickFullscreen);
+
     
 
 
