@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap");
 
 body {
-  background-color: #f9fafb;
+  background-color: $cineH_white;
 }
 
 #wrapper {
   min-width: 1190px;
-  background-color: #f9fafb;
+  background-color: #f1f2f6;
 }
 
 header {
@@ -102,7 +102,7 @@ header {
       text-align: center;
       padding-bottom: 0.3rem;
       box-sizing: border-box;
-      border-bottom: 0.15rem solid #f9fafb;
+      border-bottom: 0.15rem solid #f1f2f6;
       font-size: 1rem;
       display: flex;
       justify-content: center;
@@ -123,7 +123,7 @@ main {
 
 footer {
   color: #858585;
-  margin: 10rem 0rem;
+  padding: 10rem 0rem;
   hr {
     width: 60rem;
     height: 0.001rem;

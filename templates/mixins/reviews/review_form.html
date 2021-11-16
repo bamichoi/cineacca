@@ -1,3 +1,4 @@
+{% load l10n %}
 <form id="review_form" method="POST" action="{% url 'reviews:create' movie.pk %}">
     {% csrf_token %}
     <div class="review_rating_label">

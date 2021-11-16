@@ -7,6 +7,11 @@
 // mixins/movies
 @import "./mixins/movies/movie-card.scss";
 
+// mixins/reviews
+@import "./mixins/reviews/review-form.scss";
+@import "./mixins/reviews/review-box.scss";
+@import "./mixins/reviews/modify-box.scss";
+
 // mixins/users
 @import "./mixins/users/student-card.scss";
 

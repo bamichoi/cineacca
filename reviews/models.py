@@ -18,7 +18,9 @@ class Review(core_model.TimeStampedModel):
     )
     title = models.CharField(_("titolo"), max_length=300)
     content = models.TextField(_("testo"), max_length=1000)
-    rate = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    rate = models.FloatField(
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
+    )
 
     def __str__(self):
         return f"{self.title} - {self.movie}"

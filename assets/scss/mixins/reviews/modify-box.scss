@@ -1,0 +1,141 @@
+.modify_box {
+  display: none;
+  box-shadow: 0.2rem 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
+  width: 100%;
+  background-color: $cineH_white;
+  padding: 1.5rem 2rem;
+  box-sizing: border-box;
+  margin-top: 1.5rem;
+  .modify_form {
+    display: flex;
+    width: 100%;
+    .modify_box__user_container {
+      width: 16rem;
+      padding: 1.5rem 0rem;
+      border-right: 0.2rem solid #aacccc;
+      font-family: "Reem Kufi", sans-serif;
+      color: $cineH_black;
+      .modify_box__user {
+        a {
+          text-decoration: none;
+          color: $cineH_black;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          margin-bottom: 1rem;
+          .modify_box__user_name {
+            font-size: 0.9rem;
+            margin-left: 1rem;
+            margin-right: 2rem;
+            overflow: hidden;
+            div:first-child {
+              margin-bottom: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.modify_box__content_container {
+  color: $cineH_black;
+  width: 100%;
+  height: 100%;
+  padding: 0rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  h1 {
+    font-family: "Reem Kufi", sans-serif;
+    color: #aacccc;
+  }
+  .review_title,
+  .review_content {
+    display: flex;
+    flex-direction: column;
+    font-family: "Reem Kufi", sans-serif;
+    color: $cineH_black;
+    label {
+      margin-bottom: 0.5rem;
+    }
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 0.7rem;
+      border: none;
+      margin-bottom: 1rem;
+      padding: 0.6rem 1rem;
+    }
+    input {
+      height: 1.5em;
+    }
+    textarea {
+      height: fit-content;
+      min-height: 10rem;
+    }
+  }
+  .modify_btns {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    button {
+      border: none;
+      width: 6rem;
+      background-color: $cineH_black;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      font-family: "Reem Kufi", sans-serif;
+      margin-right: 0.3rem;
+      box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .fa-edit {
+        color: #aacccc;
+      }
+      .fa-ban {
+        color: #ca5b4c;
+      }
+    }
+  }
+}
+
+.modify_stars_slider {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2rem;
+  width: fit-content;
+  .modify_score {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .modify_empty_stars {
+    position: relative;
+    font-size: 2rem;
+    color: #b2bec2;
+    .modify_full_stars {
+      position: absolute;
+      width: 0;
+      left: 0;
+      overflow: hidden;
+      font-size: 2rem;
+      color: #fac81a;
+      pointer-events: none;
+    }
+    .modify_rate {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: -0.2rem;
+      cursor: pointer;
+      opacity: 0;
+    }
+  }
+}

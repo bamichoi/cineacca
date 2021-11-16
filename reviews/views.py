@@ -41,6 +41,8 @@ def create_review(request, pk):
                 "rate": review.rate,
                 "content": review.content,
                 "pk": review.pk,
+                "firstName": user.first_name,
+                "lastName": user.last_name,
             }
         )
 
@@ -50,17 +52,18 @@ def update_review(request):
         pk = request.POST.get("pk")
         title = request.POST.get("title")
         rate = request.POST.get("rate")
+        print(rate)
         content = request.POST.get("content")
         review = models.Review.objects.get(
             pk=pk
         )  # !) filter 로 하면 왜 에러나지? : 'QuerySet' object has no attribute 'save'
-        movie = review.movie
-        movie.rating = get_rating(movie)
-        movie.save()
         review.title = title
         review.rate = rate
         review.content = content
         review.save()
+        movie = review.movie
+        movie.rating = get_rating(movie)
+        movie.save()
 
     return JsonResponse({"status": "Success"})  # !) 이런식으로 JsonResponse 를 해줘야하는 이유?
 

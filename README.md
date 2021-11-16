@@ -37,10 +37,10 @@ Development in progress
 
 ### About
 
-- [ ] 신설
+- [ ] 신설(추후)
   
 ### Festival
-- [ ] 신설
+- [ ] 신설(추후)
 
 ### Reviews
 - [ ] 신설
@@ -51,7 +51,7 @@ Development in progress
 
 ### MovieTalk
 
-- [ ] 무비토크 게시판
+- [ ] 무비토크 게시판(추후)
 
 ### Signup
 
@@ -65,15 +65,18 @@ Development in progress
 ### Detail
 
 - [ ] 리뷰 스타일링
+- [ ] 리뷰수정 텍스트area 콜럼조정
+- [ ] 리뷰 페이지당 갯수 체크
 - [ ] 리뷰 삭제 한번 더 묻기
 - [ ] 리뷰 새로고침없이 pagination
 - [ ] 리뷰 Like it
 
 ### VideoPlayer
 
-- [ ] 자막기능
-- [ ] 포인터 이동시 썸네일, 시간정보 표시
-- [ ] 지속적 기능개선
+- [ ] 스킨 커스터마이징
+- [ ] 자막기능(추후)
+- [ ] 포인터 이동시 썸네일, 시간정보 표시(추후)
+- [ ] 지속적 기능개선(추후)
 
 ### Upload Movie & Update Movie
   

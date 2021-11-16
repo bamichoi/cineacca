@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load l10n %}
 
 {% block page_title %}
     {{movie.title}}
@@ -103,7 +104,7 @@
         
         {% if user.is_authenticated %}
             {% if user.email_verified %}
-                    {% include "reviews/review_form.html" %}
+                    {% include "../mixins/reviews/review_form.html" %}
             {% else %}
                 <div>only user that have done the email verification could write a review</div>
             {% endif %}
@@ -113,89 +114,47 @@
     </div>
     
           
-<!--Reviews List and modify and delete-->
+<!--New Review-->
 
-    <div>
+    <div class="review_container">
         <ul id="reviews">
             <li class="new_review" hidden="true">
-                <div class="review_box">
-                    <div class="review_title"></div>
-                    <div class="review_user">{{ request.user }}</div>
-                    <div class="review_rate">rate : </div>
-                    <div class="review_content"></div>
-                    <button class= "delete" value="">delete</button></a>
-                    <button class="modify" value="">modify</button>
-                </div>
-                <form class="modify_form" hidden=true >
-                    {% csrf_token %}
-                    <p>
-                        <label for="modify_title">Title</label>
-                        <input type="text" name="title" maxlengh="300" required id="modify_title" value="">
-                    </p>
-                    <p>
-                        <label for="modify_rate">Rate</label>
-                        <input type="number" name="rate" maxlengh="300" required id="modify_rate" value="">
-                    </p>
-                    <p>
-                        <label for="modify_content">Text</label>
-                        <textarea name="rate" maxlengh="300" required id="modify_content" ></textarea>
-                    </p>
-                    <button class="cancel">cancel</button>
-                    <button class="update">update</button>
-                </form>
+                {% include "../mixins/reviews/review_box.html" %}
+<!--New review modify-->
+                {% include "../mixins/reviews/modify_form.html" %}
             </li>
-
+<!--Review List-->
             {% for review in movie.reviews.all %}
-            <li id="{{review.pk}}">
-                <div class="review_box">
-                    <div class="review_title">{{review.title}}</div>
-                    <div class="review_user">{{review.user}}</div>
-                    <div class="review_rate">rate : {{review.rate}}</div>
-                    <div class="review_content">{{review.content}}</div>
-                {% if review.user == user %}
-                <button class="delete" value="{{review.pk}}">delete</button></a>
-                <button class="modify" value="{{review.pk}}">modify</button>
-                {% endif %}
-                </div>
-                <form class="modify_form" hidden=true >
-                    {% csrf_token %}
-                    <p>
-                        <label for="modify_title">Title</label>
-                        <input type="text" name="title" maxlengh="300" required id="modify_title" value="{{review.title}}">
-                    </p>
-                    <p>
-                        <label for="modify_rate">Rate</label>
-                        <input type="number" name="rate" maxlengh="300" required id="modify_rate" value="{{review.rate}}">
-                    </p>
-                    <p>
-                        <label for="modify_content">Text</label>
-                        <textarea name="rate" maxlengh="300" required id="modify_content" >{{review.content}}</textarea>
-                    </p>
-                    <button class="cancel">cancel</button>
-                    <button class="update">update</button>
-                </form>
+            <li id="{{review.pk}}" class="review">
+                {% include "../mixins/reviews/review_box.html" %}
+<!--Review modify-->
+                {% include "../mixins/reviews/modify_form.html" %}
+                 
             </li>
             {% endfor %}
-            <div>
-                <div>
-                    {% if start_index != 0 %}
-                        <a href="?page={{start_index}}">previous</a>
-                    {% endif %}
-                </div>
-                <div>
-                    
-                        {% for page in page_range %}
-                            <span><a href="?page={{page}}">{{page}}</a></span>
-                        {% endfor %}
-                    
-                </div>
-                <div>
-                    {% if next_index < max_index %}
-                        <a href="?page={{next_index}}">next</a>
-                    {% endif %}
-                </div>
-            </div>
         </ul>
+<!--Paginator-->
+        <div class="paginator">
+            <div>
+                {% if start_index != 0 %}
+                    <span><a href="?page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
+                {% endif %}
+            </div>
+            <div>
+                    {% for page in page_range %}
+                        {% if current_page == page %}
+                            <div class="current-page"><span>{{page}}</span></div>
+                        {% else %}
+                            <span><a href="?page={{page}}">{{page}}</a></span>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+            <div>
+                {% if next_index < max_index %}
+                    <span><a href="?page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
     
@@ -213,17 +172,20 @@
         event.preventDefault();
         const titleInput = reviewForm.querySelector("#review_title");
         const rateInput = reviewForm.querySelector("#review_rate");
+        const stars = reviewForm.querySelector(".full_stars");
+        const score = reviewForm.querySelector("#score");
         const contentInput = reviewForm.querySelector("#review_content");
-
         let data = new FormData(); // !) const가 아니라 let 이어야하는 이유?
 
         const reviewTitle = titleInput.value;
         const reviewRate = rateInput.value;
         const reviewContent = contentInput.value;
 
-        titleInput.value = ""
-        rateInput.value = ""
-        contentInput.value = ""
+        titleInput.value = "";
+        rateInput.value = "";
+        contentInput.value = "";
+        stars.style.width = 0;
+        score.innerText = '"0.0"'
 
         data.append("title", reviewTitle);
         data.append("rate", reviewRate);
@@ -235,28 +197,39 @@
                 const title = res.data.title;
                 const rate = res.data.rate;
                 const content = res.data.content;
-                
+                const firstName = res.data.firstName;
+                const lastName = res.data.lastName;
+              
                 const reviewsUl = document.getElementById("reviews");
                 const newReview = reviewsUl.querySelector(".new_review");
-                newReview.setAttribute("id", `${pk}`);
+                const userFirstname = newReview.querySelector(".review_user__firstname");
+                const userLastname = newReview.querySelector(".review_user__lastname");
                 const newReviewTitle = newReview.querySelector(".review_title");
                 const newReviewRate = newReview.querySelector(".review_rate");
                 const newReviewContent = newReview.querySelector(".review_content");
-                
+          
+                newReview.setAttribute("id", `${pk}`);
                 const modifyBtn = newReview.querySelector(".modify");
                 const deleteBtn = newReview.querySelector(".delete");
                 const modifyForm = newReview.querySelector(".modify_form");
-                const modifyTitle = modifyForm.querySelector("#modify_title");
-                const modifyRate = modifyForm.querySelector("#modify_rate");
-                const modifyContent = modifyForm.querySelector("#modify_content");
-
-
+                const modifyTitle = modifyForm.querySelector(".modify_title");
+                const modifyRate = modifyForm.querySelector(".modify_rate");
+                const modifyScore = modifyForm.querySelector(".modify_score");
+                const modifyContent = modifyForm.querySelector(".modify_content");
+                const modiUserFirstname = modifyForm.querySelector(".review_user__firstname");
+                const modiUserLastname = modifyForm.querySelector(".review_user__lastname");
+                
+                userFirstname.innerText = firstName;
+                userLastname.innerText = lastName;
                 newReviewTitle.innerText = `${title}`;
-                newReviewRate.innerText = `rate : ${rate}`;
+                newReviewRate.innerText =  rate.includes(".") ? `"${rate}"` : `"${rate}.0"`
                 newReviewContent.innerText = `${content}`;
                 modifyBtn.setAttribute("value", `${pk}`);
                 deleteBtn.setAttribute("value", `${pk}`);
 
+                modiUserFirstname.innerText = firstName;
+                modiUserLastname.innerText = lastName;
+                modifyScore.innerText = rate.includes(".") ? `rating: "${rate}"` : `rating: "${rate}.0"`
                 modifyTitle.setAttribute("value", `${title}`);
                 modifyRate.setAttribute("value", `${rate}`);
                 modifyContent.innerText = `${content}`;
@@ -277,36 +250,56 @@
     const updateBtns = document.getElementsByClassName("update");
     const cancelBtns = document.getElementsByClassName("cancel");
 
+
     function handleClickModify(event) {
+    
         const modifyBtn = event.target;
         const pk = modifyBtn.value;
         const reviewLi = document.getElementById(`${pk}`);
-        const reviewBox = reviewLi.querySelector(".review_box");
+        const reviewBox = reviewLi.querySelector(".review_box");  
+        const contentContainer = reviewBox.querySelector(".review_box__content_container")
+        const userContainer = reviewBox.querySelector(".review_box__user_container")
+        const modifyBox = reviewLi.querySelector(".modify_box");
         const modifyForm = reviewLi.querySelector(".modify_form");
+        const modiRateInputs = reviewLi.getElementsByClassName("modify_rate");
+        const modiScore = reviewLi.querySelector(".modify_score_text")
+        const modiEmptyStars = reviewLi.getElementsByClassName("modify_empty_stars");
+        const modiFullStars = reviewLi.querySelector(".modify_full_stars")
         const cancelBtn = reviewLi.querySelector(".cancel");
         const updateBtn = reviewLi.querySelector(".update");
 
-        reviewBox.hidden = true;
-        modifyForm.hidden = false;
+        const handleModiOninput = (event) => {
+            const { value } = event.target
+            const convertValue = value * 20 + "%"
+            modiFullStars.style.width = convertValue
+            modiScore.innerText = value.includes(".") ? `rating: "${value}"` : `rating: "${value}.0"`
+        }
+
+        reviewBox.style.display = "none";
+        modifyBox.style.display = "flex";
+        
+
+        for ( const modiRateInput of modiRateInputs) {
+            modiRateInput.addEventListener("input", handleModiOninput)
+            modiFullStars.style.width = modiRateInput.value * 20 + "%"
+        } 
 
         // cancel 버튼을 누를 때
         cancelBtn.addEventListener("click", (event) => {
             event.preventDefault();
-            reviewBox.hidden = false;
-            modifyForm.hidden = true;
+            reviewBox.style.display = "flex";
+            modifyBox.style.display = "none";
         })
 
         // update 버튼으로 form을 submit할때 
         modifyForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            const titleInput = modifyForm.querySelector("#modify_title");
-            const rateInput = modifyForm.querySelector("#modify_rate");
-            const contentInput = modifyForm.querySelector("#modify_content");
-    
-            const reviewTitle = reviewBox.querySelector(".review_title");
-            const reviewRate = reviewBox.querySelector(".review_rate");
-            const reviewContent = reviewBox.querySelector(".review_content");
-    
+            const titleInput = modifyForm.querySelector(".modify_title");
+            const rateInput = modifyForm.querySelector(".modify_rate");
+            const contentInput = modifyForm.querySelector(".modify_content");
+            const reviewTitle = contentContainer.querySelector(".review_title");
+            const reviewRate = userContainer.querySelector(".review_rate");
+            const reviewContent = contentContainer.querySelector(".review_content");
             const updateTitle = titleInput.value;
             const updateRate = rateInput.value;
             const updateContent = contentInput.value;
@@ -314,11 +307,11 @@
             let data = new FormData(); 
             
             reviewTitle.innerText = `${updateTitle}`;
-            reviewRate.innerText = `rate : ${updateRate}`;
+            reviewRate.innerText = updateRate.includes(".") ? `"${updateRate}"` : `"${updateRate}.0"`
             reviewContent.innerText = `${updateContent}`;
 
-            reviewBox.hidden = false;
-            modifyForm.hidden = true;
+            reviewBox.style.display = "flex";
+            modifyBox.style.display = "none";
 
             data.append("pk", pk);
             data.append("title", updateTitle);
@@ -326,7 +319,6 @@
             data.append("content", updateContent);
             data.append("csrfmiddlewaretoken", '{{csrf_token}}');
     
-           
             axios.post("/api/review/update/", data)
             .then(res => alert("Form Submitted"))
             .catch(errors => console.log(errors.response.data));
@@ -394,22 +386,22 @@
 </script>
 <script>
     // rating stars
-
     const rateInput = document.getElementById("review_rate");
     const fullStars = document.querySelector(".full_stars")
     const emptyStars = document.getElementsByClassName("empty_stars")
     const scroe = document.getElementById("score")
 
     const handleOninput = (event) => {
-        value = event.target.value;
-        convertValue = value * 20 + "%"
+        const { value } = event.target
+        const convertValue = value * 20 + "%"
         fullStars.style.width = convertValue
 
         score.innerText = value.includes(".") ? `"${value}"` : `"${value}.0"`
     }
     
     rateInput.addEventListener("input", handleOninput)
-
+    
+    
 </script>
 {% endblock content %}
 

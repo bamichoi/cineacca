@@ -49,7 +49,7 @@ class Movie(core_model.TimeStampedModel):
     makeup_artist = models.CharField(_("make-up artista"), max_length=300)
     spacial_effect_supervisor = models.CharField(_("effetto speciale"), max_length=300)
     sound_designer = models.CharField(_("sound"), max_length=300)
-    rating = models.FloatField(default=0)
+    rating = models.FloatField(default=0.0)
 
     def __str__(self):
         return self.title

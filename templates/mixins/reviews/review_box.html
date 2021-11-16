@@ -1,0 +1,36 @@
+{% load l10n %}
+<div class="review_box">
+    <div class="review_box__user_container">
+            <div class="review_box__user">
+                <a href="{% url 'users:user_profile' movie.user.pk %}">
+                    <div class="user_avatar_medium" 
+                        {% if movie.user.avatar  %} 
+                            style='background-image: url({{movie.user.avatar.url}});'
+                        {% endif %}>
+                    </div>
+                    <div class="review_box__user_name">
+                        <div class="review_user__firstname">{{review.user.first_name}}</div>
+                        <div class="review_user__lastname">{{review.user.last_name}}</div>
+                    </div>
+                </a>
+            </div>
+        <div class="review_box__rate">
+            <i class="fas fa-star"></i>&nbsp;&nbsp;<span class="review_rate">"{{review.rate | unlocalize}}"</span>
+        </div>
+        <div class="review_box__date">
+            <div>{{review.created | date:'m-F-Y-H:m' }} </div>
+        </div>
+    </div>
+
+    <div class="review_box__content_container">
+        <div class="review_title">{{review.title}}</div>
+        <div class="review_content">{{review.content}}</div>
+
+        <div class="review_btns">
+            <button class="delete" value="{{review.pk}}"><i class="fas fa-trash-alt"></i>&nbsp;elimina</button>
+            <button class="modify" value="{{review.pk}}"><i class="fas fa-edit"></i>&nbsp;modifica</button>
+         </div>
+
+    </div>
+   
+</div>
