@@ -63,9 +63,6 @@ class User(AbstractUser):
 
     """User Model Definition"""
 
-    SCHOOL_ACCA_ROMA = "Acccademia belle Arti di roma"
-    SCHOOL_CHOICES = ((SCHOOL_ACCA_ROMA, "Accademia Belle Arti di Roma"),)
-
     ACCOUNT_TYPE_STUDENT = "student"
     ACCOUNT_TYPE_PUBLIC = "public"
     ACCOUNT_TYPE_CHOICES = (
@@ -85,9 +82,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = (
         []
     )  # AbsractUser에는 email이 Required로 잡혀있으나 USERNAME_FIELD로 사용되는 필드는 REQUIRED에 있으면 안된다.
-    school = models.CharField(
-        _("accademia"), choices=SCHOOL_CHOICES, max_length=50, null=True, blank=True
-    )
+    school = models.CharField(_("appartenuto a"), max_length=50, null=True, blank=True)
     avatar = models.ImageField(upload_to="user_avatars", default="user_avatars/0.jpeg")
     biography = models.TextField(_("biografia"), null=True, blank=True)
     account_type = models.CharField(

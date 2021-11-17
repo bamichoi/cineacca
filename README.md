@@ -24,6 +24,15 @@ Development in progress
 
 ## TO DO LIST 
 
+### 최우선 순위 업무 
+
+- [ ] detail: review paginator
+- [ ] signup : password 조건 만들고 표시
+- [ ] email : 인증 email 스타일링 
+- [ ] upload : ffmpeg 인코딩,  duration 받아오기
+- [ ] models : blank, null, required 점검
+- [ ] 404 페이지 작성
+
 ### Base
 
 - [ ] Header 그라데이션
@@ -34,6 +43,7 @@ Development in progress
 - [ ] 창 줄이고 늘일때 핸들링
 - [ ] best review
 - [ ] news
+- [ ] the playground of cineasti indipendenti
 
 ### About
 
@@ -55,25 +65,23 @@ Development in progress
 
 ### Signup
 
-- [ ] password 규칙안내
-- [ ] signup success
 
 ### Email 
 
-- [ ] 이메일 스타일링*
  
 ### Detail
 
-- [ ] 리뷰 스타일링
+- [ ] 리뷰폼 못열때 텍스트 스타일링
 - [ ] 리뷰수정 텍스트area 콜럼조정
-- [ ] 리뷰 페이지당 갯수 체크
 - [ ] 리뷰 삭제 한번 더 묻기
 - [ ] 리뷰 새로고침없이 pagination
 - [ ] 리뷰 Like it
+- [ ] 추가정보 none일때 핸들링*
+- [ ] new리뷰에 시간 다르게 표시되는 문제
 
 ### VideoPlayer
 
-- [ ] 스킨 커스터마이징
+- [ ] 스킨 커스터마이징*
 - [ ] 자막기능(추후)
 - [ ] 포인터 이동시 썸네일, 시간정보 표시(추후)
 - [ ] 지속적 기능개선(추후)
@@ -81,11 +89,10 @@ Development in progress
 ### Upload Movie & Update Movie
   
 - [ ] 기본 locandina (detail 할때 작업)
-- [ ] 파일 업로드
--[ ] placeholder
-
+- [ ] textarea  줄바꿈
+- [ ] placeholder
 - [ ] locandina 미리보기 적용(추후)
-  
+
 ### Update Movie
 
 ### Delete Movie
@@ -95,7 +102,7 @@ Development in progress
 
 ### Movie List
 
-- [ ] duration 받아오기 (ffmpeg)
+- [ ] 없는 페이지 넘버 억지로 입력할때 404
 
 ### Movie Search
 
@@ -108,15 +115,19 @@ Development in progress
 
 ### Student Search
 
+- [ ] 키워드 없을때 처리
+- [ ] 소속으로 검색 제공
+
 
 ### Login
   
 - [ ] 구글 연동 로그인(추후)
-
+- [ ] 로그인 후 이전 페이지 이동(추후)
 
 ### Profile - Student/Pubblic
 
 - [ ] 내 student card 보기*
+- [ ] user가 업로드한 영화 전부보기*
   
 - [ ] 디자인개선 (추후)
 - [ ] 필모그래피화 (추후)
@@ -134,15 +145,13 @@ Development in progress
 
 ### Reset Password
 
-- [ ] 이메일 템플릿 스타일링
 
 ###  Delete Account
 
 -[ ] 동의 체크박스 에러메세지 아래로 내리기(추후)
 
-## 각 model
 
-- [ ] blank, null, required 점검
+
 
 
 ### 기타 잡다한 문제들
@@ -150,7 +159,6 @@ Development in progress
 -[] avconv
 
 - [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
-- [ ] http404 페이지 작성
 - [ ] subtitle 문구 개선
 
 

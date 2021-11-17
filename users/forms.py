@@ -46,14 +46,13 @@ class StudentSignUpForm(forms.ModelForm):
         model = models.User
         fields = ("first_name", "last_name", "school", "email")
         widgets = {
-            "first_name": forms.TextInput(
-                attrs={"placeholder": "Inserisci il tuo nome"}
-            ),
-            "last_name": forms.TextInput(
-                attrs={"placeholder": "Inserisci il tuo cognome"}
+            "first_name": forms.TextInput(attrs={"placeholder": "Il tuo nome"}),
+            "last_name": forms.TextInput(attrs={"placeholder": "Il tuo cognome"}),
+            "school": forms.TextInput(
+                attrs={"placeholder": "Il nome dell'istituto o team ecc."}
             ),
             "email": forms.TextInput(
-                attrs={"placeholder": "Inserisci l'indirizzo email per login"}
+                attrs={"placeholder": "l'indirizzo email per login"}
             ),
             # charfield + choices 의 select field는 어떻게 placeholder를 달까. 아마도 accademia 모델이 하나 있어야할듯.
         }

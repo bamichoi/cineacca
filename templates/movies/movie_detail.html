@@ -28,7 +28,7 @@
         </div>
 
         <div class="detail_title metadata">
-            <h1><i class="fas fa-star"></i>&nbsp;{{movie.rating}}&nbsp;&nbsp;&nbsp; 
+            <h1><i class="fas fa-star"></i>&nbsp;{{movie.rating | unlocalize}}&nbsp;&nbsp;&nbsp; 
                 {% if movie.views <= 1 %} 
                 {{ movie.views }} visto 
                 {% else %} 
@@ -106,10 +106,10 @@
             {% if user.email_verified %}
                     {% include "../mixins/reviews/review_form.html" %}
             {% else %}
-                <div>only user that have done the email verification could write a review</div>
+                <div>Fai la verificazione dell'account per scrivere un review.<a href="{% url 'users:user_profile' user.pk %}">my profile</a></div>
             {% endif %}
         {% else %}
-            <div> To write a review you need to do login</div>        
+            <div> Fai Login per scrivere un review. <a href="{% url 'users:login' %}">login</a> </div>        
         {% endif %}
     </div>
     
@@ -199,6 +199,7 @@
                 const content = res.data.content;
                 const firstName = res.data.firstName;
                 const lastName = res.data.lastName;
+                const created =  res.data.created;
               
                 const reviewsUl = document.getElementById("reviews");
                 const newReview = reviewsUl.querySelector(".new_review");
@@ -207,8 +208,10 @@
                 const newReviewTitle = newReview.querySelector(".review_title");
                 const newReviewRate = newReview.querySelector(".review_rate");
                 const newReviewContent = newReview.querySelector(".review_content");
-          
+                const newReviewDate = newReview.querySelector(".review_box__date");
+
                 newReview.setAttribute("id", `${pk}`);
+                const reviewBtns = newReview.querySelector(".review_btns")
                 const modifyBtn = newReview.querySelector(".modify");
                 const deleteBtn = newReview.querySelector(".delete");
                 const modifyForm = newReview.querySelector(".modify_form");
@@ -224,8 +227,10 @@
                 newReviewTitle.innerText = `${title}`;
                 newReviewRate.innerText =  rate.includes(".") ? `"${rate}"` : `"${rate}.0"`
                 newReviewContent.innerText = `${content}`;
+                reviewBtns.style.display = "flex"
                 modifyBtn.setAttribute("value", `${pk}`);
                 deleteBtn.setAttribute("value", `${pk}`);
+                newReviewDate.innerText = `${created}` 
 
                 modiUserFirstname.innerText = firstName;
                 modiUserLastname.innerText = lastName;

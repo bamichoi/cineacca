@@ -18,7 +18,7 @@
             <i class="fas fa-star"></i>&nbsp;&nbsp;<span class="review_rate">"{{review.rate | unlocalize}}"</span>
         </div>
         <div class="review_box__date">
-            <div>{{review.created | date:'m-F-Y-H:m' }} </div>
+            {{review.created | date:'m-F-Y-H:m' }} 
         </div>
     </div>
 
@@ -26,10 +26,12 @@
         <div class="review_title">{{review.title}}</div>
         <div class="review_content">{{review.content}}</div>
 
-        <div class="review_btns">
+        
+        <div class="review_btns" {% if user == review.user %} style="display:flex" {% else%} style="display:none" {% endif %}>
             <button class="delete" value="{{review.pk}}"><i class="fas fa-trash-alt"></i>&nbsp;elimina</button>
             <button class="modify" value="{{review.pk}}"><i class="fas fa-edit"></i>&nbsp;modifica</button>
-         </div>
+        </div>
+
 
     </div>
    

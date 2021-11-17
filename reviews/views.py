@@ -33,6 +33,9 @@ def create_review(request, pk):
         review = models.Review.objects.create(
             user=user, title=title, rate=rate, content=content, movie=movie
         )
+        print(review.created)
+        created = review.created.strftime("%d-%B-%Y-%H:%M")
+        print(created)
         movie.rating = get_rating(movie)
         movie.save()
         return JsonResponse(
@@ -43,6 +46,7 @@ def create_review(request, pk):
                 "pk": review.pk,
                 "firstName": user.first_name,
                 "lastName": user.last_name,
+                "created": created,
             }
         )
 

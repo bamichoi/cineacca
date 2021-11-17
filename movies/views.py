@@ -170,8 +170,9 @@ class MovieDetail(DetailView):
         all_reviews = movie.reviews.all()
         page = self.request.GET.get("page", 1)
         page_numbers_range = 5
-        paginator = Paginator(all_reviews, page_numbers_range)
+        paginator = Paginator(all_reviews, 10, page_numbers_range)
         reviews = paginator.get_page(int(page))  # !) page, get_page 차이에 대해서..(맨날 까먹음)
+        print(reviews)
         max_index = paginator.num_pages
 
         if page:

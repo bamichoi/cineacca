@@ -18,7 +18,7 @@
     
     <div class="search_bar">
         <form method="get" action="{% url 'users:search' %}">
-            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca un/una artista con il suo nome o cognome" />
+            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" required placeholder="Cerca un/una artista con il suo cognome" />
             <button>Cerca!</button>
         </form>
     </div>
