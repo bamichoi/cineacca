@@ -60,15 +60,15 @@ class ChangePasswordView(mixins.LoggedInOnlyView, PasswordChangeView):
         form = super().get_form(form_class=form_class)
         form.fields["old_password"].label = "Password attuale"
         form.fields["old_password"].widget.attrs = {
-            "placeholder": "Inserisci il tuo password attuale"
+            "placeholder": "Inserisci la tua password attuale"
         }
-        form.fields["new_password1"].label = "Password nuovo"
+        form.fields["new_password1"].label = "Nuova password"
         form.fields["new_password1"].widget.attrs = {
-            "placeholder": "Inserisci il tuo password nuovo"
+            "placeholder": "Inserisci la nuova password"
         }
-        form.fields["new_password2"].label = "Verifica password nuovo"
+        form.fields["new_password2"].label = "Conferma nuova password"
         form.fields["new_password2"].widget.attrs = {
-            "placeholder": "Inserisci ancora il password nuovo"
+            "placeholder": "Inserisci ancora la nuova password"
         }
         return form
 
@@ -292,7 +292,7 @@ class PublicSignupView(mixins.LoggedOutOnlyView, FormView):
 
     template_name = "users/public_signup.html"
     form_class = forms.PublicSignUpForm
-    success_url = reverse_lazy("core:home")
+    success_url = reverse_lazy("users:signup_success")
 
     def form_valid(self, form):
         form.save()
@@ -301,6 +301,7 @@ class PublicSignupView(mixins.LoggedOutOnlyView, FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
+            user.verify_email()
         return super().form_valid(form)
 
 
@@ -344,6 +345,8 @@ class ResetPasswordView(PasswordResetView):
     template_name = "users/reset-password.html"
     success_url = reverse_lazy("users:reset-password-done")
     email_template_name = "emails/reset-password-email.html"
+    html_email_template_name = "emails/reset-password-email.html"
+    subject_template_name = "emails/reset-password-subject.txt"
     form_class = forms.CustomPasswordResetForm
 
 

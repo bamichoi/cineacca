@@ -27,8 +27,8 @@ Development in progress
 ### 최우선 순위 업무 
 
 - [x] detail: hide reviws and more review 
-- [ ] signup : password 조건 만들고 표시
 - [ ] email : 인증 email 스타일링 
+- [ ] signup : password 조건 만들고 표시
 - [ ] upload : ffmpeg 인코딩,  duration 받아오기
 - [ ] models : blank, null, required 점검
 - [ ] 404 페이지 작성

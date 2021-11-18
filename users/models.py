@@ -121,7 +121,7 @@ class User(AbstractUser):
                 "emails/verify_email.html", {"secret": secret}
             )
             send_mail(
-                "Verify your Cineacca account",
+                "Verificazione dell'account su CINEACCA",
                 strip_tags(html_message),  # html을 제외한 부분을 text로 바꿔주는 기능.
                 settings.EMAIL_FROM,
                 [self.email],
