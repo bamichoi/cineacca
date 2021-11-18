@@ -93,8 +93,10 @@
 <!--Movie Update/Delete Btn--> 
     {% if movie.user == user %}
         <div class="movie__modify">
-            <a href="{% url 'movies:update' movie.pk %}"><div><i class="fas fa-edit"></i>&nbsp;&nbsp;Aggiorna</div></a>
-            <a href="{% url 'movies:delete' movie.pk %}"><div><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Elimina</div></a>
+            <a href="{% url 'movies:update' movie.pk %}"><div>
+                <i class="fas fa-edit"></i>&nbsp;&nbsp;Aggiorna</div></a>
+            <a href="{% url 'movies:delete' movie.pk %}"><div>
+                <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Elimina</div></a>
         </div>
 
     {% endif %}
@@ -106,10 +108,12 @@
             {% if user.email_verified %}
                     {% include "../mixins/reviews/review_form.html" %}
             {% else %}
-                <div>Fai la verificazione dell'account per scrivere un review.<a href="{% url 'users:user_profile' user.pk %}">my profile</a></div>
+                <div class="text_verified_only">🔒Fai la verificazione dell'account per scrivere un review.&nbsp;&nbsp;
+                    <a href="{% url 'users:user_profile' user.pk %}">profilo mio<i class="fas fa-sign-in-alt"></i></a></div>
             {% endif %}
         {% else %}
-            <div> Fai Login per scrivere un review. <a href="{% url 'users:login' %}">login</a> </div>        
+            <div class="text_login_only">🔒Fai Login per scrivere un review.&nbsp;&nbsp;
+                <a href="{% url 'users:login' %}">login<i class="fas fa-sign-in-alt"></i></a></div>        
         {% endif %}
     </div>
     

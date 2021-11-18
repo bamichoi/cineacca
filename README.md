@@ -26,10 +26,10 @@ Development in progress
 
 ### 최우선 순위 업무 
 
-- [x] detail: hide reviws and more review 
+- [x] detail: hide reviews and more review 
+- [x] signup : password 조건 만들기
 - [ ] email : 인증 email 스타일링 
-- [ ] signup : password 조건 만들고 표시
-- [ ] upload : ffmpeg 인코딩,  duration 받아오기
+- [ ] upload : ffmpeg 인코딩,  duration 받아오기, default poster 만들기
 - [ ] models : blank, null, required 점검
 - [ ] 404 페이지 작성
 
@@ -88,16 +88,16 @@ Development in progress
 
 ### Upload Movie & Update Movie
   
-- [ ] 기본 locandina (detail 할때 작업)
+
 - [ ] textarea  줄바꿈
 - [ ] placeholder
-- [ ] locandina 미리보기 적용(추후)
+- [ ] locandina 미리보기 적용
 
 ### Update Movie
 
 ### Delete Movie
 
--[ ] 동의 체크박스 에러메세지 아래로 내리기(추후)
+-[ ] 동의 체크박스 에러메세지 아래로 내리기
 
 
 ### Movie List
@@ -108,9 +108,9 @@ Development in progress
 
 ### Student List
 
-- [ ] 네임카드 배경 커스터마이징 (보류)
-- [ ] 노출되는 역할 갯수 핸들링 (보류)
-- [ ] 학교이름으로 필터링 제공 (보류)
+- [ ] 네임카드 배경 커스터마이징
+- [ ] 노출되는 역할 갯수 핸들링
+- [ ] 학교이름으로 필터링 제공
 
 
 ### Student Search
@@ -121,24 +121,24 @@ Development in progress
 
 ### Login
   
-- [ ] 구글 연동 로그인(추후)
-- [ ] 로그인 후 이전 페이지 이동(추후)
+- [ ] 구글 연동 로그인
+- [ ] 로그인 후 이전 페이지 이동
 
 ### Profile - Student/Pubblic
 
 - [ ] 내 student card 보기*
 - [ ] user가 업로드한 영화 전부보기*
   
-- [ ] 디자인개선 (추후)
-- [ ] 필모그래피화 (추후)
-- [ ] 좋아하는 영화 추가 (추후)
+- [ ] 디자인개선
+- [ ] 필모그래피화
+- [ ] 좋아하는 영화 추가
 
 
 
 ### Update profile
 
-- [ ] works 필드 리스타일링(추후)
-- [ ] update Movie 처럼 스타일 구조 바꾸기(보류)
+- [ ] works 필드 리스타일링
+- [ ] update Movie 처럼 스타일 구조 바꾸기(검토)
 
 ### Change Password
 
@@ -148,7 +148,7 @@ Development in progress
 
 ###  Delete Account
 
--[ ] 동의 체크박스 에러메세지 아래로 내리기(추후)
+-[ ] 동의 체크박스 에러메세지 아래로 내리기
 
 
 

@@ -211,3 +211,14 @@
     }
   }
 }
+
+.text_verified_only,
+.text_login_only {
+  color: $cineH_black;
+  display: flex;
+  align-items: center;
+  font-family: "Reem Kufi", sans-serif;
+  a {
+    color: #ca5b4c;
+  }
+}

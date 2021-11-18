@@ -9,7 +9,7 @@ const css = () => {
     .pipe(sass().on("error", sass.logError))
     .pipe(postCSS([require("autoprefixer")]))
     .pipe(minify())
-    .pipe(gulp.dest("static/css"));
+    .pipe(gulp.dest("static/css")); 
 };
 
 const watch = () => {

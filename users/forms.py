@@ -1,5 +1,6 @@
 from django.forms import widgets
 from django import forms
+from django.contrib.auth.password_validation import validate_password
 from movies import forms as movie_form
 from django.contrib.auth.forms import PasswordResetForm
 from django.utils.translation import ugettext_lazy as _
@@ -58,7 +59,8 @@ class StudentSignUpForm(forms.ModelForm):
         }
 
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Inserisci la password"})
+        widget=forms.PasswordInput(attrs={"placeholder": "Inserisci la password"}),
+        validators=[validate_password],
     )  # password 는 암호화되어 저장되어야 하므로 별도로 작성.
     password_confirm = forms.CharField(
         label="Verifica password",
@@ -70,7 +72,7 @@ class StudentSignUpForm(forms.ModelForm):
     def clean_password_confirm(self):  # password 와 password_confrim 이 일치하는지 확인.
         password = self.cleaned_data.get("password")
         password_confirm = self.cleaned_data.get("password_confirm")
-        if password != password_confirm:
+        if password != None and password != password_confirm:
             raise forms.ValidationError("I due campi password non corrispondono.")
         else:
             return password
@@ -102,6 +104,7 @@ class PublicSignUpForm(forms.Form):
     password = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(attrs={"placeholder": "Inserisci la password"}),
+        validators=[validate_password],
     )  # password 는 암호화되어 저장되어야 하므로 별도로 작성.
     password_confirm = forms.CharField(
         label="Verifica password",
@@ -123,7 +126,7 @@ class PublicSignUpForm(forms.Form):
     def clean_password_confirm(self):  # password 와 password_confrim 이 일치하는지 확인.
         password = self.cleaned_data.get("password")
         password_confirm = self.cleaned_data.get("password_confirm")
-        if password != password_confirm:
+        if password != None and password != password_confirm:
             raise forms.ValidationError("I due campi password non corrispondono.")
         else:
             return password

@@ -21,7 +21,7 @@ from django.views.generic import (
 )
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Q, fields
+from django.db.models import Q
 from . import models, forms, mixins
 
 # Create your views here.
