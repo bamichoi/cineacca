@@ -123,39 +123,31 @@
 <!--New review modify-->
                 {% include "../mixins/reviews/modify_form.html" %}
             </li>
-<!--Review List-->
-            {% for review in movie.reviews.all %}
+<!--Review List default 10-->
+            {% for review in show_reviews %}
+
             <li id="{{review.pk}}" class="review">
                 {% include "../mixins/reviews/review_box.html" %}
 <!--Review modify-->
                 {% include "../mixins/reviews/modify_form.html" %}
-                 
+            </li>
+            {% endfor %}
+<!--Review List hidden the others-->
+           {% for review in hidden_reviews %}
+            <li id="{{review.pk}}" class="review hidden_review" hidden>
+                {% include "../mixins/reviews/review_box.html" %}
+<!--Review modify-->
+                {% include "../mixins/reviews/modify_form.html" %}
             </li>
             {% endfor %}
         </ul>
-<!--Paginator-->
-        <div class="paginator">
-            <div>
-                {% if start_index != 0 %}
-                    <span><a href="?page={{start_index}}"><i class="fas fa-chevron-circle-left"></i></a></span>
-                {% endif %}
-            </div>
-            <div>
-                    {% for page in page_range %}
-                        {% if current_page == page %}
-                            <div class="current-page"><span>{{page}}</span></div>
-                        {% else %}
-                            <span><a href="?page={{page}}">{{page}}</a></span>
-                        {% endif %}
-                    {% endfor %}
-            </div>
-            <div>
-                {% if next_index < max_index %}
-                    <span><a href="?page={{next_index}}"><i class="fas fa-chevron-circle-right"></i></a></span>
-                {% endif %}
-            </div>
-        </div>
     </div>
+<!--show all reveiw-->
+    {% if num_reviews != 0 %}
+        <div id="show_all_reviews">
+            <button id="show_all_reviews_btn"><i class="far fa-caret-square-down"></i>&nbsp;&nbsp;&nbsp;Vedi anche gli altri &nbsp;{{ num_hidden_reviews }}&nbsp; review...</button>
+        </div>
+    {% endif %}
 </div>
     
 
@@ -280,7 +272,7 @@
             modiScore.innerText = value.includes(".") ? `rating: "${value}"` : `rating: "${value}.0"`
         }
 
-        reviewBox.style.display = "none";
+        reviewBox.style.display = "none"; //hidden이 작동안되는 이유?
         modifyBox.style.display = "flex";
         
 
@@ -407,6 +399,21 @@
     rateInput.addEventListener("input", handleOninput)
     
     
+</script>
+<script>
+    // show all review
+    const hiddenReviews = document.getElementsByClassName("hidden_review");
+    const allReivewBtn = document.getElementById("show_all_reviews_btn");
+
+    const handleShowAllReviews = () => {
+        allReivewBtn.style.display = "none"; // 태그 달고나서  hidden 안됨..
+        console.log(hiddenReviews)
+        for ( const hiddenReview of hiddenReviews ) {
+            console.log(hiddenReview)
+            hiddenReview.hidden = false
+        }
+    }
+    allReivewBtn.addEventListener("click", handleShowAllReviews);
 </script>
 {% endblock content %}
 

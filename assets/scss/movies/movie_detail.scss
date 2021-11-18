@@ -188,3 +188,26 @@
   box-shadow: 0.2rem 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
 }
+
+#show_all_reviews {
+  margin-top: 2rem;
+  #show_all_reviews_btn {
+    border: none;
+    width: 100%;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: $cineH_black;
+    font-family: "Reem Kufi", sans-serif;
+    border-radius: 1rem;
+    color: $cineH_white;
+    box-shadow: 0.2rem 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-size: 1.5rem;
+      color: #acc0f3;
+    }
+  }
+}
