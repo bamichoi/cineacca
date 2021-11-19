@@ -18,6 +18,8 @@ from reviews import forms as review_form
 from . import models
 from . import forms
 from users import mixins as user_mixins
+import subprocess
+import json
 
 # Create your views here.
 
@@ -88,7 +90,7 @@ def delete_movie(request, pk):
         return render(request, "movies/movie_delete.html", {"form": form})
 
     else:
-        return redirect("core:home")
+        return redirect("movies:list")
 
 
 class MovieList(ListView):

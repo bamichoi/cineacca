@@ -19,6 +19,7 @@ class MovieAdmin(admin.ModelAdmin):
                     "title",
                     "user",
                     "video",
+                    "duration",
                     "year",
                     "thumbnail",
                     "poster",

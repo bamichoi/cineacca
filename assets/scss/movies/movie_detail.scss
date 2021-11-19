@@ -77,6 +77,8 @@
     justify-content: center;
     padding: 0 8rem 2rem 8rem;
     line-height: 1.5rem;
+    p {
+    }
   }
   a {
     text-decoration: none;
@@ -122,8 +124,18 @@
       width: 18rem;
       height: 24rem;
     }
+    .default_poster {
+      background-color: #ecf0f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        color: white;
+        font-family: "Reem Kufi", sans-serif;
+      }
+    }
   }
-  div:last-child {
+  .info__staff {
     padding-left: 3rem;
     font-size: 1.5rem;
     width: 100%;

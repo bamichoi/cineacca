@@ -51,5 +51,19 @@
         <a href="{% url 'users:delete-account' %}">Vorresti rimuovere il tuo account? <i class="fas fa-sign-in-alt"></i></a>
     </div>
    
+<script>
+    //line break in textarea
 
+    const profileForm = document.querySelector(".update-profile_form");
+    const textArea = document.getElementById("id_biography");
+    
+    function linebreaker() {
+        const text = textArea.value
+        console.log(text)
+    }
+
+    profileForm.addEventListener("submit", linebreaker);
+    
+
+</script>
 {% endblock content %}

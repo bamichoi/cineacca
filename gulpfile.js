@@ -24,9 +24,23 @@ const email = () => {
     .pipe(gulp.dest("static/email/css")); 
 }
 
+const js = () => {
+  const bro = require("gulp-bro");
+  const babelify = require("babelify")
+  const babel = require("gulp-babel")
+  return gulp
+    .src("assets/js/*.js")
+    .pipe(babel({
+            presets: ['@babel/preset-env']
+        }))
+    .pipe(gulp.dest('backend/static/js'));
+};
+
 const watch = () => {
   gulp.watch(["assets/scss/*", "assets/scss/*/*", "assets/scss/*/*/*" ], css)
+  gulp.watch(["assets/scss/email/*"], email)
+  gulp.watch(["assets/js/*"], js)
 }
 
 
-exports.default = gulp.series(css, email, watch);
+exports.default = gulp.series(css, email, js, watch);

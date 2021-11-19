@@ -28,6 +28,14 @@ class MovieUploadForm(forms.ModelForm):
             "spacial_effect_supervisor",
             "sound_designer",
         )
+        widgets = {
+            "title": forms.TextInput(attrs={"placeholder": "Il titolo del film"}),
+            "year": forms.TextInput(
+                attrs={"placeholder": "l'anno in cui il film è uscito"}
+            ),
+            "description": forms.Textarea(attrs={"placeholder": "i sinossi del film "}),
+            # charfield + choices 의 select field는 어떻게 placeholder를 달까. 아마도 accademia 모델이 하나 있어야할듯.
+        }
 
     def save(self, *args, **kwargs):
         movie = super().save(commit=False)
