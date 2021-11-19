@@ -1,4 +1,6 @@
-
+{% load static %}
+{% load inlinecss %}
+{% inlinecss "email/css/verify_email.css" %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,13 +10,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h4 class="email_title">Verificazione dell'account su CINEACCA</h4>
-    <br>
-<span>Ciao. Clicca questo bottone per verificare il tuo account.
-    <br>
-    Grazie mille.
-</span>
-<br>
-<a href="http://127.0.0.1:8000/users/verify/{{secret}}"><button>Verifica l'account</button></a>
+    <div id="email_wrapper">
+        <header>
+            <div id="email_header_title" >
+                <div>
+                    <a href="/">CINEACCA</a>
+                </div>  
+        </header>
+        <div class=email_content>
+            <h1 class="email_title">🎥&nbsp;Verificazione dell'account su CINEACCA</h1>
+            <span>Ciao, Clicca questo bottone per verificare il tuo account.</span>
+            <span>Dopo la verficiazione puoi accettare a tutti i nostri servizi.</span>
+            <span>Grazie mille.</span>
+            <div><a href="http://127.0.0.1:8000/users/verify/{{secret}}"><button>Verifica l'account</button></a></div>
+        </div>
+        
+</div>
+
+    
 </body>
 
+{% endinlinecss %}

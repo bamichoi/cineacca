@@ -28,7 +28,7 @@ Development in progress
 
 - [x] detail: hide reviews and more review 
 - [x] signup : password 조건 만들기
-- [ ] email : 인증 email 스타일링 
+- [x] email : 인증 email 스타일링 
 - [ ] upload : ffmpeg 인코딩,  duration 받아오기, default poster 만들기
 - [ ] models : blank, null, required 점검
 - [ ] 404 페이지 작성
@@ -67,6 +67,8 @@ Development in progress
 
 
 ### Email 
+
+- [ ] 인증성공 페이지 만들기*
 
  
 ### Detail
