@@ -6,7 +6,7 @@
 이탈리아 영화 아카데미 학생들의 단편 영화를 스트리밍하는 서비스.  
 A service that streams short films from students of the Italian Academy of Film Arts.
 
-## 개발 언어 Development Lang
+## 개발 도구 Development Languages and Tools
 
 Python with Django Framework and HTML, CSS, JavaScript
 
@@ -26,14 +26,15 @@ Development in progress
 
 ### 최우선 순위 
 
-- [x] Detail: hide reviews and show more review 
+- [x] Detail: hide reviews and show more reviews
 - [x] signup : password validators
-- [x] email : Css varification email 
-- [x] upload : default poster
-- [x] videoArt : create new model
-- [ ] check max-length of all field
+- [x] email : CSS varification email 
+- [x] upload : the default poster
+- [x] videoArt : create the new model
+- [ ] check required and max-length ecc of all input field
 - [ ] upload : Get the duration of video
-- [ ] models : Check blank, null and required 
+- [ ] models : Check max-length blank, null and required ecc
+- [ ] Divide static files
 - [ ] 404 page
 
 
@@ -84,7 +85,7 @@ Development in progress
 - [ ] new리뷰에 시간 다르게 표시되는 문제***
 - [ ] 비로그인시 리뷰안내에 로그인누르면 로그인후 이전 페이지로 이동***
 
-### VideoPlayer
+### VideoPlayer - video.js
 
 - [ ] 스킨 커스터마이징*
 - [ ] 자막기능(추후)
@@ -97,8 +98,8 @@ Development in progress
 
 ### Update Movie
 
+- [x] 업로드된 파일명 길때 폼 찌그러듦 해결 (임시해결 추후보강)
 - [ ] locandina 미리보기 적용(추후)
-- [ ] 업로드된 파일명 길때 폼 찌그러듦 해결.
 
 ### Delete Movie
 
@@ -155,13 +156,13 @@ Development in progress
 
 -[ ] 동의 체크박스 에러메세지 아래로 내리기
 
-### 기타 잡다한 문제들
-
-- [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
-- [ ] subtitle 문구 개선
 
 
-### 코드 개선
+### 기타
 
+- [ ] update thumbnail 필드 custom widget 적용안됨
+- [ ] movie/videoarts 공유하고 있는 부분 이름 video로 교체
 - [ ] CSS 중복제거
 - [ ] partials
+- [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
+- [ ] subtitle 문구 개선

@@ -13,10 +13,10 @@ urlpatterns = [
     ),
     path("videoarts/upload/", videoart_views.VideoArtUpload.as_view(), name="upload"),
     path(
-        "videoarts/<int:pk>/update",
+        "<str:type>/<int:pk>/update/",
         videoart_views.UpdateVideoArt.as_view(),
         name="update",
     ),
-    path("videoarts/<int:pk>/delete", videoart_views.delete_videoart, name="delete"),
-    path("api/videoarts/<int:pk>/view", videoart_views.count_view, name="count_view"),
+    path("videoarts/<int:pk>/delete/", videoart_views.delete_videoart, name="delete"),
+    path("api/videoarts/<int:pk>/view/", videoart_views.count_view, name="count_view"),
 ]

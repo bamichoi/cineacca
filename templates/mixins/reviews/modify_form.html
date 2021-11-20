@@ -7,7 +7,7 @@
                 {% if type == "new_review" %}
                     <a href="{% url 'users:user_profile' user.pk %}">
                         <div class="user_avatar_medium" 
-                            {% if movie.user.avatar  %} 
+                            {% if user.avatar  %} 
                                 style='background-image: url({{user.avatar.url}});'
                             {% endif %}>
                         </div>
@@ -17,9 +17,9 @@
                         </div>
                     </a>
                 {% else %}
-                    <a href="{% url 'users:user_profile' user.pk %}">
+                    <a href="{% url 'users:user_profile' review.user.pk %}">
                         <div class="user_avatar_medium" 
-                            {% if movie.user.avatar  %} 
+                            {% if review.user.avatar  %} 
                                 style='background-image: url({{review.user.avatar.url}});'
                             {% endif %}>
                         </div>

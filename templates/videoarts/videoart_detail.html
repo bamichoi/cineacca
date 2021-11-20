@@ -25,7 +25,7 @@
         </div>
 
         <div class="detail_title dir">
-            <h1>dir. {{videoart.director}},&nbsp;&nbsp;&nbsp;&nbsp;{{videoart.year}}</h1>
+            <h1>dir. {{videoart.artist}},&nbsp;&nbsp;&nbsp;&nbsp;{{videoart.year}}</h1>
         </div>
 
         <div class="detail_title metadata">
@@ -35,7 +35,6 @@
                 {% else %} 
                 {{ videoart.views }}&nbsp;&nbsp;visti {% endif %}</h1>
         </div>
-
     </div>
     
 <!--videoart Screen-->   
@@ -67,40 +66,12 @@
         </a>
     </div>
 <!--videoart Information--> 
-    <div class="detail_movieInfo">
-        <div class="info__moviePoster">
-            {% if videoart.poster %}
-                <img class="moviePoster_md"src="{{videoart.poster.url}}" />
-            {% else %}
-                <div class="moviePoster_md default_poster">
-                    <span>Questo film non ha una locandina.</span>
-                </div>
-            {% endif %}
-        </div>
-        <div class="info__staff">
-            <h1>{{videoart.title}}&nbsp;({{videoart.year}})</h1>
-            <ul>
-                <li><span>regia:</span> {{videoart.director}} </li>
-                <li><span>sceneggiatura:</span> {{videoart.screenwriter}} </li>
-                <li><span>auttori:</span> {{videoart.casting}}</li>
-                <li><span>montaggio:</span> {{videoart.editor}}</li>
-                <li><span>fotografia:</span> {{videoart.director_of_photograpy}}</li>
-                <li><span>audio:</span> {{videoart.audio_director}}</li>
-                <li><span>musica:</span> {{videoart.music}}</li>
-                <li><span>scenografia:</span> {{videoart.art_director}}</li>
-                <li><span>costume:</span> {{videoart.costume_designer}}</li>
-                <li><span>makeup artist:</span> {{videoart.makeup_artist}}</li>
-                <li><span>vfx:</span> : {{videoart.spacial_effect_supervisor}}</li>
-                <li><span>sound_designer:</span> {{videoart.sound_designer}}</li>
-            </ul>
-        </div>
-        
-    </div>
+   
 
 <!--videoart Update/Delete Btn--> 
     {% if videoart.user == user %}
-        <div class="movie__modify">
-            <a href="{% url 'videoarts:update' videoart.pk %}"><div>
+        <div class="movie__modify videoart__modify">
+            <a href="{% url 'videoarts:update' 'videoarts' videoart.pk %}"><div>
                 <i class="fas fa-edit"></i>&nbsp;&nbsp;Aggiorna</div></a>
             <a href="{% url 'videoarts:delete' videoart.pk %}"><div>
                 <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Elimina</div></a>
@@ -161,7 +132,7 @@
     {% endif %}
 </div>
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> <!-- CDN 말고 직접 import 할 수 있는 방법은 없을까. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> 
 <script>
     // Create Review
     const reviewForm = document.getElementById("review_form");
@@ -327,7 +298,7 @@
             data.append("csrfmiddlewaretoken", '{{csrf_token}}');
     
             axios.post("/api/review/update/", data)
-            .then(res => alert("Form Submitted"))
+            .then(res => alert("Il review è modificato."))
             .catch(errors => console.log(errors.response.data));
             
         });

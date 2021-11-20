@@ -11,7 +11,9 @@ urlpatterns = [
         name="search",
     ),
     path("movies/upload/", movie_views.MovieUpload.as_view(), name="upload"),
-    path("movies/<int:pk>/update", movie_views.UpdateMovie.as_view(), name="update"),
+    path(
+        "<str:type>/<int:pk>/update", movie_views.UpdateMovie.as_view(), name="update"
+    ),
     path("movies/<int:pk>/delete", movie_views.delete_movie, name="delete"),
     path("api/movies/<int:pk>/view", movie_views.count_view, name="count_view"),
 ]

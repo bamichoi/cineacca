@@ -3,6 +3,7 @@ from django.forms import widgets
 from django.forms.widgets import ClearableFileInput
 from django.utils.translation import gettext_lazy as _
 from . import models
+from movies import forms as movie_forms
 
 
 class VideoArtUploadForm(forms.ModelForm):
@@ -10,29 +11,18 @@ class VideoArtUploadForm(forms.ModelForm):
         model = models.VideoArt
         fields = (
             "video",
-            "poster",
             "thumbnail",
             "title",
             "year",
+            "artist",
             "description",
-            "director",
-            "screenwriter",
-            "casting",
-            "editor",
-            "director_of_photograpy",
-            "audio_director",
-            "music",
-            "art_director",
-            "costume_designer",
-            "makeup_artist",
-            "spacial_effect_supervisor",
-            "sound_designer",
         )
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "Il titolo del video"}),
             "year": forms.TextInput(
                 attrs={"placeholder": "l'anno in cui il video è uscito"}
             ),
+            "artist": forms.TextInput(attrs={"placeholder": "Il nome di artista"}),
             "description": forms.Textarea(
                 attrs={"placeholder": "una descrizione del video "}
             ),
@@ -44,41 +34,20 @@ class VideoArtUploadForm(forms.ModelForm):
         return videoart
 
 
-class CustomClearableFileInput(ClearableFileInput):
-    initial_text = _("attuale")
-    input_text = _("nuovo")
-
-    # !) text 없애도 : 이 안없어짐..
-    # Overriding built-in widget templates 해야하는데 TempletesSetting
-
-
 class VideoArtUpdateForm(forms.ModelForm):
     class Meta:
         model = models.VideoArt
         fields = (
             "video",
-            "poster",
             "thumbnail",
             "title",
             "year",
+            "artist",
             "description",
-            "director",
-            "screenwriter",
-            "casting",
-            "editor",
-            "director_of_photograpy",
-            "audio_director",
-            "music",
-            "art_director",
-            "costume_designer",
-            "makeup_artist",
-            "spacial_effect_supervisor",
-            "sound_designer",
         )
         widgets = {
-            "video": CustomClearableFileInput,
-            "poster": CustomClearableFileInput,
-            "thumnail": CustomClearableFileInput,
+            "video": movie_forms.CustomClearableFileInput,
+            "thumnail": movie_forms.CustomClearableFileInput,
         }
 
 

@@ -43,6 +43,10 @@
 
   .update-profile_form_field {
     margin-bottom: 1.5rem;
+    a {
+      color: $cineH_black;
+      font-size: 0.5rem;
+    }
     .update-profile_form_label {
       font-size: 1.5rem;
       font-family: "Reem Kufi", sans-serif;
@@ -50,9 +54,9 @@
       font-weight: 800;
       color: $cineH_black;
     }
-    input,
-    select {
-      width: 18rem;
+    input {
+      display: block;
+      width: 20rem;
       height: 1.3rem;
       border-radius: 0.7rem;
       border: 0.1rem #c4c4c4 solid;
@@ -61,12 +65,8 @@
       padding: 0.5rem;
       background-color: white;
     }
-    select {
-      width: 19.1rem;
-      height: 2.3rem;
-    }
     textarea {
-      width: 18rem;
+      width: 20rem;
       border-radius: 0.7rem;
       border: 0.1rem #c4c4c4 solid;
       padding: 0.5rem;

@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from movies import models as movie_models
+from videoarts import models as videoart_models
 
 
 class LoggedOutOnlyView(UserPassesTestMixin):
@@ -42,16 +43,28 @@ class MoiveUploadPermissionView(UserPassesTestMixin):
 
 class MovieUpdateDeletePermissionView(UserPassesTestMixin):
     def test_func(self):
-        movie_pk = self.kwargs.get("pk")
-        print(movie_pk)
-        try:
-            movie = movie_models.Movie.objects.get(pk=movie_pk)
-            print(movie.user == self.request.user)
-            return (
-                self.request.user.is_authenticated and movie.user == self.request.user
-            )
-        except movie_models.Movie.DoesNotExist:
-            return False
+        type = self.kwargs.get("type")
+        if type == "movies":
+            movie_pk = self.kwargs.get("pk")
+            try:
+                movie = movie_models.Movie.objects.get(pk=movie_pk)
+                return (
+                    self.request.user.is_authenticated
+                    and movie.user == self.request.user
+                )
+            except movie_models.Movie.DoesNotExist:
+                return False
+        else:
+            videoart_pk = self.kwargs.get("pk")
+            try:
+                videoart = videoart_models.VideoArt.objects.get(pk=videoart_pk)
+                print(videoart.user == self.request.user)
+                return (
+                    self.request.user.is_authenticated
+                    and videoart.user == self.request.user
+                )
+            except videoart_models.VideoArt.DoesNotExist:
+                return False
 
     def handle_no_permission(self):
         return redirect("core:home")

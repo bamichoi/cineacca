@@ -176,7 +176,7 @@ class MovieDetail(DetailView):
         show_reviews = all_reviews[0:10]
         hidden_reviews = all_reviews[11:]
         num_hidden_reviews = len(hidden_reviews)
-
+        print(hidden_reviews)
         context["show_reviews"] = show_reviews
         context["hidden_reviews"] = hidden_reviews
         context["num_hidden_reviews"] = num_hidden_reviews

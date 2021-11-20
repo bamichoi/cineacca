@@ -19,40 +19,20 @@ class VideoArtAdmin(admin.ModelAdmin):
                     "title",
                     "user",
                     "video",
+                    "artist",
                     "duration",
                     "year",
                     "thumbnail",
-                    "poster",
                     "description",
-                )
-            },
-        ),
-        (
-            "Staff info",
-            {
-                "fields": (
-                    "director",
-                    "screenwriter",
-                    "casting",
-                    "editor",
-                    "director_of_photograpy",
-                    "audio_director",
-                    "music",
-                    "art_director",
-                    "costume_designer",
-                    "makeup_artist",
-                    "spacial_effect_supervisor",
-                    "sound_designer",
                 )
             },
         ),
     )
 
-    list_display = ("title", "user", "director", "screenwriter", "rating", "views")
+    list_display = ("title", "user", "artist", "rating", "views")
 
     list_filter = (
         "title",
         "user",
-        "director",
-        "screenwriter",
+        "artist",
     )

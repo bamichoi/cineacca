@@ -100,7 +100,7 @@
 <!--Movie Update/Delete Btn--> 
     {% if movie.user == user %}
         <div class="movie__modify">
-            <a href="{% url 'movies:update' movie.pk %}"><div>
+            <a href="{% url 'movies:update' 'movies' movie.pk %}"><div>
                 <i class="fas fa-edit"></i>&nbsp;&nbsp;Aggiorna</div></a>
             <a href="{% url 'movies:delete' movie.pk %}"><div>
                 <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Elimina</div></a>
@@ -154,7 +154,7 @@
         </ul>
     </div>
 <!--show all reveiw-->
-    {% if num_reviews != 0 and hidden_reviews != 0 %}
+    {% if num_reviews != 0 and  num_hidden_reviews != 0 %}
         <div id="show_all_reviews">
             <button id="show_all_reviews_btn"><i class="far fa-caret-square-down"></i>&nbsp;&nbsp;&nbsp;Vedi anche gli altri &nbsp;{{ num_hidden_reviews }}&nbsp; review...</button>
         </div>
@@ -414,9 +414,7 @@
 
     const handleShowAllReviews = () => {
         allReivewBtn.style.display = "none"; // 태그 달고나서  hidden 안됨..
-        console.log(hiddenReviews)
         for ( const hiddenReview of hiddenReviews ) {
-            console.log(hiddenReview)
             hiddenReview.hidden = false
         }
     }
