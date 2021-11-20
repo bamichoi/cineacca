@@ -4,41 +4,53 @@
         {% csrf_token %}
         <div class="modify_box__user_container">
             <div class="modify_box__user">
-                <a href="{% url 'users:user_profile' movie.user.pk %}">
-                    <div class="user_avatar_medium" 
-                        {% if movie.user.avatar  %} 
-                            style='background-image: url({{movie.user.avatar.url}});'
-                        {% endif %}>
-                    </div>
-                    <div class="modify_box__user_name">
-                        <div class="review_user__firstname">{{review.user.first_name}}</div>
-                        <div class="review_user__lastname">{{review.user.last_name}}</div>
-                    </div>
-                </a>
-                <div>
-                    
-                    <div class="modify_stars_slider">
-                        <div class="modify_score">
-                            <span class="modify_score_text">rating: {{review.rate | unlocalize }}</span>
+                {% if type == "new_review" %}
+                    <a href="{% url 'users:user_profile' user.pk %}">
+                        <div class="user_avatar_medium" 
+                            {% if movie.user.avatar  %} 
+                                style='background-image: url({{user.avatar.url}});'
+                            {% endif %}>
                         </div>
-                        <span class="modify_empty_stars">
-                            ★★★★★
-                            <span class="modify_full_stars">
-                                ★★★★★
-                            </span>
-                            <input type="range" 
-                            name="rate" 
-                            value="{{review.rate | unlocalize }}"
-                            min="0" 
-                            max="5" 
-                            step="0.5"
-                            required class="modify_rate">
-                        </span> 
-                </div>
+                        <div class="modify_box__user_name">
+                            <div class="review_user__firstname">{{user.first_name}}</div>
+                            <div class="review_user__lastname">{{user.last_name}}</div>
+                        </div>
+                    </a>
+                {% else %}
+                    <a href="{% url 'users:user_profile' user.pk %}">
+                        <div class="user_avatar_medium" 
+                            {% if movie.user.avatar  %} 
+                                style='background-image: url({{review.user.avatar.url}});'
+                            {% endif %}>
+                        </div>
+                        <div class="modify_box__user_name">
+                            <div class="review_user__firstname">{{review.user.first_name}}</div>
+                            <div class="review_user__lastname">{{review.user.last_name}}</div>
+                        </div>
+                    </a>
+                {% endif %}
                 
-        
+                    <div>
+                        <div class="modify_stars_slider">
+                            <div class="modify_score">
+                                <span class="modify_score_text">rating: {{review.rate | unlocalize }}</span>
+                            </div>
+                            <span class="modify_empty_stars">
+                                ★★★★★
+                                <span class="modify_full_stars">
+                                    ★★★★★
+                                </span>
+                                <input type="range" 
+                                name="rate" 
+                                value="{{review.rate | unlocalize }}"
+                                min="0" 
+                                max="5" 
+                                step="0.5"
+                                required class="modify_rate">
+                            </span> 
+                    </div>
+                </div>
             </div>
-        </div>
         </div>
         <div class="modify_box__content_container">
             <h1>Modificazione</h1>

@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Film
+    Video Art
 {% endblock page_title %}
 
 {% block content %}
 
     <div id="movie-list_title">
-        <h1>&nbsp;FILM&nbsp;&nbsp;&nbsp;</h1>
+        <h1>&nbsp;VIDEO ART&nbsp;&nbsp;&nbsp;</h1>
     </div>
 
     <p class="menu_description">Trovate dei capolavori stupendi dei nostri studenti</p>
 
     <div class="search_bar">
-        <form method="get" action="{% url 'movies:search' %}">
-            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca dei film con il titolo o il/la regista." />
+        <form method="get" action="{% url 'videoarts:search' %}">
+            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca dei videi con il titolo o un/un' artista." />
             <button>Cerca!</button>
         </form>
     </div>
@@ -25,8 +25,8 @@
     </div>
 
     <div id="movie-list_grid">
-        {% for movie in movies %}
-            {% include "../mixins/movies/movie-card.html" with type="movie" %}
+        {% for videoart in videoarts %}
+            {% include "../mixins/movies/movie-card.html" with type="videoart" %}
         {% endfor %}
         </div>
         {% if sort %} <!-- if else 쓸 필요가 없음. sort 없어면 None으로 나오기 때문에 괜춘아 -->

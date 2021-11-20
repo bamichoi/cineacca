@@ -6,10 +6,14 @@ from reviews import models as review_models
 from . import forms
 from . import models
 from movies import models as movie_models
+from videoarts import models as videoart_models
 
 
-def get_rating(movie):
-    all_reviews = movie.reviews.all()
+def get_rating(video, type):
+    if type == "movie":
+        all_reviews = video.reviews.all()
+    else:
+        all_reviews = video.videoart_reviews.all()
     all_ratings = 0
     if len(all_reviews) > 0:
         for review in all_reviews:
@@ -29,15 +33,24 @@ def create_review(request, pk):
         title = request.POST.get("title")
         rate = request.POST.get("rate")
         content = request.POST.get("content")
-        movie = movie_models.Movie.objects.get(pk=pk)
-        review = models.Review.objects.create(
-            user=user, title=title, rate=rate, content=content, movie=movie
-        )
-        print(review.created)
-        created = review.created.strftime("%d-%B-%Y-%H:%M")
-        print(created)
-        movie.rating = get_rating(movie)
-        movie.save()
+        object_type = request.POST.get("object_type")
+
+        if object_type == "movie":
+            movie = movie_models.Movie.objects.get(pk=pk)
+            review = models.Review.objects.create(
+                user=user, title=title, rate=rate, content=content, movie=movie
+            )
+            created = review.created.strftime("%d-%B-%Y-%H:%M")
+            movie.rating = get_rating(movie, "movie")
+            movie.save()
+        else:
+            videoart = videoart_models.VideoArt.objects.get(pk=pk)
+            review = models.VideoArtReview.objects.create(
+                user=user, title=title, rate=rate, content=content, videoart=videoart
+            )
+            created = review.created.strftime("%d-%B-%Y-%H:%M")
+            videoart.rating = get_rating(videoart, "videoart")
+            videoart.save()
         return JsonResponse(
             {
                 "title": review.title,
@@ -56,18 +69,28 @@ def update_review(request):
         pk = request.POST.get("pk")
         title = request.POST.get("title")
         rate = request.POST.get("rate")
-        print(rate)
         content = request.POST.get("content")
-        review = models.Review.objects.get(
-            pk=pk
-        )  # !) filter 로 하면 왜 에러나지? : 'QuerySet' object has no attribute 'save'
-        review.title = title
-        review.rate = rate
-        review.content = content
-        review.save()
-        movie = review.movie
-        movie.rating = get_rating(movie)
-        movie.save()
+        object_type = request.POST.get("object_type")
+        if object_type == "movie":
+            review = models.Review.objects.get(
+                pk=pk
+            )  # !) filter 로 하면 왜 에러나지? : 'QuerySet' object has no attribute 'save'
+            review.title = title
+            review.rate = rate
+            review.content = content
+            review.save()
+            movie = review.movie
+            movie.rating = get_rating(movie, "movie")
+            movie.save()
+        else:
+            review = models.VideoArtReview.objects.get(pk=pk)
+            review.title = title
+            review.rate = rate
+            review.content = content
+            review.save()
+            videoart = review.videoart
+            videoart.rating = get_rating(videoart, "videoart")
+            videoart.save()
 
     return JsonResponse({"status": "Success"})  # !) 이런식으로 JsonResponse 를 해줘야하는 이유?
 
@@ -75,10 +98,19 @@ def update_review(request):
 def delete_review(request):
     if request.method == "POST":
         pk = request.POST.get("pk")
-        review = models.Review.objects.get(pk=pk)
-        movie = review.movie
-        review.delete()
-        movie.rating = get_rating(movie)
-        movie.save()
+        object_type = request.POST.get("object_type")
+
+        if object_type == "movie":
+            review = models.Review.objects.get(pk=pk)
+            movie = review.movie
+            review.delete()
+            movie.rating = get_rating(movie, "movie")
+            movie.save()
+        else:
+            review = models.VideoArtReview.objects.get(pk=pk)
+            videoart = review.videoart
+            review.delete()
+            videoart.rating = get_rating(videoart, "videoart")
+            videoart.save()
 
     return JsonResponse({"status": "Success"})

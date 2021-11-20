@@ -11,11 +11,7 @@
   },
   "homepage": "https://github.com/bamichoi/cineacca#readme",
   "dependencies": {
-    "@ffmpeg/core": "^0.10.0",
-    "@ffmpeg/ffmpeg": "^0.10.1",
-    "axios": "^0.21.4",
-    "ffmpeg": "0.0.4",
-    "ffprobe": "^1.1.2"
+    "axios": "^0.21.4"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

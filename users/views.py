@@ -73,20 +73,6 @@ class ChangePasswordView(mixins.LoggedInOnlyView, PasswordChangeView):
         return form
 
 
-class StudentProfileView(DetailView):
-
-    """StudentProfile View Definition"""
-
-    model = models.User
-    template_name = "users/student_profile.html"
-    context_object_name = "student"
-
-    def get_queryset(self):
-        return (
-            super().get_queryset().filter(account_type="student")
-        )  # get_quryset 메소드를 orverride 하여 계정타입이 stdunet 인 user들만 가져옴.
-
-
 class StudentListView(ListView):
 
     """StudentList View Definition"""

@@ -26,9 +26,9 @@
             <div id="nav">
                 <nav>
                     <ul>
-                        <a href="{% url 'movies:list' %}""><li><span>Film</span></li></a>
+                        <a href="{% url 'movies:list' %}"><li><span>Film</span></li></a>
+                        <a href="{% url 'videoarts:list' %}"><li><span>VideoArt</span></li></a>
                         <a href="{% url 'users:list' %}"><li><span>Studenti</span></li></a>
-                        <a href="#"><li><span>News</span></li></a>
                         <a href="#"><li><span>Reviews</span></li></a>
                     </ul>
                 </nav>
@@ -45,7 +45,7 @@
                     {% endif %}></div>
                     <a href="{% url 'users:user_profile' user.pk %}"><div class="user-menu__loggedin">Profilo mio</div></a>
                     {% if user.account_type == "student" %}
-                        <a href="{% url 'movies:upload' %}"><div class="user-menu__loggedin" >Carica un film</div></a>
+                        <a href="{% url 'core:upload' %}"><div class="user-menu__loggedin" >Upload</div></a>
                     {% endif %}
                     <a href="{% url 'users:logout' %}"><div class="user-menu__loggedin logout_btn">Logout</div></a>    
                 {% else %}

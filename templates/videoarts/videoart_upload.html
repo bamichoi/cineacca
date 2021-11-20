@@ -1,24 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block page_title %}
-    Aggiornamento del film
+    Caricamento del video
 {% endblock page_title %}
-
 
 {% block content %}
 <div id="upload_wrapper">
     <div id="upload_title">
         <div>
-            <h1>&nbsp;Aggiornamento dell'informazione di film&nbsp;&nbsp;&nbsp;</h1>
+            <h1>&nbsp;Caricamento del video&nbsp;&nbsp;&nbsp;</h1>
         </div>
-        <p class="menu_description">Il modulo per aggiornare un film</p>
+        <p class="menu_description">Complia questo modulo per fare vedere agli altri il tuo video</p> 
     </div>
     <div class="upload_form">
-        <form method="post" enctype="multipart/form-data">
+        <form id="upload_video_form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 {% if form.non_field_errors %}
                     {% for error in form.non_field_errors %}
-                        {% include "../mixins/field_error.html" %}
+                     {% include "../mixins/nonefield_error.html" %}
                     {% endfor %}
                 {% endif %}
             <div class="upload_form__sections">
@@ -30,7 +30,7 @@
                                 {{field}}
                                 {% if field.errors %}
                                 {% for error in field.errors %}
-                                     {% include "../mixins/field_error.html" %}
+                                    {% include "../mixins/field_error.html" %}
                                 {% endfor %}
                                 {% endif %}
                             </div>
@@ -57,12 +57,10 @@
             
                 
                 <div class="upload_submit">
-                    <button>Aggiorna</button>
+                    <button>Carica</button>
                 </div>
         </form> 
     </div>   
 </div>
-<script>
 
-</script>
 {% endblock content %}

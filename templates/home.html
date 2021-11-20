@@ -32,7 +32,7 @@
 
     <div id="new-movies_grid">
         {% for movie in movies %}
-            {% include "./mixins/movies/movie-card.html" %}
+            {% include "./mixins/movies/movie-card.html" with type="movie" %}
         {% endfor %}
     </div>
 </div>

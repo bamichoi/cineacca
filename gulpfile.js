@@ -30,9 +30,14 @@ const js = () => {
   const babel = require("gulp-babel")
   return gulp
     .src("assets/js/*.js")
-    .pipe(babel({
-            presets: ['@babel/preset-env']
-        }))
+    .pipe(
+      bro({
+        transform: [
+          babelify.configure({ presets: ["@babel/preset-env"] }),
+          ["uglifyify", { global: true }]
+        ]
+      })
+    )
     .pipe(gulp.dest('backend/static/js'));
 };
 

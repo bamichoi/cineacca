@@ -6,7 +6,7 @@
 
 {% block content %}
 <div id="movie-list_title">
-    <h1>&nbsp;FILM&nbsp;&nbsp;&nbsp;</h1>
+    <h1>&nbsp;VIDEO ART&nbsp;&nbsp;&nbsp;</h1>
 </div>
 
 <p class="menu_description">Trovate dei capolavori stupendi dei nostri studenti</p>
@@ -24,8 +24,8 @@
 </div>
 
 <div id="movie-list_grid">
-    {% for movie in movies %}
-        {% include "../mixins/movies/movie-card.html" %}
+    {% for videoart in videoarts %}
+        {% include "../mixins/videoarts/videoart-card.html" %}
     {% endfor %}
     </div>
     {% if sort %}

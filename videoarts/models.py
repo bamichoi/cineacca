@@ -6,34 +6,34 @@ from core import models as core_model
 from django.utils.translation import ugettext_lazy as _
 
 
-class Movie(core_model.TimeStampedModel):
+class VideoArt(core_model.TimeStampedModel):
 
-    """Movie Model Definition"""
+    """VideoArt Model Definition"""
 
     """video info field"""
     video = models.FileField(
-        upload_to="movie_files",
+        upload_to="videoart_files",
         null=True,
         blank=True,
     )  # seed 위해 임시로 null=True, Black=True
     thumbnail = models.ImageField(
         _("thumbnail"),
-        upload_to="movie_thumbnails",
+        upload_to="videoart_thumbnails",
         null=True,
         blank=True,  # seed 위해 임시로 null=True, Black=True
     )
     poster = models.ImageField(
         _("locandina"),
-        upload_to="movie_posters",
+        upload_to="videoart_posters",
         null=True,
         blank=True,
     )
     user = models.ForeignKey(
-        "users.user", related_name="movies", on_delete=models.CASCADE
+        "users.user", related_name="videoarts", on_delete=models.CASCADE
     )
     duration = models.CharField(null=True, blank=True, max_length=300)
     title = models.CharField(_("titolo"), max_length=300)
-    description = models.TextField(_("sinossi"), max_length=1000)
+    description = models.TextField(_("descrizione"), max_length=1000)
     year = models.IntegerField(
         _("anno"), validators=[MinValueValidator(1900)], null=True
     )

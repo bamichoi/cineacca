@@ -24,14 +24,15 @@ Development in progress
 
 ## TO DO LIST 
 
-### 최우선 순위 업무 
+### 최우선 순위 
 
 - [x] Detail: hide reviews and show more review 
 - [x] signup : password validators
 - [x] email : Css varification email 
 - [x] upload : default poster
+- [x] videoArt : create new model
 - [ ] check max-length of all field
-- [ ] upload : ffmpeg,  duration,
+- [ ] upload : Get the duration of video
 - [ ] models : Check blank, null and required 
 - [ ] 404 page
 

@@ -18,91 +18,46 @@ from reviews import forms as review_form
 from . import models
 from . import forms
 from users import mixins as user_mixins
-import subprocess
-import json
 
-# Create your views here.
+import videoarts
 
 
-class HomeView(ListView):
+class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
 
-    """HomeView Definition"""
+    """VideoartUpload View Definition"""
 
-    model = models.Movie
-    paginate_by = 6
-    ordering = "-created"
-    context_object_name = "movies"
-    template_name = "home.html"
-
-
-class MovieUpload(user_mixins.MoiveUploadPermissionView, FormView):
-
-    """MovieUpload View Definition"""
-
-    form_class = forms.MovieUploadForm
-    template_name = "movies/movie_upload.html"
+    form_class = forms.VideoArtUploadForm
+    template_name = "videoarts/videoart_upload.html"
 
     def form_valid(self, form):
-        movie = form.save()
-        movie.user = self.request.user
+        videoart = form.save()
+        videoart.user = self.request.user
         # ffprobe command 로 duration 얻기
+        videoart.save()
+        return redirect(reverse("videoarts:detail", kwargs={"pk": videoart.pk}))
 
-        movie.save()
-        return redirect(reverse("movies:detail", kwargs={"pk": movie.pk}))
 
+class UpdateVideoArt(user_mixins.MovieUpdateDeletePermissionView, UpdateView):
 
-class UpdateMovie(user_mixins.MovieUpdateDeletePermissionView, UpdateView):
+    """UpdateVideoArt View Deifinitiom"""
 
-    """UpdateMovie View Deifinitiom"""
-
-    template_name = "movies/movie_update.html"
-    model = models.Movie
-    form_class = forms.MovieUpdateForm
+    template_name = "videoarts/videoart_update.html"
+    model = models.VideoArt
+    form_class = forms.VideoArtUpdateForm
 
     def get_success_url(self):
         pk = self.kwargs.get("pk")
-        return reverse("movies:detail", kwargs={"pk": pk})
+        return reverse("videoarts:detail", kwargs={"pk": pk})
 
 
-""" class DeleteMovie(user_mixins.MovieUpdateDeletePermissionView, DeleteView):
+class VideoArtList(ListView):
 
-    model = models.Movie
-    template_name = "movies/movie_delete.html"
-    success_url = reverse_lazy("movies:list")"""
+    """VideoArtList Definition"""
 
-
-@login_required(login_url="/users/login/")
-def delete_movie(request, pk):
-    movie = models.Movie.objects.get(pk=pk)
-    user = request.user
-
-    if user == movie.user:
-
-        if request.method == "POST":
-            form = forms.DeleteMovieForm(
-                request.user, request.POST
-            )  # !) request.POST 넣어줘야하는 이유..?
-
-            if form.is_valid():
-                movie.delete()
-                return redirect(reverse("core:home"))
-        else:
-            form = forms.DeleteMovieForm(request.user)
-
-        return render(request, "movies/movie_delete.html", {"form": form})
-
-    else:
-        return redirect("movies:list")
-
-
-class MovieList(ListView):
-
-    """MovieList Definition"""
-
-    model = models.Movie
+    model = models.VideoArt
     paginate_by = 15
-    context_object_name = "movies"
-    template_name = "movies/movie_list.html"
+    context_object_name = "videoarts"
+    template_name = "videoarts/videoarts_list.html"
 
     def get_ordering(self):
         ordering = super().get_ordering()
@@ -162,16 +117,16 @@ class MovieList(ListView):
         return context
 
 
-class MovieDetail(DetailView):
+class VideoArtDetail(DetailView):
 
-    """MovieDetail Definition"""
+    """VideoArtDetail Definition"""
 
-    model = models.Movie
+    model = models.VideoArt
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        movie = self.get_object()
-        all_reviews = movie.reviews.all()
+        videoart = self.get_object()
+        all_reviews = videoart.videoart_reviews.all()
         num_reviews = len(all_reviews)
         show_reviews = all_reviews[0:10]
         hidden_reviews = all_reviews[11:]
@@ -184,6 +139,30 @@ class MovieDetail(DetailView):
         return context
 
 
+@login_required(login_url="/users/login/")
+def delete_videoart(request, pk):
+    videoarts = models.VideoArt.objects.get(pk=pk)
+    user = request.user
+
+    if user == videoarts.user:
+
+        if request.method == "POST":
+            form = forms.DeleteVideoArtForm(
+                request.user, request.POST
+            )  # !) request.POST 넣어줘야하는 이유..?
+
+            if form.is_valid():
+                videoarts.delete()
+                return redirect(reverse("core:home"))
+        else:
+            form = forms.DeleteVideoArtForm(request.user)
+
+        return render(request, "videoarts/videoart_delete.html", {"form": form})
+
+    else:
+        return redirect("videoarts:list")
+
+
 class SearchView(View):
     """SearchView Definition"""
 
@@ -194,9 +173,8 @@ class SearchView(View):
 
         if keyword:  # keyword 값이 비어있지 않다면
 
-            result_qs = models.Movie.objects.filter(
+            result_qs = models.VideoArt.objects.filter(
                 Q(title__contains=keyword)
-                | Q(director__contains=keyword)
                 | Q(user__last_name__contains=keyword)
                 | Q(user__first_name__contains=keyword)
             ).order_by(
@@ -216,7 +194,7 @@ class SearchView(View):
             paginator = Paginator(result_qs, page_numbers_range)
             page = self.request.GET.get("page", 1)
             max_index = paginator.num_pages
-            movies = paginator.get_page(page)
+            videoarts = paginator.get_page(page)
 
             if page:
                 current_page = int(page)
@@ -235,9 +213,9 @@ class SearchView(View):
 
             return render(
                 request,
-                "movies/movie_search.html",
+                "videoarts/videoart_search.html",
                 {
-                    "movies": movies,
+                    "videoarts": videoarts,
                     "keyword": keyword,
                     "page_range": page_range,
                     "start_index": start_index,
@@ -250,7 +228,7 @@ class SearchView(View):
         else:
             return render(
                 request,
-                "movies/movie_search.html",
+                "videoarts/videoart_search.html",
                 {"start_index": 0},
             )
 
@@ -258,9 +236,9 @@ class SearchView(View):
 def count_view(request, pk):
     if request.method == "POST":
         try:
-            movie = models.Movie.objects.get(pk=pk)
-            movie.views += 1
-            movie.save()
+            videoarts = models.VideoArt.objects.get(pk=pk)
+            videoarts.views += 1
+            videoarts.save()
             return JsonResponse({"status": "Success"})
-        except models.Movie.DoesNotExist:
+        except models.VideoArt.DoesNotExist:
             return redirect("core:home")

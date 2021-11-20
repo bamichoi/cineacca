@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Upload
+{% endblock page_title %}
+
+
+{% block content %}
+
+<div id="upload_select__wrapper">
+    <div id="upload_select__title">
+        <div>
+            <h1>&nbsp;UPLOAD&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <p class="menu_description">Scegli il tipo del lavoro che vuoi caricare. </p>    
+    </div>
+   
+    <div id="upload_select__type">
+        <a href="{% url 'movies:upload' %}"><div><i class="fas fa-film"></i> &nbsp;Film</div></a>
+        <a href="{% url 'videoarts:upload' %}"><div><i class="far fa-file-video"></i> &nbsp;Video Art</div></a>
+    </div>
+</div>
+
+
+
+{% endblock content%}

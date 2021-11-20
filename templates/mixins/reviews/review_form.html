@@ -1,5 +1,11 @@
 {% load l10n %}
-<form id="review_form" method="POST" action="{% url 'reviews:create' movie.pk %}">
+<form id="review_form" method="POST" 
+{% if type == "movie" %}
+action="{% url 'reviews:create' movie.pk %}"
+{% else %}
+action="{% url 'reviews:create' videoart.pk %}"
+{% endif %}
+>
     {% csrf_token %}
     <div class="review_rating_label">
         <span>Rating</span>

@@ -1,19 +1,39 @@
 {% load l10n %}
-<a class="card_link" href="{% url 'movies:detail' movie.pk %}">
-   <div class="movie-card">
-        <div class="movie-card_thumbnail" style="background-image: url({{movie.thumbnail.url}});"></div>
-        <div class="movie-card_info">
-            <span class="info_title">{{ movie.formatted.title }}</span>
-            <span class="info_user">dir. {{ movie.director }}</span>
-            <div>
-                <span>{{ movie.year }}</span>
-                <span>30 min</span>
-                <span><i class="fas fa-star"></i>&nbsp;{{ movie.rating | unlocalize }}</span>
-                <span>{% if movie.views <= 1 %} 
-                        {{ movie.views }} visto 
-                    {% else %} 
-                        {{ movie.views }} visti {% endif %} </span>
+{% if type == "movie" %}
+    <a class="card_link" href="{% url 'movies:detail' movie.pk %}">
+    <div class="movie-card">
+            <div class="movie-card_thumbnail" style="background-image: url({{movie.thumbnail.url}});"></div>
+            <div class="movie-card_info">
+                <span class="info_title">{{ movie.formatted.title }}</span>
+                <span class="info_user">dir. {{ movie.director }}</span>
+                <div>
+                    <span>{{ movie.year }}</span>
+                    <span>30 min</span>
+                    <span class="info_rating"><i class="fas fa-star"></i>&nbsp;{{ movie.rating | unlocalize }}</span>
+                    <span>{% if movie.views <= 1 %} 
+                            {{ movie.views }} visto 
+                        {% else %} 
+                            {{ movie.views }} visti {% endif %} </span>
+                </div>
             </div>
         </div>
-    </div>
-</a>
+    </a>
+{% else %}
+    <a class="card_link" href="{% url 'videoarts:detail' videoart.pk %}">
+        <div class="movie-card">
+                <div class="movie-card_thumbnail" style="background-image: url({{videoart.thumbnail.url}});"></div>
+                <div class="movie-card_info">
+                    <span class="info_title">{{  videoart.formatted.title }}</span>
+                    <span class="info_user">dir. {{ videoart.director }}</span>
+                    <div>
+                        <span>{{ videoart.year }}</span>
+                        <span class="info_rating"><i class="fas fa-star"></i>&nbsp;{{ videoart.rating | unlocalize }}</span>
+                        <span>{% if videoart.views <= 1 %} 
+                                {{ videoart.views }} visto 
+                            {% else %} 
+                                {{ videoart.views }} visti {% endif %} </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+{% endif %}

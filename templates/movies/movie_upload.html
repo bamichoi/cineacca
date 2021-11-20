@@ -2,19 +2,19 @@
 {% load static %}
 
 {% block page_title %}
-    Caricamento del video
+    Caricamento del film
 {% endblock page_title %}
 
 {% block content %}
 <div id="upload_wrapper">
     <div id="upload_title">
         <div>
-            <h1>&nbsp;Caricamento del video&nbsp;&nbsp;&nbsp;</h1>
+            <h1>&nbsp;Caricamento del film&nbsp;&nbsp;&nbsp;</h1>
         </div>
-        <p class="menu_description">Complia questo modulo per fare vedere il tuo video</p> 
+        <p class="menu_description">Complia questo modulo per fare vedere agli altri il tuo film</p> 
     </div>
     <div class="upload_form">
-        <form method="post" enctype="multipart/form-data">
+        <form id="upload_video_form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 {% if form.non_field_errors %}
                     {% for error in form.non_field_errors %}
@@ -63,5 +63,4 @@
     </div>   
 </div>
 
-<script src="{% static 'js/uploadVideo.js' %}"></script>
 {% endblock content %}

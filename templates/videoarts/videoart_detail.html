@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block page_title %}
-    {{movie.title}}
+    {{videoart.title}}
 {% endblock page_title %}
 
 
@@ -11,66 +11,66 @@
 <div id="detail_wrapper">
 
 
-<!--Movie Title-->
+<!--videoart Title-->
     <div id="detail_title_container"> 
         <div class="detail_title nowShowing">
 
             <div>
-                <h1>Now Showing. . .&nbsp;</h1>
+                <h1>Now Playing. . .&nbsp;</h1>
              </div>
         </div>
 
         <div class="detail_title movieTitle">
-            <h1>  {{movie.title}}</h1>
+            <h1>  {{videoart.title}}</h1>
         </div>
 
         <div class="detail_title dir">
-            <h1>dir. {{movie.director}},&nbsp;&nbsp;&nbsp;&nbsp;{{movie.year}}</h1>
+            <h1>dir. {{videoart.director}},&nbsp;&nbsp;&nbsp;&nbsp;{{videoart.year}}</h1>
         </div>
 
         <div class="detail_title metadata">
-            <h1><i class="fas fa-star"></i>&nbsp;{{movie.rating | unlocalize}}&nbsp;&nbsp;&nbsp; 
-                {% if movie.views <= 1 %} 
-                {{ movie.views }} visto 
+            <h1><i class="fas fa-star"></i>&nbsp;{{videoart.rating | unlocalize}}&nbsp;&nbsp;&nbsp; 
+                {% if videoart.views <= 1 %} 
+                {{ videoart.views }} visto 
                 {% else %} 
-                {{ movie.views }}&nbsp;&nbsp;visti {% endif %}</h1>
+                {{ videoart.views }}&nbsp;&nbsp;visti {% endif %}</h1>
         </div>
 
     </div>
     
-<!--Movie Screen-->   
+<!--videoart Screen-->   
     <video id="videoPlayer" 
                class="video-js">
-               <source src='{{ movie.video.url }}' type="video/mp4"></source>
-<!--Movie Description--> 
+               <source src='{{ videoart.video.url }}' type="video/mp4"></source>
+<!--videoart Description--> 
     </video> 
     <div class="detail_description">
         <div class="description__title">
-            <h1>Sinossi</h1>
+            <h1>Descrizione</h1>
         </div>  
         <div class="description__content">
-            <p>{{movie.description}}</p>
+            <p>{{videoart.description}}</p>
         </div>
-        <a href="{% url 'users:user_profile' movie.user.pk %}">
+        <a href="{% url 'users:user_profile' videoart.user.pk %}">
         <div class="description__user">
                 <div class="user_avatar_small" 
-                    {% if movie.user.avatar  %} 
-                        style='background-image: url({{movie.user.avatar.url}});'
+                    {% if videoart.user.avatar  %} 
+                        style='background-image: url({{videoart.user.avatar.url}});'
                     {% endif %}>
                 </div>
                 <div class="descriptrion__user__name">
-                    <div>un film distribuito da&nbsp;&nbsp;</div>
-                    <div>{{movie.user}}</div>
+                    <div>un video distribuito da&nbsp;&nbsp;</div>
+                    <div>{{videoart.user}}</div>
                 </div>
                     
             </div>
         </a>
     </div>
-<!--Movie Information--> 
+<!--videoart Information--> 
     <div class="detail_movieInfo">
         <div class="info__moviePoster">
-            {% if movie.poster %}
-                <img class="moviePoster_md"src="{{movie.poster.url}}" />
+            {% if videoart.poster %}
+                <img class="moviePoster_md"src="{{videoart.poster.url}}" />
             {% else %}
                 <div class="moviePoster_md default_poster">
                     <span>Questo film non ha una locandina.</span>
@@ -78,31 +78,31 @@
             {% endif %}
         </div>
         <div class="info__staff">
-            <h1>{{movie.title}}&nbsp;({{movie.year}})</h1>
+            <h1>{{videoart.title}}&nbsp;({{videoart.year}})</h1>
             <ul>
-                <li><span>regia:</span> {{movie.director}} </li>
-                <li><span>sceneggiatura:</span> {{movie.screenwriter}} </li>
-                <li><span>auttori:</span> {{movie.casting}}</li>
-                <li><span>montaggio:</span> {{movie.editor}}</li>
-                <li><span>fotografia:</span> {{movie.director_of_photograpy}}</li>
-                <li><span>audio:</span> {{movie.audio_director}}</li>
-                <li><span>musica:</span> {{movie.music}}</li>
-                <li><span>scenografia:</span> {{movie.art_director}}</li>
-                <li><span>costume:</span> {{movie.costume_designer}}</li>
-                <li><span>makeup artist:</span> {{movie.makeup_artist}}</li>
-                <li><span>vfx:</span> : {{movie.spacial_effect_supervisor}}</li>
-                <li><span>sound_designer:</span> {{movie.sound_designer}}</li>
+                <li><span>regia:</span> {{videoart.director}} </li>
+                <li><span>sceneggiatura:</span> {{videoart.screenwriter}} </li>
+                <li><span>auttori:</span> {{videoart.casting}}</li>
+                <li><span>montaggio:</span> {{videoart.editor}}</li>
+                <li><span>fotografia:</span> {{videoart.director_of_photograpy}}</li>
+                <li><span>audio:</span> {{videoart.audio_director}}</li>
+                <li><span>musica:</span> {{videoart.music}}</li>
+                <li><span>scenografia:</span> {{videoart.art_director}}</li>
+                <li><span>costume:</span> {{videoart.costume_designer}}</li>
+                <li><span>makeup artist:</span> {{videoart.makeup_artist}}</li>
+                <li><span>vfx:</span> : {{videoart.spacial_effect_supervisor}}</li>
+                <li><span>sound_designer:</span> {{videoart.sound_designer}}</li>
             </ul>
         </div>
         
     </div>
 
-<!--Movie Update/Delete Btn--> 
-    {% if movie.user == user %}
+<!--videoart Update/Delete Btn--> 
+    {% if videoart.user == user %}
         <div class="movie__modify">
-            <a href="{% url 'movies:update' movie.pk %}"><div>
+            <a href="{% url 'videoarts:update' videoart.pk %}"><div>
                 <i class="fas fa-edit"></i>&nbsp;&nbsp;Aggiorna</div></a>
-            <a href="{% url 'movies:delete' movie.pk %}"><div>
+            <a href="{% url 'videoarts:delete' videoart.pk %}"><div>
                 <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Elimina</div></a>
         </div>
 
@@ -113,7 +113,7 @@
         
         {% if user.is_authenticated %}
             {% if user.email_verified %}
-                    {% include "../mixins/reviews/review_form.html" with type="movie" %}
+                    {% include "../mixins/reviews/review_form.html" with type="videoart" %}
             {% else %}
                 <div class="text_verified_only">🔒Fai la verificazione dell'account per scrivere un review.&nbsp;&nbsp;
                     <a href="{% url 'users:user_profile' user.pk %}">profilo mio<i class="fas fa-sign-in-alt"></i></a></div>
@@ -140,7 +140,7 @@
             <li id="{{review.pk}}" class="review">
                 {% include "../mixins/reviews/review_box.html" %}
 <!--Review modify-->
-                {% include "../mixins/reviews/modify_form.html"  %}
+                {% include "../mixins/reviews/modify_form.html" %}
             </li>
             {% endfor %}
 <!--Review List hidden the others-->
@@ -148,7 +148,7 @@
             <li id="{{review.pk}}" class="review hidden_review" hidden>
                 {% include "../mixins/reviews/review_box.html" %}
 <!--Review modify-->
-                {% include "../mixins/reviews/modify_form.html"  %}
+                {% include "../mixins/reviews/modify_form.html" %}
             </li>
             {% endfor %}
         </ul>
@@ -178,7 +178,7 @@
         const reviewTitle = titleInput.value;
         const reviewRate = rateInput.value;
         const reviewContent = contentInput.value;
-        const object_type = "movie"
+        const object_type = "videoart"
 
         titleInput.value = "";
         rateInput.value = "";
@@ -191,16 +191,20 @@
         data.append("content", reviewContent);
         data.append("object_type", object_type);
         data.append("csrfmiddlewaretoken", '{{csrf_token}}');
-        axios.post("/api/{{ movie.pk }}/review/create/", data)
+        axios.post("/api/{{ videoart.pk }}/review/create/", data)
             .then(res => {
                 const pk = res.data.pk;
                 const title = res.data.title;
                 const rate = res.data.rate;
                 const content = res.data.content;
+                const firstName = res.data.firstName;
+                const lastName = res.data.lastName;
                 const created =  res.data.created;
               
                 const reviewsUl = document.getElementById("reviews");
                 const newReview = reviewsUl.querySelector(".new_review");
+                const userFirstname = newReview.querySelector(".review_user__firstname");
+                const userLastname = newReview.querySelector(".review_user__lastname");
                 const newReviewTitle = newReview.querySelector(".review_title");
                 const newReviewRate = newReview.querySelector(".review_rate");
                 const newReviewContent = newReview.querySelector(".review_content");
@@ -215,8 +219,11 @@
                 const modifyRate = modifyForm.querySelector(".modify_rate");
                 const modifyScore = modifyForm.querySelector(".modify_score");
                 const modifyContent = modifyForm.querySelector(".modify_content");
-
- 
+                const modiUserFirstname = modifyForm.querySelector(".review_user__firstname");
+                const modiUserLastname = modifyForm.querySelector(".review_user__lastname");
+                
+                userFirstname.innerText = firstName;
+                userLastname.innerText = lastName;
                 newReviewTitle.innerText = `${title}`;
                 newReviewRate.innerText =  rate.includes(".") ? `"${rate}"` : `"${rate}.0"`
                 newReviewContent.innerText = `${content}`;
@@ -225,7 +232,8 @@
                 deleteBtn.setAttribute("value", `${pk}`);
                 newReviewDate.innerText = `${created}` 
 
-             
+                modiUserFirstname.innerText = firstName;
+                modiUserLastname.innerText = lastName;
                 modifyScore.innerText = rate.includes(".") ? `rating: "${rate}"` : `rating: "${rate}.0"`
                 modifyTitle.setAttribute("value", `${title}`);
                 modifyRate.setAttribute("value", `${rate}`);
@@ -300,7 +308,7 @@
             const updateTitle = titleInput.value;
             const updateRate = rateInput.value;
             const updateContent = contentInput.value;
-            const object_type = "movie";
+            const object_type = "videoart";
 
             let data = new FormData(); 
             
@@ -342,7 +350,7 @@
         const deleteBtn = event.target;
         const pk = deleteBtn.value;
         const review = document.getElementById(`${pk}`);
-        const object_type = "movie"
+        const object_type = "videoart"
         if (confirm("Vuoi veramente eliminare questo review?")) {
             review.hidden = true;
 
@@ -384,7 +392,7 @@
     data = new FormData()
 
     data.append("csrfmiddlewaretoken", '{{csrf_token}}');
-    axios.post("{% url 'movies:count_view' movie.pk %}", data)
+    axios.post("{% url 'videoarts:count_view' videoart.pk %}", data)
     .then(res => { return })
     .catch(errors => console.log(errors.response.data));
 </script>

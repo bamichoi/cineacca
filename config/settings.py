@@ -14,6 +14,7 @@ from pathlib import Path
 
 from django.conf.global_settings import STATIC_ROOT
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +45,7 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     "users.apps.UsersConfig",
     "movies.apps.MoviesConfig",
+    "videoarts.apps.VideoartsConfig",
     "reviews.apps.ReviewsConfig",
 ]
 
