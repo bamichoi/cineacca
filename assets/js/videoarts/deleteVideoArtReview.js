@@ -1,8 +1,6 @@
 import axios from "axios";
 
 const deleteBtns = document.getElementsByClassName("delete");
-const reviewForm = document.getElementById("review_form");
-const csrftoken = reviewForm.csrfmiddlewaretoken.value
 
 function handleClickDelete(event){
     event.preventDefault();
@@ -17,7 +15,9 @@ function handleClickDelete(event){
 
         data.append("pk", pk);
         data.append("object_type", object_type);
-        data.append("csrfmiddlewaretoken", csrftoken); // !) 리뷰폼의 token을 넣어주는게 맞는지 모르겠다..
+
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+        axios.defaults.xsrfCookieName = "csrftoken";
 
         axios.post("/api/review/delete/", data)
         .then(res => alert("Il review è emliminato!"))

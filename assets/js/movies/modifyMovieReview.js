@@ -58,7 +58,6 @@ const cancelBtns = document.getElementsByClassName("cancel");
             const updateRate = rateInput.value;
             const updateContent = contentInput.value;
             const object_type = "movie";
-            const csrftoken = modifyForm.csrfmiddlewaretoken.value
 
             let data = new FormData(); 
             
@@ -74,7 +73,9 @@ const cancelBtns = document.getElementsByClassName("cancel");
             data.append("rate", updateRate);
             data.append("content", updateContent);
             data.append("object_type", object_type);
-            data.append("csrfmiddlewaretoken", csrftoken);
+            
+            axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+            axios.defaults.xsrfCookieName = "csrftoken";
     
             axios.post("/api/review/update/", data)
             .then(res => alert("Il review è modificato."))

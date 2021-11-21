@@ -1,9 +1,13 @@
 import axios from "axios"
 
-
 const reviewContainer = document.querySelector(".reviewForm_container");
 const moviePk = reviewContainer.dataset.pk
 
-axios.get(`/api/movies/${moviePk}/view`)
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+axios.defaults.xsrfCookieName = "csrftoken";
+
+let data = new FormData();
+ 
+axios.post(`/api/movies/${moviePk}/view/`, data)
 .then(res => { return })
 .catch(errors => console.log(errors.response.data));

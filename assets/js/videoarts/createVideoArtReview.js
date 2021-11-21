@@ -3,7 +3,6 @@ import axios from "axios";
 const reviewForm = document.getElementById("review_form");
 const reviewContainer = document.querySelector(".reviewForm_container");
 const videoArtPk = reviewContainer.dataset.pk
-const csrftoken = reviewForm.csrfmiddlewaretoken.value
 
 function handelSubmitReview(event) {
     event.preventDefault();
@@ -29,7 +28,10 @@ function handelSubmitReview(event) {
     data.append("rate", reviewRate);
     data.append("content", reviewContent);
     data.append("object_type", object_type);
-    data.append("csrfmiddlewaretoken", csrftoken);
+
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+    axios.defaults.xsrfCookieName = "csrftoken";
+
     axios.post(`/api/${videoArtPk}/review/create/`, data)
         .then(res => {
             const pk = res.data.pk;

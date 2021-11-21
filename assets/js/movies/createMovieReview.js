@@ -3,7 +3,7 @@ import axios from "axios";
 const reviewForm = document.getElementById("review_form");
 const reviewContainer = document.querySelector(".reviewForm_container");
 const moviePk = reviewContainer.dataset.pk
-const csrftoken = reviewForm.csrfmiddlewaretoken.value
+
 
     function handelSubmitReview(event) {
         event.preventDefault();
@@ -12,6 +12,7 @@ const csrftoken = reviewForm.csrfmiddlewaretoken.value
         const stars = reviewForm.querySelector(".full_stars");
         const score = reviewForm.querySelector("#score");
         const contentInput = reviewForm.querySelector("#review_content");
+
         let data = new FormData(); // !) const가 아니라 let 이어야하는 이유?
 
         const reviewTitle = titleInput.value;
@@ -25,11 +26,17 @@ const csrftoken = reviewForm.csrfmiddlewaretoken.value
         stars.style.width = 0;
         score.innerText = '"0.0"'
 
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+        axios.defaults.xsrfCookieName = "csrftoken";
+
         data.append("title", reviewTitle);
         data.append("rate", reviewRate);
         data.append("content", reviewContent);
-        data.append("object_type", object_type);
-        data.append("csrfmiddlewaretoken", csrftoken);    
+        data.append("object_type", object_type);  
+        
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+        axios.defaults.xsrfCookieName = "csrftoken";
+        
         axios.post(`/api/${moviePk}/review/create/`, data)
             .then(res => {
                 const pk = res.data.pk;

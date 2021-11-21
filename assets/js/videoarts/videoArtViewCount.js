@@ -1,8 +1,13 @@
 import axios from "axios"
 
- const reviewContainer = document.querySelector(".reviewForm_container");
- const videoArtPk = reviewContainer.dataset.pk
+const reviewContainer = document.querySelector(".reviewForm_container");
+const videoArtPk = reviewContainer.dataset.pk
 
- axios.get(`/api/movies/${videoArtPk}/view`)
- .then(res => { return })
- .catch(errors => console.log(errors.response.data));
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+axios.defaults.xsrfCookieName = "csrftoken";
+
+let data = new FormData();
+ 
+axios.post(`/api/videoarts/${videoArtPk}/view/`, data)
+.then(res => { return })
+.catch(errors => console.log(errors.response.data));
