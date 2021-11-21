@@ -40,7 +40,7 @@ class VideoArtReview(core_model.TimeStampedModel):
         "videoarts.videoart", related_name="videoart_reviews", on_delete=models.CASCADE
     )
     title = models.CharField(_("titolo"), max_length=300)
-    content = models.TextField(_("testo"), max_length=1000)
+    content = models.TextField(_("testo"))
     rate = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
     )

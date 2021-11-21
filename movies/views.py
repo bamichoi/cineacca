@@ -248,11 +248,7 @@ class SearchView(View):
                 },
             )
         else:
-            return render(
-                request,
-                "movies/movie_search.html",
-                {"start_index": 0},
-            )
+            return render(request, "movies/movie_list.html")
 
 
 def count_view(request, pk):

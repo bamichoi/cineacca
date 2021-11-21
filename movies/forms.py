@@ -29,6 +29,7 @@ class MovieUploadForm(forms.ModelForm):
             "sound_designer",
         )
         widgets = {
+            "video": forms.FileInput(attrs={"accept": "video/mp4"}),
             "title": forms.TextInput(attrs={"placeholder": "Il titolo del film"}),
             "year": forms.TextInput(
                 attrs={"placeholder": "l'anno in cui il film è uscito"}
@@ -74,7 +75,7 @@ class MovieUpdateForm(forms.ModelForm):
             "sound_designer",
         )
         widgets = {
-            "video": CustomClearableFileInput,
+            "video": CustomClearableFileInput(attrs={"accept": "video/mp4"}),
             "poster": CustomClearableFileInput,
             "thumnail": CustomClearableFileInput,
         }

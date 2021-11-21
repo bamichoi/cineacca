@@ -14,7 +14,7 @@
 
     <div class="search_bar">
         <form method="get" action="{% url 'videoarts:search' %}">
-            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca dei videi con il titolo o un/un' artista." />
+            <input {% if keyword %} value="{{keyword}}"{% endif %} required name="keyword" type="text" placeholder="Cerca dei videi con il titolo o un/un' artista." />
             <button>Cerca!</button>
         </form>
     </div>

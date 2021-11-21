@@ -56,7 +56,7 @@ class AbstractItem(core_models.TimeStampedModel):
 
 class Work(AbstractItem):
 
-    """Amenity Model Definition"""
+    """Work Model Definition"""
 
 
 class User(AbstractUser):
@@ -82,8 +82,12 @@ class User(AbstractUser):
     REQUIRED_FIELDS = (
         []
     )  # AbsractUser에는 email이 Required로 잡혀있으나 USERNAME_FIELD로 사용되는 필드는 REQUIRED에 있으면 안된다.
-    school = models.CharField(_("appartenuto a"), max_length=50, null=True, blank=True)
-    avatar = models.ImageField(upload_to="user_avatars", default="user_avatars/0.jpeg")
+    school = models.CharField(
+        _("appartenuto a"), max_length=100, null=True, blank=False
+    )
+    avatar = models.ImageField(
+        upload_to="user_avatars", default="user_avatars/default_avatar.jpeg"
+    )
     biography = models.TextField(_("biografia"), null=True, blank=True)
     account_type = models.CharField(
         _("tipo d'account"),
@@ -97,7 +101,7 @@ class User(AbstractUser):
     works = models.ManyToManyField(
         "Work",
         related_name="users",
-        blank=True,
+        blank=False,
     )
 
     objects = CustomUserManager()

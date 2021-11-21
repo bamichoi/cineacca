@@ -13,7 +13,7 @@
 
 <div class="search_bar">
     <form method="get" action="{% url 'movies:search' %}">
-        <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" placeholder="Cerca dei film con il titolo o il/la regista." />
+        <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" required placeholder="Cerca dei film con il titolo o il/la regista." />
         <button>Cerca!</button>
     </form>
 </div>
@@ -25,7 +25,7 @@
 
 <div id="movie-list_grid">
     {% for movie in movies %}
-        {% include "../mixins/movies/movie-card.html" %}
+        {% include "../mixins/movies/movie-card.html" with type="movie" %}
     {% endfor %}
     </div>
     {% if sort %}

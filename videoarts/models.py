@@ -14,23 +14,25 @@ class VideoArt(core_model.TimeStampedModel):
     video = models.FileField(
         upload_to="videoart_files",
         null=True,
-        blank=True,
+        blank=False,
     )  # seed 위해 임시로 null=True, Black=True
     thumbnail = models.ImageField(
         _("thumbnail"),
         upload_to="videoart_thumbnails",
         null=True,
-        blank=True,  # seed 위해 임시로 null=True, Black=True
+        blank=False,  # seed 위해 임시로 null=True, Black=True
     )
     user = models.ForeignKey(
         "users.user", related_name="videoarts", on_delete=models.CASCADE
     )
-    duration = models.CharField(null=True, blank=True, max_length=300)
-    title = models.CharField(_("titolo"), max_length=300)
-    artist = models.CharField(_("artista"), max_length=300, null=True, blank=True)
+    title = models.CharField(_("titolo"), max_length=300, blank=False)
+    artist = models.CharField(_("artista"), max_length=300, null=True, blank=False)
     description = models.TextField(_("descrizione"), max_length=1000)
     year = models.IntegerField(
-        _("anno"), validators=[MinValueValidator(1900)], null=True
+        _("anno"),
+        validators=[MinValueValidator(1900), MaxValueValidator(2022)],
+        null=True,
+        blank=False,
     )
     views = models.IntegerField(default=0)
     rating = models.FloatField(default=0.0)

@@ -6,14 +6,14 @@
 이탈리아 영화 아카데미 학생들의 단편 영화를 스트리밍하는 서비스.  
 A service that streams short films from students of the Italian Academy of Film Arts.
 
-## 개발 도구 Development Languages and Tools
+## 개발 도구 Development languages and tools
 
-Python with Django Framework and HTML, CSS, JavaScript
+Python with Django Framework, HTML, SCSS and JavaScript
 
-## 개발 기간 Development Period
+## 개발 기간 Period of development
 
 2021년 7월 31일 - 
-31 July 2020 -
+31 July 2021 -
 
 
 ## 현재 상태 Current State
@@ -31,11 +31,12 @@ Development in progress
 - [x] email : CSS varification email 
 - [x] upload : the default poster
 - [x] videoArt : create the new model
-- [ ] check required and max-length ecc of all input field
+- [x] 404 page
+- [x] check required and max-length ecc of all input field
+- [x] models : Check max-length blank and null ecc
 - [ ] upload : Get the duration of video
-- [ ] models : Check max-length blank, null and required ecc
 - [ ] Divide static files
-- [ ] 404 page
+
 
 
 

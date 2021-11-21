@@ -18,6 +18,7 @@ class VideoArtUploadForm(forms.ModelForm):
             "description",
         )
         widgets = {
+            "video": forms.FileInput(attrs={"accept": "video/mp4"}),
             "title": forms.TextInput(attrs={"placeholder": "Il titolo del video"}),
             "year": forms.TextInput(
                 attrs={"placeholder": "l'anno in cui il video è uscito"}
@@ -26,7 +27,6 @@ class VideoArtUploadForm(forms.ModelForm):
             "description": forms.Textarea(
                 attrs={"placeholder": "una descrizione del video "}
             ),
-            # charfield + choices 의 select field는 어떻게 placeholder를 달까. 아마도 accademia 모델이 하나 있어야할듯.
         }
 
     def save(self, *args, **kwargs):
@@ -46,7 +46,9 @@ class VideoArtUpdateForm(forms.ModelForm):
             "description",
         )
         widgets = {
-            "video": movie_forms.CustomClearableFileInput,
+            "video": movie_forms.CustomClearableFileInput(
+                attrs={"accept": "video/mp4"}
+            ),
             "thumnail": movie_forms.CustomClearableFileInput,
         }
 
