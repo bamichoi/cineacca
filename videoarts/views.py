@@ -234,7 +234,7 @@ class SearchView(View):
 
 
 def count_view(request, pk):
-    if request.method == "POST":
+    if request.method == "GET":
         try:
             videoarts = models.VideoArt.objects.get(pk=pk)
             videoarts.views += 1

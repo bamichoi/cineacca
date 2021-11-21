@@ -29,7 +29,7 @@ const js = () => {
   const babelify = require("babelify")
   const babel = require("gulp-babel")
   return gulp
-    .src("assets/js/*.js")
+    .src("assets/js/*/*.js")
     .pipe(
       bro({
         transform: [
@@ -44,7 +44,7 @@ const js = () => {
 const watch = () => {
   gulp.watch(["assets/scss/*", "assets/scss/*/*", "assets/scss/*/*/*" ], css)
   gulp.watch(["assets/scss/email/*"], email)
-  gulp.watch(["assets/js/*"], js)
+  gulp.watch(["assets/js/*/*.js"], js)
 }
 
 

@@ -24,7 +24,7 @@ Development in progress
 
 ## TO DO LIST 
 
-### 최우선 순위 
+### 배포 전 끝내야 할 것들
 
 - [x] Detail: hide reviews and show more reviews
 - [x] signup : password validators
@@ -34,10 +34,11 @@ Development in progress
 - [x] 404 page
 - [x] check required and max-length ecc of all input field
 - [x] models : Check max-length blank and null ecc
+- [x] Divide static files
 - [ ] upload : Get the duration of video
-- [ ] Divide static files
 
 
+- [ ] sinossi, review, biografia : textarea white-space problem.
 
 
 ### Base
