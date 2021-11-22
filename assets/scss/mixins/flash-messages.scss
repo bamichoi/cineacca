@@ -1,0 +1,56 @@
+.flash-message {
+  width: fit-content;
+  padding: 0.8rem 2rem;
+  position: absolute;
+  box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+  animation: flash 3s forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  span {
+    font-family: "Reem Kufi", sans-serif;
+    font-size: 1.2rem;
+  }
+}
+
+.info {
+  background-color: black;
+  color: white;
+}
+
+.success {
+  background-color: #27ae60;
+  color: white;
+}
+
+@keyframes flash {
+  0% {
+    right: 10.6rem;
+    top: -10rem;
+  }
+
+  20% {
+    right: 10.6rem;
+    top: 9.5rem; //13.7
+  }
+
+  50% {
+    right: 10.6rem;
+    top: 9.5rem;
+  }
+  70% {
+    right: 10.6rem;
+    top: -10rem;
+  }
+
+  90% {
+    right: 10.6rem;
+    top: -10rem;
+  }
+
+  100% {
+    right: 10.6rem;
+    top: -10rem;
+  }
+}

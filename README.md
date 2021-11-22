@@ -35,9 +35,10 @@ Development in progress
 - [x] check required and max-length ecc of all input field
 - [x] models : Check max-length blank and null ecc
 - [x] Divide static files
+- [x] email : Create the veification success page -> flash message
 - [ ] upload : Get the duration of video
-
-
+- [ ] profile : show collection movie and show my namecard
+- [ ] Interctive action of today movie
 - [ ] sinossi, review, biografia : textarea white-space problem.
 
 
@@ -47,36 +48,31 @@ Development in progress
   
 ### Home
 
-- [ ] 슬라이딩 메뉴 만들기
 - [ ] 창 줄이고 늘일때 핸들링
-- [ ] best review
-- [ ] news
 - [ ] the playground of cineasti indipendenti
 
 ### About
 
-- [ ] 신설(추후)
+- [ ] 신설
   
 ### Festival
-- [ ] 신설(추후)
+- [ ] 신설
 
 ### Reviews
 - [ ] 신설
   
 ### News
 
-- [ ] 공지사항 게시판
+- [ ] 신설
 
 ### MovieTalk
 
-- [ ] 무비토크 게시판(추후)
+- [ ] 신설
 
 ### Signup
 
 
 ### Email 
-
-- [ ] 인증성공 페이지 만들기*
 
  
 ### Detail
@@ -89,19 +85,19 @@ Development in progress
 
 ### VideoPlayer - video.js
 
-- [ ] 스킨 커스터마이징*
-- [ ] 자막기능(추후)
-- [ ] 포인터 이동시 썸네일, 시간정보 표시(추후)
-- [ ] 지속적 기능개선(추후)
+- [ ] 스킨 커스터마이징***
+- [ ] 자막기능
+- [ ] 포인터 이동시 썸네일, 시간정보 표시
+- [ ] 지속적 기능개선
 
 ### Upload Movie 
    
-- [ ] locandina 미리보기 적용(추후)
+- [ ] locandina 미리보기 적용
 
 ### Update Movie
 
 - [x] 업로드된 파일명 길때 폼 찌그러듦 해결 (임시해결 추후보강)
-- [ ] locandina 미리보기 적용(추후)
+- [ ] locandina 미리보기 적용
 
 ### Delete Movie
 
@@ -110,20 +106,17 @@ Development in progress
 
 ### Movie List
 
-- [ ] 없는 페이지 넘버 억지로 입력할때 404
-
 ### Movie Search
 
 ### Student List
 
-- [ ] 네임카드 배경 커스터마이징
+- [ ] 네임카드 배경 커스터마이징***
 - [ ] 노출되는 역할 갯수 핸들링
 - [ ] 학교이름으로 필터링 제공
 
 
 ### Student Search
 
-- [ ] 키워드 없을때 처리
 - [ ] 소속으로 검색 제공
 
 
@@ -134,14 +127,9 @@ Development in progress
 
 ### Profile - Student/Pubblic
 
-- [ ] 내 student card 보기*
-- [ ] user가 업로드한 영화 전부보기*
-  
 - [ ] 디자인개선
 - [ ] 필모그래피화
 - [ ] 좋아하는 영화 추가
-
-
 
 ### Update profile
 
@@ -158,13 +146,11 @@ Development in progress
 
 -[ ] 동의 체크박스 에러메세지 아래로 내리기
 
-
-
 ### 기타
 
-- [ ] update thumbnail 필드 custom widget 적용안됨
+- [ ] update thumbnail 필드 custom widget 적용안됨***
 - [ ] movie/videoarts 공유하고 있는 부분 이름 video로 교체
 - [ ] CSS 중복제거
 - [ ] partials
 - [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
-- [ ] subtitle 문구 개선
+- [ ] sub-title 문구 개선

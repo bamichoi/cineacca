@@ -1,0 +1,10 @@
+{% if message.tags == "info" %}
+    <div class="flash-message info">
+        <span>{{ message }}</span>
+    </div>
+
+{% elif message.tags == "success" %}
+    <div class="flash-message success">
+        <span>{{ message }}</span>
+    </div>
+{% endif %}

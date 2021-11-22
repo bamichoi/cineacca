@@ -22,6 +22,7 @@ from django.views.generic import (
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
+from django.contrib import messages
 from . import models, forms, mixins
 
 # Create your views here.
@@ -234,6 +235,7 @@ class LoginView(mixins.LoggedOutOnlyView, FormView):
         )  # login 인증 부분
         if user is not None:
             login(self.request, user)  # login 시키기
+            messages.info(self.request, f"Ciao, {user.first_name}!")
         return super().form_valid(form)  # 최종적으로 form_valid 가 유효하다면 succes_url로 넘겨주기
 
     def get_success_url(self):  # mixin 활용을 위해 success_url 대신 get_success_url 작성.
@@ -246,7 +248,8 @@ class LoginView(mixins.LoggedOutOnlyView, FormView):
 
 def log_out(request):  # logout은 fbv로만 가능.
     logout(request)
-    return redirect(reverse("core:home"))
+    messages.info(request, f"Bye, See you!")
+    return redirect(reverse("users:login"))
 
 
 def sign_up(request):
@@ -303,7 +306,7 @@ def user_verified(request, key):
         user.email_verified = True
         user.email_secret = ""
         user.save()
-        # 성공메세지
+        messages.success(request, f"Il tuo account è verificato!")
     except models.User.DoesNotExist:
         # 에러메세지
         pass

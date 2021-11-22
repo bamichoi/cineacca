@@ -37,7 +37,7 @@ class HomeView(ListView):
 
 class MovieUpload(user_mixins.MoiveUploadPermissionView, FormView):
 
-    """MovieUpload View Definition"""
+    """MovieUpload View"""
 
     form_class = forms.MovieUploadForm
     template_name = "movies/movie_upload.html"
@@ -45,8 +45,6 @@ class MovieUpload(user_mixins.MoiveUploadPermissionView, FormView):
     def form_valid(self, form):
         movie = form.save()
         movie.user = self.request.user
-        # ffprobe command 로 duration 얻기
-
         movie.save()
         return redirect(reverse("movies:detail", kwargs={"pk": movie.pk}))
 

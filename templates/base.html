@@ -13,6 +13,11 @@
     <title>{% block page_title %} {% endblock page_title %}  |  CINEACCA   </title>
 </head>
 <body>
+    {% if messages %}
+    {% for message in messages %}
+        {% include "mixins/flash-messages.html" %}
+    {% endfor %}
+    {% endif %} 
     <div id="wrapper">
         <header>
             <div id="header_title">

@@ -16,8 +16,11 @@
 // mixins/users
 @import "./mixins/users/student-card.scss";
 
-// mixins/errors
+// mixins:errors
 @import "./mixins/errors.scss";
+
+// mixins:flash-mesages
+@import "./mixins/flash-messages.scss";
 
 // movies
 @import "./movies/movie_list.scss";
