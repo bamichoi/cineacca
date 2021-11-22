@@ -14,6 +14,7 @@ class MovieUploadForm(forms.ModelForm):
             "thumbnail",
             "title",
             "year",
+            "team",
             "description",
             "director",
             "screenwriter",
@@ -31,6 +32,7 @@ class MovieUploadForm(forms.ModelForm):
         widgets = {
             "video": forms.FileInput(attrs={"accept": "video/mp4"}),
             "title": forms.TextInput(attrs={"placeholder": "Il titolo del film"}),
+            "team": forms.TextInput(attrs={"placeholder": "Il nome della truppe"}),
             "year": forms.TextInput(
                 attrs={"placeholder": "l'anno in cui il film è uscito"}
             ),
@@ -60,6 +62,7 @@ class MovieUpdateForm(forms.ModelForm):
             "thumbnail",
             "title",
             "year",
+            "team",
             "description",
             "director",
             "screenwriter",

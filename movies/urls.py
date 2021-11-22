@@ -16,4 +16,5 @@ urlpatterns = [
     ),
     path("movies/<int:pk>/delete/", movie_views.delete_movie, name="delete"),
     path("api/movies/<int:pk>/view/", movie_views.count_view, name="count_view"),
+    path("api/movies/<int:pk>/fav/", movie_views.switch_fav_view, name="fav"),
 ]

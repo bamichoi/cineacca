@@ -43,6 +43,7 @@ class Movie(core_model.TimeStampedModel):
     views = models.IntegerField(default=0)
 
     """staff info field"""
+    team = models.CharField(_("truppe"), max_length=300, null=True, blank=True)
     director = models.CharField(_("regia"), max_length=300, null=True, blank=False)
     screenwriter = models.CharField(_("sceneggiatura"), max_length=300, blank=True)
     casting = models.CharField(_("attori"), max_length=300, blank=True)
@@ -60,6 +61,7 @@ class Movie(core_model.TimeStampedModel):
     )
     sound_designer = models.CharField(_("sound"), max_length=300, blank=True)
     rating = models.FloatField(default=0.0)
+    fav = models.ManyToManyField("users.user", related_name="fav_movies")
 
     def __str__(self):
         return self.title

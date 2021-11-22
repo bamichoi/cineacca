@@ -51,8 +51,13 @@
   .metadata {
     color: $cineH_white;
     font-weight: 300;
-    i {
+    display: flex;
+    align-items: center;
+    .fa-star {
       color: #fac81a;
+    }
+    .fa-heart {
+      color: #ca5b4c;
     }
   }
 }
@@ -104,55 +109,110 @@
 }
 
 .detail_movieInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0.2rem 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
   margin-top: 1rem;
-  display: flex;
-  width: 100%;
-  justify-content: flex-start;
-  align-items: center;
   border: 0.1rem solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   padding: 2rem;
   color: $cineH_black;
   background-color: $cineH_white;
   margin-bottom: 1rem;
+  .movieInfo__row {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
 
-  .info__moviePoster {
-    padding-right: 3rem;
-    border-right: dotted 0.3rem rgba(0, 0, 0, 0.1);
-    .moviePoster_md {
-      width: 18rem;
-      height: 24rem;
-    }
-    .default_poster {
-      background-color: #ecf0f1;
+    .info__moviePoster {
+      padding: 2rem 0rem;
+      padding-right: 3rem;
+      height: 100%;
+      border-right: dotted 0.3rem rgba(0, 0, 0, 0.1);
       display: flex;
-      justify-content: center;
       align-items: center;
-      span {
-        color: white;
+      justify-content: center;
+      .moviePoster_md {
+        width: 18rem;
+        height: 24rem;
+      }
+      .default_poster {
+        background-color: #ecf0f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          color: white;
+          font-family: "Reem Kufi", sans-serif;
+        }
+      }
+    }
+    .info__staff {
+      padding-left: 3rem;
+      font-size: 1.5rem;
+      width: 100%;
+      min-height: 25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      h1 {
+        margin-bottom: 1rem;
+        font-weight: 600;
         font-family: "Reem Kufi", sans-serif;
+      }
+      ul {
+        li {
+          margin-bottom: 0.2rem;
+          font-size: 1rem;
+          margin-bottom: 0.7rem;
+          span {
+            font-family: "Reem Kufi", sans-serif;
+            font-size: 1rem;
+            white-space: pre-wrap;
+          }
+        }
+        .team {
+          margin-bottom: 1rem;
+          span {
+            font-size: 0.7rem;
+          }
+          .team_name {
+            font-size: 1rem;
+          }
+        }
       }
     }
   }
-  .info__staff {
-    padding-left: 3rem;
-    font-size: 1.5rem;
+  .movieInfo__row:nth-child(2) {
+    margin-top: 1rem;
     width: 100%;
-    h1 {
-      margin-bottom: 1rem;
-      font-weight: 600;
-      font-family: "Reem Kufi", sans-serif;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .movie_like_it,
+    .copy_link {
+      button {
+        font-size: 1.3rem;
+        font-family: "Reem Kufi", sans-serif;
+        color: $cineH_black;
+        display: flex;
+        align-items: center;
+        background-color: $cineH_white;
+        border: none;
+        cursor: pointer;
+      }
+      i {
+        font-size: 1.2rem;
+        color: #ca5b4c;
+      }
     }
-    ul {
-      li {
-        margin-bottom: 0.2rem;
-        font-size: 1rem;
-        margin-bottom: 0.7rem;
-        span {
-          font-family: "Reem Kufi", sans-serif;
-          font-size: 1rem;
-        }
+    .copy_link {
+      margin-left: 1rem;
+      i {
+        color: grey;
       }
     }
   }

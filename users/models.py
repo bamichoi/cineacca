@@ -103,7 +103,6 @@ class User(AbstractUser):
         related_name="users",
         blank=False,
     )
-
     objects = CustomUserManager()
 
     def save(self, *args, **kwargs):

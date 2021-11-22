@@ -36,7 +36,7 @@ Development in progress
 - [x] models : Check max-length blank and null ecc
 - [x] Divide static files
 - [x] email : Create the veification success page -> flash message
-- [ ] upload : Get the duration of video
+- [ ] upload : Get the duration of video, add team name
 - [ ] profile : show collection movie and show my namecard
 - [ ] Interctive action of today movie
 - [ ] sinossi, review, biografia : textarea white-space problem.

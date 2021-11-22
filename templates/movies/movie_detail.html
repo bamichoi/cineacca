@@ -25,11 +25,15 @@
         </div>
 
         <div class="detail_title dir">
-            <h1>dir. {{movie.director}},&nbsp;&nbsp;&nbsp;&nbsp;{{movie.year}}</h1>
+            <h1>dir.&nbsp;{{movie.director}},&nbsp;&nbsp;&nbsp;&nbsp;{{movie.year}}
+                {% if movie.team %},&nbsp;&nbsp;&nbsp;&nbsp;{{movie.team}}{% endif %}
+            </h1>
+            
         </div>
 
         <div class="detail_title metadata">
-            <h1><i class="fas fa-star"></i>&nbsp;{{movie.rating | unlocalize}}&nbsp;&nbsp;&nbsp; 
+            <h1><i class="fas fa-star"></i>&nbsp;{{movie.rating | unlocalize}}&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="fas fa-heart"></i>&nbsp;{{num_fav_users}}&nbsp;&nbsp;&nbsp;&nbsp;
                 {% if movie.views <= 1 %} 
                 {{ movie.views }} visto 
                 {% else %} 
@@ -68,33 +72,51 @@
     </div>
 <!--Movie Information--> 
     <div class="detail_movieInfo">
-        <div class="info__moviePoster">
-            {% if movie.poster %}
-                <img class="moviePoster_md"src="{{movie.poster.url}}" />
+        <div class="movieInfo__row">
+            <div class="info__moviePoster">
+                {% if movie.poster %}
+                    <img class="moviePoster_md"src="{{movie.poster.url}}" />
+                {% else %}
+                    <div class="moviePoster_md default_poster">
+                        <span>Questo film non ha una locandina.</span>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="info__staff">
+                <h1>{{movie.title}}&nbsp;({{movie.year}})</h1>
+                <ul>
+                    {% if movie.team %} <li class="team"><span>prodotto da</span><span class="team_name">&nbsp;{{movie.team}}</span></li>{% endif %}
+                    <li><span>regia:</span> {{movie.director}} </li> 
+                    {% if movie.screenwriter %}<li><span>sceneggiatura:</span> {{movie.screenwriter}} </li>{% endif %}
+                    {% if movie.casting %}<li><span>attori:</span> {{movie.casting}}</li>{% endif %}
+                    {% if movie.editor %}<li><span>montaggio:</span> {{movie.editor}}</li>{% endif %}
+                    {% if movie.director_of_photograpy %}<li><span>fotografia:</span> {{movie.director_of_photograpy}}</li>{% endif %}
+                    {% if movie.audio_director %}<li><span>audio:</span> {{movie.audio_director}}</li>{% endif %}
+                    {% if movie.music %}<li><span>musica:</span> {{movie.music}}</li>{% endif %}
+                    {% if movie.art_director %}<li><span>scenografia:</span> {{movie.art_director}}</li>{% endif %}
+                    {% if movie.costume_designer %}<li><span>costume:</span> {{movie.costume_designer}}</li>{% endif %}
+                    {% if movie.makeup_artist %}<li><span>makeup artist:</span> {{movie.makeup_artist}}</li>{% endif %}
+                    {% if movie.spacial_effect_supervisor %}<li><span>vfx:</span> : {{movie.spacial_effect_supervisor}}</li>{% endif %}
+                    {% if movie.sound_designer %}<li><span>sound_designer:</span> {{movie.sound_designer}}</li>{% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="movieInfo__row">
+        {% if user.is_authenticated %}
+            {% if fav_exists %}
+                    <div class="movie_like_it" data-state="filled">
+                        <button class="movie_like_it_btn"><i class="fas fa-heart"></i>&nbsp;&nbsp;mi piace</span></button> 
+                    </div>
             {% else %}
-                <div class="moviePoster_md default_poster">
-                    <span>Questo film non ha una locandina.</span>
-                </div>
-            {% endif %}
+                    <div class="movie_like_it" data-state="empty">
+                        <button class="movie_like_it_btn"><i class="far fa-heart"></i>&nbsp;&nbsp;mi piace</span></button> 
+                    </div>
+            {% endif  %}
+        {% endif %}
+                    <div class="copy_link">
+                        <button class="copy_link_btn"><i class="fas fa-link"></i>&nbsp;&nbsp;copia URL</button>
+                    </div>
         </div>
-        <div class="info__staff">
-            <h1>{{movie.title}}&nbsp;({{movie.year}})</h1>
-            <ul>
-                <li><span>regia:</span> {{movie.director}} </li>
-                <li><span>sceneggiatura:</span> {{movie.screenwriter}} </li>
-                <li><span>auttori:</span> {{movie.casting}}</li>
-                <li><span>montaggio:</span> {{movie.editor}}</li>
-                <li><span>fotografia:</span> {{movie.director_of_photograpy}}</li>
-                <li><span>audio:</span> {{movie.audio_director}}</li>
-                <li><span>musica:</span> {{movie.music}}</li>
-                <li><span>scenografia:</span> {{movie.art_director}}</li>
-                <li><span>costume:</span> {{movie.costume_designer}}</li>
-                <li><span>makeup artist:</span> {{movie.makeup_artist}}</li>
-                <li><span>vfx:</span> : {{movie.spacial_effect_supervisor}}</li>
-                <li><span>sound_designer:</span> {{movie.sound_designer}}</li>
-            </ul>
-        </div>
-        
     </div>
 
 <!--Movie Update/Delete Btn--> 
@@ -168,5 +190,7 @@
 <script src="{% static 'js/movies/movieViewCount.js' %}"></script>
 <script src="{% static 'js/movies/ratingStars.js' %}"></script>
 <script src="{% static 'js/movies/hideAndShowReview.js' %}"></script>
+<script src="{% static 'js/movies/switchFavMovie.js' %}"></script>
+<script src="{% static 'js/movies/copyUrl.js' %}"></script>
 {% endblock content %}
 
