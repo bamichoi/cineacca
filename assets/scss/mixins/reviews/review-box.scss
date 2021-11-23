@@ -100,6 +100,28 @@
       }
     }
   }
+  .review_box__btn_container {
+    display: flex;
+    justify-content: space-between;
+    .review_like_it_btn {
+      margin-right: 0.5rem;
+      border: none;
+      background-color: $cineH_white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      i {
+        color: #ca5b4c;
+        font-size: 1.2rem;
+        margin-right: 0.2rem;
+      }
+      span {
+        font-family: "Reem Kufi", sans-serif;
+        color: $cineH_black;
+        font-size: 1rem;
+      }
+    }
+  }
 }
 .user_avatar_medium {
   width: 3.2rem;

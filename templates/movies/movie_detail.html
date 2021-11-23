@@ -105,16 +105,16 @@
         {% if user.is_authenticated %}
             {% if fav_exists %}
                     <div class="movie_like_it" data-state="filled">
-                        <button class="movie_like_it_btn"><i class="fas fa-heart"></i>&nbsp;&nbsp;mi piace</span></button> 
+                        <button class="movie_like_it_btn"><i class="fas fa-heart"></i><span>&nbsp;&nbsp;mi piace</span></button> 
                     </div>
             {% else %}
                     <div class="movie_like_it" data-state="empty">
-                        <button class="movie_like_it_btn"><i class="far fa-heart"></i>&nbsp;&nbsp;mi piace</span></button> 
+                        <button class="movie_like_it_btn"><i class="far fa-heart"></i><span>&nbsp;&nbsp;mi piace</span></button> 
                     </div>
             {% endif  %}
         {% endif %}
                     <div class="copy_link">
-                        <button class="copy_link_btn"><i class="fas fa-link"></i>&nbsp;&nbsp;condividi</button>
+                        <button class="copy_link_btn"><i class="fas fa-link"></i><span>&nbsp;&nbsp;condividi</span></button>
                     </div>
         </div>
     </div>
@@ -154,7 +154,7 @@
             {% if user.is_authenticated %}
                 {% if user.email_verified %}
             <li class="new_review" hidden="true">
-                {% include "../mixins/reviews/review_box.html" with type="new_review" %}
+                {% include "../mixins/reviews/review_box.html" with type="new_review" obj_type="movie" %}
 <!--New review modify-->
                 {% include "../mixins/reviews/modify_form.html" with type="new_review" %}
             </li>
@@ -164,7 +164,7 @@
             {% for review in show_reviews %}
 
             <li id="{{review.pk}}" class="review">
-                {% include "../mixins/reviews/review_box.html" %}
+                {% include "../mixins/reviews/review_box.html" with obj_type="movie" %}
 <!--Review modify-->
                 {% include "../mixins/reviews/modify_form.html"  %}
             </li>
@@ -172,7 +172,7 @@
 <!--Review List hidden the others-->
            {% for review in hidden_reviews %}
             <li id="{{review.pk}}" class="review hidden_review" hidden>
-                {% include "../mixins/reviews/review_box.html" %}
+                {% include "../mixins/reviews/review_box.html" with obj_type="movie" %}
 <!--Review modify-->
                 {% include "../mixins/reviews/modify_form.html"  %}
             </li>
@@ -196,5 +196,6 @@
 <script src="{% static 'js/movies/hideAndShowReview.js' %}"></script>
 <script src="{% static 'js/movies/switchFavMovie.js' %}"></script>
 <script src="{% static 'js/movies/copyUrl.js' %}"></script>
+<script src="{% static 'js/reviews/switchFavReview.js' %}"></script>
 {% endblock content %}
 

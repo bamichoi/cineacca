@@ -18,7 +18,7 @@
                 {%else%}
                     <a href="{% url 'users:user_profile' review.user.pk %}">
                         <div class="user_avatar_medium" 
-                            {% if user.avatar  %} 
+                            {% if review.user.avatar  %} 
                                 style='background-image: url({{review.user.avatar.url}});'
                             {% endif %}>
                         </div>
@@ -42,11 +42,41 @@
         <div class="review_title">{{review.title}}</div>
         <div class="review_content">{{review.content}}</div>
 
-        
-        <div class="review_btns" {% if user == review.user %} style="display:flex" {% else%} style="display:none" {% endif %}>
-            <button class="delete" value="{{review.pk}}"><i class="fas fa-trash-alt"></i>&nbsp;elimina</button>
-            <button class="modify" value="{{review.pk}}"><i class="fas fa-edit"></i>&nbsp;modifica</button>
+        <div class="review_box__btn_container">
+            <div class="review_btns" {% if user == review.user %} style="display:flex" {% else%} style="display:none" {% endif %}>
+                <button class="delete" value="{{review.pk}}"><i class="fas fa-trash-alt"></i>&nbsp;elimina</button>
+                <button class="modify" value="{{review.pk}}"><i class="fas fa-edit"></i>&nbsp;modifica</button>
+            </div>
+
+            {% if user.is_authenticated %}
+                {% if review in fav_reviews %}
+                    <div class="review_like_it" 
+                    data-pk={{review.pk}}
+                    data-state="filled"
+                    {% if obj_type == "movie" %}
+                        data-obj="movie"
+                    {% else %}
+                        data-obj="videoart"
+                    {% endif %}
+                    >
+                        <button class="review_like_it_btn"><i class="fas fa-heart"></i><span>{{review.count_fav_users}}</span></button> 
+                    </div>
+                {% else %}
+                    <div class="review_like_it" 
+                    data-pk={{review.pk}}
+                    data-state="empty"
+                    {% if obj_type == "movie" %}
+                        data-obj="movie"
+                    {% else %}
+                        data-obj="videoart"
+                    {% endif %}
+                    >
+                        <button class="review_like_it_btn"><i class="far fa-heart"></i><span>{{review.count_fav_users}}</span></button> 
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
+        
 
 
     </div>

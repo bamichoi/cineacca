@@ -21,9 +21,15 @@ class Review(core_model.TimeStampedModel):
     rate = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
     )
+    fav = models.ManyToManyField("users.user", related_name="fav_reviews")
 
     def __str__(self):
         return f"{self.title} - {self.movie}"
+
+    def count_fav_users(self):
+        fav_users = self.fav.all()
+        num_fav_users = len(fav_users)
+        return num_fav_users
 
     class Meta:
         ordering = ("-created",)
@@ -44,9 +50,16 @@ class VideoArtReview(core_model.TimeStampedModel):
     rate = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
     )
+    fav = models.ManyToManyField("users.user", related_name="fav_videoart_reviews")
 
     def __str__(self):
         return f"{self.title} - {self.videoart}"
+
+    def count_fav_users(self):
+        fav_users = self.fav.all()
+        num_fav_users = len(fav_users)
+
+        return num_fav_users
 
     class Meta:
         ordering = ("-created",)

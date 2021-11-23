@@ -114,3 +114,31 @@ def delete_review(request):
             videoart.save()
 
     return JsonResponse({"status": "Success"})
+
+
+def switch_fav_view(request, pk):
+    if request.method == "POST":
+        handleType = request.POST.get("handleType")
+        objType = request.POST.get("objType")
+        user = request.user
+        if objType == "movie":
+            review = models.Review.objects.get(pk=pk)
+        else:
+            review = models.VideoArtReview.objects.get(pk=pk)
+
+        if handleType == "add":
+            try:
+                review.fav.add(user)
+                review.save()
+                num_fav_users = review.count_fav_users()
+                return JsonResponse({"result": "added", "numFavUsers": num_fav_users})
+            except:
+                return redirect("core:home")
+        else:
+            try:
+                review.fav.remove(user)
+                review.save()
+                num_fav_users = review.count_fav_users()
+                return JsonResponse({"result": "removed", "numFavUsers": num_fav_users})
+            except:
+                return redirect("core:home")
