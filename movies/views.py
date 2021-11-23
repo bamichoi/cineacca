@@ -170,7 +170,6 @@ class MovieDetail(DetailView):
         context = super().get_context_data(**kwargs)
         movie = self.get_object()
         user = self.request.user
-        fav_movies = user.fav_movies.all()
         all_reviews = movie.reviews.all()
         num_reviews = len(all_reviews)
         show_reviews = all_reviews[0:10]
@@ -178,17 +177,20 @@ class MovieDetail(DetailView):
         num_hidden_reviews = len(hidden_reviews)
         num_fav_users = len(movie.fav.all())
 
-        if movie in fav_movies:
-            fav_exists = True
-        else:
-            fav_exists = False
+        try:
+            fav_movies = user.fav_movies.all()
+            if movie in fav_movies:
+                fav_exists = True
+            else:
+                fav_exists = False
+            context["fav_exists"] = fav_exists
+        except AttributeError:
+            pass
 
-        print(fav_exists)
         context["show_reviews"] = show_reviews
         context["hidden_reviews"] = hidden_reviews
         context["num_hidden_reviews"] = num_hidden_reviews
         context["num_reviews"] = num_reviews
-        context["fav_exists"] = fav_exists
         context["num_fav_users"] = num_fav_users
 
         return context
@@ -199,14 +201,10 @@ def switch_fav_view(request, pk):
         handleType = request.POST.get("handleType")  # type은 예약어.
         user = request.user
         movie = models.Movie.objects.get(pk=pk)
-        print(handleType)
-        print(user)
-        print(movie)
         if handleType == "add":
             try:
                 movie.fav.add(user)
                 movie.save()
-                print(movie.fav.all())
                 return JsonResponse({"result": "added"})
             except models.Movie.DoesNotExist:
                 return redirect("core:home")
@@ -214,7 +212,6 @@ def switch_fav_view(request, pk):
             try:
                 movie.fav.remove(user)
                 movie.save()
-                print(movie.fav.all())
                 return JsonResponse({"result": "removed"})
             except models.Movie.DoesNotExist:
                 return redirect("core:home")

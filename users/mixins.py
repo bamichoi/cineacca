@@ -43,8 +43,41 @@ class MoiveUploadPermissionView(UserPassesTestMixin):
 
 class MovieUpdateDeletePermissionView(UserPassesTestMixin):
     def test_func(self):
-        type = self.kwargs.get("type")
-        if type == "movies":
+        movie_pk = self.kwargs.get("pk")
+        try:
+            movie = movie_models.Movie.objects.get(pk=movie_pk)
+            return (
+                self.request.user.is_authenticated and movie.user == self.request.user
+            )
+        except movie_models.Movie.DoesNotExist:
+            return False
+
+    def handle_no_permission(self):
+        return redirect("core:home")
+
+
+class VideoArtUpdateDeletePermissionView(UserPassesTestMixin):
+    def test_func(self):
+        videoart_pk = self.kwargs.get("pk")
+        try:
+            videoart = videoart_models.VideoArt.objects.get(pk=videoart_pk)
+            return (
+                self.request.user.is_authenticated
+                and videoart.user == self.request.user
+            )
+        except videoart_models.VideoArt.DoesNotExist:
+            return False
+
+    def handle_no_permission(self):
+        return redirect("core:home")
+
+
+""" !) Mixin을 공유하기 위해 url 에서 videoart/movie 를 str prameter 값으로 이용해서 분기를 해주었지만 링크된 url을 잃어버림..
+class MovieUpdateDeletePermissionView(UserPassesTestMixin):
+    def test_func(self):
+        obj_type = self.kwargs.get("obj_type")
+
+        if obj_type == "movies":
             movie_pk = self.kwargs.get("pk")
             try:
                 movie = movie_models.Movie.objects.get(pk=movie_pk)
@@ -58,7 +91,6 @@ class MovieUpdateDeletePermissionView(UserPassesTestMixin):
             videoart_pk = self.kwargs.get("pk")
             try:
                 videoart = videoart_models.VideoArt.objects.get(pk=videoart_pk)
-                print(videoart.user == self.request.user)
                 return (
                     self.request.user.is_authenticated
                     and videoart.user == self.request.user
@@ -68,3 +100,4 @@ class MovieUpdateDeletePermissionView(UserPassesTestMixin):
 
     def handle_no_permission(self):
         return redirect("core:home")
+"""

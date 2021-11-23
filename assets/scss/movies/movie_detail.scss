@@ -70,6 +70,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   .description__title {
     margin-bottom: 1.5rem;
     h1 {
@@ -94,7 +95,7 @@
     width: 100%;
     align-items: flex-end;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-size: 0.8rem;
 
     .descriptrion__user__name {
@@ -117,6 +118,7 @@
   border: 0.1rem solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   padding: 2rem;
+  padding-bottom: 1.5rem;
   color: $cineH_black;
   background-color: $cineH_white;
   margin-bottom: 1rem;
@@ -137,6 +139,10 @@
       .moviePoster_md {
         width: 18rem;
         height: 24rem;
+      }
+      .videoartThumbnail {
+        width: 28rem;
+        height: 18rem;
       }
       .default_poster {
         background-color: #ecf0f1;
@@ -185,7 +191,18 @@
         }
       }
     }
+    // videoart에서 info__staff
+    .videoarts_card {
+      min-height: 20rem;
+      .videoart_card__description {
+        margin-top: 1rem;
+        span {
+          font-family: "Noto Sans Hanunoo", sans-serif;
+        }
+      }
+    }
   }
+
   .movieInfo__row:nth-child(2) {
     margin-top: 1rem;
     width: 100%;
@@ -209,12 +226,28 @@
         color: #ca5b4c;
       }
     }
+    .movie_like_it {
+      .fas {
+        animation: heartbeat 0.5s ease-in-out infinite alternate;
+      }
+    }
     .copy_link {
       margin-left: 1rem;
       i {
         color: grey;
+        animation: none;
       }
     }
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scaleX(100%) scaleY(100%);
+  }
+  100% {
+    transform: scaleX(125%) scaleY(125%);
+    color: #e74c3c;
   }
 }
 

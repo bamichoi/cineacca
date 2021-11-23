@@ -71,7 +71,7 @@
         </a>
     </div>
 <!--Movie Information--> 
-    <div class="detail_movieInfo">
+    <div class="detail_movieInfo" data-obj="movie">
         <div class="movieInfo__row">
             <div class="info__moviePoster">
                 {% if movie.poster %}
@@ -114,7 +114,7 @@
             {% endif  %}
         {% endif %}
                     <div class="copy_link">
-                        <button class="copy_link_btn"><i class="fas fa-link"></i>&nbsp;&nbsp;copia URL</button>
+                        <button class="copy_link_btn"><i class="fas fa-link"></i>&nbsp;&nbsp;condividi</button>
                     </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
 <!--Movie Update/Delete Btn--> 
     {% if movie.user == user %}
         <div class="movie__modify">
-            <a href="{% url 'movies:update' 'movies' movie.pk %}"><div>
+            <a href="{% url 'movies:update' movie.pk %}"><div>
                 <i class="fas fa-edit"></i>&nbsp;&nbsp;Aggiorna</div></a>
             <a href="{% url 'movies:delete' movie.pk %}"><div>
                 <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Elimina</div></a>
@@ -148,14 +148,18 @@
     
           
 <!--New Review-->
-
+    
     <div class="review_container">
         <ul id="reviews">
+            {% if user.is_authenticated %}
+                {% if user.email_verified %}
             <li class="new_review" hidden="true">
                 {% include "../mixins/reviews/review_box.html" with type="new_review" %}
 <!--New review modify-->
                 {% include "../mixins/reviews/modify_form.html" with type="new_review" %}
             </li>
+                {% endif %}
+            {% endif %}
 <!--Review List default 10-->
             {% for review in show_reviews %}
 

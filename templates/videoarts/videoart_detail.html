@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+i{% extends "base.html" %}
 {% load l10n %}
 {% load static %}
 
@@ -45,10 +45,8 @@
     </video> 
     <div class="detail_description">
         <div class="description__title">
-            <h1>Descrizione</h1>
         </div>  
         <div class="description__content">
-            <p>{{videoart.description}}</p>
         </div>
         <a href="{% url 'users:user_profile' videoart.user.pk %}">
         <div class="description__user">
@@ -66,12 +64,47 @@
         </a>
     </div>
 <!--videoart Information--> 
-   
+    <div class="detail_movieInfo" data-obj="videoart">
+        <div class="movieInfo__row">
+            <div class="info__moviePoster">
+                {% if videoart.thumbnail %}
+                    <img class="videoartThumbnail"src="{{videoart.thumbnail.url}}" />
+                {% else %}
+                    <div class="moviePoster_md default_poster">
+                        <span>Questo film non ha una locandina.</span>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="info__staff videoarts_card">
+                <h1>{{videoart.title}}&nbsp;({{videoart.year}})</h1>
+                <ul>
+                    <li><span>{{videoart.artist}}</span></li>
+                    <li class="videoart_card__description"><span>{{videoart.description}}</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="movieInfo__row">
+        {% if user.is_authenticated %}
+            {% if fav_exists %}
+                    <div class="movie_like_it" data-state="filled">
+                        <button class="movie_like_it_btn"><i class="fas fa-heart"></i>&nbsp;&nbsp;mi piace</span></button> 
+                    </div>
+            {% else %}
+                    <div class="movie_like_it" data-state="empty">
+                        <button class="movie_like_it_btn"><i class="far fa-heart"></i>&nbsp;&nbsp;mi piace</span></button> 
+                    </div>
+            {% endif  %}
+        {% endif %}
+                    <div class="copy_link">
+                        <button class="copy_link_btn"><i class="fas fa-link"></i>&nbsp;&nbsp;condividi</button>
+                    </div>
+        </div>
+    </div>
 
 <!--videoart Update/Delete Btn--> 
     {% if videoart.user == user %}
         <div class="movie__modify videoart__modify">
-            <a href="{% url 'videoarts:update' 'videoarts' videoart.pk %}"><div>
+            <a href="{% url 'videoarts:update' videoart.pk %}"><div>
                 <i class="fas fa-edit"></i>&nbsp;&nbsp;Aggiorna</div></a>
             <a href="{% url 'videoarts:delete' videoart.pk %}"><div>
                 <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Elimina</div></a>
@@ -100,11 +133,15 @@
 
     <div class="review_container">
         <ul id="reviews">
+            {% if user.is_authenticated %}
+                {% if user.email_verified %}
             <li class="new_review" hidden="true">
                 {% include "../mixins/reviews/review_box.html" with type="new_review" %}
 <!--New review modify-->
                 {% include "../mixins/reviews/modify_form.html" with type="new_review" %}
             </li>
+                {% endif %}
+            {% endif %}
 <!--Review List default 10-->
             {% for review in show_reviews %}
 
@@ -139,6 +176,7 @@
 <script src="{% static 'js/videoarts/videoArtViewCount.js' %}"></script>
 <script src="{% static 'js/movies/ratingStars.js' %}"></script>
 <script src="{% static 'js/movies/hideAndShowReview.js' %}"></script>
-
+<script src="{% static 'js/movies/switchFavMovie.js' %}"></script>
+<script src="{% static 'js/movies/copyUrl.js' %}"></script>
 {% endblock content %}
 

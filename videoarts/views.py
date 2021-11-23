@@ -37,7 +37,7 @@ class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
         return redirect(reverse("videoarts:detail", kwargs={"pk": videoart.pk}))
 
 
-class UpdateVideoArt(user_mixins.MovieUpdateDeletePermissionView, UpdateView):
+class UpdateVideoArt(user_mixins.VideoArtUpdateDeletePermissionView, UpdateView):
 
     """UpdateVideoArt View Deifinitiom"""
 
@@ -126,17 +126,51 @@ class VideoArtDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         videoart = self.get_object()
+        user = self.request.user
         all_reviews = videoart.videoart_reviews.all()
         num_reviews = len(all_reviews)
         show_reviews = all_reviews[0:10]
         hidden_reviews = all_reviews[11:]
         num_hidden_reviews = len(hidden_reviews)
+        num_fav_users = len(videoart.fav.all())
+
+        try:
+            fav_videoarts = user.fav_videoarts.all()
+            if videoart in fav_videoarts:
+                fav_exists = True
+            else:
+                fav_exists = False
+            context["fav_exists"] = fav_exists
+        except AttributeError:
+            pass
 
         context["show_reviews"] = show_reviews
         context["hidden_reviews"] = hidden_reviews
         context["num_hidden_reviews"] = num_hidden_reviews
         context["num_reviews"] = num_reviews
+        context["num_fav_users"] = num_fav_users
         return context
+
+
+def switch_fav_view(request, pk):
+    if request.method == "POST":
+        handleType = request.POST.get("handleType")  # type은 예약어.
+        user = request.user
+        videoart = models.VideoArt.objects.get(pk=pk)
+        if handleType == "add":
+            try:
+                videoart.fav.add(user)
+                videoart.save()
+                return JsonResponse({"result": "added"})
+            except models.VideoArt.DoesNotExist:
+                return redirect("core:home")
+        else:
+            try:
+                videoart.fav.remove(user)
+                videoart.save()
+                return JsonResponse({"result": "removed"})
+            except models.VideoArt.DoesNotExist:
+                return redirect("core:home")
 
 
 @login_required(login_url="/users/login/")

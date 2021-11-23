@@ -36,6 +36,7 @@ class VideoArt(core_model.TimeStampedModel):
     )
     views = models.IntegerField(default=0)
     rating = models.FloatField(default=0.0)
+    fav = models.ManyToManyField("users.user", related_name="fav_videoarts")
 
     def __str__(self):
         return self.title
@@ -43,3 +44,9 @@ class VideoArt(core_model.TimeStampedModel):
     def formatted(self):
         title = self.title if len(self.title) < 35 else f"{self.title[:35]}..."
         return {"title": title}
+
+    def count_fav_users(self):
+        fav_users = self.fav.all()
+        num_fav_users = len(fav_users)
+
+        return num_fav_users

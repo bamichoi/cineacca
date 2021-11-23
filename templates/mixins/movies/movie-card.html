@@ -10,6 +10,7 @@
                     <span>{{ movie.year }}</span>
                     <span>30 min</span>
                     <span class="info_rating"><i class="fas fa-star"></i>&nbsp;{{ movie.rating | unlocalize }}</span>
+                    <span class="info_like_it"><i class="fas fa-heart"></i>&nbsp;{{ movie.count_fav_users }}</span>
                     <span>{% if movie.views <= 1 %} 
                             {{ movie.views }} visto 
                         {% else %} 
@@ -28,6 +29,7 @@
                     <div>
                         <span>{{ videoart.year }}</span>
                         <span class="info_rating"><i class="fas fa-star"></i>&nbsp;{{ videoart.rating | unlocalize }}</span>
+                        <span class="info_like_it"><i class="fas fa-heart"></i>&nbsp;{{ videoart.count_fav_users }}</span>
                         <span>{% if videoart.views <= 1 %} 
                                 {{ videoart.views }} visto 
                             {% else %} 

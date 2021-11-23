@@ -40,7 +40,7 @@ Development in progress
 - [ ] profile : show collection movie and show my namecard
 - [ ] Interctive action of today movie
 - [ ] sinossi, review, biografia : textarea white-space problem.
-
+- [ ] movie, videoart search : replace più recente in più like it.
 
 ### Base
 
@@ -79,7 +79,6 @@ Development in progress
 
 - [ ] 리뷰수정 텍스트area 콜럼조정
 - [ ] 리뷰 Like it***
-- [ ] 추가정보 none일때 핸들링***
 - [ ] new리뷰에 시간 다르게 표시되는 문제***
 - [ ] 비로그인시 리뷰안내에 로그인누르면 로그인후 이전 페이지로 이동***
 
