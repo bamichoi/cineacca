@@ -19,6 +19,16 @@ urlpatterns = [
         name="list-videoart",
     ),
     path(
+        "reviews/movie/<int:pk>",
+        review_views.MovieReviewDetail.as_view(),
+        name="detail-movie",
+    ),
+    path(
+        "reviews/videoart/<int:pk>",
+        review_views.VideoArtReviewDetail.as_view(),
+        name="detail-videoart",
+    ),
+    path(
         "api/<int:pk>/review/create/",
         review_views.create_review,
         name="create",

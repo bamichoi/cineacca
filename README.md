@@ -59,7 +59,11 @@ Development in progress
 - [ ] 신설
 
 ### Reviews
-- [ ] 신설
+
+- [x] 신설
+- [x] detail 만들기
+- [ ] video art locandina 재추가***
+- [ ] 리뷰 카드 타이틀 글자 줄임***
   
 ### News
 

@@ -2,7 +2,7 @@ from typing import List
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, DetailView
 from movies import models as movie_models
 from reviews import models as review_models
 from . import forms
@@ -132,6 +132,34 @@ class VideoArtReviewList(ListView):
         context["max_index"] = max_index
         context["sort"] = sort
         # context["object_number_range"] = object_number_range
+
+        return context
+
+
+class MovieReviewDetail(DetailView):
+    model = models.Review
+    template_name = "reviews/review_detail_movie.html"
+    context_object_name = "review"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        fav_reviews = user.fav_reviews.all()
+        context["fav_reviews"] = fav_reviews
+
+        return context
+
+
+class VideoArtReviewDetail(DetailView):
+    model = models.VideoArtReview
+    template_name = "reviews/review_detail_videoart.html"
+    context_object_name = "review"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        fav_reviews = user.fav_videoart_reviews.all()
+        context["fav_reviews"] = fav_reviews
 
         return context
 

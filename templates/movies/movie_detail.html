@@ -75,9 +75,9 @@
         <div class="movieInfo__row">
             <div class="info__moviePoster">
                 {% if movie.poster %}
-                    <img class="moviePoster_md"src="{{movie.poster.url}}" />
+                    <img class="moviePoster_lg" src="{{movie.poster.url}}" />
                 {% else %}
-                    <div class="moviePoster_md default_poster">
+                    <div class="moviePoster_lg default_poster">
                         <span>Questo film non ha una locandina.</span>
                     </div>
                 {% endif %}
