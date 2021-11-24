@@ -19,10 +19,10 @@ class VideoArtAdmin(admin.ModelAdmin):
                     "title",
                     "user",
                     "video",
-                    "artist",
-                    "duration",
-                    "year",
                     "thumbnail",
+                    "poster",
+                    "artist",
+                    "year",
                     "description",
                 )
             },

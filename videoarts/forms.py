@@ -12,6 +12,7 @@ class VideoArtUploadForm(forms.ModelForm):
         fields = (
             "video",
             "thumbnail",
+            "poster",
             "title",
             "year",
             "artist",
@@ -40,6 +41,7 @@ class VideoArtUpdateForm(forms.ModelForm):
         fields = (
             "video",
             "thumbnail",
+            "poster",
             "title",
             "year",
             "artist",
@@ -50,6 +52,7 @@ class VideoArtUpdateForm(forms.ModelForm):
                 attrs={"accept": "video/mp4"}
             ),
             "thumnail": movie_forms.CustomClearableFileInput,
+            "poster": movie_forms.CustomClearableFileInput,
         }
 
 

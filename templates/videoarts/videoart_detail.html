@@ -12,30 +12,35 @@ i{% extends "base.html" %}
 
 
 <!--videoart Title-->
-    <div id="detail_title_container"> 
-        <div class="detail_title nowShowing">
+<div id="detail_title_container"> 
 
-            <div>
-                <h1>Now Playing. . .&nbsp;</h1>
-             </div>
-        </div>
-
-        <div class="detail_title movieTitle">
-            <h1>  {{videoart.title}}</h1>
-        </div>
-
-        <div class="detail_title dir">
-            <h1>dir. {{videoart.artist}},&nbsp;&nbsp;&nbsp;&nbsp;{{videoart.year}}</h1>
-        </div>
-
-        <div class="detail_title metadata">
-            <h1><i class="fas fa-star"></i>&nbsp;{{videoart.rating | unlocalize}}&nbsp;&nbsp;&nbsp; 
-                {% if videoart.views <= 1 %} 
-                {{ videoart.views }} visto 
-                {% else %} 
-                {{ videoart.views }}&nbsp;&nbsp;visti {% endif %}</h1>
-        </div>
+    <div class="detail_title nowShowing">
+        <div>
+            <h1>Now Showing. . .&nbsp;</h1>
+         </div>
     </div>
+
+    <div class="detail_title movieTitle">
+        <h1>  {{videoart.title}}</h1>
+    </div>
+
+    <div class="detail_title dir">
+        <h1>dir.&nbsp;{{videoart.artist}},&nbsp;&nbsp;&nbsp;&nbsp;{{videoart.year}}
+            {% if videoart.team %},&nbsp;&nbsp;&nbsp;&nbsp;{{videoart.team}}{% endif %}
+        </h1>
+        
+    </div>
+
+    <div class="detail_title metadata">
+        <h1><i class="fas fa-star"></i>&nbsp;{{videoart.rating | unlocalize}}&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-heart"></i>&nbsp;{{num_fav_users}}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if videoart.views <= 1 %} 
+            {{ videoart.views }} visto 
+            {% else %} 
+            {{ videoart.views }}&nbsp;&nbsp;visti {% endif %}</h1>
+    </div>
+
+</div>
     
 <!--videoart Screen-->   
     <video id="videoPlayer" 
@@ -67,13 +72,7 @@ i{% extends "base.html" %}
     <div class="detail_movieInfo" data-obj="videoart">
         <div class="movieInfo__row">
             <div class="info__moviePoster">
-                {% if videoart.thumbnail %}
-                    <img class="videoartThumbnail"src="{{videoart.thumbnail.url}}" />
-                {% else %}
-                    <div class="moviePoster_md default_poster">
-                        <span>Questo film non ha una locandina.</span>
-                    </div>
-                {% endif %}
+                <img class="moviePoster_lg" src="{{videoart.poster.url}}" />
             </div>
             <div class="info__staff videoarts_card">
                 <h1>{{videoart.title}}&nbsp;({{videoart.year}})</h1>

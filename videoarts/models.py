@@ -22,6 +22,13 @@ class VideoArt(core_model.TimeStampedModel):
         null=True,
         blank=False,  # seed 위해 임시로 null=True, Black=True
     )
+    poster = models.ImageField(
+        _("cover image"),
+        upload_to="videoart_posters",
+        default="movie_posters/default_poster.png",
+        null=True,
+        blank=True,
+    )
     user = models.ForeignKey(
         "users.user", related_name="videoarts", on_delete=models.CASCADE
     )

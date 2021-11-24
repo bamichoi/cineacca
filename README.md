@@ -62,7 +62,8 @@ Development in progress
 
 - [x] 신설
 - [x] detail 만들기
-- [ ] video art locandina 재추가***
+- [x] video art locandina 재추가
+- [ ] 리뷰 타입 스위치***
 - [ ] 리뷰 카드 타이틀 글자 줄임***
   
 ### News
@@ -107,6 +108,8 @@ Development in progress
 
 
 ### Movie List
+
+-[ ] 대문자일시 formatted.title 제대로 적용안되는 문제
 
 ### Movie Search
 

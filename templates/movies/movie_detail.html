@@ -13,8 +13,8 @@
 
 <!--Movie Title-->
     <div id="detail_title_container"> 
-        <div class="detail_title nowShowing">
 
+        <div class="detail_title nowShowing">
             <div>
                 <h1>Now Showing. . .&nbsp;</h1>
              </div>
@@ -74,13 +74,7 @@
     <div class="detail_movieInfo" data-obj="movie">
         <div class="movieInfo__row">
             <div class="info__moviePoster">
-                {% if movie.poster %}
                     <img class="moviePoster_lg" src="{{movie.poster.url}}" />
-                {% else %}
-                    <div class="moviePoster_lg default_poster">
-                        <span>Questo film non ha una locandina.</span>
-                    </div>
-                {% endif %}
             </div>
             <div class="info__staff">
                 <h1>{{movie.title}}&nbsp;({{movie.year}})</h1>

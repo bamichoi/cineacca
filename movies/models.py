@@ -25,6 +25,7 @@ class Movie(core_model.TimeStampedModel):
     poster = models.ImageField(
         _("locandina"),
         upload_to="movie_posters",
+        default="movie_posters/default_poster.png",
         null=True,
         blank=True,
     )

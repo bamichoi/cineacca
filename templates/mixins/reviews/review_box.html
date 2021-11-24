@@ -41,7 +41,6 @@
     <div class="review_box__content_container">
         <div class="review_title">{{review.title}}</div>
         <div class="review_content">{{review.content}}</div>
-
         <div class="review_box__btn_container">
             <div class="review_btns" {% if user == review.user %} style="display:flex" {% else%} style="display:none" {% endif %}>
                 <button class="delete" value="{{review.pk}}"><i class="fas fa-trash-alt"></i>&nbsp;elimina</button>

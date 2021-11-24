@@ -18,11 +18,7 @@
     <div class="review_detail_container">
         <div class="review_detail_movieInfo">
             <a href="{% url 'videoarts:detail' review.videoart.pk %}">
-                {% if review.videoart.thumbnail %}
-                    <img class="moviePoster_md" src="{{review.videoart.thumbnail.url}}" />
-                {% else %}
-                     <!-- 기본 포스터 달아주고 esle 삭제-->
-                {% endif %}
+                    <img class="moviePoster_md" src="{{review.videoart.poster.url}}" />
             </a>
             <div class="review_detail__movieTitle">
                 {{review.videoart.title}} 
