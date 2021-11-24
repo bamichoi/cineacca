@@ -51,6 +51,8 @@ const moviePk = reviewContainer.dataset.pk
                 const newReviewRate = newReview.querySelector(".review_rate");
                 const newReviewContent = newReview.querySelector(".review_content");
                 const newReviewDate = newReview.querySelector(".review_box__date");
+                const likeItDiv = newReview.querySelector(".review_like_it");
+                const numFav = likeItDiv.querySelector("span");
 
                 newReview.setAttribute("id", `${pk}`);
                 const reviewBtns = newReview.querySelector(".review_btns")
@@ -61,6 +63,7 @@ const moviePk = reviewContainer.dataset.pk
                 const modifyRate = modifyForm.querySelector(".modify_rate");
                 const modifyScore = modifyForm.querySelector(".modify_score");
                 const modifyContent = modifyForm.querySelector(".modify_content");
+                 
 
  
                 newReviewTitle.innerText = `${title}`;
@@ -69,7 +72,9 @@ const moviePk = reviewContainer.dataset.pk
                 reviewBtns.style.display = "flex"
                 modifyBtn.setAttribute("value", `${pk}`);
                 deleteBtn.setAttribute("value", `${pk}`);
-                newReviewDate.innerText = `${created}` 
+                newReviewDate.innerText = `${created}`;
+                likeItDiv.setAttribute("data-pk", `${pk}`); 
+                numFav.innerText = "0"
 
              
                 modifyScore.innerText = rate.includes(".") ? `rating: "${rate}"` : `rating: "${rate}.0"`

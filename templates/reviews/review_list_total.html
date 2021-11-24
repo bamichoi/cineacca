@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Reviews
+{% endblock page_title %}
+
+{% block content %}
+
+<div class="reviews_list_container">
+    <div class="reviews_list_title">
+        <div>
+            <h1>&nbsp;TOP REVIEWS - FILM&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+    </div>
+
+    <p class="menu_description">I reviews più preferiti in questo momento</p>
+
+    <div class="reviews_list_grid">
+        {%for review in top_reviews %}
+            {% include "mixins/reviews/review-card.html" with obj="movie" %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="reviews_list_container">
+    <div class="reviews_list_title">
+        <div>
+            <h1>&nbsp;NEW REVIEWS - FILM&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+    </div>
+    <div class="reviews_list_subtitle">
+        <p class="menu_description">I nuovi reviews freschi scritti da poco</p>
+        <span><a href="{% url 'reviews:list-movie' %}">Scopri di più <i class="fas fa-sign-in-alt"></i></a></span>  
+    </div>
+   
+    <div class="reviews_list_grid">
+        {%for review in new_reviews  %}
+            {% include "mixins/reviews/review-card.html" with obj="movie" %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="reviews_list_container">
+    <div class="reviews_list_title">
+        <div>
+            <h1>&nbsp;NEW REVIEWS - VIDEO ART&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+    </div>
+    <p class="menu_description">I reviews più preferiti in questo momento</p>
+    <div class="reviews_list_grid">
+        {%for review in top_videoart_reviews  %}
+            {% include "mixins/reviews/review-card.html" with obj="videoart" %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="reviews_list_container">
+    <div class="reviews_list_title">
+        <div>
+            <h1>&nbsp;NEW REVIEWS - VIDEO ART&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+    </div>
+
+    <div class="reviews_list_subtitle">
+        <p class="menu_description">I nuovi reviews freschi scritti da poco</p>
+        <span><a href="{% url 'reviews:list-videoart' %}">Scopri di più <i class="fas fa-sign-in-alt"></i></a></span>  
+    </div>
+
+    <div class="reviews_list_grid">
+        {%for review in new_videoart_reviews %}
+            {% include "mixins/reviews/review-card.html" with obj="videoart"%}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content%}

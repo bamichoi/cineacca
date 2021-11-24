@@ -22,6 +22,10 @@ class Review(core_model.TimeStampedModel):
         validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
     )
     fav = models.ManyToManyField("users.user", related_name="fav_reviews")
+    like_it = models.IntegerField(
+        default=0,
+        blank=True,
+    )
 
     def __str__(self):
         return f"{self.title} - {self.movie}"
@@ -51,9 +55,18 @@ class VideoArtReview(core_model.TimeStampedModel):
         validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
     )
     fav = models.ManyToManyField("users.user", related_name="fav_videoart_reviews")
+    like_it = models.IntegerField(
+        default=0,
+        blank=True,
+    )
 
     def __str__(self):
         return f"{self.title} - {self.videoart}"
+
+    def formatted(self):
+        title = self.title if len(self.title) < 35 else f"{self.title[:35]}..."
+        print(title)
+        return {"title": title}
 
     def count_fav_users(self):
         fav_users = self.fav.all()

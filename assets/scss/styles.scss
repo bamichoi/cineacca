@@ -12,6 +12,7 @@
 @import "./mixins/reviews/review-form.scss";
 @import "./mixins/reviews/review-box.scss";
 @import "./mixins/reviews/modify-box.scss";
+@import "./mixins/reviews/review-card.scss";
 
 // mixins/users
 @import "./mixins/users/student-card.scss";
@@ -39,3 +40,6 @@
 @import "./users/delete-account.scss";
 @import "./users/reset-password.scss";
 @import "./users/alarme.scss";
+
+//reviews
+@import "./reviews/review_list_total.scss";

@@ -4,6 +4,21 @@ from . import views as review_views
 app_name = "reviews"
 urlpatterns = [
     path(
+        "reviews/",
+        review_views.ReviewList.as_view(),
+        name="list",
+    ),
+    path(
+        "reviews/movie",
+        review_views.MovieReviewList.as_view(),
+        name="list-movie",
+    ),
+    path(
+        "reviews/videoart",
+        review_views.VideoArtReviewList.as_view(),
+        name="list-videoart",
+    ),
+    path(
         "api/<int:pk>/review/create/",
         review_views.create_review,
         name="create",

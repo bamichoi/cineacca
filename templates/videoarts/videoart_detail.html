@@ -146,7 +146,7 @@ i{% extends "base.html" %}
             {% for review in show_reviews %}
 
             <li id="{{review.pk}}" class="review">
-                {% include "../mixins/reviews/review_box.html" %}
+                {% include "../mixins/reviews/review_box.html" with type="videoart" %}
 <!--Review modify-->
                 {% include "../mixins/reviews/modify_form.html" %}
             </li>
@@ -154,7 +154,7 @@ i{% extends "base.html" %}
 <!--Review List hidden the others-->
            {% for review in hidden_reviews %}
             <li id="{{review.pk}}" class="review hidden_review" hidden>
-                {% include "../mixins/reviews/review_box.html" %}
+                {% include "../mixins/reviews/review_box.html" with type="videoart" %}
 <!--Review modify-->
                 {% include "../mixins/reviews/modify_form.html" %}
             </li>
@@ -178,5 +178,6 @@ i{% extends "base.html" %}
 <script src="{% static 'js/movies/hideAndShowReview.js' %}"></script>
 <script src="{% static 'js/movies/switchFavMovie.js' %}"></script>
 <script src="{% static 'js/movies/copyUrl.js' %}"></script>
+<script src="{% static 'js/reviews/switchFavReview.js' %}"></script>
 {% endblock content %}
 

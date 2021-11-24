@@ -132,6 +132,7 @@ class VideoArtDetail(DetailView):
         show_reviews = all_reviews[0:10]
         hidden_reviews = all_reviews[11:]
         num_hidden_reviews = len(hidden_reviews)
+        fav_reviews = user.fav_videoart_reviews.all()
         num_fav_users = len(videoart.fav.all())
 
         try:
@@ -149,6 +150,7 @@ class VideoArtDetail(DetailView):
         context["num_hidden_reviews"] = num_hidden_reviews
         context["num_reviews"] = num_reviews
         context["num_fav_users"] = num_fav_users
+        context["fav_reviews"] = fav_reviews
         return context
 
 

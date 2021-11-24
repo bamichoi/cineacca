@@ -34,7 +34,7 @@
             <i class="fas fa-star"></i>&nbsp;&nbsp;<span class="review_rate">"{{review.rate | unlocalize}}"</span>
         </div>
         <div class="review_box__date">
-            {{review.created | date:'m-F-Y-H:m' }} 
+            {{review.created | date:'d-F-Y-H:i' }} 
         </div>
     </div>
 
@@ -51,7 +51,9 @@
             {% if user.is_authenticated %}
                 {% if review in fav_reviews %}
                     <div class="review_like_it" 
-                    data-pk={{review.pk}}
+                    {% if type != "new_review" %}
+                        data-pk={{review.pk}}
+                    {% endif %}
                     data-state="filled"
                     {% if obj_type == "movie" %}
                         data-obj="movie"
@@ -63,7 +65,9 @@
                     </div>
                 {% else %}
                     <div class="review_like_it" 
-                    data-pk={{review.pk}}
+                    {% if type != "new_review" %}
+                        data-pk={{review.pk}}
+                    {% endif %}
                     data-state="empty"
                     {% if obj_type == "movie" %}
                         data-obj="movie"

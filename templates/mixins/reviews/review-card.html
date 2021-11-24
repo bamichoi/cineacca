@@ -1,0 +1,46 @@
+{% load l10n %}
+<div class="review_card">
+    <div class="review_card__row">
+        <div class="review_card__movieInfo">
+            {% if obj == "movie" %}
+            <a href="{% url 'movies:detail' review.movie.pk %}">
+                <img class="moviePoster_sm" src="{{review.movie.poster.url}}" /></a>
+            {% else %}
+            <a href="{% url 'videoarts:detail' review.videoart.pk %}">
+                <img class="videoartThumbnail_sm" src="{{review.videoart.thumbnail.url}}" /></a>
+            {% endif %}
+        </div>
+
+        <div class="review_card__reviewInfo">
+            <a href="{% url 'users:user_profile' review.user.pk %}">
+                    <div class="user_avatar_sm" 
+                        {% if review.user.avatar  %} 
+                            style='background-image: url({{review.user.avatar.url}});'
+                        {% endif %}>
+                    </div>
+                <div class="review_card__user_name">
+                    <div class="review_user__firstname">{{review.user.first_name}}</div> 
+                
+                    <div class="review_user__lastname">{{review.user.last_name}}</div>
+                </div>
+            </a>
+            <a href="#">
+                <div class="review_card__rate">
+                    <i class="fas fa-star"></i>&nbsp;&nbsp;<span class="review_rate">{{review.rate | unlocalize}}</span>
+                </div>
+                <div class="review_card__title">
+                    "{{review.title}}"
+                </div>
+                <div class="review_card__metadata">
+                    <div class="review_card__like_it">
+                        <i class="fas fa-heart"></i>&nbsp;&nbsp;{{review.like_it}}
+                    </div>
+                    <div class="review_card__date">
+                        {{review.created | date:'d-F-Y' }} 
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
