@@ -41,9 +41,12 @@ class VideoArt(core_model.TimeStampedModel):
         null=True,
         blank=False,
     )
+
+    """metadta info field"""
     views = models.IntegerField(default=0)
     rating = models.FloatField(default=0.0)
     fav = models.ManyToManyField("users.user", related_name="fav_videoarts")
+    today = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

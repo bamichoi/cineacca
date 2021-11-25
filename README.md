@@ -26,21 +26,14 @@ Development in progress
 
 ### 배포 전 끝내야 할 것들
 
-- [x] Detail: hide reviews and show more reviews
-- [x] signup : password validators
-- [x] email : CSS varification email 
-- [x] upload : the default poster
-- [x] videoArt : create the new model
-- [x] 404 page
-- [x] check required and max-length ecc of all input field
-- [x] models : Check max-length blank and null ecc
-- [x] Divide static files
-- [x] email : Create the veification success page -> flash message
+- [x] Interctive action of today movie (더 좋은 방법은 없을지..)
 - [ ] upload : Get the duration of video, add team name
 - [ ] profile : show collection movie and show my namecard
-- [ ] Interctive action of today movie
+
 - [ ] sinossi, review, biografia : textarea white-space problem.
 - [ ] movie, videoart search : replace più recente in più like it.
+
+- [ ] 창 줄이고 늘일때 핸들링
 
 ### Base
 
@@ -48,7 +41,7 @@ Development in progress
   
 ### Home
 
-- [ ] 창 줄이고 늘일때 핸들링
+
 - [ ] the playground of cineasti indipendenti
 
 ### About
@@ -60,9 +53,6 @@ Development in progress
 
 ### Reviews
 
-- [x] 신설
-- [x] detail 만들기
-- [x] video art locandina 재추가
 - [ ] 리뷰 타입 스위치***
 - [ ] 리뷰 카드 타이틀 글자 줄임***
   

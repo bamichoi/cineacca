@@ -9,7 +9,7 @@ from django.views.generic import (
     View,
     FormView,
     UpdateView,
-    DeleteView,
+    TemplateView,
 )
 from django.core.paginator import Paginator
 from django.urls import reverse, reverse_lazy
@@ -18,21 +18,32 @@ from reviews import forms as review_form
 from . import models
 from . import forms
 from users import mixins as user_mixins
+from videoarts import models as videoart_models
 import subprocess
 import json
 
 # Create your views here.
 
 
-class HomeView(ListView):
+class HomeView(TemplateView):
 
-    """HomeView Definition"""
+    """Home View"""
 
-    model = models.Movie
-    paginate_by = 6
-    ordering = "-created"
-    context_object_name = "movies"
     template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        movies = models.Movie.objects.all().order_by("-created")[:6]
+        videoarts = videoart_models.VideoArt.objects.all().order_by("-created")[:6]
+        today_movies = models.Movie.objects.filter(today=True)
+        today_videoarts = videoart_models.VideoArt.objects.filter(today=True)
+
+        context["movies"] = movies
+        context["videoarts"] = videoarts
+        context["today_movies"] = today_movies
+        context["today_videoarts"] = today_videoarts
+
+        return context
 
 
 class MovieUpload(user_mixins.MoiveUploadPermissionView, FormView):

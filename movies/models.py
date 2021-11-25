@@ -41,7 +41,12 @@ class Movie(core_model.TimeStampedModel):
         null=True,
         blank=False,
     )
+
+    """metadata info field"""
     views = models.IntegerField(default=0)
+    rating = models.FloatField(default=0.0)
+    fav = models.ManyToManyField("users.user", related_name="fav_movies")
+    today = models.BooleanField(default=False)
 
     """staff info field"""
     team = models.CharField(_("truppe"), max_length=300, null=True, blank=True)
@@ -61,8 +66,6 @@ class Movie(core_model.TimeStampedModel):
         _("effetto speciale"), max_length=300, blank=True
     )
     sound_designer = models.CharField(_("sound"), max_length=300, blank=True)
-    rating = models.FloatField(default=0.0)
-    fav = models.ManyToManyField("users.user", related_name="fav_movies")
 
     def __str__(self):
         return self.title

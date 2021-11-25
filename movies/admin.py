@@ -24,6 +24,7 @@ class MovieAdmin(admin.ModelAdmin):
                     "thumbnail",
                     "poster",
                     "description",
+                    "today",
                 )
             },
         ),

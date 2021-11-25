@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block page_title %}
     Home
@@ -7,34 +8,66 @@
 
 {% block content %}
 
-<div id="today-movies">
-    <div id="today-movies_title">
+<div class="today-movies">
+    <div class="today-movies_title">
         <h1>&nbsp;I FILM DEL GIORNO&nbsp;&nbsp;&nbsp;</h1>
     </div>
-    <div class="today-movies_content">
-        <h1>Il titolo del film</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <div>
-            <i class="fas fa-play"></i>
-            <span>Riproduci ora</span>
+    <div class="today-movies_list">
+        {% for today_movie in today_movies %}
+        <div class="today-movies_content" data-url="{% url 'movies:detail' today_movie.pk %}">
+            <div class="today-movie_thumbnail" style="background-image: url({{today_movie.thumbnail.url}})">
+                </div>
+            <h1>{{today_movie.title}}</h1>
+            <p>{{today_movie.description}}</p>
         </div>
+        {% endfor %}
+        {% for today_videoart in today_videoarts %}
+        <div class="today-movies_content" data-url="{% url 'videoarts:detail' today_videoart.pk %}">
+            <div class="today-movie_thumbnail" style="background-image: url({{today_videoart.thumbnail.url}})">
+                </div>
+            <h1>{{today_videoart.title}}</h1>
+            <p>{{today_videoart.description}}</p>
+        </div>
+        {% endfor %}
     </div>
+        <a id="today-movies_link" href="#">
+            <div>
+                <i class="fas fa-play"></i>
+                <span>Riproduci ora</span>
+            </div>
+        </a>
 </div>
 
 
-<div id="new-movies">
-    <div id="new-movies_title">
+<div class="new-movies">
+    <div class="new-movies_title">
         <div>
             <h1>&nbsp;I NUOVI FILM&nbsp;&nbsp;&nbsp;</h1>
         </div>
         <span><a href="{% url 'movies:list' %}">Scopri di più <i class="fas fa-sign-in-alt"></i></a></span>  
     </div>
 
-    <div id="new-movies_grid">
+    <div class="new-movies_grid">
         {% for movie in movies %}
             {% include "./mixins/movies/movie-card.html" with type="movie" %}
         {% endfor %}
     </div>
 </div>
 
+<div class="new-movies">
+    <div class="new-movies_title">
+        <div>
+            <h1>&nbsp;I NUOVI VIDEO ARTS&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+        <span><a href="{% url 'videoarts:list' %}">Scopri di più <i class="fas fa-sign-in-alt"></i></a></span>  
+    </div>
+
+    <div class="new-movies_grid">
+        {% for videoart in videoarts %}
+            {% include "./mixins/movies/movie-card.html" with type="videoart" %}
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{% static 'js/movies/todays.js' %}"></script>
 {% endblock content%}

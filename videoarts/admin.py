@@ -24,6 +24,7 @@ class VideoArtAdmin(admin.ModelAdmin):
                     "artist",
                     "year",
                     "description",
+                    "today",
                 )
             },
         ),

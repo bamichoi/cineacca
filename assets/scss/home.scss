@@ -1,7 +1,7 @@
-#today-movies {
+.today-movies {
   font-family: "Noto Sans Hanunoo", sans-serif;
-
-  #today-movies_title {
+  position: relative;
+  .today-movies_title {
     background-color: #c8d6e5;
     height: 1.2rem;
     width: fit-content;
@@ -16,43 +16,126 @@
     }
   }
 
-  .today-movies_content {
+  .today-movies_list {
+    position: relative;
     margin-top: 1rem;
-    background-color: #c4c4c4;
-    width: inherit;
-    height: 30rem;
-    h1 {
-      padding: 2rem 2rem;
-      color: white;
-      font-size: 3.7rem;
-    }
-    p {
-      padding: 0rem 2.2rem;
-      width: 28rem;
-      color: white;
-      font-size: 1.1rem;
-    }
-    div {
-      margin-top: 7rem;
-      padding: 0 2rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      i {
-        font-size: 5rem;
-        margin-right: 1rem;
+    width: 100%;
+    height: 40rem;
+    .today-movies_content {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      .today-movie_thumbnail {
+        position: absolute;
+        opacity: 0.8;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
       }
-      span {
-        font-size: 2rem;
+      h1 {
+        padding: 2rem 2rem;
+        color: $cineH_white;
+        font-size: 3.7rem;
+        position: relative;
+      }
+      p {
+        padding: 0rem 2.2rem;
+        width: 28rem;
+        color: $cineH_white;
+        font-size: 1.1rem;
+        position: relative;
+      }
+      a {
+        text-decoration: none;
+        color: $cineH_white;
+        position: absolute;
+        right: 0;
+        bottom: 5rem;
+        div {
+          padding: 0 2rem;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          i {
+            font-size: 5rem;
+            margin-right: 1rem;
+          }
+          span {
+            font-size: 2rem;
+          }
+        }
       }
     }
   }
 }
 
-#new-movies {
+#today-movies_link {
+  text-decoration: none;
+  color: $cineH_white;
+  position: absolute;
+  right: 0;
+  bottom: 5rem;
+  z-index: 10;
+  div {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    i {
+      font-size: 5rem;
+      margin-right: 1rem;
+    }
+    span {
+      font-size: 2rem;
+    }
+  }
+}
+
+.today-movies_content:first-child {
+  opacity: 0;
+  animation: fadeIntoAway 18s ease-in-out infinite;
+} // movie
+
+.today-movies_content:nth-child(2) {
+  opacity: 0;
+  animation: fadeIntoAway 18s ease-in-out 6s infinite;
+} // movie
+
+.today-movies_content:last-child {
+  opacity: 0;
+  animation: fadeIntoAway 18s ease-in-out 12s infinite;
+} // video art
+
+@keyframes fadeIntoAway {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 100;
+  }
+
+  40% {
+    opacity: 100;
+  }
+
+  45% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.new-movies {
   margin-top: 4rem;
   font-family: "Noto Sans Hanunoo", sans-serif;
-  #new-movies_title {
+  .new-movies_title {
     display: flex;
     justify-content: space-between;
     color: $cineH_black;
@@ -79,7 +162,7 @@
   }
 }
 
-#new-movies_grid {
+.new-movies_grid {
   margin-top: 1rem;
   display: grid;
   gap: 1.3rem;
