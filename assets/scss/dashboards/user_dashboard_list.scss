@@ -1,0 +1,27 @@
+.dashboard_list_grid {
+  margin-top: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  grid-template-columns: repeat(7, 1fr);
+  color: $cineH_black;
+  .dashboard_list_element {
+    .dashboard_list__element_title {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      span {
+        text-align: center;
+        font-size: 0.8rem;
+        font-weight: 400;
+        display: block;
+        width: 100px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
+}

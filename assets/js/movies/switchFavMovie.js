@@ -28,7 +28,7 @@ const handleClickLikeIt = () => {
 
         data.append("handleType", handleType );
     
-        axios.post(`/api/movies/${moviePk}/fav/`, data)
+        axios.post(`/movies/api/movies/${moviePk}/fav/`, data)
         .then(res => { 
             const result = res.data.result
             if ( result == "added" ) {
@@ -63,7 +63,7 @@ const handleClickLikeIt = () => {
 
         data.append("handleType", handleType );
     
-        axios.post(`/api/videoarts/${videoArtPk}/fav/`, data)
+        axios.post(`/videoarts/api/videoarts/${videoArtPk}/fav/`, data)
         .then(res => { 
             const result = res.data.result
             if ( result == "added" ) {

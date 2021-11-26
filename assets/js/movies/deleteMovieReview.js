@@ -20,7 +20,7 @@ const deleteBtns = document.getElementsByClassName("delete");
             axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
             axios.defaults.xsrfCookieName = "csrftoken";
             
-            axios.post("/api/review/delete/", data)
+            axios.post("/reviews/api/review/delete/", data)
             .then(res => alert("Il review è emliminato!"))
             .catch(errors => console.log(errors.response.data));
 

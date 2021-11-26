@@ -77,7 +77,7 @@ function handleClickModify(event) {
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
         axios.defaults.xsrfCookieName = "csrftoken";
 
-        axios.post("/api/review/update/", data)
+        axios.post("/reviews/api/review/update/", data)
         .then(res => alert("Il review è modificato."))
         .catch(errors => console.log(errors.response.data));
         

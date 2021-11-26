@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Attività di
+    Dashboard di {{user_obj.first_name}}
 {% endblock page_title %}
 
 {% block content %}
@@ -26,7 +26,7 @@
         <div class="activity__container">
             <div class="activity__title">I FILM CARICATI</div>
             <div class="activity__content">
-                <div class="collection_elements">
+                <div class="activity_elements">
                     {% for movie in movies_uploaded %}
                     <div class="activity_element">
                         <a href="{% url 'movies:detail' movie.pk %}">
@@ -40,7 +40,7 @@
                 </div>
                 {% if movies_uploaded  %}
                  <div class="activity_more">
-                     vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                     <a href="{% url 'users:dashboard_list' user_obj.pk 'movie' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
                  </div>
                  {% endif %}
             </div>
@@ -63,7 +63,7 @@
                  </div>
                  {% if videoarts_uploaded  %}
                  <div class="activity_more">
-                     vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                    <a href="{% url 'users:dashboard_list' user_obj.pk 'videoart' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
                  </div>
                  {% endif %}
             </div>
@@ -71,7 +71,7 @@
         <div class="activity__container">
             <div class="activity__title">I FILM REVIEWS SCRITTI</div>
             <div class="activity__content">
-                <div class="collection_elements">
+                <div class="activity_elements">
                     {% for review in movie_reviews_uploaded %}
                     <div class="activity_element">
                         <a href="{% url 'reviews:detail-movie' review.pk %}">
@@ -85,7 +85,7 @@
                  </div>
                  {% if movie_reviews_uploaded  %}
                  <div class="activity_more">
-                     vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                    <a href="{% url 'users:dashboard_list' user_obj.pk 'movie_review' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
                  </div>
                  {% endif %}
             </div>
@@ -93,7 +93,7 @@
         <div class="activity__container">
             <div class="activity__title">I VIDEO ART REVIEWS SCRITTI</div>
             <div class="activity__content">
-                <div class="collection_elements">
+                <div class="activity_elements">
                     {% for review in videoart_reviews_uploaded %}
                     <div class="activity_element">
                         <a href="{% url 'reviews:detail-videoart' review.pk %}">
@@ -107,7 +107,7 @@
                 </div>
                 {% if videoart_reviews_uploaded  %}
                 <div class="activity_more">
-                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                    <a href="{% url 'users:dashboard_list' user_obj.pk 'videoart_review' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
                 </div>
                 {% endif %}
             </div>
@@ -137,7 +137,7 @@
                 </div>
                 {% if movies_loved %}
                 <div class="collection_more">
-                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                    <a href="{% url 'users:dashboard_list' user_obj.pk 'fav_movie' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
                 </div>
                 {% endif %}
             </div>
@@ -160,7 +160,7 @@
                 </div>
                 {% if videoart_loved  %}
                 <div class="collection_more">
-                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                    <a href="{% url 'users:dashboard_list' user_obj.pk 'fav_videoart' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
                 </div>
                 {% endif %}
             </div>
@@ -182,7 +182,7 @@
                 </div>
                 {% if movie_reviews_loved %}
                 <div class="collection_more">
-                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                    <a href="{% url 'users:dashboard_list' user_obj.pk 'fav_review' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
                 </div>
                 {% endif %}
             </div>
@@ -204,13 +204,14 @@
                 </div>
                 {% if videoart_reviews_loved  %}
                 <div class="collection_more">
-                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                    <a href="{% url 'users:dashboard_list' user_obj.pk 'fav_videoart_review' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
                 </div>
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
+
 
 {% else %}
 <div class="dashboard__user">
@@ -246,7 +247,7 @@
              </div>
              {% if movie_reviews_uploaded  %}
              <div class="activity_more">
-                 vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                <a href="{% url 'users:dashboard_list' user_obj.pk 'movie_review' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
              </div>
              {% endif %}
         </div>
@@ -268,7 +269,7 @@
             </div>
             {% if videoart_reviews_uploaded  %}
             <div class="activity_more">
-                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                <a href="{% url 'users:dashboard_list' user_obj.pk 'videoart_review' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
             </div>
             {% endif %}
         </div>
@@ -298,7 +299,7 @@
             </div>
             {% if movies_loved %}
             <div class="collection_more">
-                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                <a href="{% url 'users:dashboard_list' user_obj.pk 'fav_movie' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
             </div>
             {% endif %}
         </div>
@@ -321,7 +322,7 @@
             </div>
             {% if videoart_loved  %}
             <div class="collection_more">
-                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                <a href="{% url 'users:dashboard_list' user_obj.pk 'fav_videoart' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
             </div>
             {% endif %}
         </div>
@@ -343,7 +344,7 @@
             </div>
             {% if movie_reviews_loved %}
             <div class="collection_more">
-                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                <a href="{% url 'users:dashboard_list' user_obj.pk 'fav_review' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
             </div>
             {% endif %}
         </div>
@@ -365,7 +366,7 @@
             </div>
             {% if videoart_reviews_loved  %}
             <div class="collection_more">
-                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                <a href="{% url 'users:dashboard_list' user_obj.pk 'fav_videoart_review' %}">vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
             </div>
             {% endif %}
         </div>

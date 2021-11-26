@@ -25,7 +25,7 @@ const handleClickLikeIt = (event,div) => {
     data.append("handleType", handleType );
     data.append("objType", objType);
     
-    axios.post(`/api/reviews/${reviewPk}/fav/`, data)
+    axios.post(`/reviews/api/reviews/${reviewPk}/fav/`, data)
     .then(res =>{ 
         const result = res.data.result;
         const numFavUsers =  res.data.numFavUsers;

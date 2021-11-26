@@ -4,27 +4,27 @@ from . import views as review_views
 app_name = "reviews"
 urlpatterns = [
     path(
-        "reviews/",
+        "",
         review_views.ReviewList.as_view(),
         name="list",
     ),
     path(
-        "reviews/movie",
+        "movie/",
         review_views.MovieReviewList.as_view(),
         name="list-movie",
     ),
     path(
-        "reviews/videoart",
+        "videoart/",
         review_views.VideoArtReviewList.as_view(),
         name="list-videoart",
     ),
     path(
-        "reviews/movie/<int:pk>",
+        "movie/<int:pk>/",
         review_views.MovieReviewDetail.as_view(),
         name="detail-movie",
     ),
     path(
-        "reviews/videoart/<int:pk>",
+        "videoart/<int:pk>/",
         review_views.VideoArtReviewDetail.as_view(),
         name="detail-videoart",
     ),

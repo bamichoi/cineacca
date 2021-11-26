@@ -20,9 +20,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", include("core.urls", namespace="core")),
-    path("", include("movies.urls", namespace="movies")),
-    path("", include("videoarts.urls", namespace="videoarts")),
-    path("", include("users.urls", namespace="reviews")),
-    path("", include("reviews.urls", namespace="users")),
+    path("movies/", include("movies.urls", namespace="movies")),
+    path("videoarts/", include("videoarts.urls", namespace="videoarts")),
+    path("users/", include("users.urls", namespace="users")),
+    path("reviews/", include("reviews.urls", namespace="reviews")),
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

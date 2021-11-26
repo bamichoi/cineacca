@@ -29,8 +29,61 @@ from . import models, forms, mixins
 # Create your views here.
 
 
+class UserDashBoardList(ListView):
+
+    template_name = "dashboards/user_dashboard_list.html"
+
+    def get_queryset(self):
+        pk = self.kwargs["pk"]
+        list_by = self.kwargs["list_by"]
+        user_obj = models.User.objects.get(pk=pk)
+
+        if list_by == "movie":
+            qs = user_obj.movies.all()
+        elif list_by == "videoart":
+            qs = user_obj.videoarts.all()
+        elif list_by == "movie_review":
+            qs = user_obj.reviews.all()
+        elif list_by == "videoart_review":
+            qs = user_obj.videoart_reviews.all()
+        elif list_by == "fav_movie":
+            qs = user_obj.fav_movies.all()
+        elif list_by == "fav_videoart":
+            qs = user_obj.fav_fav_videoarts.all()
+        elif list_by == "fav_review":
+            qs = user_obj.fav_reviews.all()
+        elif list_by == "fav_videoart_review":
+            qs = user_obj.fav_videoart_reviews.all()
+
+        return qs
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs["pk"]
+        user_obj = models.User.objects.get(pk=pk)
+        list_by = self.kwargs["list_by"]
+        qs = self.get_queryset()
+
+        if list_by == "movie" or list_by == "fav_movie":
+            route_url = "movies:detail"
+        elif list_by == "videoart" or list_by == "fav_videoart":
+            route_url = "videoarts:detail"
+        elif list_by == "movie_review" or list_by == "fav_review":
+            route_url = "reviews:detail-movie"
+        elif list_by == "videoart_review" or list_by == "fav_videoart_review":
+            route_url = "reviews:detail-videoart"
+
+        context["user_obj"] = user_obj
+        context["list_by"] = list_by
+        context["qs"] = qs
+        context["route_url"] = route_url
+
+        return context
+
+
 class UserDashBoardView(TemplateView):
-    template_name = "users/user_dashboard.html"
+    template_name = "dashboards/user_dashboard.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

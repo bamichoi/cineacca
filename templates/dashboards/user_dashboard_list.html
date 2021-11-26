@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Film carcati da {{user_obj.first_name}}
+{% endblock page_title %}
+
+
+{% block content %}
+<div class="dashboard__user">
+    <div class="profile_avatar" style="background-image:url({{user_obj.avatar.url}}); "></div>
+    <div class="dashboard__username">
+        <div class ="dashboard__user_first_name">
+            <div>{{user_obj.first_name}}</div>
+        </div>
+        <div class ="dashboard__user_last_name">
+            {{user_obj.last_name}}
+        </div>
+    </div>
+</div>
+
+<div class="dashboard_list_grid">
+    {% for element in qs %}
+    <div class="dashboard_list_element">
+        <a href="{% url route_url element.pk %}">
+            {% if list_by == 'movie' or list_by == 'videoart' or list_by == 'fav_movie' or list_by == 'fav_videoart' %}
+                <img class="moviePoster_sm" src="{{element.poster.url}}" />
+            {% elif list_by == 'movie_review' or list_by == 'fav_review' %} 
+                <img class="moviePoster_sm" src="{{element.movie.poster.url}}" />
+            {% elif list_by == 'videoart_review' or list_by == 'fav_videoart_review' %} 
+                <img class="moviePoster_sm" src="{{element.videoart.poster.url}}" />
+            {% endif %}
+        </a>
+        <div class="dashboard_list__element_title">
+            <span>{{element.title}}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

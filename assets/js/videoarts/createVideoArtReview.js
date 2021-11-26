@@ -32,7 +32,7 @@ function handelSubmitReview(event) {
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
     axios.defaults.xsrfCookieName = "csrftoken";
 
-    axios.post(`/api/${videoArtPk}/review/create/`, data)
+    axios.post(`reviews/api/${videoArtPk}/review/create/`, data)
         .then(res => {
             const pk = res.data.pk;
             const title = res.data.title;

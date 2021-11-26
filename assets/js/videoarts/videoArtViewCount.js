@@ -8,6 +8,6 @@ axios.defaults.xsrfCookieName = "csrftoken";
 
 let data = new FormData();
  
-axios.post(`/api/videoarts/${videoArtPk}/view/`, data)
+axios.post(`/videoarts/api/videoarts/${videoArtPk}/view/`, data)
 .then(res => { return })
 .catch(errors => console.log(errors.response.data));

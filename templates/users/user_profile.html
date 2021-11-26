@@ -76,7 +76,6 @@
     
      <div class="profile_menu">
         <a href="{% url 'users:dashboard' user_obj.pk %}"><div class="activity_btn">Dashboard</div></a>
-        <a href=""><div class="collection_btn">Collezione</div></a>
         {%  if user.is_authenticated %}
             {% if user_obj.pk == user.pk %}
                         <a href="{% url 'users:update_profile' %}"><div id="update-profile_btn">Aggiorna il Profilo</div></a>
