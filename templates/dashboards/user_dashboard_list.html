@@ -18,6 +18,28 @@
     </div>
 </div>
 
+<div class="dashboard_list_title__container">
+    <div class="dashboard_list_title">
+        {% if list_by == 'movie' %}
+            <h1>&nbsp;I FILM CARICATI&nbsp;&nbsp;&nbsp;</h1>
+        {% elif list_by == 'videoart' %}
+            <h1>&nbsp;I VIDEO ART CARICATI&nbsp;&nbsp;&nbsp;</h1>
+        {% elif list_by == 'movie_review' %}
+            <h1>&nbsp;I FILM REVIEW SCRITTI&nbsp;&nbsp;&nbsp;</h1>
+        {% elif list_by == 'videoart_review' %}
+            <h1>&nbsp;I VIDEO ART REVIEW SCRITTI&nbsp;&nbsp;&nbsp;</h1>
+        {% elif list_by == 'fav_movie' %}
+            <h1>&nbsp;I FILM PREFERITI&nbsp;&nbsp;&nbsp;</h1>
+        {% elif list_by == 'fav_videoart' %}
+            <h1>&nbsp;I VIDEO ART PREFERITI&nbsp;&nbsp;&nbsp;</h1>
+        {% elif list_by == 'fav_review' %}
+            <h1>&nbsp;I FILM REVIEW PREFERITI&nbsp;&nbsp;&nbsp;</h1>
+        {% elif list_by == 'fav_videoart_review' %}
+            <h1>&nbsp;I VIDEO ART PREFERITI&nbsp;&nbsp;&nbsp;</h1>
+        {% endif %}
+    </div>
+</div>
+
 <div class="dashboard_list_grid">
     {% for element in qs %}
     <div class="dashboard_list_element">

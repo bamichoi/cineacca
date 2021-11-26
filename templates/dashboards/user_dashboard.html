@@ -116,7 +116,7 @@
 </div>
 
 <div class="dashboard_title">
-    <span >Collezione</span>
+    <span>Collezione</span>
 </div>
 <div class="dashboard__collection">
     <div class="collection_grid">
@@ -233,7 +233,7 @@
     <div class="activity__container">
         <div class="activity__title">I FILM REVIEWS SCRITTI</div>
         <div class="activity__content">
-            <div class="collection_elements">
+            <div class="activity_elements">
                 {% for review in movie_reviews_uploaded %}
                 <div class="activity_element">
                     <a href="{% url 'reviews:detail-movie' review.pk %}">
@@ -255,7 +255,7 @@
     <div class="activity__container">
         <div class="activity__title">I VIDEO ART REVIEWS SCRITTI</div>
         <div class="activity__content">
-            <div class="collection_elements">
+            <div class="activity_elements">
                 {% for review in videoart_reviews_uploaded %}
                 <div class="activity_element">
                     <a href="{% url 'reviews:detail-videoart' review.pk %}">
@@ -373,6 +373,7 @@
     </div>
 </div>
 </div>
+
 {% endif %}
 
 

@@ -29,8 +29,12 @@
             {% endif %}
             {% for field in form  %}
                     <div class="update-profile_form_field">
-                        <div class="update-profile_form_label">{{field.label}}</div>
-                        {{field}}
+                        {% if user.account_type == "public" and field.label == "Lavori preferiti" %}
+                                {{ field.as_hidden }}  
+                         {%else%}
+                            <div class="update-profile_form_label">{{field.label}}</div>
+                            {{field}}
+                        {% endif %}
                         {% if field.errors %}
                         {% for error in field.errors %}
                             {% include "../mixins/field_error.html" %}

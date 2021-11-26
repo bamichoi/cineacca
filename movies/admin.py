@@ -38,6 +38,8 @@ class MovieAdmin(admin.ModelAdmin):
                     "editor",
                     "director_of_photograpy",
                     "audio_director",
+                    "phonic",
+                    "edition_secretary",
                     "music",
                     "art_director",
                     "costume_designer",

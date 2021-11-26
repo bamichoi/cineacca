@@ -19,25 +19,79 @@ class MovieUploadForm(forms.ModelForm):
             "director",
             "screenwriter",
             "casting",
-            "editor",
             "director_of_photograpy",
+            "editor",
             "audio_director",
+            "phonic",
             "music",
             "art_director",
+            "assistant_director",
+            "edition_secretary",
             "costume_designer",
             "makeup_artist",
             "spacial_effect_supervisor",
             "sound_designer",
+            "animator",
+            "character_designer",
         )
         widgets = {
             "video": forms.FileInput(attrs={"accept": "video/mp4"}),
             "title": forms.TextInput(attrs={"placeholder": "Il titolo del film"}),
-            "team": forms.TextInput(attrs={"placeholder": "Il nome della truppe"}),
+            "team": forms.TextInput(
+                attrs={"placeholder": "Il nome della truppe (*opzionale)"}
+            ),
             "year": forms.TextInput(
                 attrs={"placeholder": "l'anno in cui il film è uscito"}
             ),
             "description": forms.Textarea(attrs={"placeholder": "i sinossi del film "}),
             # charfield + choices 의 select field는 어떻게 placeholder를 달까. 아마도 accademia 모델이 하나 있어야할듯.
+            "director": forms.TextInput(
+                attrs={"placeholder": "regista (*neccessario)"}
+            ),
+            "screenwriter": forms.TextInput(
+                attrs={"placeholder": "sceneggiatore (*opzionale)"}
+            ),
+            "casting": forms.TextInput(
+                attrs={"placeholder": "attori/attrice (*opzionale)"}
+            ),
+            "editor": forms.TextInput(attrs={"placeholder": "montatore (*opzionale)"}),
+            "director_of_photograpy": forms.TextInput(
+                attrs={"placeholder": "direttore della fotografia (*opzionale)"}
+            ),
+            "audio_director": forms.TextInput(
+                attrs={"placeholder": "direttore dell'audio (*opzionale)"}
+            ),
+            "phonic": forms.TextInput(
+                attrs={"placeholder": "fonico di presa diretta (*opzionale)"}
+            ),
+            "assistant_director": forms.TextInput(
+                attrs={"placeholder": "aiuto regista (*opzionale)"}
+            ),
+            "edition_secretary": forms.TextInput(
+                attrs={"placeholder": "segretaria di edizione (*opzionale)"}
+            ),
+            "music": forms.TextInput(attrs={"placeholder": "compositore (*opzionale)"}),
+            "art_director": forms.TextInput(
+                attrs={"placeholder": "scenografo (*opzionale)"}
+            ),
+            "costume_designer": forms.TextInput(
+                attrs={"placeholder": "costumista (*opzionale)"}
+            ),
+            "makeup_artist": forms.TextInput(
+                attrs={"placeholder": "truccatore (*opzionale)"}
+            ),
+            "spacial_effect_supervisor": forms.TextInput(
+                attrs={"placeholder": "VFX artista (*opzionale)"}
+            ),
+            "sound_designer": forms.TextInput(
+                attrs={"placeholder": "sound designer (*opzionale)"}
+            ),
+            "animator": forms.TextInput(
+                attrs={"placeholder": "animatore (*opzionale)"}
+            ),
+            "character_designer": forms.TextInput(
+                attrs={"placeholder": "character designer (*opzionale)"}
+            ),
         }
 
     def save(self, *args, **kwargs):
@@ -67,15 +121,20 @@ class MovieUpdateForm(forms.ModelForm):
             "director",
             "screenwriter",
             "casting",
-            "editor",
             "director_of_photograpy",
+            "editor",
             "audio_director",
+            "phonic",
             "music",
             "art_director",
+            "assistant_director",
+            "edition_secretary",
             "costume_designer",
             "makeup_artist",
             "spacial_effect_supervisor",
             "sound_designer",
+            "animator",
+            "character_designer",
         )
         widgets = {
             "video": CustomClearableFileInput(attrs={"accept": "video/mp4"}),

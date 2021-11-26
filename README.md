@@ -27,17 +27,16 @@ Development in progress
 ### 배포 전 끝내야 할 것들
 
 - [x] Interctive action of today movie (더 좋은 방법은 없을지..)
-- [x] movie, videoart search : replace più recente in più like it.
-- [x] DASHBOARD
-- [ ] upload : Get the duration of video, add team name
+- [ ] upload : Get the duration of video
 - [ ] sinossi, review, biografia : textarea white-space problem.
 - [ ] 문구 대점검
+- [ ] 창 줄이고 늘일때 핸들링***
 
-- [ ] 창 줄이고 늘일때 핸들링
-- [ ] pubblico 일때, 업데이트화면에서는 소속기입가능하도록. 프로필에서도 나타나도록.
-- [ ] 대시보드 상단 유저 바 네임카드 커스터마이징과 함께 연동
 - [ ] api 주소정리
+- [ ] 선호 역할에 animation / edizione.. 추가***
 
+- [ ] new리뷰에 시간 다르게 표시되는 문제***
+  
 ### Base
 
 - [ ] Header 그라데이션
@@ -56,8 +55,8 @@ Development in progress
 
 ### Reviews
 
-- [ ] 리뷰 카드 타이틀 글자 줄임***
-  
+- [ ] 리뷰 카드 타이틀 글자 줄임
+
 ### News
 
 - [ ] 신설
@@ -75,7 +74,6 @@ Development in progress
 ### Detail
 
 - [ ] 리뷰수정 텍스트area 콜럼조정
-- [ ] new리뷰에 시간 다르게 표시되는 문제***
 - [ ] 비로그인시 리뷰안내에 로그인누르면 로그인후 이전 페이지로 이동***
 
 ### VideoPlayer - video.js
@@ -128,6 +126,10 @@ Development in progress
 - [ ] 필모그래피화
 - [ ] 좋아하는 영화 추가
 
+### Dashboard
+
+- [ ] 대시보드 상단 유저 바 네임카드 커스터마이징과 함께 연동(검토중)
+
 ### Update profile
 
 - [ ] works 필드 리스타일링
@@ -150,4 +152,3 @@ Development in progress
 - [ ] CSS 중복제거
 - [ ] partials
 - [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
-- [ ] sub-title 문구 개선

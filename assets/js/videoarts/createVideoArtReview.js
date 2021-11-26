@@ -32,7 +32,7 @@ function handelSubmitReview(event) {
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
     axios.defaults.xsrfCookieName = "csrftoken";
 
-    axios.post(`reviews/api/${videoArtPk}/review/create/`, data)
+    axios.post(`/reviews/api/${videoArtPk}/review/create/`, data)
         .then(res => {
             const pk = res.data.pk;
             const title = res.data.title;
@@ -50,6 +50,8 @@ function handelSubmitReview(event) {
             const newReviewRate = newReview.querySelector(".review_rate");
             const newReviewContent = newReview.querySelector(".review_content");
             const newReviewDate = newReview.querySelector(".review_box__date");
+            const likeItDiv = newReview.querySelector(".review_like_it");
+            const numFav = likeItDiv.querySelector("span");
 
             newReview.setAttribute("id", `${pk}`);
             const reviewBtns = newReview.querySelector(".review_btns")
@@ -72,6 +74,8 @@ function handelSubmitReview(event) {
             modifyBtn.setAttribute("value", `${pk}`);
             deleteBtn.setAttribute("value", `${pk}`);
             newReviewDate.innerText = `${created}` 
+            likeItDiv.setAttribute("data-pk", `${pk}`); 
+            numFav.innerText = "0"
 
             modiUserFirstname.innerText = firstName;
             modiUserLastname.innerText = lastName;

@@ -67,7 +67,7 @@ class User(AbstractUser):
     ACCOUNT_TYPE_PUBLIC = "public"
     ACCOUNT_TYPE_CHOICES = (
         (ACCOUNT_TYPE_STUDENT, "Studente"),
-        (ACCOUNT_TYPE_PUBLIC, "Publico"),
+        (ACCOUNT_TYPE_PUBLIC, "Pubblico"),
     )
 
     username = None  # email을 username으로 사용하기 위해 Abspython manage.py migratetractUser의 username을 none으로 override.
@@ -82,9 +82,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = (
         []
     )  # AbsractUser에는 email이 Required로 잡혀있으나 USERNAME_FIELD로 사용되는 필드는 REQUIRED에 있으면 안된다.
-    school = models.CharField(
-        _("appartenuto a"), max_length=100, null=True, blank=False
-    )
+    school = models.CharField(_("appartenuto a"), max_length=100, null=True, blank=True)
     avatar = models.ImageField(
         upload_to="user_avatars", default="user_avatars/default_avatar.jpeg"
     )
@@ -101,7 +99,7 @@ class User(AbstractUser):
     works = models.ManyToManyField(
         "Work",
         related_name="users",
-        blank=False,
+        blank=True,
     )
     objects = CustomUserManager()
 

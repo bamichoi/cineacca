@@ -13,12 +13,12 @@
         <h1>&nbsp;Gli studenti&nbsp;&nbsp;&nbsp;</h1>
     </div>
 
-    <p class="menu_description">Ecco i futuri del cinematografico italiano, trovate i vostri mebri di troppe</p>
+    <p class="menu_description">Ecco i futuri del cinema italiano, e trovate i vostri membri di truppe</p>
 
     
     <div class="search_bar">
         <form method="get" action="{% url 'users:search' %}">
-            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" required placeholder="Cerca un/una artista con il suo cognome" />
+            <input {% if keyword %}value="{{keyword}}"{% endif %} name="keyword" type="text" required placeholder="Cerca un/una artista con il nome o cognome" />
             <button>Cerca!</button>
         </form>
     </div>
