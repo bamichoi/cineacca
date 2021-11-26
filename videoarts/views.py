@@ -68,6 +68,8 @@ class VideoArtList(ListView):
             ordering = "-created"
         elif sort_by == "rating":
             ordering = "-rating"
+        elif sort_by == "love":
+            ordering = "-like_it"
         else:
             ordering = "-created"
 
@@ -162,6 +164,7 @@ def switch_fav_view(request, pk):
         if handleType == "add":
             try:
                 videoart.fav.add(user)
+                videoart.like_it += 1
                 videoart.save()
                 return JsonResponse({"result": "added"})
             except models.VideoArt.DoesNotExist:
@@ -169,6 +172,7 @@ def switch_fav_view(request, pk):
         else:
             try:
                 videoart.fav.remove(user)
+                videoart.like_it -= 1
                 videoart.save()
                 return JsonResponse({"result": "removed"})
             except models.VideoArt.DoesNotExist:
@@ -224,6 +228,8 @@ class SearchView(View):
                     result_qs = result_qs.order_by("-created")
                 elif sort == "rating":
                     result_qs = result_qs.order_by("-rating")
+                elif sort == "love":
+                    result_qs = result_qs.order_by("-like_it")
 
             # paginator 생성
             page_numbers_range = 15

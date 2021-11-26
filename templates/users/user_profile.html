@@ -73,14 +73,18 @@
         </div>
         
      </div>
-     {%  if user.is_authenticated %}
-        {% if user_obj.pk == user.pk %}
-            <div id="profile_modify">
-                    <a href="{% url 'users:update_profile' %}"><div id="update-profile_btn">Aggiorna il Profilo</div></a>
-                    <a href="{% url 'users:change_password' %}"><div id="change-password_btn">Cambia la Password</div></a>
-            </div>
-        {% endif %}
-    {% endif %}
     
+     <div class="profile_menu">
+        <a href="{% url 'users:dashboard' user_obj.pk %}"><div class="activity_btn">Dashboard</div></a>
+        <a href=""><div class="collection_btn">Collezione</div></a>
+        {%  if user.is_authenticated %}
+            {% if user_obj.pk == user.pk %}
+                        <a href="{% url 'users:update_profile' %}"><div id="update-profile_btn">Aggiorna il Profilo</div></a>
+                        <a href="{% url 'users:change_password' %}"><div id="change-password_btn">Cambia la Password</div></a>
+            {% endif %}
+        {% endif %}
+    
+    </div>
+     
 </div>
 {% endblock content %}

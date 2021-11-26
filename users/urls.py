@@ -10,6 +10,11 @@ urlpatterns = [
         name="user_profile",
     ),
     path(
+        "users/profile/<int:pk>/dashboard",
+        user_views.UserDashBoardView.as_view(),
+        name="dashboard",
+    ),
+    path(
         "users/profile/update/",
         user_views.UpdateProfileView.as_view(),
         name="update_profile",

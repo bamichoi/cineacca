@@ -47,6 +47,10 @@ class Movie(core_model.TimeStampedModel):
     rating = models.FloatField(default=0.0)
     fav = models.ManyToManyField("users.user", related_name="fav_movies")
     today = models.BooleanField(default=False)
+    like_it = models.IntegerField(
+        default=0,
+        blank=True,
+    )
 
     """staff info field"""
     team = models.CharField(_("truppe"), max_length=300, null=True, blank=True)

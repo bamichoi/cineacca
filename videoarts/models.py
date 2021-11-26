@@ -47,6 +47,10 @@ class VideoArt(core_model.TimeStampedModel):
     rating = models.FloatField(default=0.0)
     fav = models.ManyToManyField("users.user", related_name="fav_videoarts")
     today = models.BooleanField(default=False)
+    like_it = models.IntegerField(
+        default=0,
+        blank=True,
+    )
 
     def __str__(self):
         return self.title

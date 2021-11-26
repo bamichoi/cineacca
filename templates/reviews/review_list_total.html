@@ -25,6 +25,20 @@
 <div class="reviews_list_container">
     <div class="reviews_list_title">
         <div>
+            <h1>&nbsp;TOP REVIEWS - VIDEO ART&nbsp;&nbsp;&nbsp;</h1>
+        </div>
+    </div>
+    <p class="menu_description">I reviews più preferiti in questo momento</p>
+    <div class="reviews_list_grid">
+        {%for review in top_videoart_reviews  %}
+            {% include "mixins/reviews/review-card.html" with obj="videoart" %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="reviews_list_container">
+    <div class="reviews_list_title">
+        <div>
             <h1>&nbsp;NEW REVIEWS - FILM&nbsp;&nbsp;&nbsp;</h1>
         </div>
     </div>
@@ -36,20 +50,6 @@
     <div class="reviews_list_grid">
         {%for review in new_reviews  %}
             {% include "mixins/reviews/review-card.html" with obj="movie" %}
-        {% endfor %}
-    </div>
-</div>
-
-<div class="reviews_list_container">
-    <div class="reviews_list_title">
-        <div>
-            <h1>&nbsp;NEW REVIEWS - VIDEO ART&nbsp;&nbsp;&nbsp;</h1>
-        </div>
-    </div>
-    <p class="menu_description">I reviews più preferiti in questo momento</p>
-    <div class="reviews_list_grid">
-        {%for review in top_videoart_reviews  %}
-            {% include "mixins/reviews/review-card.html" with obj="videoart" %}
         {% endfor %}
     </div>
 </div>

@@ -70,8 +70,11 @@
   a:nth-child(2) span i {
     color: #ca5b4c;
   }
-  a:last-child span i {
+  a:nth-child(3) span i {
     color: #3a37ac;
+  }
+  a:last-child span i {
+    color: #dc70a4;
   }
 }
 

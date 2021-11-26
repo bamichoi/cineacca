@@ -1,5 +1,6 @@
 import os
 import json
+from django.views.generic.base import TemplateView
 import requests
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
@@ -26,6 +27,38 @@ from django.contrib import messages
 from . import models, forms, mixins
 
 # Create your views here.
+
+
+class UserDashBoardView(TemplateView):
+    template_name = "users/user_dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs["pk"]
+        user_obj = models.User.objects.get(pk=pk)
+
+        movies_uploaded = user_obj.movies.all()[:3]
+        videoarts_uploaded = user_obj.videoarts.all()[:3]
+        movie_reviews_uploaded = user_obj.reviews.all()[:3]
+        videoart_reviews_uploaded = user_obj.videoart_reviews.all()[:3]
+
+        movies_loved = user_obj.fav_movies.all()[:3]
+        videoarts_loved = user_obj.fav_videoarts.all()[:3]
+        movie_reviews_loved = user_obj.fav_reviews.all()[:3]
+        videoart_reviews_loved = user_obj.fav_videoart_reviews.all()[:3]
+        print(videoarts_loved)
+
+        context["user_obj"] = user_obj
+        context["movies_uploaded"] = movies_uploaded
+        context["videoarts_uploaded"] = videoarts_uploaded
+        context["movie_reviews_uploaded"] = movie_reviews_uploaded
+        context["videoart_reviews_uploaded"] = videoart_reviews_uploaded
+        context["movies_loved"] = movies_loved
+        context["videoarts_loved"] = videoarts_loved
+        context["movie_reviews_loved"] = movie_reviews_loved
+        context["videoart_reviews_loved"] = videoart_reviews_loved
+
+        return context
 
 
 class UserProfileView(DetailView):

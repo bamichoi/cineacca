@@ -27,11 +27,11 @@ Development in progress
 ### 배포 전 끝내야 할 것들
 
 - [x] Interctive action of today movie (더 좋은 방법은 없을지..)
+- [x] movie, videoart search : replace più recente in più like it.
+- [x] DASHBOARD
 - [ ] upload : Get the duration of video, add team name
-- [ ] profile : show collection movie and show my namecard
-
 - [ ] sinossi, review, biografia : textarea white-space problem.
-- [ ] movie, videoart search : replace più recente in più like it.
+- [ ] 문구 대점검
 
 - [ ] 창 줄이고 늘일때 핸들링
 
@@ -53,7 +53,6 @@ Development in progress
 
 ### Reviews
 
-- [ ] 리뷰 타입 스위치***
 - [ ] 리뷰 카드 타이틀 글자 줄임***
   
 ### News

@@ -1,0 +1,379 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Attività di
+{% endblock page_title %}
+
+{% block content %}
+
+{% if user_obj.account_type == "student" %}
+<div class="dashboard__user">
+        <div class="profile_avatar" style="background-image:url({{user_obj.avatar.url}}); "></div>
+        <div class="dashboard__username">
+            <div class ="dashboard__user_first_name">
+                <div>{{user_obj.first_name}}</div>
+            </div>
+            <div class ="dashboard__user_last_name">
+                {{user_obj.last_name}}
+            </div>
+        </div>
+</div>
+<div class="dashboard_title">
+    <span>Attività</span>
+</div>
+<div class="dashboard__activity">
+    <div class="activity_grid">
+        <div class="activity__container">
+            <div class="activity__title">I FILM CARICATI</div>
+            <div class="activity__content">
+                <div class="collection_elements">
+                    {% for movie in movies_uploaded %}
+                    <div class="activity_element">
+                        <a href="{% url 'movies:detail' movie.pk %}">
+                            <img class="moviePoster_sm" src="{{movie.poster.url}}" />
+                        </a>
+                        <div class="activity__element_title">
+                            <span>{{movie.title}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if movies_uploaded  %}
+                 <div class="activity_more">
+                     vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                 </div>
+                 {% endif %}
+            </div>
+
+        </div>
+        <div class="activity__container">
+            <div class="activity__title">I VIDEO ARTS CARICATI</div>
+            <div class="activity__content">
+                <div class="collection_elements">
+                    {% for videoart in videoarts_uploaded %}
+                        <div class="activity_element">
+                            <a href="{% url 'videoarts:detail' videoart.pk %}">
+                            <img class="moviePoster_sm" src="{{videoart.poster.url}}" />
+                            </a>
+                            <div class="activity__element_title">
+                                <span>{{videoart.title}}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                 </div>
+                 {% if videoarts_uploaded  %}
+                 <div class="activity_more">
+                     vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                 </div>
+                 {% endif %}
+            </div>
+        </div>
+        <div class="activity__container">
+            <div class="activity__title">I FILM REVIEWS SCRITTI</div>
+            <div class="activity__content">
+                <div class="collection_elements">
+                    {% for review in movie_reviews_uploaded %}
+                    <div class="activity_element">
+                        <a href="{% url 'reviews:detail-movie' review.pk %}">
+                            <img class="moviePoster_sm" src="{{review.movie.poster.url}}" />
+                        </a>
+                        <div class="activity__element_title">
+                            <span>{{review.title}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                 </div>
+                 {% if movie_reviews_uploaded  %}
+                 <div class="activity_more">
+                     vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                 </div>
+                 {% endif %}
+            </div>
+        </div>
+        <div class="activity__container">
+            <div class="activity__title">I VIDEO ART REVIEWS SCRITTI</div>
+            <div class="activity__content">
+                <div class="collection_elements">
+                    {% for review in videoart_reviews_uploaded %}
+                    <div class="activity_element">
+                        <a href="{% url 'reviews:detail-videoart' review.pk %}">
+                            <img class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
+                        </a>
+                        <div class="activity__element_title">
+                            <span>{{review.title}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if videoart_reviews_uploaded  %}
+                <div class="activity_more">
+                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard_title">
+    <span >Collezione</span>
+</div>
+<div class="dashboard__collection">
+    <div class="collection_grid">
+        <div class="collection__container">
+            <div class="collection__title">I FILM PREFERITI</div>
+            <div class="collection__content">
+                <div class="collection_elements">
+                    {% for movie in movies_loved %}
+                    <div class="collection_element">
+                        <a href="{% url 'movies:detail' movie.pk %}">
+                            <img class="moviePoster_sm" src="{{movie.poster.url}}" />
+                        </a>
+                        <div class="collection__element_title">
+                            <span>{{movie.title}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if movies_loved %}
+                <div class="collection_more">
+                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+        <div class="collection__container">
+            <div class="collection__title">I VIDEO ARTS PREFERITI</div>
+            <div class="collection__content">
+                <div class="collection_elements">
+                    {% for videoart in videoarts_loved %}
+                    <div class="collection_element">
+                        <a href="{% url 'videoarts:detail' videoart.pk %}">
+                        <img class="moviePoster_sm" src="{{videoart.poster.url}}" />
+                        </a>
+                        <div class="collection__element_title">
+                            <span>{{videoart.title}}</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if videoart_loved  %}
+                <div class="collection_more">
+                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="collection__container">
+            <div class="collection__title">I FILM REVIEWS PREFERITI</div>
+            <div class="collection__content">
+                <div class="collection_elements">
+                    {% for review in movie_reviews_loved %}
+                    <div class="collection_element">
+                        <a href="{% url 'reviews:detail-movie' review.pk %}">
+                            <img class="moviePoster_sm" src="{{review.movie.poster.url}}" />
+                        </a>
+                        <div class="collection__element_title">
+                            <span>{{review.title}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if movie_reviews_loved %}
+                <div class="collection_more">
+                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="collection__container">
+            <div class="collection__title">I VIDEO ART REVIEWS PREFERITI</div>
+            <div class="collection__content">
+                <div class="collection_elements">
+                    {% for review in videoart_reviews_loved %}
+                    <div class="collection_element">
+                        <a href="{% url 'reviews:detail-videoart' review.pk %}">
+                            <img class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
+                        </a>
+                        <div class="collection__element_title">
+                            <span>{{review.title}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if videoart_reviews_loved  %}
+                <div class="collection_more">
+                    vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="dashboard__user">
+    <div class="profile_avatar" style="background-image:url({{user_obj.avatar.url}}); "></div>
+    <div class="dashboard__username">
+        <div class ="dashboard__user_first_name">
+            <div>{{user_obj.first_name}}</div>
+        </div>
+        <div class ="dashboard__user_last_name">
+            {{user_obj.last_name}}
+        </div>
+    </div>
+</div>
+<div class="dashboard_title">
+<span>Attività</span>
+</div>
+<div class="dashboard__activity">
+<div class="activity_grid pubblic">
+    <div class="activity__container">
+        <div class="activity__title">I FILM REVIEWS SCRITTI</div>
+        <div class="activity__content">
+            <div class="collection_elements">
+                {% for review in movie_reviews_uploaded %}
+                <div class="activity_element">
+                    <a href="{% url 'reviews:detail-movie' review.pk %}">
+                        <img class="moviePoster_sm" src="{{review.movie.poster.url}}" />
+                    </a>
+                    <div class="activity__element_title">
+                        <span>{{review.title}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+             </div>
+             {% if movie_reviews_uploaded  %}
+             <div class="activity_more">
+                 vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+             </div>
+             {% endif %}
+        </div>
+    </div>
+    <div class="activity__container">
+        <div class="activity__title">I VIDEO ART REVIEWS SCRITTI</div>
+        <div class="activity__content">
+            <div class="collection_elements">
+                {% for review in videoart_reviews_uploaded %}
+                <div class="activity_element">
+                    <a href="{% url 'reviews:detail-videoart' review.pk %}">
+                        <img class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
+                    </a>
+                    <div class="activity__element_title">
+                        <span>{{review.title}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if videoart_reviews_uploaded  %}
+            <div class="activity_more">
+                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="dashboard_title">
+<span >Collezione</span>
+</div>
+<div class="dashboard__collection">
+<div class="collection_grid">
+    <div class="collection__container">
+        <div class="collection__title">I FILM PREFERITI</div>
+        <div class="collection__content">
+            <div class="collection_elements">
+                {% for movie in movies_loved %}
+                <div class="collection_element">
+                    <a href="{% url 'movies:detail' movie.pk %}">
+                        <img class="moviePoster_sm" src="{{movie.poster.url}}" />
+                    </a>
+                    <div class="collection__element_title">
+                        <span>{{movie.title}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if movies_loved %}
+            <div class="collection_more">
+                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="collection__container">
+        <div class="collection__title">I VIDEO ARTS PREFERITI</div>
+        <div class="collection__content">
+            <div class="collection_elements">
+                {% for videoart in videoarts_loved %}
+                <div class="collection_element">
+                    <a href="{% url 'videoarts:detail' videoart.pk %}">
+                    <img class="moviePoster_sm" src="{{videoart.poster.url}}" />
+                    </a>
+                    <div class="collection__element_title">
+                        <span>{{videoart.title}}</span>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if videoart_loved  %}
+            <div class="collection_more">
+                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="collection__container">
+        <div class="collection__title">I FILM REVIEWS PREFERITI</div>
+        <div class="collection__content">
+            <div class="collection_elements">
+                {% for review in movie_reviews_loved %}
+                <div class="collection_element">
+                    <a href="{% url 'reviews:detail-movie' review.pk %}">
+                        <img class="moviePoster_sm" src="{{review.movie.poster.url}}" />
+                    </a>
+                    <div class="collection__element_title">
+                        <span>{{review.title}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if movie_reviews_loved %}
+            <div class="collection_more">
+                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="collection__container">
+        <div class="collection__title">I VIDEO ART REVIEWS PREFERITI</div>
+        <div class="collection__content">
+            <div class="collection_elements">
+                {% for review in videoart_reviews_loved %}
+                <div class="collection_element">
+                    <a href="{% url 'reviews:detail-videoart' review.pk %}">
+                        <img class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
+                    </a>
+                    <div class="collection__element_title">
+                        <span>{{review.title}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if videoart_reviews_loved  %}
+            <div class="collection_more">
+                vedi più&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+{% endif %}
+
+
+
+{% endblock content %}
