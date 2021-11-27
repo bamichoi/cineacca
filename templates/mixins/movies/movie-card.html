@@ -4,7 +4,7 @@
     <div class="movie-card">
             <div class="movie-card_thumbnail" style="background-image: url({{movie.thumbnail.url}});"></div>
             <div class="movie-card_info">
-                <span class="info_title">{{ movie.formatted.title }}</span>
+                <span class="info_title">{{ movie.title }}</span>
                 <span class="info_user">dir. {{ movie.director }}</span>
                 <div>
                     <span>{{ movie.year }}</span>
@@ -20,21 +20,21 @@
     </a>
 {% else %}
     <a class="card_link" href="{% url 'videoarts:detail' videoart.pk %}">
-        <div class="movie-card">
-                <div class="movie-card_thumbnail" style="background-image: url({{videoart.thumbnail.url}});"></div>
-                <div class="movie-card_info">
-                    <span class="info_title">{{  videoart.formatted.title }}</span>
-                    <span class="info_user">dir. {{ videoart.director }}</span>
-                    <div>
-                        <span>{{ videoart.year }}</span>
-                        <span class="info_rating"><i class="fas fa-star"></i>&nbsp;{{ videoart.rating | unlocalize }}</span>
-                        <span class="info_like_it"><i class="fas fa-heart"></i>&nbsp;{{ videoart.count_fav_users }}</span>
-                        <span>{% if videoart.views <= 1 %} 
-                                {{ videoart.views }} visto 
-                            {% else %} 
-                                {{ videoart.views }} visti {% endif %} </span>
+            <div class="movie-card">
+                    <div class="movie-card_thumbnail" style="background-image: url({{videoart.thumbnail.url}});"></div>
+                    <div class="movie-card_info">
+                        <span class="info_title">{{  videoart.title }}</span>
+                        <span class="info_user">dir. {{ videoart.director }}</span>
+                        <div>
+                            <span>{{ videoart.year }}</span>
+                            <span class="info_rating"><i class="fas fa-star"></i>&nbsp;{{ videoart.rating | unlocalize }}</span>
+                            <span class="info_like_it"><i class="fas fa-heart"></i>&nbsp;{{ videoart.count_fav_users }}</span>
+                            <span>{% if videoart.views <= 1 %} 
+                                    {{ videoart.views }} visto 
+                                {% else %} 
+                                    {{ videoart.views }} visti {% endif %} </span>
+                        </div>
                     </div>
                 </div>
-            </div>
         </a>
 {% endif %}

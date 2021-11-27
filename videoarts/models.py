@@ -55,10 +55,6 @@ class VideoArt(core_model.TimeStampedModel):
     def __str__(self):
         return self.title
 
-    def formatted(self):
-        title = self.title if len(self.title) < 35 else f"{self.title[:35]}..."
-        return {"title": title}
-
     def count_fav_users(self):
         fav_users = self.fav.all()
         num_fav_users = len(fav_users)

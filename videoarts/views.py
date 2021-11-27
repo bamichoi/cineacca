@@ -134,17 +134,19 @@ class VideoArtDetail(DetailView):
         show_reviews = all_reviews[0:10]
         hidden_reviews = all_reviews[11:]
         num_hidden_reviews = len(hidden_reviews)
-        fav_reviews = user.fav_videoart_reviews.all()
+
         num_fav_users = len(videoart.fav.all())
 
-        try:
+        try:  # !) Review Detail 처럼 user.authenticated 사용하면 더 간단. template에도 fav_exists 필요없이 in 사용해서 체크가능.
             fav_videoarts = user.fav_videoarts.all()
+            fav_reviews = user.fav_videoart_reviews.all()
             if videoart in fav_videoarts:
                 fav_exists = True
             else:
                 fav_exists = False
             context["fav_exists"] = fav_exists
-        except AttributeError:
+            context["fav_reviews"] = fav_reviews
+        except:
             pass
 
         context["show_reviews"] = show_reviews
@@ -152,7 +154,7 @@ class VideoArtDetail(DetailView):
         context["num_hidden_reviews"] = num_hidden_reviews
         context["num_reviews"] = num_reviews
         context["num_fav_users"] = num_fav_users
-        context["fav_reviews"] = fav_reviews
+
         return context
 
 

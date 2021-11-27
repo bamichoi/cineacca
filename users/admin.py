@@ -72,3 +72,11 @@ class CustomUserAdmin(UserAdmin):
     filter_horizontal = ("works",)
 
     ordering = ("last_name",)
+
+
+@admin.register(models.Work)
+class WorkAdmin(admin.ModelAdmin):
+
+    """Custom User Admin"""
+
+    model = models.Work

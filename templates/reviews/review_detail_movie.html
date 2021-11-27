@@ -60,6 +60,10 @@
                 </div>
             </div>
             <div class="review_detail_btns">
+                <div class="review_btns" {% if user == review.user %} style="display:flex" {% else%} style="display:none" {% endif %}>
+                    <button class="delete" value="{{review.pk}}"><i class="fas fa-trash-alt"></i>&nbsp;elimina</button>
+                    <button class="modify" value="{{review.pk}}"><i class="fas fa-edit"></i>&nbsp;modifica</button>
+                </div>
                 {% if user.is_authenticated %}
                     {% if review in fav_reviews %}
                         <div class="review_like_it" 

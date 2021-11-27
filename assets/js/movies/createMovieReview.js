@@ -37,7 +37,7 @@ const moviePk = reviewContainer.dataset.pk
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
         axios.defaults.xsrfCookieName = "csrftoken";
         
-        axios.post(`/reviews/api/${moviePk}/review/create/`, data)
+        axios.post(`/reviews/api/${moviePk}/create/`, data)
             .then(res => {
                 const pk = res.data.pk;
                 const title = res.data.title;

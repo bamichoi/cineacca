@@ -35,9 +35,15 @@
   .namecard_row:last-child {
     display: flex;
     justify-content: flex-end;
-    i {
-      font-size: 1.2rem;
-      margin-left: 0.5rem;
+    span {
+      width: 310px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      i {
+        font-size: 1.2rem;
+        margin-left: 0.5rem;
+      }
     }
   }
 }

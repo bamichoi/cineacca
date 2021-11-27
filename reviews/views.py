@@ -1,4 +1,5 @@
 from typing import List
+from django.contrib.auth.models import AnonymousUser
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -9,6 +10,7 @@ from . import forms
 from . import models
 from movies import models as movie_models
 from videoarts import models as videoart_models
+import locale
 
 
 class ReviewList(TemplateView):
@@ -144,8 +146,10 @@ class MovieReviewDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        fav_reviews = user.fav_reviews.all()
-        context["fav_reviews"] = fav_reviews
+
+        if user.is_authenticated:
+            fav_reviews = user.fav_reviews.all()
+            context["fav_reviews"] = fav_reviews
 
         return context
 
@@ -158,8 +162,10 @@ class VideoArtReviewDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        fav_reviews = user.fav_videoart_reviews.all()
-        context["fav_reviews"] = fav_reviews
+
+        if user.is_authenticated:
+            fav_reviews = user.fav_videoart_reviews.all()
+            context["fav_reviews"] = fav_reviews
 
         return context
 
@@ -195,8 +201,8 @@ def create_review(request, pk):
             review = models.Review.objects.create(
                 user=user, title=title, rate=rate, content=content, movie=movie
             )
-            print(review.created)
-            created = review.created.strftime("%d-%B-%Y-%H:%m")
+            locale.setlocale(locale.LC_TIME, "it_IT")
+            created = review.created.now().strftime("%d-%B-%Y-%H:%M")
             movie.rating = get_rating(movie, "movie")
             movie.save()
         else:

@@ -56,7 +56,7 @@ class Movie(core_model.TimeStampedModel):
     team = models.CharField(_("truppe"), max_length=300, null=True, blank=True)
     director = models.CharField(_("regia"), max_length=300, null=True, blank=False)
     assistant_director = models.CharField(
-        _("aiuto regia"), max_length=300, null=True, blank=False
+        _("aiuto regia"), max_length=300, null=True, blank=True
     )
     screenwriter = models.CharField(_("sceneggiatura"), max_length=300, blank=True)
     casting = models.CharField(_("attori"), max_length=300, blank=True)
@@ -84,10 +84,6 @@ class Movie(core_model.TimeStampedModel):
 
     def __str__(self):
         return self.title
-
-    def formatted(self):
-        title = self.title if len(self.title) < 35 else f"{self.title[:35]}..."
-        return {"title": title}
 
     def count_fav_users(self):
         fav_users = self.fav.all()

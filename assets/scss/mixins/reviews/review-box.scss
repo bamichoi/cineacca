@@ -75,55 +75,63 @@
       margin-bottom: 1rem;
       white-space: pre-wrap;
     }
-    .review_btns {
-      margin-bottom: 1rem;
+  }
+}
+
+.review_box__btn_container,
+.review_detail_btns {
+  display: flex;
+  justify-content: space-between;
+
+  .review_btns {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    button {
+      border: none;
+      width: 6rem;
+      background-color: $cineH_black;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      font-family: "Reem Kufi", sans-serif;
+      margin-right: 0.3rem;
+      box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
       display: flex;
+      justify-content: center;
       align-items: center;
-      button {
-        border: none;
-        width: 6rem;
-        background-color: $cineH_black;
-        color: white;
-        padding: 0.25rem 0.5rem;
-        cursor: pointer;
-        font-family: "Reem Kufi", sans-serif;
-        margin-right: 0.3rem;
-        box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .fa-edit {
-          color: #aacccc;
-        }
-        .fa-trash-alt {
-          color: #ca5b4c;
-        }
+      .fa-edit {
+        color: #aacccc;
+      }
+      .fa-trash-alt {
+        color: #ca5b4c;
       }
     }
   }
-  .review_box__btn_container {
+  .review_like_it_btn {
+    margin-right: 0.5rem;
+    border: none;
+    background-color: $cineH_white;
+    cursor: pointer;
     display: flex;
-    justify-content: space-between;
-    .review_like_it_btn {
-      margin-right: 0.5rem;
-      border: none;
-      background-color: $cineH_white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      i {
-        color: #ca5b4c;
-        font-size: 1.2rem;
-        margin-right: 0.2rem;
-      }
-      span {
-        font-family: "Reem Kufi", sans-serif;
-        color: $cineH_black;
-        font-size: 1rem;
-      }
+    align-items: center;
+    i {
+      color: #ca5b4c;
+      font-size: 1.2rem;
+      margin-right: 0.2rem;
+    }
+    span {
+      font-family: "Reem Kufi", sans-serif;
+      color: $cineH_black;
+      font-size: 1rem;
     }
   }
 }
+
+.review_detail_btns {
+  margin-left: 2rem;
+}
+
 .user_avatar_medium {
   width: 3.2rem;
   height: 3.2rem;

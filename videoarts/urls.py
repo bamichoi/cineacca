@@ -18,6 +18,6 @@ urlpatterns = [
         name="update",
     ),
     path("<int:pk>/delete/", videoart_views.delete_videoart, name="delete"),
-    path("api/videoarts/<int:pk>/view/", videoart_views.count_view, name="count_view"),
-    path("api/videoarts/<int:pk>/fav/", videoart_views.switch_fav_view, name="fav"),
+    path("api/<int:pk>/view/", videoart_views.count_view, name="count_view"),
+    path("api/<int:pk>/fav/", videoart_views.switch_fav_view, name="fav"),
 ]

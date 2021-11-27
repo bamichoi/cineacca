@@ -110,30 +110,6 @@
       font-family: "Noto Sans Hanunoo", sans-serif;
     }
   }
-
-  .review_detail_btns {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    .review_like_it_btn {
-      margin-right: 0.5rem;
-      border: none;
-      background-color: $cineH_white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      i {
-        color: #ca5b4c;
-        font-size: 1.2rem;
-        margin-right: 0.2rem;
-      }
-      span {
-        font-family: "Reem Kufi", sans-serif;
-        color: $cineH_black;
-        font-size: 1rem;
-      }
-    }
-  }
 }
 
 .moviePoster_md {

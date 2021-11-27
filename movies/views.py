@@ -188,17 +188,18 @@ class MovieDetail(DetailView):
         show_reviews = all_reviews[0:10]
         hidden_reviews = all_reviews[11:]
         num_hidden_reviews = len(hidden_reviews)
-        fav_reviews = user.fav_reviews.all()
-        num_fav_users = len(movie.fav.all())
 
+        num_fav_users = len(movie.fav.all())
         try:
             fav_movies = user.fav_movies.all()
+            fav_reviews = user.fav_reviews.all()
             if movie in fav_movies:
                 fav_exists = True
             else:
                 fav_exists = False
             context["fav_exists"] = fav_exists
-        except AttributeError:
+            context["fav_reviews"] = fav_reviews
+        except:
             pass
 
         context["show_reviews"] = show_reviews
@@ -206,7 +207,6 @@ class MovieDetail(DetailView):
         context["num_hidden_reviews"] = num_hidden_reviews
         context["num_reviews"] = num_reviews
         context["num_fav_users"] = num_fav_users
-        context["fav_reviews"] = fav_reviews
 
         return context
 

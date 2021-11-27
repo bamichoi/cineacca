@@ -28,15 +28,13 @@ Development in progress
 
 - [x] Interctive action of today movie (더 좋은 방법은 없을지..)
 - [ ] upload : Get the duration of video
-- [ ] sinossi, review, biografia : textarea white-space problem.
 - [ ] 문구 대점검
-- [ ] 창 줄이고 늘일때 핸들링***
+- [ ] 비디오플레이어 스킨 커스터마이징***
+- [ ] 비로그인시 리뷰안내에 로그인누르면 로그인후 이전 페이지로 이동***
+- [ ] 리뷰 디테일 modify delete 추가***
+ - [ ] 리뷰 수정삭제 api에서 한번더 인증.. flex로 바꾼것들 전부다체크***
 
-- [ ] api 주소정리
-- [ ] 선호 역할에 animation / edizione.. 추가***
 
-- [ ] new리뷰에 시간 다르게 표시되는 문제***
-  
 ### Base
 
 - [ ] Header 그라데이션
@@ -55,7 +53,6 @@ Development in progress
 
 ### Reviews
 
-- [ ] 리뷰 카드 타이틀 글자 줄임
 
 ### News
 
@@ -74,11 +71,10 @@ Development in progress
 ### Detail
 
 - [ ] 리뷰수정 텍스트area 콜럼조정
-- [ ] 비로그인시 리뷰안내에 로그인누르면 로그인후 이전 페이지로 이동***
 
 ### VideoPlayer - video.js
 
-- [ ] 스킨 커스터마이징***
+
 - [ ] 자막기능
 - [ ] 포인터 이동시 썸네일, 시간정보 표시
 - [ ] 지속적 기능개선
@@ -99,7 +95,6 @@ Development in progress
 
 ### Movie List
 
--[ ] 대문자일시 formatted.title 제대로 적용안되는 문제
 
 ### Movie Search
 
@@ -152,3 +147,5 @@ Development in progress
 - [ ] CSS 중복제거
 - [ ] partials
 - [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
+- [ ] api 주소개선 url에 굳이 pk를..?
+- [ ] sinossi, review, biografia : textarea white-space problem.

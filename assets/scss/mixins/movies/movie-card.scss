@@ -1,6 +1,6 @@
 .card_link {
   text-decoration: none;
-  color: black;
+  color: $cineH_black;
   &:hover {
     .movie-card,
     .student-namecard,
@@ -20,14 +20,14 @@
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
   background-color: $cineH_white;
   color: $cineH_black;
-
+  min-height: 15.6rem;
   .movie-card_thumbnail {
-    height: 10rem;
+    width: 100%;
+    height: 12rem;
     background-repeat: no-repeat;
     background-size: cover;
   }
   .movie-card_info {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -35,6 +35,10 @@
     .info_title {
       margin: 1rem 0rem 0rem;
       font-size: 1.2rem;
+      width: 320px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     .info_user {
       margin: 0.4rem 0rem;
