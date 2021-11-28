@@ -60,6 +60,10 @@
       }
     }
   }
+  .detail_movieInfo__modify {
+    border-right: 0.1rem solid #aacccc;
+  }
+
   .review_detail_reviewInfo {
     display: flex;
     flex-direction: column;
@@ -110,6 +114,10 @@
       font-family: "Noto Sans Hanunoo", sans-serif;
     }
   }
+}
+
+.modify_detail_container {
+  display: none;
 }
 
 .moviePoster_md {
