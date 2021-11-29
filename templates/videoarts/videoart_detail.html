@@ -44,10 +44,11 @@
     
 <!--videoart Screen-->   
     <video id="videoPlayer" 
-               class="video-js">
+               class="video-js vjs-cineacca">
                <source src='{{ videoart.video.url }}' type="video/mp4"></source>
-<!--videoart Description--> 
+
     </video> 
+<!--videoart Description--> 
     <div class="detail_description">
         <div class="description__title">
         </div>  
@@ -69,7 +70,7 @@
         </a>
     </div>
 <!--videoart Information--> 
-    <div class="detail_movieInfo" data-obj="videoart">
+    <div class="detail_movieInfo" data-obj="videoart" data-thumb="{{videoart.thumbnail.url}}">
         <div class="movieInfo__row">
             <div class="info__moviePoster">
                 <img class="moviePoster_lg" src="{{videoart.poster.url}}" />
@@ -123,7 +124,7 @@
             {% endif %}
         {% else %}
             <div class="text_login_only">🔒Fai login per scrivere un review.&nbsp;&nbsp;
-                <a href="{% url 'users:login' %}">login<i class="fas fa-sign-in-alt"></i></a></div>        
+                <a href="/users/login/?next=/videoarts/{{ videoart.pk }}">login<i class="fas fa-sign-in-alt"></i></a></div>        
         {% endif %}
     </div>
     

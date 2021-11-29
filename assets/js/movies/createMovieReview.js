@@ -4,7 +4,6 @@ const reviewForm = document.getElementById("review_form");
 const reviewContainer = document.querySelector(".reviewForm_container");
 const moviePk = reviewContainer.dataset.pk
 
-
     function handelSubmitReview(event) {
         event.preventDefault();
         const titleInput = reviewForm.querySelector("#review_title");
@@ -39,6 +38,7 @@ const moviePk = reviewContainer.dataset.pk
         
         axios.post(`/reviews/api/${moviePk}/create/`, data)
             .then(res => {
+                console.log(res)
                 const pk = res.data.pk;
                 const title = res.data.title;
                 const rate = res.data.rate;
@@ -53,7 +53,7 @@ const moviePk = reviewContainer.dataset.pk
                 const newReviewDate = newReview.querySelector(".review_box__date");
                 const likeItDiv = newReview.querySelector(".review_like_it");
                 const numFav = likeItDiv.querySelector("span");
-
+               
                 newReview.setAttribute("id", `${pk}`);
                 const reviewBtns = newReview.querySelector(".review_btns")
                 const modifyBtn = newReview.querySelector(".modify");
@@ -63,13 +63,11 @@ const moviePk = reviewContainer.dataset.pk
                 const modifyRate = modifyForm.querySelector(".modify_rate");
                 const modifyScore = modifyForm.querySelector(".modify_score");
                 const modifyContent = modifyForm.querySelector(".modify_content");
-                 
 
  
                 newReviewTitle.innerText = `${title}`;
                 newReviewRate.innerText =  rate.includes(".") ? `"${rate}"` : `"${rate}.0"`
                 newReviewContent.innerText = `${content}`;
-                reviewBtns.style.display = "flex"
                 modifyBtn.setAttribute("value", `${pk}`);
                 deleteBtn.setAttribute("value", `${pk}`);
                 newReviewDate.innerText = `${created}`;

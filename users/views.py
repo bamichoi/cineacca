@@ -32,6 +32,7 @@ from . import models, forms, mixins
 class UserDashBoardList(ListView):
 
     template_name = "dashboards/user_dashboard_list.html"
+    ordering = "-created"
 
     def get_queryset(self):
         pk = self.kwargs["pk"]
@@ -39,21 +40,21 @@ class UserDashBoardList(ListView):
         user_obj = models.User.objects.get(pk=pk)
 
         if list_by == "movie":
-            qs = user_obj.movies.all()
+            qs = user_obj.movies.all().order_by("-created")
         elif list_by == "videoart":
-            qs = user_obj.videoarts.all()
+            qs = user_obj.videoarts.all().order_by("-created")
         elif list_by == "movie_review":
-            qs = user_obj.reviews.all()
+            qs = user_obj.reviews.all().order_by("-created")
         elif list_by == "videoart_review":
-            qs = user_obj.videoart_reviews.all()
+            qs = user_obj.videoart_reviews.all().order_by("-created")
         elif list_by == "fav_movie":
-            qs = user_obj.fav_movies.all()
+            qs = reversed(user_obj.fav_movies.all())
         elif list_by == "fav_videoart":
-            qs = user_obj.fav_fav_videoarts.all()
+            qs = reversed(user_obj.fav_videoarts.all())
         elif list_by == "fav_review":
-            qs = user_obj.fav_reviews.all()
+            qs = reversed(user_obj.fav_reviews.all())
         elif list_by == "fav_videoart_review":
-            qs = user_obj.fav_videoart_reviews.all()
+            qs = reversed(user_obj.fav_videoart_reviews.all())
 
         return qs
 
@@ -90,16 +91,17 @@ class UserDashBoardView(TemplateView):
         pk = self.kwargs["pk"]
         user_obj = models.User.objects.get(pk=pk)
 
-        movies_uploaded = user_obj.movies.all()[:3]
-        videoarts_uploaded = user_obj.videoarts.all()[:3]
-        movie_reviews_uploaded = user_obj.reviews.all()[:3]
-        videoart_reviews_uploaded = user_obj.videoart_reviews.all()[:3]
+        movies_uploaded = user_obj.movies.all().order_by("-created")[:3]
+        videoarts_uploaded = user_obj.videoarts.all().order_by("-created")[:3]
+        movie_reviews_uploaded = user_obj.reviews.all().order_by("-created")[:3]
+        videoart_reviews_uploaded = user_obj.videoart_reviews.all().order_by(
+            "-created"
+        )[:3]
 
-        movies_loved = user_obj.fav_movies.all()[:3]
-        videoarts_loved = user_obj.fav_videoarts.all()[:3]
-        movie_reviews_loved = user_obj.fav_reviews.all()[:3]
-        videoart_reviews_loved = user_obj.fav_videoart_reviews.all()[:3]
-        print(videoarts_loved)
+        movies_loved = user_obj.fav_movies.all()[::-1][:3]
+        videoarts_loved = user_obj.fav_videoarts.all()[::-1][:3]
+        movie_reviews_loved = user_obj.fav_reviews.all()[::-1][:3]
+        videoart_reviews_loved = user_obj.fav_videoart_reviews.all()[::-1][:3]
 
         context["user_obj"] = user_obj
         context["movies_uploaded"] = movies_uploaded
@@ -175,13 +177,14 @@ class StudentListView(ListView):
 
         qs = super().get_queryset().filter(account_type="student").order_by("?")
 
-        if filter_by != "None":
+        if filter_by:
             qs = qs.filter(works=filter_by).order_by("?")
 
         if sort_by == "az":
             qs = qs.order_by("last_name")
         elif sort_by == "za":
             qs = qs.order_by("-last_name")
+
         return qs
 
     def get_context_data(
@@ -241,16 +244,13 @@ class SearchView(View):
         sort = self.request.GET.get("sort_by")
 
         if keyword:  # keyword 값이 비어있지 않다면
-
             result_qs = models.User.objects.filter(
                 Q(first_name__contains=keyword) | Q(last_name__contains=keyword)
             ).order_by(
                 "-date_joined"
             )  # keyword와 일치하는 오브젝트들의 쿼리셋 만들기.
 
-            if (
-                filter_by is not None and filter_by != "None"
-            ):  # 이 부분 잘 이해안간다.. 왜 list랑 다르게 is not None을 넣어야 작동할까.
+            if filter_by:
                 result_qs = result_qs.filter(works=filter_by).order_by("?")
 
             if sort == "az":

@@ -15,6 +15,8 @@ class CustomUserAdmin(UserAdmin):
 
     model = models.User
 
+    search_fields = ("first_name", "last_name", "email")
+
     fieldsets = (
         (
             None,

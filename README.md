@@ -29,10 +29,7 @@ Development in progress
 - [x] Interctive action of today movie (더 좋은 방법은 없을지..)
 - [ ] upload : Get the duration of video
 - [ ] 문구 대점검
-- [ ] 비디오플레이어 스킨 커스터마이징***
-- [ ] 비로그인시 리뷰안내에 로그인누르면 로그인후 이전 페이지로 이동***
-- [ ] 리뷰 디테일 modify delete 추가***
- - [ ] 리뷰 수정삭제 api에서 한번더 권한검증.. flex로 바꾼것들 전부다체크***
+- [ ] dashboard 인증후에만
 
 
 ### Base
@@ -108,6 +105,7 @@ Development in progress
 ### Student Search
 
 - [ ] 소속으로 검색 제공
+- [ ] 필터된 쿼리셋에 키워드 검색
 
 
 ### Login

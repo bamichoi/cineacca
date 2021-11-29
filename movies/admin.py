@@ -51,11 +51,14 @@ class MovieAdmin(admin.ModelAdmin):
         ),
     )
 
-    list_display = ("title", "user", "director", "screenwriter", "rating", "views")
-
-    list_filter = (
+    list_display = (
         "title",
         "user",
         "director",
         "screenwriter",
+        "rating",
+        "views",
+        "today",
     )
+
+    list_filter = ("today",)

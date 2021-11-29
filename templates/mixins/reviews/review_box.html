@@ -42,10 +42,12 @@
         <div class="review_title">{{review.title}}</div>
         <div class="review_content">{{review.content}}</div>
         <div class="review_box__btn_container">
-            <div class="review_btns" {% if user == review.user %} style="display:flex" {% else%} style="display:none" {% endif %}>
+            {% if review.user == user or type == "new_review" %}
+            <div class="review_btns">
                 <button class="delete" value="{{review.pk}}"><i class="fas fa-trash-alt"></i>&nbsp;elimina</button>
                 <button class="modify" value="{{review.pk}}"><i class="fas fa-edit"></i>&nbsp;modifica</button>
             </div>
+            {% endif %}
 
             {% if user.is_authenticated %}
                 {% if review in fav_reviews %}

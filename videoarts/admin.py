@@ -30,10 +30,6 @@ class VideoArtAdmin(admin.ModelAdmin):
         ),
     )
 
-    list_display = ("title", "user", "artist", "rating", "views")
+    list_display = ("title", "user", "artist", "rating", "views", "today")
 
-    list_filter = (
-        "title",
-        "user",
-        "artist",
-    )
+    list_filter = ("today",)

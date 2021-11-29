@@ -233,6 +233,7 @@ def update_review(request):
         rate = request.POST.get("rate")
         content = request.POST.get("content")
         object_type = request.POST.get("object_type")
+
         if object_type == "movie":
             review = models.Review.objects.get(
                 pk=pk

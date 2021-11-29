@@ -43,11 +43,11 @@
     </div>
     
 <!--Movie Screen-->   
-    <video id="videoPlayer" 
-               class="video-js">
+
+    <video id="videoPlayer" class="video-js vjs-cineacca">
                <source src='{{ movie.video.url }}' type="video/mp4"></source>
-<!--Movie Description--> 
-    </video> 
+    </video>
+<!--Movie Description-->  
     <div class="detail_description">
         <div class="description__title">
             <h1>Sinossi</h1>
@@ -71,7 +71,7 @@
         </a>
     </div>
 <!--Movie Information--> 
-    <div class="detail_movieInfo" data-obj="movie">
+    <div class="detail_movieInfo" data-obj="movie" data-thumb="{{movie.thumbnail.url}}">
         <div class="movieInfo__row">
             <div class="info__moviePoster">
                     <img class="moviePoster_lg" src="{{movie.poster.url}}" />
@@ -136,7 +136,7 @@
             {% endif %}
         {% else %}
             <div class="text_login_only">🔒Fai login per scrivere un review.&nbsp;&nbsp;
-                <a href="{% url 'users:login' %}">login<i class="fas fa-sign-in-alt"></i></a></div>        
+                <a href="/users/login/?next=/movies/{{ movie.pk }}">login<i class="fas fa-sign-in-alt"></i></a></div>        
         {% endif %}
     </div>
     
@@ -182,14 +182,15 @@
 </div>
     
 <script src="{% static 'js/movies/createMovieReview.js' %}"></script>
-<script src="{% static 'js/movies/modifyMovieReview.js' %}"></script>
-<script src="{% static 'js/movies/deleteMovieReview.js' %}"></script>
 <script src="{% static 'js/movies/videoPlayer.js' %}"></script>
 <script src="{% static 'js/movies/movieViewCount.js' %}"></script>
 <script src="{% static 'js/movies/ratingStars.js' %}"></script>
 <script src="{% static 'js/movies/hideAndShowReview.js' %}"></script>
-<script src="{% static 'js/movies/switchFavMovie.js' %}"></script>
 <script src="{% static 'js/movies/copyUrl.js' %}"></script>
+<script src="{% static 'js/movies/modifyMovieReview.js' %}"></script>
+<script src="{% static 'js/movies/deleteMovieReview.js' %}"></script>
+<script src="{% static 'js/movies/switchFavMovie.js' %}"></script>
 <script src="{% static 'js/reviews/switchFavReview.js' %}"></script>
+
 {% endblock content %}
 

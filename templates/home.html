@@ -69,5 +69,8 @@
     </div>
 </div>
 
+{% if today_movies or today_videoarts %}
 <script src="{% static 'js/movies/todays.js' %}"></script>
+{% endif %}
+
 {% endblock content%}

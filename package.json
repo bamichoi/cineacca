@@ -12,7 +12,8 @@
   "homepage": "https://github.com/bamichoi/cineacca#readme",
   "dependencies": {
     "axios": "^0.21.4",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "video.js": "^7.15.4"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -28,8 +29,7 @@
     "gulp-sass": "^5.0.0",
     "node-sass": "^6.0.1",
     "postcss": "^8.3.8",
-    "uglifyify": "^5.0.2",
-    "video.js": "^7.15.4"
+    "uglifyify": "^5.0.2"
   },
   "license": "MIT"
 }
