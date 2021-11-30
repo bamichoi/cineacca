@@ -14,7 +14,7 @@
         </div>
         <p class="menu_description">Il modulo per aggiornare il tuo profilo</p>
     </div>
-    <form method="post" class="update-profile_form">
+    <form method="post" class="update-profile_form" enctype="multipart/form-data">
         <div id="avatar-preview">
             {% if user.avatar %}
                 <div class="profile_avatar" style="background-image:url({{user.avatar.url}}); "></div>
