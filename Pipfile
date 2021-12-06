@@ -11,10 +11,12 @@ django-seed = "*"
 django-dotenv = "*"
 requests = "*"
 django-inlinecss = "*"
+pipenv-to-requirements = "*"
 
 [dev-packages]
 flake8 = "*"
 black = "*"
+awsebcli = "*"
 
 [requires]
 python_version = "3.9"
