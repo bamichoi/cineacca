@@ -12,6 +12,7 @@ django-dotenv = "*"
 requests = "*"
 django-inlinecss = "*"
 pipenv-to-requirements = "*"
+sentry-sdk = "*"
 
 [dev-packages]
 flake8 = "*"
