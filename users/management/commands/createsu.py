@@ -13,6 +13,6 @@ class Command(BaseCommand):
         try:
             User.objects.get(email="admin@cineacca.it")
         except User.DoesNotExist:
-            User.objects.create_superuser("admin@cineacca.it", "admin@cineacca.it", "cineacca1283")
+            User.objects.create_superuser("admin@cineacca.it", "cineacca1283")
             return self.stdout.write(self.style.SUCCESS("superuser created!"))
         return self.stdout.write(self.style.SUCCESS("superuser exists."))
