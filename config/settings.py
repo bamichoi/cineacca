@@ -189,7 +189,6 @@ if not DEBUG :
     AWS_DEFAULT_ACL = "public-read"
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.eu-south-1.amazonaws.com"
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
-    AWS_REGION = "eu-south-1"
 
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
