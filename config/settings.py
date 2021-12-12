@@ -180,8 +180,8 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 ## Sentry
 
-DEFAULT_FILE_STORAGE = 'config.custom_storages.UploadStorages'
-STATICFILES_STORAGE = 'config.custom_storages.StaticStorages'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = "cineacca"
@@ -190,7 +190,7 @@ AWS_DEFAULT_ACL = "public-read"
 if not DEBUG :
 
     """AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.eu-south-1.amazonaws.com"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"""
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static"""
     
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
