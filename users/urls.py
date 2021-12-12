@@ -75,10 +75,13 @@ urlpatterns = [
         user_views.delete_account,
         name="delete-account",
     ),
+    
+]
+
+"""
     path("login/google", user_views.google_login, name="google-login"),
     path(
         "login/google/callback",
         user_views.google_callback,
         name="google-callback",
-    ),
-]
+    ),"""
