@@ -177,16 +177,15 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 ## Sentry
 
-    DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
-    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
-    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = "airbnb-clone-nomadcoders"
-    AWS_AUTO_CREATE_BUCKET = True
-    AWS_BUCKET_ACL = "public-read"
+DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
+STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = "cineacca"
+AWS_BUCKET_ACL = "public-read"
 
-    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.eu-south-1.amazonaws.com"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.eu-south-1.amazonaws.com"
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
 
 if not DEBUG :
     sentry_sdk.init(
