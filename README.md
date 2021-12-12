@@ -24,6 +24,15 @@ Development in progress
 
 ## TO DO LIST 
 
+## 배포 관련
+
+- [ ] 기본 아바타 및 이미지 static imag에 저장
+- [ ] 어드민 로그인 주소 변경
+- [ ] 버킷 이름 변경
+- [ ] django-image kit
+- [ ] video transcoding
+
+
 ### 배포 전 끝내야 할 것들
 
 - [x] Interctive action of today movie (더 좋은 방법은 없을지..)

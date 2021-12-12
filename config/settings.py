@@ -47,7 +47,7 @@ PROJECT_APPS = [
     "reviews.apps.ReviewsConfig",
 ]
 
-THIRD_PARTY_APPS = ["django_inlinecss", "django_seed"]
+THIRD_PARTY_APPS = ["django_inlinecss", "django_seed", "storages"]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 

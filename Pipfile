@@ -15,6 +15,7 @@ pipenv-to-requirements = "*"
 sentry-sdk = "*"
 django-storages = "*"
 boto3 = "*"
+django-imagekit = "*"
 
 [dev-packages]
 flake8 = "*"
