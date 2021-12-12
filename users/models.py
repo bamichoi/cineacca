@@ -8,8 +8,12 @@ from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+from pilkit.processors.base import Transpose
+from pilkit.processors.resize import SmartResize
 from core import models as core_models
 from django.db import models
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 class CustomUserManager(BaseUserManager):
@@ -83,8 +87,12 @@ class User(AbstractUser):
         []
     )  # AbsractUser에는 email이 Required로 잡혀있으나 USERNAME_FIELD로 사용되는 필드는 REQUIRED에 있으면 안된다.
     school = models.CharField(_("appartenuto a"), max_length=100, null=True, blank=True)
-    avatar = models.ImageField(
-        upload_to="user_avatars", default="user_avatars/default_avatar.jpeg"
+    avatar = ProcessedImageField(
+        upload_to="user_avatars", 
+        default="user_avatars/default_avatar.jpeg",
+        processors=[Transpose(), ResizeToFill(200, 200)],
+        format='JPEG',
+        options={'quality': 75}
     )
     biography = models.TextField(_("biografia"), null=True, blank=True)
     account_type = models.CharField(
