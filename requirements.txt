@@ -21,6 +21,7 @@ django-dotenv==1.4.2
 django-inlinecss==0.3.0
 django-seed==0.3.1
 django-storages===1.12.3
+django-imagekit==4.1.0
 django==3.2.5
 faker==9.9.0 ; python_version >= '3.6'
 filelock==3.4.0 ; python_version >= '3.6'
