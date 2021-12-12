@@ -461,7 +461,7 @@ def delete_account(request):
 
 # Login with the Google account
 
-
+"""
 class GoogleException(Exception):
     pass
 
@@ -499,3 +499,4 @@ def google_callback(request):
         print(json.loads(profile_request))
     except GoogleException:
         redirect(reverse("users:login"))
+"""
