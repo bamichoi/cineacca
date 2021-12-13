@@ -28,10 +28,10 @@ Development in progress
 
 - [ ] 기본 아바타 및 이미지 static imag에 저장
 - [ ] 어드민 로그인 주소 변경
-- [ ] 버킷 이름 변경
+- [x] 버킷 이름 변경
 - [ ] django-image kit
 - [ ] video transcoding
-
+- [ ] 퍼블릭계정 work 필드 제목 보이고 있음..
 
 ### 배포 전 끝내야 할 것들
 
