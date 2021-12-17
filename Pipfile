@@ -21,6 +21,7 @@ gunicorn = "*"
 django-heroku = "*"
 psycopg2-binary = "*"
 pyyaml = "*"
+whitenoise = "*"
 
 [dev-packages]
 flake8 = "*"
