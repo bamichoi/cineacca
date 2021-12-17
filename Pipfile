@@ -17,6 +17,8 @@ django-storages = "*"
 boto3 = "*"
 django-imagekit = "*"
 awsebcli = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 flake8 = "*"

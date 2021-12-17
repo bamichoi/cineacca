@@ -26,17 +26,19 @@ Development in progress
 
 ## 배포 관련
 
-- [ ] 기본 아바타 및 이미지 static imag에 저장
-- [ ] email static에 들어가도록
+
 - [x] 어드민 로그인 주소 변경
 - [x] 버킷 이름 변경
 - [x] 프로필 아바타 django-image kit 
 - [ ] 프로필 아바타 이미지킷 vs 용량제한
 - [x] 포스터, 썸네일 용량제한
-- [ ] video transcoding
 - [x] work 필드 추가
-- [ ] 로그인 유지 해결
-- [ ] 모바일 반응형..
+- [x] 자동로그인 선택하기
+
+- [ ] video transcoding(upload video)
+- [ ] 기본 아바타 및 이미지 static imag에 저장
+- [ ] email static에 들어가도록
+- [ ] 모바일 반응형.. (최종보스)
 
 ### 배포 전 끝내야 할 것들
 

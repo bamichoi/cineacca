@@ -10,6 +10,8 @@ import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
+import django_heroku
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +27,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG"))
 
-ALLOWED_HOSTS = [".elasticbeanstalk.com", "*"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -178,8 +180,8 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 
 if not DEBUG:
-
-    DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
+    #AWS
+    """DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
@@ -188,7 +190,7 @@ if not DEBUG:
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.eu-south-1.amazonaws.com"
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
-    AWS_S3_REGION_NAME = "eu-south-1"
+    AWS_S3_REGION_NAME = "eu-south-1"""
 
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
@@ -201,3 +203,5 @@ if not DEBUG:
         # django.contrib.auth) you may enable sending PII data.
         send_default_pii=True,
     )
+
+    django_heroku.settings(locals())
