@@ -99,7 +99,10 @@ if DEBUG:
     }
 
 else:
-
+    DATABASES = {
+	'default' : dj_database_url.config()
+}
+    """
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -109,7 +112,9 @@ else:
             "PASSWORD": os.environ.get("RDS_PASSWORD"),
             "PORT": "5432",
         }
+        
     }
+    """
 
 
 # Password validation
