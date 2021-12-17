@@ -209,4 +209,5 @@ if not DEBUG:
         send_default_pii=True,
     )
 
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     django_heroku.settings(locals())
