@@ -2,6 +2,7 @@ from django import forms
 from django.forms import widgets
 from django.forms.widgets import ClearableFileInput
 from django.utils.translation import gettext_lazy as _
+from pilkit.processors.resize import Thumbnail
 from . import models
 from movies import forms as movie_forms
 
@@ -30,6 +31,23 @@ class VideoArtUploadForm(forms.ModelForm):
             ),
         }
 
+    def clean_thumbnail(self):
+        thumbnail = self.cleaned_data.get('thumbnail')
+        if thumbnail:
+            if thumbnail.size > 10*1024*1024:
+                raise forms.ValidationError("Thumnail si deve essere meno di 10MB")
+            return thumbnail
+        else:
+            raise forms.ValidationError("Thumnail è necessario")
+
+    
+    def clean_poster(self):
+        poster = self.cleaned_data.get('poster')
+        if poster and (type(poster) != str):
+            if poster.size > 10*1024*1024:
+                raise forms.ValidationError("Cover image si deve essere meno di 10MB")
+            return poster
+            
     def save(self, *args, **kwargs):
         videoart = super().save(commit=False)
         return videoart
@@ -54,6 +72,23 @@ class VideoArtUpdateForm(forms.ModelForm):
             "thumnail": movie_forms.CustomClearableFileInput,
             "poster": movie_forms.CustomClearableFileInput,
         }
+
+    
+    def clean_thumbnail(self):
+        thumbnail = self.cleaned_data.get('thumbnail')
+        if thumbnail:
+            if thumbnail.size > 4*1024*1024:
+                raise forms.ValidationError("Thumnail si deve essere meno di 10MB")
+            return thumbnail
+
+    
+    def clean_poster(self):
+        poster = self.cleaned_data.get('poster')
+        if poster:
+            if poster.size > 4*1024*1024:
+                raise forms.ValidationError("Cover image si deve essere meno di 10MB")
+    
+    
 
 
 class DeleteVideoArtForm(forms.Form):

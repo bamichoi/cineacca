@@ -94,6 +94,23 @@ class MovieUploadForm(forms.ModelForm):
             ),
         }
 
+    def clean_thumbnail(self):
+        thumbnail = self.cleaned_data.get('thumbnail')
+        if thumbnail:
+            if thumbnail.size > 10*1024*1024:
+                raise forms.ValidationError("Thumnail si deve essere meno di 10MB")
+            return thumbnail
+        else:
+            raise forms.ValidationError("Thumnail è necessario")
+
+    
+    def clean_poster(self):
+        poster = self.cleaned_data.get('poster')
+        if poster and (type(poster) != str):
+            if poster.size > 10*1024*1024:
+                raise forms.ValidationError("la locandia si deve essere meno di 10MB")
+            return poster
+
     def save(self, *args, **kwargs):
         movie = super().save(commit=False)
         return movie
@@ -142,6 +159,19 @@ class MovieUpdateForm(forms.ModelForm):
             "thumnail": CustomClearableFileInput,
         }
 
+    def clean_thumbnail(self):
+        thumbnail = self.cleaned_data.get('thumbnail')
+        if thumbnail:
+            if thumbnail.size > 4*1024*1024:
+                raise forms.ValidationError("Thumnail si deve essere meno di 10MB")
+            return thumbnail
+
+    
+    def clean_poster(self):
+        poster = self.cleaned_data.get('poster')
+        if poster:
+            if poster.size > 4*1024*1024:
+                raise forms.ValidationError("La locandia si deve essere meno di 10MB")
 
 class DeleteMovieForm(forms.Form):
 

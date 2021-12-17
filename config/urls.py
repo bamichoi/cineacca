@@ -23,5 +23,5 @@ urlpatterns = [
     path("videoarts/", include("videoarts.urls", namespace="videoarts")),
     path("users/", include("users.urls", namespace="users")),
     path("reviews/", include("reviews.urls", namespace="reviews")),
-    path("admin/", admin.site.urls),
+    path("1283tous/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

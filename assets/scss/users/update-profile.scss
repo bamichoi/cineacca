@@ -78,10 +78,13 @@
       display: flex;
       flex-direction: column;
       li {
-        display: flex;
         align-items: center;
         font-size: 1.2rem;
         padding: 0.2rem;
+        display: flex;
+        label {
+          display: flex;
+        }
         #text {
           padding-bottom: 1rem;
         }
@@ -89,6 +92,7 @@
           width: 1.2rem;
           height: 1.2rem;
           padding: 0rem;
+          margin-right: 0.5rem;
         }
       }
     }
