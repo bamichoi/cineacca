@@ -1,1 +1,1 @@
-web: gunicorn cineacca.wsgi
+web: gunicorn config.wsgi
