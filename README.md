@@ -33,7 +33,7 @@ Development in progress
 - [ ] 프로필 아바타 이미지킷 vs 용량제한
 - [x] 포스터, 썸네일 용량제한
 - [ ] video transcoding
-- [ ] 퍼블릭계정 work 필드 제목 보이고 있음..
+- [x] work 필드 추가
 - [ ] 로그인 유지 해결
 
 ### 배포 전 끝내야 할 것들
@@ -50,7 +50,7 @@ Development in progress
   
 ### Home
 
-
+- [ ] today 로직 개선
 - [ ] the playground of cineasti indipendenti
 
 ### About
