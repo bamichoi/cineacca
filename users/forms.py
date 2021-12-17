@@ -27,6 +27,12 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(attrs={"placeholder": "la tua password"})
     )
 
+    auto_login = forms.BooleanField(
+        required=False,
+        label="Auto login?",
+        widget=forms.CheckboxInput()
+    )
+
     def clean(self):  # email과 password는 서로 종속되어있다. 이 경우 clean method를 이용한다.
         email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")

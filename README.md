@@ -27,6 +27,7 @@ Development in progress
 ## 배포 관련
 
 - [ ] 기본 아바타 및 이미지 static imag에 저장
+- [ ] email static에 들어가도록
 - [x] 어드민 로그인 주소 변경
 - [x] 버킷 이름 변경
 - [x] 프로필 아바타 django-image kit 
@@ -35,6 +36,7 @@ Development in progress
 - [ ] video transcoding
 - [x] work 필드 추가
 - [ ] 로그인 유지 해결
+- [ ] 모바일 반응형..
 
 ### 배포 전 끝내야 할 것들
 

@@ -38,7 +38,6 @@
   form {
     .login_field {
       margin-bottom: 1rem;
-
       .login_field-label {
         width: 5rem;
         height: 2rem;
@@ -52,7 +51,6 @@
         padding: 0.1rem 0.8rem;
         margin-bottom: 0.5rem;
       }
-
       input {
         height: 2rem;
         width: 22rem;
@@ -63,6 +61,25 @@
       }
       input:focus {
         outline: none;
+      }
+    }
+    .login_field:nth-child(4) {
+      display: flex;
+      align-items: center;
+      .login_field-label {
+        width: fit-content;
+        font-size: 1rem;
+        height: 100%;
+        padding: 0;
+        padding-left: 0.8rem;
+        background: none;
+        color: $cineH_black;
+        margin: 0;
+      }
+      input {
+        padding: 0;
+        width: 1.2rem;
+        height: 1.2rem;
       }
     }
     div:last-child {

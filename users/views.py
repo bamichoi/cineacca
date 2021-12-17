@@ -317,11 +317,14 @@ class LoginView(mixins.LoggedOutOnlyView, FormView):
         password = form.cleaned_data.get(
             "password"
         )  # form으로부터 clean된 password data를 받아옴.
+        auto_login = form.cleaned_data.get("auto_login")
         user = authenticate(
             self.request, username=email, password=password
         )  # login 인증 부분
         if user is not None:
             login(self.request, user)  # login 시키기
+            if auto_login == False:
+                self.request.session.set_expiry(0)
             messages.info(self.request, f"Ciao, {user.first_name}!")
         return super().form_valid(form)  # 최종적으로 form_valid 가 유효하다면 succes_url로 넘겨주기
 
