@@ -19,7 +19,7 @@ from . import models
 from . import forms
 from users import mixins as user_mixins
 
-import videoarts
+
 
 
 class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
@@ -32,7 +32,6 @@ class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
     def form_valid(self, form):
         videoart = form.save()
         videoart.user = self.request.user
-        # ffprobe command 로 duration 얻기
         videoart.save()
         return redirect(reverse("videoarts:detail", kwargs={"pk": videoart.pk}))
 

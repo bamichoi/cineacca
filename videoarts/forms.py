@@ -5,7 +5,8 @@ from django.utils.translation import gettext_lazy as _
 from pilkit.processors.resize import Thumbnail
 from . import models
 from movies import forms as movie_forms
-
+from time import time
+import subprocess
 
 class VideoArtUploadForm(forms.ModelForm):
     class Meta:
@@ -47,11 +48,27 @@ class VideoArtUploadForm(forms.ModelForm):
             if poster.size > 10*1024*1024:
                 raise forms.ValidationError("Cover image si deve essere meno di 10MB")
             return poster
-            
-    def save(self, *args, **kwargs):
-        videoart = super().save(commit=False)
-        return videoart
 
+    def save(self, *args, **kwargs):
+
+        def clean_video(self):
+            raw_video = self.cleaned_data.get("video")
+            timestamp = int(time())
+            raw_video_path = raw_video.temporary_file_path()
+            video_name = f"{raw_video}".split(".")[0]
+            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -b:v 1000k -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
+            return f"videoart_files/{video_name}_{timestamp}.mp4"
+
+        videoart = super().save(commit=False)
+        videoart.video = clean_video(self)
+        video_path = videoart.video.path
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) # 바로 int로 구하는 커맨드 라인이 있을 것이야.
+        videoart.duration = duration
+        print(videoart.duration)
+
+        return videoart
+    
 
 class VideoArtUpdateForm(forms.ModelForm):
     class Meta:

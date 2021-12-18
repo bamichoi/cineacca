@@ -34,6 +34,7 @@ class VideoArt(core_model.TimeStampedModel):
     )
     title = models.CharField(_("titolo"), max_length=300, blank=False)
     artist = models.CharField(_("artista"), max_length=300, null=True, blank=False)
+    duration = models.IntegerField(_("durata"), default=0)
     description = models.TextField(_("descrizione"), max_length=1000)
     year = models.IntegerField(
         _("anno"),
