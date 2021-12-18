@@ -31,7 +31,7 @@ Development in progress
 - [ ] video compress 화질 조절하기
 - [ ] 기본 아바타 및 이미지 static imag에 저장
 - [ ] email static에 들어가도록
-  
+- [ ] video js 슬라이드 안먹는 문제
 - [ ] 스토리지 구하기
 - [ ] 모바일 반응형.. (최종보스)
 

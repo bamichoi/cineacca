@@ -44,10 +44,12 @@ class UpdateVideoArt(user_mixins.VideoArtUpdateDeletePermissionView, UpdateView)
     model = models.VideoArt
     form_class = forms.VideoArtUpdateForm
 
+
     def get_success_url(self):
         pk = self.kwargs.get("pk")
         return reverse("videoarts:detail", kwargs={"pk": pk})
 
+    
 
 class VideoArtList(ListView):
 

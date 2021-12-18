@@ -32,7 +32,7 @@ class Movie(core_model.TimeStampedModel):
     user = models.ForeignKey(
         "users.user", related_name="movies", on_delete=models.CASCADE
     )
-    duration = models.CharField(null=True, blank=True, max_length=300)
+    duration = models.IntegerField(_("durata"), default=0)
     title = models.CharField(_("titolo"), max_length=300, blank=False)
     description = models.TextField(_("sinossi"), max_length=1000, blank=False)
     year = models.IntegerField(

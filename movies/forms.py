@@ -3,7 +3,8 @@ from django.forms import widgets
 from django.forms.widgets import ClearableFileInput
 from django.utils.translation import gettext_lazy as _
 from . import models
-
+from time import time
+import subprocess
 
 class MovieUploadForm(forms.ModelForm):
     class Meta:
@@ -112,7 +113,22 @@ class MovieUploadForm(forms.ModelForm):
             return poster
 
     def save(self, *args, **kwargs):
+
+        def clean_video(self):
+            raw_video = self.cleaned_data.get("video")
+            timestamp = int(time())
+            raw_video_path = raw_video.temporary_file_path()
+            video_name = f"{raw_video}".split(".")[0]
+            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -b:v 1000k -acodec mp3 -y uploads/movie_files/{video_name}_{timestamp}.mp4", shell=True)
+            return f"movie_files/{video_name}_{timestamp}.mp4"
+
         movie = super().save(commit=False)
+         # 새로 업데이트 하는게 아닐 땐  작동 안하도록 해야함..
+        movie.video = clean_video(self)
+        video_path = movie.video.path
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) # 바로 int로 구하는 커맨드 라인이 있을 것이야. 
+        movie.duration = duration
         return movie
 
 
@@ -172,6 +188,27 @@ class MovieUpdateForm(forms.ModelForm):
         if poster:
             if poster.size > 4*1024*1024:
                 raise forms.ValidationError("La locandia si deve essere meno di 10MB")
+
+    def save(self, *args, **kwargs):
+
+        def clean_video(self):
+            raw_video = self.cleaned_data.get("video")
+            timestamp = int(time())
+            try:
+                raw_video_path = raw_video.temporary_file_path()
+                video_name = f"{raw_video}".split(".")[0]
+                subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -b:v 1000k -acodec mp3 -y uploads/movie_files/{video_name}_{timestamp}.mp4", shell=True)
+                return f"movie_files/{video_name}_{timestamp}.mp4"
+            except:
+                return raw_video
+
+        movie = super().save(commit=False)
+        movie.video = clean_video(self)
+        video_path = movie.video.path
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) # 바로 int로 구하는 커맨드 라인이 있을 것이야.
+        movie.duration = duration
+        super().save()
 
 class DeleteMovieForm(forms.Form):
 
