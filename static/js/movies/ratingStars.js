@@ -1,0 +1,4 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+"use strict";var rateInput=document.getElementById("review_rate"),fullStars=document.querySelector(".full_stars"),emptyStars=document.getElementsByClassName("empty_stars"),score=document.getElementById("score"),handleOninput=function(e){var t=e.target.value,n=20*t+"%";fullStars.style.width=n,score.innerText=t.includes(".")?'"'.concat(t,'"'):'"'.concat(t,'.0"')};rateInput.addEventListener("input",handleOninput);
+
+},{}]},{},[1]);

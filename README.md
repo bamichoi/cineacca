@@ -29,16 +29,14 @@ Development in progress
 - [ ] 프로필 아바타 이미지킷으로압축하기 vs 용량제한하기
 - [ ] video duration render하기
 - [ ] video compress 화질 조절하기
-- [ ] 기본 아바타 및 이미지 static imag에 저장
 - [ ] email static에 들어가도록
-- [ ] video js 슬라이드 안먹는 문제
+- [ ] video js 슬라이드 안먹는 문제 - firfox에서는 작동잘됨 크로미움에서 문제발생.
 - [ ] 스토리지 구하기
 - [ ] 모바일 반응형.. (최종보스)
 
 ### 배포 전 끝내야 할 것들
 
 - [x] Interctive action of today movie (더 좋은 방법은 없을지..)
-- [ ] upload : Get the duration of video
 - [ ] 문구 대점검
 - [ ] dashboard 인증후에만
 

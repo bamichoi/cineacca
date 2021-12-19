@@ -122,3 +122,7 @@ $slider-bg-color: lighten($cineH-black, 33%);
   /* Otherwise we'll rely on stacked opacities */
   background: rgba($slider-bg-color, 0.75);
 }
+
+.vjs-poster {
+  background-size: cover !important;
+}

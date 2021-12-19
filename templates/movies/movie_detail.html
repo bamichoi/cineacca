@@ -45,8 +45,10 @@
 <!--Movie Screen-->   
 
     <video id="videoPlayer" class="video-js vjs-cineacca">
-               <source src='{{ movie.video.url }}' type="video/mp4"></source>
+        <source src='{{ movie.video.url }}' type="video/mp4"></source>
     </video>
+
+
 <!--Movie Description-->  
     <div class="detail_description">
         <div class="description__title">
@@ -180,9 +182,9 @@
         </div>
     {% endif %}
 </div>
-    
-<script src="{% static 'js/movies/createMovieReview.js' %}"></script>
+ 
 <script src="{% static 'js/movies/videoPlayer.js' %}"></script>
+<script src="{% static 'js/movies/createMovieReview.js' %}"></script>
 <script src="{% static 'js/movies/movieViewCount.js' %}"></script>
 <script src="{% static 'js/movies/ratingStars.js' %}"></script>
 <script src="{% static 'js/movies/hideAndShowReview.js' %}"></script>

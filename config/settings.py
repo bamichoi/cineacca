@@ -187,6 +187,7 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 
 if not DEBUG:
+    
     #AWS
     """DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
@@ -199,6 +200,7 @@ if not DEBUG:
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
     AWS_S3_REGION_NAME = "eu-south-1"""
 
+    """
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
         integrations=[DjangoIntegration()],
@@ -210,6 +212,7 @@ if not DEBUG:
         # django.contrib.auth) you may enable sending PII data.
         send_default_pii=True,
     )
+    """
     
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
