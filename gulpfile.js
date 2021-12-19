@@ -21,7 +21,7 @@ const email = () => {
     .pipe(sass().on("error", sass.logError))
     .pipe(postCSS([require("autoprefixer")]))
     .pipe(minify())
-    .pipe(gulp.dest("backend/static/email")); 
+    .pipe(gulp.dest("backend/static/email/css")); 
 }
 
 const js = () => {
