@@ -184,15 +184,9 @@ EMAIL_USE_TLS = True
 EMAIL_FROM = "noreplycineacca@gmail.com"
 
 
-## Sentry
-
 
 if not DEBUG:
 
-    ALLOWED_HOSTS = ["cineacca.herokuapp.com"]
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    django_heroku.settings(locals())
 
     #AWS
     """DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
@@ -220,3 +214,7 @@ if not DEBUG:
     )
     """
     
+    ALLOWED_HOSTS = ["cineacca.herokuapp.com"]
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    django_heroku.settings(locals())
