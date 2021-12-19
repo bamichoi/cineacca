@@ -90,3 +90,12 @@ class Movie(core_model.TimeStampedModel):
         num_fav_users = len(fav_users)
 
         return num_fav_users
+
+    def formatted_duration(self):
+        duration_sec = self.duration
+        if duration_sec < 60 :
+            duration = "meno di 1 min"
+            return duration
+        else :
+            duration = round(duration_sec / 60)
+            return f"{duration} min"

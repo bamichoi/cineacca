@@ -27,7 +27,6 @@ Development in progress
 ## 배포 관련
 
 - [ ] 프로필 아바타 이미지킷으로압축하기 vs 용량제한하기
-- [ ] video duration render하기
 - [ ] video compress 화질 조절하기
 - [ ] video js 슬라이드 안먹는 문제 - firfox에서는 작동잘됨 크로미움에서 문제발생.
 - [ ] 스토리지 구하기

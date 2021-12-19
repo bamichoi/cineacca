@@ -118,7 +118,7 @@ class MovieUploadForm(forms.ModelForm):
             raw_video = self.cleaned_data.get("video")
             timestamp = int(time())
             raw_video_path = raw_video.temporary_file_path()
-            video_name = f"{raw_video}".split(".")[0]
+            video_name = f"{raw_video}".replace(" ", "_").split(".")[0]
             subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -b:v 1000k -acodec mp3 -y uploads/movie_files/{video_name}_{timestamp}.mp4", shell=True)
             return f"movie_files/{video_name}_{timestamp}.mp4"
 
@@ -127,6 +127,7 @@ class MovieUploadForm(forms.ModelForm):
         movie.video = clean_video(self)
         video_path = movie.video.path
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        print(get_duration)
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) # 바로 int로 구하는 커맨드 라인이 있을 것이야. 
         movie.duration = duration
         return movie

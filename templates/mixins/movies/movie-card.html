@@ -8,6 +8,7 @@
                 <span class="info_user">dir. {{ movie.director }}</span>
                 <div>
                     <span>{{ movie.year }}</span>
+                    <span>{{ movie.formatted_duration }}</span>
                     <span class="info_rating"><i class="fas fa-star"></i>&nbsp;{{ movie.rating | unlocalize }}</span>
                     <span class="info_like_it"><i class="fas fa-heart"></i>&nbsp;{{ movie.count_fav_users }}</span>
                     <span>{% if movie.views <= 1 %} 
@@ -27,6 +28,7 @@
                         <span class="info_user">dir. {{ videoart.artist }}</span>
                         <div>
                             <span>{{ videoart.year }}</span>
+                            <span>{{ videoart.formatted_duration }}</span>
                             <span class="info_rating"><i class="fas fa-star"></i>&nbsp;{{ videoart.rating | unlocalize }}</span>
                             <span class="info_like_it"><i class="fas fa-heart"></i>&nbsp;{{ videoart.count_fav_users }}</span>
                             <span>{% if videoart.views <= 1 %} 
