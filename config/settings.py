@@ -175,6 +175,7 @@ MEDIA_URL = "/media/"
 
 
 # Email Configuration
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = os.environ.get("ADMIN_GMAIL")
@@ -188,11 +189,11 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 if not DEBUG:
 
-    ALLOWED_HOSTS = ["https://cineacca.herokuapp.com/"]
+    ALLOWED_HOSTS = ["cineacca.herokuapp.com"]
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     django_heroku.settings(locals())
-    
+
     #AWS
     """DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
