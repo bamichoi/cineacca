@@ -14,6 +14,7 @@ from core import models as core_models
 from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+from config import settings
 
 
 class CustomUserManager(BaseUserManager):
@@ -126,8 +127,12 @@ class User(AbstractUser):
         if self.email_verified is False:
             secret = uuid.uuid4().hex[:20]
             self.email_secret = secret
+            if settings.DEBUG is True :
+                domain = "http://127.0.0.1:8000"
+            else :
+                domain = "cineacca.herokuapp.com/"
             html_message = render_to_string(
-                "emails/verify_email.html", {"secret": secret}
+                "emails/verify_email.html", {"secret": secret, "domain": domain}
             )
             send_mail(
                 "Verificazione dell'account su CINEACCA",

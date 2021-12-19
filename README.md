@@ -12,8 +12,8 @@ Python with Django Framework, HTML, SCSS and JavaScript
 
 ## 개발 기간 Period of development
 
-2021년 7월 31일 - 
-31 July 2021 -
+2021년 7월 31일 - 2021년 11월 31일
+31 July 2021 - 31 Nov 2021
 
 
 ## 현재 상태 Current State
@@ -29,7 +29,6 @@ Development in progress
 - [ ] 프로필 아바타 이미지킷으로압축하기 vs 용량제한하기
 - [ ] video duration render하기
 - [ ] video compress 화질 조절하기
-- [ ] email static에 들어가도록
 - [ ] video js 슬라이드 안먹는 문제 - firfox에서는 작동잘됨 크로미움에서 문제발생.
 - [ ] 스토리지 구하기
 - [ ] 모바일 반응형.. (최종보스)
