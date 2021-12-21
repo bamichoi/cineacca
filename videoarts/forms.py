@@ -7,6 +7,8 @@ from . import models
 from movies import forms as movie_forms
 from time import time
 import subprocess
+from config import settings
+import os
 
 class VideoArtUploadForm(forms.ModelForm):
     class Meta:
@@ -53,10 +55,12 @@ class VideoArtUploadForm(forms.ModelForm):
 
         def clean_video(self):
             raw_video = self.cleaned_data.get("video")
-            timestamp = int(time())
+            timestamp = int(time()) 
             raw_video_path = raw_video.temporary_file_path()
             video_name = f"{raw_video}".split(".")[0]
-            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec libx265 -crf 28 -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
+            storage = [settings.MEDIA_ROOT / "videoart_files"]
+            output_path = str(storage[0]) + "/" + f"{video_name}_{timestamp}.mp4"
+            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec libx265 -crf 28 -acodec mp3 -y {output_path}", shell=True)
             return f"videoart_files/{video_name}_{timestamp}.mp4"
 
         videoart = super().save(commit=False)
