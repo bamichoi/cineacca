@@ -14,7 +14,6 @@ import django_heroku
 import dj_database_url
 from google.oauth2 import service_account
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -188,13 +187,13 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 #getting credential
 
 
-if DEBUG is False:
+if DEBUG :
 
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     os.path.join(BASE_DIR, 'credential.json')
 )
-    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
+    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     GS_BUCKET_NAME = "cineacca_bucket"
     GS_PROJECT_ID = "eco-signifier-335803"
     sentry_sdk.init(
