@@ -187,7 +187,7 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 #getting credential
 
 
-if DEBUG :
+if DEBUG is False :
 
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     os.path.join(BASE_DIR, 'credential.json')
