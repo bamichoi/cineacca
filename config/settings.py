@@ -12,9 +12,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 import django_heroku
 import dj_database_url
-from google.cloud import storage
-from google.oauth2 import service_account
-import json
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
