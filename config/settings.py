@@ -180,14 +180,14 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = os.environ.get("ADMIN_GMAIL")
 EMAIL_HOST_PASSWORD = os.environ.get("ADMIN_GMAIL_PASSWORD")
-EMAIL_PORT = 587
+EMAIL_PORT = 587    
 EMAIL_USE_TLS = True
 EMAIL_FROM = "noreplycineacca@gmail.com"
 
 #getting credential
 
 
-if DEBUG :
+if DEBUG is False :
 
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     os.path.join(BASE_DIR, 'credential.json')
@@ -195,7 +195,7 @@ if DEBUG :
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     GS_BUCKET_NAME = "cineacca_bucket"
-    GS_PROJECT_ID = "eco-signifier-335803"
+    GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
     integrations=[DjangoIntegration()],
