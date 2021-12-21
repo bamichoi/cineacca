@@ -1,8 +1,8 @@
-from storages.backends.s3boto3 import S3Boto3Storage
+from storages.backends.gcloud import GoogleCloudStorage
 
-class StaticStorage(S3Boto3Storage):
+class StaticStorage(GoogleCloudStorage):
     location = "static/"
     file_overwrite = False
 
-class UploadStorage(S3Boto3Storage):
+class UploadStorage(GoogleCloudStorage):
     location = "uploads/"

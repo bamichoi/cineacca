@@ -90,7 +90,7 @@ class User(AbstractUser):
     school = models.CharField(_("appartenuto a"), max_length=100, null=True, blank=True)
     avatar = ProcessedImageField(
         upload_to="user_avatars", 
-        default="user_avatars/default_avatar.jpeg",
+        default="default_images/default_avatar.jpeg",
         processors=[Transpose(), ResizeToFill(200, 200)],
         format='JPEG',
         options={'quality': 75}

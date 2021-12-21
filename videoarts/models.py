@@ -25,7 +25,7 @@ class VideoArt(core_model.TimeStampedModel):
     poster = models.ImageField(
         _("cover image"),
         upload_to="videoart_posters",
-        default="movie_posters/default_poster.png",
+        default="default_images/default_poster.png",
         null=True,
         blank=True,
     )

@@ -12,6 +12,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 import django_heroku
 import dj_database_url
+from google.oauth2 import service_account
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,7 +49,7 @@ PROJECT_APPS = [
     "reviews.apps.ReviewsConfig",
 ]
 
-THIRD_PARTY_APPS = ["django_inlinecss", "django_seed", "storages", "imagekit"]
+THIRD_PARTY_APPS = ["django_inlinecss", "django_seed", "storages", "imagekit", 'django_cleanup.apps.CleanupConfig']
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
@@ -184,23 +185,18 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_FROM = "noreplycineacca@gmail.com"
 
+#getting credential
 
 
-if not DEBUG:
+if DEBUG is False:
 
-
-    #AWS
-    """DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
-    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
-    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
-    AWS_DEFAULT_ACL = "public-read-write"
-    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.eu-south-1.amazonaws.com"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
-    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
-    AWS_S3_REGION_NAME = "eu-south-1"""
-
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'credential.json')
+)
+    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    GS_BUCKET_NAME = "cineacca_bucket"
+    GS_PROJECT_ID = "eco-signifier-335803"
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
     integrations=[DjangoIntegration()],

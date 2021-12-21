@@ -22,6 +22,9 @@ django-heroku = "*"
 psycopg2-binary = "*"
 pyyaml = "*"
 whitenoise = "*"
+django-cleanup = "*"
+google-cloud-storage = "*"
+"google.api-core" = "*"
 
 [dev-packages]
 flake8 = "*"

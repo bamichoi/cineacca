@@ -56,7 +56,7 @@ class VideoArtUploadForm(forms.ModelForm):
             timestamp = int(time())
             raw_video_path = raw_video.temporary_file_path()
             video_name = f"{raw_video}".split(".")[0]
-            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -b:v 1000k -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
+            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec libx265 -crf 28 -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
             return f"videoart_files/{video_name}_{timestamp}.mp4"
 
         videoart = super().save(commit=False)
