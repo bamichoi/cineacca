@@ -191,30 +191,12 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 if DEBUG is False :
 
-    # the json credentials stored as env variable
-    json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    # project name
-    gcp_project = os.environ.get('GCP_PROJECT') 
-
-    # generate json - if there are errors here remove newlines in .env
-    json_data = json.loads(json_str)
-    # the private_key needs to replace \n parsed as string literal with escaped newlines
-    json_data['private_key'] = json_data['private_key'].replace('\\n', '\n')
-
-    # use service_account to generate credentials object
-    credentials = service_account.Credentials.from_service_account_info(
-        json_data)
-
-    # pass credentials AND project name to new client object (did not work wihout project name)
-    storage_client = storage.Client(
-        project=gcp_project, credentials=credentials)
-
+   
     """GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     os.path.join(BASE_DIR, 'credential.json')
 )"""
 
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
-    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     GS_BUCKET_NAME = "cineacca_bucket"
     GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
     sentry_sdk.init(
