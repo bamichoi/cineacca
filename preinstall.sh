@@ -8,7 +8,7 @@ echo "Detected credentials. Adding credentials" >&1
   if [ ! -d ./.gcp ]; then
     mkdir -p ./.gcp
     chmod 700 ./.gcp
-  fi
+  fi  
 
   # Load the private key into a file.
   echo $GCP_CREDENTIALS | base64 --decode > ./.gcp/key.json
