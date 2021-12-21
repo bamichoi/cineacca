@@ -190,6 +190,7 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 
 if DEBUG is False :
+
     # the json credentials stored as env variable
     json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
     # project name
