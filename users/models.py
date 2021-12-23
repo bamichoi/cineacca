@@ -93,7 +93,7 @@ class User(AbstractUser):
         default="default_images/default_avatar.jpeg",
         processors=[Transpose(), ResizeToFill(200, 200)],
         format='JPEG',
-        options={'quality': 75}
+        options={'quality': 100}
     )
     biography = models.TextField(_("biografia"), null=True, blank=True)
     account_type = models.CharField(
