@@ -52,9 +52,11 @@ class VideoArtUploadForm(forms.ModelForm):
     def clean_video(self):
         video = self.cleaned_data.get("video")
         if video and (type(video) != str):
-            if video.size > 100*1024*1024:
+            if video.size > 130*1024*1024:
                 raise forms.ValidationError("Il video si deve essre meno di 100MB")
             return video
+    
+    
 
     def save(self, *args, **kwargs):
         
@@ -83,6 +85,13 @@ class VideoArtUploadForm(forms.ModelForm):
         videoart.duration = duration
         """
         videoart = super().save(commit=False)
+
+        video = self.cleaned_data.get("video")
+        video_path = video.temporary_file_path()
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+        videoart.duration = duration
+
         return videoart
 
     
@@ -123,6 +132,7 @@ class VideoArtUpdateForm(forms.ModelForm):
                 raise forms.ValidationError("Cover image si deve essere meno di 10MB")
 
 
+    x   
     def save(self, *args, **kwargs):
 
         def clean_video(self):
