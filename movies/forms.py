@@ -112,11 +112,12 @@ class MovieUploadForm(forms.ModelForm):
                 raise forms.ValidationError("la locandia si deve essere meno di 10MB")
             return poster
     
+    
     def clean_video(self):
         video = self.cleaned_data.get("video")
         if video and (type(video) != str):
-            if video.size > 100*1024*1024:
-                raise forms.ValidationError("Il video si deve essre meno di 100MB")
+            if video.size > 500*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 500MB")
             return video
 
     def save(self, *args, **kwargs):
@@ -195,7 +196,7 @@ class MovieUpdateForm(forms.ModelForm):
     def clean_thumbnail(self):
         thumbnail = self.cleaned_data.get('thumbnail')
         if thumbnail:
-            if thumbnail.size > 4*1024*1024:
+            if thumbnail.size > 10*1024*1024:
                 raise forms.ValidationError("Thumnail si deve essere meno di 10MB")
             return thumbnail
 
@@ -203,14 +204,14 @@ class MovieUpdateForm(forms.ModelForm):
     def clean_poster(self):
         poster = self.cleaned_data.get('poster')
         if poster:
-            if poster.size > 4*1024*1024:
+            if poster.size > 10*1024*1024:
                 raise forms.ValidationError("La locandia si deve essere meno di 10MB")
 
     def clean_video(self):
         video = self.cleaned_data.get("video")
         if video and (type(video) != str):
-            if video.size > 100*1024*1024:
-                raise forms.ValidationError("Il video si deve essre meno di 100MB")
+            if video.size > 500*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 500MB")
             return video
 
     def save(self, *args, **kwargs):
