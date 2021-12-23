@@ -50,7 +50,7 @@ class VideoArtUploadForm(forms.ModelForm):
             return poster
     
     def clean_video(self):
-        video = self.claned_data.get("video")
+        video = self.cleaned_data.get("video")
         if video and (type(video) != str):
             if video.size > 100*1024*1024:
                 raise forms.ValidationError("Il video si deve essre meno di 100MB")
