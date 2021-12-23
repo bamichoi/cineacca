@@ -49,14 +49,13 @@ class VideoArtUploadForm(forms.ModelForm):
                 raise forms.ValidationError("Cover image si deve essere meno di 10MB")
             return poster
     
-    """
     def clean_video(self):
         video = self.cleaned_data.get("video")
         if video and (type(video) != str):
-            if video.size > 100*1024*1024:
-                raise forms.ValidationError("Il video si deve essre meno di 100MB")
+            if video.size > 500*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 500MB")
             return video
-    """
+
     
 
     def save(self, *args, **kwargs):
@@ -69,17 +68,7 @@ class VideoArtUploadForm(forms.ModelForm):
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
         videoart.duration = duration    
 
-        def store_video(self):
-            raw_video = self.cleaned_data.get("video")
-            raw_video_path = raw_video.temporary_file_path()
-            path_list = raw_video_path.split("/")
-            video_name = path_list.pop()
-            print(video_name)
-            subprocess.run(f"gsutil cp {raw_video_path} gs://cineacca_bucket/uploads/videoart_files/" , shell=True)
-            return f"videoart_files/{video_name}.mp4"
-        
-        videoart.video = store_video(self)
-        
+
         """
         def compress_video(self):
             raw_video = self.cleaned_data.get("video")
