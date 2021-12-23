@@ -111,9 +111,24 @@ class MovieUploadForm(forms.ModelForm):
             if poster.size > 10*1024*1024:
                 raise forms.ValidationError("la locandia si deve essere meno di 10MB")
             return poster
+    
+    def clean_video(self):
+        video = self.cleaned_data.get("video")
+        if video and (type(video) != str):
+            if video.size > 100*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 100MB")
+            return video
 
     def save(self, *args, **kwargs):
+        
+        movie = super().save(commit=False)
+        video = self.cleaned_data.get("video")
+        video_path = video.temporary_file_path()
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+        movie.duration = duration
 
+        """
         def clean_video(self):
             raw_video = self.cleaned_data.get("video")
             timestamp = int(time())
@@ -121,15 +136,16 @@ class MovieUploadForm(forms.ModelForm):
             video_name = f"{raw_video}".replace(" ", "_").split(".")[0]
             subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -b:v 1000k -acodec mp3 -y uploads/movie_files/{video_name}_{timestamp}.mp4", shell=True)
             return f"movie_files/{video_name}_{timestamp}.mp4"
-
-        movie = super().save(commit=False)
-         # 새로 업데이트 하는게 아닐 땐  작동 안하도록 해야함..
+        """
+       
+         
+        """
         movie.video = clean_video(self)
         video_path = movie.video.path
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
-        print(get_duration)
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) # 바로 int로 구하는 커맨드 라인이 있을 것이야. 
         movie.duration = duration
+        """
         return movie
 
 
@@ -190,8 +206,23 @@ class MovieUpdateForm(forms.ModelForm):
             if poster.size > 4*1024*1024:
                 raise forms.ValidationError("La locandia si deve essere meno di 10MB")
 
-    def save(self, *args, **kwargs):
+    def clean_video(self):
+        video = self.cleaned_data.get("video")
+        if video and (type(video) != str):
+            if video.size > 100*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 100MB")
+            return video
 
+    def save(self, *args, **kwargs):
+        
+        movie = super().save(commit=False)
+        video = self.cleaned_data.get("video")
+        video_path = video.temporary_file_path()
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+        movie.duration = duration
+        
+        """
         def clean_video(self):
             raw_video = self.cleaned_data.get("video")
             timestamp = int(time())
@@ -209,6 +240,8 @@ class MovieUpdateForm(forms.ModelForm):
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) # 바로 int로 구하는 커맨드 라인이 있을 것이야.
         movie.duration = duration
+        """
+
         super().save()
 
 class DeleteMovieForm(forms.Form):

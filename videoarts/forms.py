@@ -52,14 +52,21 @@ class VideoArtUploadForm(forms.ModelForm):
     def clean_video(self):
         video = self.cleaned_data.get("video")
         if video and (type(video) != str):
-            if video.size > 130*1024*1024:
+            if video.size > 100*1024*1024:
                 raise forms.ValidationError("Il video si deve essre meno di 100MB")
             return video
     
     
 
     def save(self, *args, **kwargs):
-        
+
+        videoart = super().save(commit=False)
+        video = self.cleaned_data.get("video")
+        video_path = video.temporary_file_path()
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+        videoart.duration = duration
+
         """
         def clean_video(self):
             raw_video = self.cleaned_data.get("video")
@@ -76,21 +83,7 @@ class VideoArtUploadForm(forms.ModelForm):
             return f"videoart_files/{video_name}_{timestamp}.mp4"
         """
         
-        """
-        videoart.video = clean_video(self)
-      
-        video_path = videoart.video.path
-        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
-        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
-        videoart.duration = duration
-        """
-        videoart = super().save(commit=False)
-
-        video = self.cleaned_data.get("video")
-        video_path = video.temporary_file_path()
-        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
-        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
-        videoart.duration = duration
+        
 
         return videoart
 
@@ -131,9 +124,24 @@ class VideoArtUpdateForm(forms.ModelForm):
             if poster.size > 10*1024*1024:
                 raise forms.ValidationError("Cover image si deve essere meno di 10MB")
 
-  
+    
+    def clean_video(self):
+        video = self.cleaned_data.get("video")
+        if video and (type(video) != str):
+            if video.size > 100*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 100MB")
+            return video
+
     def save(self, *args, **kwargs):
 
+        videoart = super().save(commit=False)
+        video = self.cleaned_data.get("video")
+        video_path = video.temporary_file_path()
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+        videoart.duration = duration
+        
+        """
         def clean_video(self):
             raw_video = self.cleaned_data.get("video")
             timestamp = int(time())
@@ -151,7 +159,10 @@ class VideoArtUpdateForm(forms.ModelForm):
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) # 바로 int로 구하는 커맨드 라인이 있을 것이야.
         videoart.duration = duration
+         """
+
         super().save()
+       
 
 class DeleteVideoArtForm(forms.Form):
 
