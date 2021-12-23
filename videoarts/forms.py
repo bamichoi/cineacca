@@ -54,7 +54,6 @@ class VideoArtUploadForm(forms.ModelForm):
         
         def clean_video(self):
             raw_video = self.cleaned_data.get("video")
-            
             timestamp = int(time())
             raw_video_path = raw_video.temporary_file_path()
             path_list = raw_video_path.split("/")
@@ -66,7 +65,7 @@ class VideoArtUploadForm(forms.ModelForm):
             subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -crf 28 -acodec mp3 -y {temp_path}/{video_name}_{timestamp}.mp4", shell=True)
             subprocess.run(f"gsutil cp {temp_path}/{video_name}_{timestamp}.mp4 gs://cineacca_bucket/uploads/videoart_files/" , shell=True)
             return f"videoart_files/{video_name}_{timestamp}.mp4"
-
+    
         videoart = super().save(commit=False)
         videoart.video = clean_video(self)
         """
