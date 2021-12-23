@@ -4,7 +4,8 @@ from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 from core import models as core_model
 from django.utils.translation import ugettext_lazy as _
-
+import subprocess
+from time import time
 
 class VideoArt(core_model.TimeStampedModel):
 

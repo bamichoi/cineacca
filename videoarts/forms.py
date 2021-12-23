@@ -49,19 +49,32 @@ class VideoArtUploadForm(forms.ModelForm):
                 raise forms.ValidationError("Cover image si deve essere meno di 10MB")
             return poster
 
-    def save(self, *args, **kwargs):
 
+    def save(self, *args, **kwargs):
+        
         def clean_video(self):
             raw_video = self.cleaned_data.get("video")
+            
             timestamp = int(time())
             raw_video_path = raw_video.temporary_file_path()
+            path_list = raw_video_path.split("/")
+            path_list.pop()
+            temp_path = '/'.join(str(x) for x in path_list)
+            print(temp_path)
             video_name = f"{raw_video}".split(".")[0]
-            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec libx265 -crf 28 -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
+            # subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec libx265 -crf 28 -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
+            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec libx265 -crf 28 -acodec mp3 -y {temp_path}/{video_name}_{timestamp}.mp4", shell=True)
+            subprocess.run(f"gsutil cp {temp_path}/{video_name}_{timestamp}.mp4 gs://cineacca_bucket/uploads/videoart_files/" , shell=True)
             return f"videoart_files/{video_name}_{timestamp}.mp4"
 
         videoart = super().save(commit=False)
-        # 새로 업데이트 하는게 아닐 땐  작동 안하도록 해야함..
         videoart.video = clean_video(self)
+        """
+        video_path = videoart.video.path
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+        videoart.duration = duration
+        """
 
         return videoart
     
