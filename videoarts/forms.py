@@ -131,8 +131,7 @@ class VideoArtUpdateForm(forms.ModelForm):
             if poster.size > 10*1024*1024:
                 raise forms.ValidationError("Cover image si deve essere meno di 10MB")
 
-
-    x   
+  
     def save(self, *args, **kwargs):
 
         def clean_video(self):
