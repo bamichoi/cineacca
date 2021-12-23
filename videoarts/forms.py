@@ -50,21 +50,27 @@ class VideoArtUploadForm(forms.ModelForm):
             return poster
     
     
-  
+    def clean_video(self):
+        video = self.cleaned_data.get("video")
+        if video and (type(video) != str):
+            if video.size > 100*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 100MB")
+            return video
 
     
 
     def save(self, *args, **kwargs):
 
-        """
+ 
         videoart = super().save(commit=False)
         video = self.cleaned_data.get("video")
         video_path = video.temporary_file_path()
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
         videoart.duration = duration    
-        """
+
     
+        """
         def compress_video(self):
             raw_video = self.cleaned_data.get("video")
             timestamp = int(time())
@@ -77,15 +83,15 @@ class VideoArtUploadForm(forms.ModelForm):
             subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -crf 28 -acodec mp3 -y {temp_path}/{video_name}_{timestamp}.mp4", shell=True)
             subprocess.run(f"gsutil cp {temp_path}/{video_name}_{timestamp}.mp4 gs://cineacca_bucket/uploads/videoart_files/" , shell=True)
             return f"videoart_files/{video_name}_{timestamp}.mp4"
-        
-
-        
+    
         videoart = super().save(commit=False)
         video = compress_video(self)
         video_path = video.temporary_file_path()
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
         videoart.duration = duration
+        """
+
         return videoart
 
     
