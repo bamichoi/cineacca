@@ -61,14 +61,14 @@ class VideoArtUploadForm(forms.ModelForm):
 
     def save(self, *args, **kwargs):
 
-   
+        """
         videoart = super().save(commit=False)
         video = self.cleaned_data.get("video")
         video_path = video.temporary_file_path()
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
-        videoart.duration = duration
-
+        videoart.duration = duration    
+        """
     
         def compress_video(self):
             raw_video = self.cleaned_data.get("video")
@@ -77,16 +77,20 @@ class VideoArtUploadForm(forms.ModelForm):
             path_list = raw_video_path.split("/")
             path_list.pop()
             temp_path = '/'.join(str(x) for x in path_list)
-            print(temp_path)
             video_name = f"{raw_video}".split(".")[0]
-            # 로컬 - subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec libx265 -crf 28 -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
+            # 로컬 - subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -crf 28 -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
             subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -crf 28 -acodec mp3 -y {temp_path}/{video_name}_{timestamp}.mp4", shell=True)
             subprocess.run(f"gsutil cp {temp_path}/{video_name}_{timestamp}.mp4 gs://cineacca_bucket/uploads/videoart_files/" , shell=True)
             return f"videoart_files/{video_name}_{timestamp}.mp4"
         
-        
-        compress_video(self)
 
+        
+        videoart = super().save(commit=False)
+        video = compress_video(self)
+        video_path = video.temporary_file_path()
+        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+        videoart.duration = duration
         return videoart
 
     
