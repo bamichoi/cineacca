@@ -6,7 +6,6 @@ let newFile
 let dT = new DataTransfer();
 
 const handleCompress = async (e) => {
-
     const { files } = e.target
     const { name : rawVideo } = files[0]
     const videoName = rawVideo.slice(0, -4)
