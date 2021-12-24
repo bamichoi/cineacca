@@ -26,9 +26,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG"))
 
-ALLOWED_HOSTS = [
-    '*'
-    ]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,10 +85,6 @@ CORS_ALLOW_HEADERS = [
     "user-agent",
     "x-csrftoken",
     "x-requested-with",
-    "Access-Control-Allow-Origin",
-    "Cross-Origin-Embedder-Policy",
-    "Cross-Origin-Opener-Policy",
-    "Cross-Origin-Resource-Policy"
 ]
 
 
