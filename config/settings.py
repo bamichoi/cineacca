@@ -221,7 +221,7 @@ if DEBUG is False :
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )   
-    ALLOWED_HOSTS = ["cineacca.herokuapp.com"]
+    ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'htts://cineacca.com', 'htts://www.cineacca.com']
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     django_heroku.settings(locals())
