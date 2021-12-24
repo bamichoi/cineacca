@@ -14,7 +14,7 @@
         <p class="menu_description">Complia questo modulo per fare vedere agli altri il tuo video</p> 
     </div>
     <div class="upload_form">
-        <form id="upload_video_form" method="post" enctype="multipart/form-data">
+        <form id="upload_video_form" method="post" enctype="multipart/form-data" crossorigin>
             {% csrf_token %}
                 {% if form.non_field_errors %}
                     {% for error in form.non_field_errors %}
@@ -42,5 +42,5 @@
         </form> 
     </div>   
 </div>
-
+<script src="{% static 'js/videoarts/compressVideo.js' %}"></script>
 {% endblock content %}

@@ -25,6 +25,7 @@ whitenoise = "*"
 django-cleanup = "*"
 google-cloud-storage = "*"
 "google.api-core" = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 flake8 = "*"

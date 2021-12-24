@@ -18,7 +18,7 @@ from reviews import forms as review_form
 from . import models
 from . import forms
 from users import mixins as user_mixins
-
+from django.http import HttpResponse
 
 
 
@@ -34,6 +34,7 @@ class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
         videoart.user = self.request.user
         videoart.save()
         return redirect(reverse("videoarts:detail", kwargs={"pk": videoart.pk}))
+
 
 
 class UpdateVideoArt(user_mixins.VideoArtUpdateDeletePermissionView, UpdateView):

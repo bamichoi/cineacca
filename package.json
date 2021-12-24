@@ -11,6 +11,8 @@
   },
   "homepage": "https://github.com/bamichoi/cineacca#readme",
   "dependencies": {
+    "@ffmpeg/core": "^0.10.0",
+    "@ffmpeg/ffmpeg": "^0.10.1",
     "axios": "^0.21.4",
     "regenerator-runtime": "^0.13.9",
     "video.js": "^7.17.0"
