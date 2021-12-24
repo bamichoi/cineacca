@@ -5,7 +5,8 @@ class CorsIsolation:
 
     def __call__(self, request):
         response = self.get_response(request)
-        response.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
+        response.headers["Access-Control-Allow-Origin'"] = "*"
         response.headers["Cross-Origin-Embedder-Policy"] = "require-corp"
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin" 
+        response.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
         return response
