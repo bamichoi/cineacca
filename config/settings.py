@@ -12,7 +12,6 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 import django_heroku
 import dj_database_url
-from django.http import HttpResponse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,6 +74,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOWED_ORIGINS = [
     'htts://cineacca.com',
     'htts://www.cineacca.com',
+    'https://storage.googleapis.com',
     'http://127.0.0.1:8000',
 ]
 
