@@ -57,7 +57,7 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 
 MIDDLEWARE = [
-    'videoarts.middleware.CorsIsolation',
+    'core.middleware.CorsHedaers',
     "corsheaders.middleware.CorsMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.security.SecurityMiddleware",
@@ -68,6 +68,12 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://cineacca.com",
+    "https://www.cineacca.com"
+    "http://127.0.0.1:8000"
 ]
 
 
@@ -86,6 +92,8 @@ CORS_ALLOW_HEADERS = [
     "Cross-Origin-Opener-Policy",
     "Cross-Origin-Resource-Policy"
 ]
+
+CORS_REPLACE_HTTPS_REFERER=True
 
 
 
