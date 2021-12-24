@@ -34,7 +34,6 @@ ALLOWED_HOSTS = [
 # Application definition
 
 DJANGO_APPS = [
-    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -61,7 +60,6 @@ MIDDLEWARE = [
     'videoarts.middleware.CorsIsolation',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -70,25 +68,6 @@ MIDDLEWARE = [
     
 ]
 
-CORS_ORIGIN_ALLOW_ALL = False
-
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-    "Access-Control-Allow-Origin",
-    "Cross-Origin-Embedder-Policy",
-    "Cross-Origin-Opener-Policy",
-    "Cross-Origin-Resource-Policy"
-]
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 
 
