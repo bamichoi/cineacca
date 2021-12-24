@@ -8,5 +8,4 @@ class CorsIsolation:
         response.headers["Cross-Origin-Resource-Policy"] = "cross-origin" 
         response.headers["Cross-Origin-Embedder-Policy"] = "require-corp"
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin" 
-        response.headers["Referrer-Policy"] = "origin-when-cross-origin" 
         return response
