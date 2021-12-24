@@ -1,0 +1,7 @@
+[
+    {
+      "origin": ["https://cineacca.com", "https://www.cineacca.com"],
+      "method": ["GET", "PUT", "DELETE"],
+      "responseHeader": ["*"]
+    }
+]
