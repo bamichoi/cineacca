@@ -88,12 +88,8 @@ CORS_ALLOW_HEADERS = [
     "Cross-Origin-Resource-Policy"
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'https://cineacca.com',
-    'https://www.cineacca.com',
-    'https://cineacca_bucket.storage.googleapis.com', # 필요없는 것들 지워주기
-    'http://127.0.0.1:8000',
-]
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 
 
