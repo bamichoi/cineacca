@@ -87,7 +87,7 @@ CORS_ALLOW_HEADERS = [
 CORS_ALLOWED_ORIGINS = [
     'https://cineacca.com',
     'https://www.cineacca.com',
-    'storage.googleapis.com/cineacca_bucket', # 필요없는 것들 지워주기
+    'https://cineacca_bucket.storage.googleapis.com', # 필요없는 것들 지워주기
     'http://127.0.0.1:8000',
 ]
 
