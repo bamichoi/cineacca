@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 DJANGO_APPS = [
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -56,8 +57,9 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'videoarts.middleware.CorsIsolation',
+    "corsheaders.middleware.CorsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -68,10 +70,23 @@ MIDDLEWARE = [
     
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "Access-Control-Allow-Origin",
+    "Cross-Origin-Embedder-Policy",
+    "Cross-Origin-Opener-Policy",
+    "Cross-Origin-Resource-Policy"
+]
 
-CORS_ALLOW_ALL_ORIGINS = True
 
 
 
