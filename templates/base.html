@@ -43,7 +43,7 @@
         {% block usermenu %}
             <div id="user-menu">
                 {% if user.is_authenticated %}
-                    <div crossorigin="anonymous" class="user_avatar_small" 
+                    <div background-image-crossorigin class="user_avatar_small" 
                     {% if user.avatar  %} 
                         style="background-image: url({{user.avatar.url}});"
                     {% endif %}></div>
