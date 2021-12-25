@@ -48,7 +48,13 @@ PROJECT_APPS = [
     "reviews.apps.ReviewsConfig",
 ]
 
-THIRD_PARTY_APPS = ["django_inlinecss", "django_seed", "storages", "imagekit", 'django_cleanup.apps.CleanupConfig']
+THIRD_PARTY_APPS = [
+    "django_inlinecss", 
+    "django_seed", 
+    "storages", 
+    "imagekit", 
+    'django_cleanup.apps.CleanupConfig'
+]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
@@ -57,7 +63,6 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     'core.middleware.CorsHeaders',
     "corsheaders.middleware.CorsMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
