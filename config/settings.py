@@ -218,6 +218,7 @@ if DEBUG is False :
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    GS_DEFAULT_ACL = "publicReadWrite"
     GS_BUCKET_NAME = "cineacca_bucket"
     GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
     sentry_sdk.init(
