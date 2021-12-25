@@ -216,7 +216,6 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 if DEBUG is False :
 
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-    
     STATICFILES_STORAGE = "config.custom_storages.UploadStorage"
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     GS_BUCKET_NAME = "cineacca_bucket"
