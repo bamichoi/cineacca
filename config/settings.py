@@ -224,7 +224,6 @@ if DEBUG is False :
     GS_BUCKET_NAME = "cineacca_bucket"
     GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
 
-
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
     integrations=[DjangoIntegration()],
