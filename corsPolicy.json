@@ -1,7 +1,7 @@
 [
   {
     "origin": ["https://cineacca.com"],
-    "method": ["GET", "PUT", "DELETE"],
+    "method": ["GET", "PUT", "DELETE", "OPTION"],
     "responseHeader": ["accept",
       "accept-encoding",
       "authorization",
