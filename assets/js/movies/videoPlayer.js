@@ -8,6 +8,7 @@ const options = {
     preload:"metadata",
     fluid:true,
     poster:thumbnail,
+    isCrossOrigin:true
 };
 //to do: breakpoints (responsive option)
 
