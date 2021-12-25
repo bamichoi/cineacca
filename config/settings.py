@@ -242,5 +242,4 @@ if DEBUG is False :
     #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     #STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     
-    django_heroku.settings(locals())    
-    print("############################",STATICFILES_STORAGE)
+    django_heroku.settings(locals(), allowed_hosts=False)    
