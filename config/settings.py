@@ -222,7 +222,6 @@ if DEBUG is False :
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
     integrations=[DjangoIntegration()],
-
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     # We recommend adjusting this value in production.
