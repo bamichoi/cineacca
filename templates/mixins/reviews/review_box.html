@@ -4,11 +4,10 @@
             <div class="review_box__user">
                 {% if type == "new_review" %}
                     <a href="{% url 'users:user_profile' user.pk %}">
-                            <div class="user_avatar_medium" 
-                            {% if user.avatar  %} 
-                                style='background-image: url({{user.avatar.url}});'
-                            {% endif %}>
-                        </div>
+                            <img class="user_avatar_medium" 
+                            {% if user.avatar  %}  
+                                crossorigin src={{user.avatar.url}}
+                            {% endif %} />
                     <div class="review_box__user_name">
                         <div class="review_user__firstname">{{user.first_name}}</div> 
                     

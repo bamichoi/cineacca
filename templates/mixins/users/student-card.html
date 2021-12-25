@@ -1,7 +1,7 @@
 <a class="card_link" href="{% url 'users:user_profile' student.pk %}">
     <div class="student-namecard">
         <div class="namecard_row">
-            <div class="user_avatar_medium" style="background-image: url({{student.avatar.url}});"></div>
+            <img class="user_avatar_medium_st" crossorigin style="background-image: url({{student.avatar.url}});" />
             <div class="namecard_fullname">
                 <div>{{student.first_name}}</div>
                 <div>{{student.last_name}}</div>

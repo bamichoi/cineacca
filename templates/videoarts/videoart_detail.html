@@ -55,11 +55,10 @@
         </div>
         <a href="{% url 'users:user_profile' videoart.user.pk %}">
         <div class="description__user">
-                <div class="user_avatar_small" 
+                <img class="user_avatar_small" 
                     {% if videoart.user.avatar  %} 
-                        style='background-image: url({{videoart.user.avatar.url}});'
-                    {% endif %}>
-                </div>
+                        crossorigin src={{videoart.user.avatar.url}}
+                    {% endif %}/>
                 <div class="descriptrion__user__name">
                     <div>un video distribuito da&nbsp;&nbsp;</div>
                     <div>{{videoart.user}}</div>

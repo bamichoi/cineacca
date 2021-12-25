@@ -13,12 +13,12 @@
     display: flex;
     justify-content: space-between;
     margin-top: 1.5rem;
-    .user_avatar_medium {
+    .user_avatar_medium_st {
       width: 4.2rem;
       height: 4.2rem;
       border-radius: 2.1rem;
+      background-position: center center;
       background-size: cover;
-      background-position: center;
     }
     .namecard_fullname {
       display: flex;

@@ -43,10 +43,10 @@
         {% block usermenu %}
             <div id="user-menu">
                 {% if user.is_authenticated %}
-                    <div background-image-crossorigin class="user_avatar_small" 
+                    <img class="user_avatar_small" 
                     {% if user.avatar  %} 
-                        style="background-image: url({{user.avatar.url}});"
-                    {% endif %}></div>
+                        src={{user.avatar.url}}
+                    {% endif %} />
                     <a href="{% url 'users:user_profile' user.pk %}"><div class="user-menu__loggedin">Profilo mio</div></a>
                     {% if user.account_type == "student" %}
                         <a href="{% url 'core:upload' %}"><div class="user-menu__loggedin" >Upload</div></a>
