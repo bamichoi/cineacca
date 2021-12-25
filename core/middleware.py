@@ -11,5 +11,3 @@ class CorsHeaders:
         response.headers["Cross-Origin-Embedder-Policy"] = "require-corp"
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin" 
         return response
-
-        Access-Control-Allow-Methods
