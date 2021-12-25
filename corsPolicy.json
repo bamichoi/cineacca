@@ -1,19 +1,7 @@
 [
   {
-    "origin": ["https://cineacca.com"],
+    "origin": ["*"],
     "method": ["*"],
-    "responseHeader": ["accept",
-      "accept-encoding",
-      "authorization",
-      "content-type",
-      "dnt",
-      "origin",
-      "user-agent",
-      "x-csrftoken",
-      "x-requested-with",
-      "Access-Control-Allow-Origin",
-      "Cross-Origin-Embedder-Policy",
-      "Cross-Origin-Opener-Policy",
-      "Cross-Origin-Resource-Policy"]
+    "responseHeader": ["*"]
   }
 ]

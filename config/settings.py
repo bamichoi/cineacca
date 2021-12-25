@@ -70,7 +70,6 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://cineacca.com",
-    "https://www.cineacca.com",
     "http://127.0.0.1:8000"
 ]
 
