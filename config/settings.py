@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'core.middleware.CorsHeaders',
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -241,4 +242,4 @@ if DEBUG is False :
     #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     #STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     
-    django_heroku.settings(locals())    
+    django_heroku.settings(locals(), staticfiles=False)    
