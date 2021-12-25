@@ -7,8 +7,7 @@
     "url": "git+https://github.com/bamichoi/cineacca.git"
   },
   "scripts": {
-    "css": "gulp",
-    "heroku-prebuild": "echo ${GOOGLE_CREDENTIALS} > /app/gcp_key.json"
+    "css": "gulp"
   },
   "homepage": "https://github.com/bamichoi/cineacca#readme",
   "dependencies": {
