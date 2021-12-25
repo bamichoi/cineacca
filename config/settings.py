@@ -93,9 +93,6 @@ CORS_ALLOW_HEADERS = [
 ]
 
 
-
-
-
 ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
