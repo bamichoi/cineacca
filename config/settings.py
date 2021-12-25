@@ -215,6 +215,8 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 if DEBUG is False :
 
+    django_heroku.settings(locals(), staticfiles=False)
+    
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
     STATICFILES_STORAGE = "config.custom_storages.UploadStorage"
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
@@ -236,4 +238,4 @@ if DEBUG is False :
     ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com', ]
     #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     #STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    django_heroku.settings(locals(), staticfiles=False)
+    
