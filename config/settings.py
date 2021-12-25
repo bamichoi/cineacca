@@ -243,4 +243,4 @@ if DEBUG is False :
     #STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     
     django_heroku.settings(locals())    
-    print(STATICFILES_STORAGE)
+    print("############################",STATICFILES_STORAGE)
