@@ -1,6 +1,6 @@
 from django.conf import settings
 from storages.backends.gcloud import GoogleCloudStorage
-from storages.utils import setting
+from storages.utils import setting  
 
 
 class StaticStorage(GoogleCloudStorage):
