@@ -7,7 +7,7 @@ const options = {
     controls: true,
     preload:"metadata",
     fluid:true,
-    poster:thumbnail,
+    //poster:thumbnail
 };
 //to do: breakpoints (responsive option)
 
