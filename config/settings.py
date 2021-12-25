@@ -202,25 +202,26 @@ MEDIA_URL = "/media/"
 # Email Configuration
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = "smtp.gmail.com" 
 EMAIL_HOST_USER = os.environ.get("ADMIN_GMAIL")
 EMAIL_HOST_PASSWORD = os.environ.get("ADMIN_GMAIL_PASSWORD")
 EMAIL_PORT = 587    
 EMAIL_USE_TLS = True
 EMAIL_FROM = "noreplycineacca@gmail.com"
 
-#getting credential
 
 
 if DEBUG is False :
 
+    ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com',]
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    GS_DEFAULT_ACL = "publicReadWrite"
-    GS_BUCKET_NAME = "cineacca_bucket"
+    GS_BUCKET_NAME = "cineacca_bucket" 
     GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
+    STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
+
+    #senry
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
     integrations=[DjangoIntegration()],
@@ -234,7 +235,7 @@ if DEBUG is False :
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )   
-    ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com',]
+    
     #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     django_heroku.settings(locals())
