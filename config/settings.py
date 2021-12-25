@@ -216,6 +216,7 @@ if DEBUG is False :
 
     ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com']
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+    GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
     django_heroku.settings(locals())
 
 
@@ -223,7 +224,7 @@ if DEBUG is False :
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     GS_BUCKET_NAME = "cineacca_bucket"
     GCS_URL = 'https://storage.googleapis.com/'
-    GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
+   
     STATIC_URL = "/static/"
     MEDIA_URL = "/media/"
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
