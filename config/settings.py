@@ -233,6 +233,7 @@ if DEBUG is False :
     send_default_pii=True
 )   
     ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'htts://cineacca.com', 'htts://www.cineacca.com']
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     django_heroku.settings(locals())
