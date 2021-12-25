@@ -22,7 +22,7 @@
 {% else %}
     <a class="card_link" href="{% url 'videoarts:detail' videoart.pk %}">
             <div class="movie-card">
-                    <div crossorigin class="movie-card_thumbnail" style="background-image: url({{videoart.thumbnail.url}});"></div>
+                    <div crossorigin="use-credentials" type="image/*" class="movie-card_thumbnail" style="background-image: url({{videoart.thumbnail.url}});"></div>
                     <div class="movie-card_info">
                         <span class="info_title">{{  videoart.title }}</span>
                         <span class="info_user">dir. {{ videoart.artist }}</span>
