@@ -218,24 +218,12 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 if DEBUG is False :
 
-    from google.oauth2 import service_account
-    from google.cloud import storage
-    
-    json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    gcp_project = "cineacca"
-    json_data = json.loads(json_str)
-    json_data['private_key'] = json_data['private_key'].replace('\\n', '\n')
-    credentials = service_account.Credentials.from_service_account_info(
-    json_data)
-
-    storage_client = storage.Client(
-    project=gcp_project, credentials=credentials)   
-
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     GS_BUCKET_NAME = "cineacca_bucket"
     GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
+
 
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
