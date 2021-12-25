@@ -57,6 +57,7 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     'core.middleware.CorsHeaders',
     "corsheaders.middleware.CorsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -202,26 +203,23 @@ MEDIA_URL = "/media/"
 # Email Configuration
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com" 
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = os.environ.get("ADMIN_GMAIL")
 EMAIL_HOST_PASSWORD = os.environ.get("ADMIN_GMAIL_PASSWORD")
 EMAIL_PORT = 587    
 EMAIL_USE_TLS = True
 EMAIL_FROM = "noreplycineacca@gmail.com"
 
+#getting credential
 
 
 if DEBUG is False :
 
-    ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com',]
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+    STATICFILES_STORAGE = "config.custom_storages.UploadStorage"
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
-    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
-    GS_BUCKET_NAME = "cineacca_bucket" 
+    GS_BUCKET_NAME = "cineacca_bucket"
     GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
-    STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
-
-    #senry
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
     integrations=[DjangoIntegration()],
@@ -235,7 +233,7 @@ if DEBUG is False :
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )   
-    
+    ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com', ]
     #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+    #STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     django_heroku.settings(locals(), staticfiles=False)
