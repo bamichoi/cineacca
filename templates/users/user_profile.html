@@ -16,7 +16,7 @@
     <div id="profile_container">
         <div class="profile_container_row">
             {% if user_obj.avatar %}
-                <img class="profile_avatar" crossorigin style="background-image:url({{user_obj.avatar.url}}); "/>
+                <img class="profile_avatar" crossorigin src={{user_obj.avatar.url}}/>
             {% endif %}
              <div id="profile_info">
                 <div id="profile_info_firstname">{{user_obj.first_name}}</div>

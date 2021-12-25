@@ -17,7 +17,7 @@
     <form method="post" class="update-profile_form" enctype="multipart/form-data">
         <div id="avatar-preview">
             {% if user.avatar %}
-                <div class="profile_avatar" style="background-image:url({{user.avatar.url}}); "></div>
+                <img class="profile_avatar" crossorigin src={{user.avatar.url}} />
             {% endif %}
         </div>
         <br>

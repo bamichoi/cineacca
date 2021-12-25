@@ -17,8 +17,8 @@
       width: 4.2rem;
       height: 4.2rem;
       border-radius: 2.1rem;
-      background-position: center center;
-      background-size: cover;
+      object-position: center center;
+      object-fit: cover;
     }
     .namecard_fullname {
       display: flex;

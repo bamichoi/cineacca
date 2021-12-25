@@ -2,7 +2,7 @@
 {% if type == "movie" %}
     <a class="card_link" href="{% url 'movies:detail' movie.pk %}">
     <div class="movie-card">
-            <img class="movie-card_thumbnail" crossorigin  src={{movie.thumbnail.url}} />
+            <img class="movie-card_thumbnail" crossorigin src={{movie.thumbnail.url}} />
             <div class="movie-card_info">
                 <span class="info_title">{{ movie.title }}</span>
                 <span class="info_user">dir. {{ movie.director }}</span>
@@ -22,7 +22,7 @@
 {% else %}
     <a class="card_link" href="{% url 'videoarts:detail' videoart.pk %}">
             <div class="movie-card">
-                    <img class="movie-card_thumbnail" crossorigin src={{videoart.thumbnail.url}}"/>
+                    <img class="movie-card_thumbnail" crossorigin src={{videoart.thumbnail.url}}/>
                     <div class="movie-card_info">
                         <span class="info_title">{{  videoart.title }}</span>
                         <span class="info_user">dir. {{ videoart.artist }}</span>

@@ -98,9 +98,8 @@
   width: 11rem;
   height: 11rem;
   border-radius: 1rem;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  object-fit: cover;
+  object-position: center center;
   margin-bottom: 1.5rem;
 }
 
