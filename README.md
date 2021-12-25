@@ -12,8 +12,8 @@ Python with Django Framework, HTML, SCSS and JavaScript
 
 ## 개발 기간 Period of development
 
-2021년 7월 31일 - 2021년 11월 31일
-31 July 2021 - 31 Nov 2021
+2021년 7월 31일 - 
+31 July 2021 - 
 
 
 ## 현재 상태 Current State
@@ -29,12 +29,10 @@ Development in progress
 - [ ] 모바일 반응형.. (최종보스)
 - [ ] 모바일 준비중 페이지 만들기.
 - [ ] 색깔 고르기
+- [ ] 문구대수정
+- [ ] 비디오 압축시 오버레이
+- [ ] sendgrid
 
-### 배포 전 끝내야 할 것들
-
-- [x] Interctive action of today movie (더 좋은 방법은 없을지..)
-- [ ] 문구 대점검
-- [ ] dashboard 인증후에만
 
 
 ### Base
@@ -127,6 +125,7 @@ Development in progress
 ### Dashboard
 
 - [ ] 대시보드 상단 유저 바 네임카드 커스터마이징과 함께 연동(검토중)
+- [ ] dashboard 인증후에만 사용되도록
 
 ### Update profile
 
