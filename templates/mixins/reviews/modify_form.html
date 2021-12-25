@@ -17,11 +17,10 @@
                     </a>
                 {% else %}
                     <a href="{% url 'users:user_profile' review.user.pk %}">
-                        <div class="user_avatar_medium" 
+                        <img class="user_avatar_medium" 
                             {% if review.user.avatar  %} 
-                                style='background-image: url({{review.user.avatar.url}});'
-                            {% endif %}>
-                        </div>
+                                crossorigin src={{review.user.avatar.url}}
+                            {% endif %}/>
                         <div class="modify_box__user_name">
                             <div class="review_user__firstname">{{review.user.first_name}}</div>
                             <div class="review_user__lastname">{{review.user.last_name}}</div>
