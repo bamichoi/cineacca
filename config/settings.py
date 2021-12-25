@@ -230,6 +230,7 @@ if DEBUG is False :
     GS_BUCKET_NAME = "cineacca_bucket"
     GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
     STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
+    
 
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
