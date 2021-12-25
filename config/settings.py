@@ -214,12 +214,14 @@ EMAIL_FROM = "noreplycineacca@gmail.com"
 
 if DEBUG is False :
 
+    from google.oauth2 import service_account
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    "/app/gcp_key.json"
+)
+
     ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com']
 
-    
-
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-    GS_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     GS_BUCKET_NAME = "cineacca_bucket"
