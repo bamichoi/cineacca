@@ -30,7 +30,7 @@
                     {% for movie in movies_uploaded %}
                     <div class="activity_element">
                         <a href="{% url 'movies:detail' movie.pk %}">
-                            <img class="moviePoster_sm" src="{{movie.poster.url}}" />
+                            <img crossorigin class="moviePoster_sm" src="{{movie.poster.url}}" />
                         </a>
                         <div class="activity__element_title">
                             <span>{{movie.title}}</span>
@@ -53,7 +53,7 @@
                     {% for videoart in videoarts_uploaded %}
                         <div class="activity_element">
                             <a href="{% url 'videoarts:detail' videoart.pk %}">
-                            <img class="moviePoster_sm" src="{{videoart.poster.url}}" />
+                            <img crossorigin class="moviePoster_sm" src="{{videoart.poster.url}}" />
                             </a>
                             <div class="activity__element_title">
                                 <span>{{videoart.title}}</span>
@@ -75,7 +75,7 @@
                     {% for review in movie_reviews_uploaded %}
                     <div class="activity_element">
                         <a href="{% url 'reviews:detail-movie' review.pk %}">
-                            <img class="moviePoster_sm" src="{{review.movie.poster.url}}" />
+                            <img crossorigin class="moviePoster_sm" src="{{review.movie.poster.url}}" />
                         </a>
                         <div class="activity__element_title">
                             <span>{{review.title}}</span>
@@ -97,7 +97,7 @@
                     {% for review in videoart_reviews_uploaded %}
                     <div class="activity_element">
                         <a href="{% url 'reviews:detail-videoart' review.pk %}">
-                            <img class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
+                            <img crossorigin class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
                         </a>
                         <div class="activity__element_title">
                             <span>{{review.title}}</span>
@@ -127,7 +127,7 @@
                     {% for movie in movies_loved %}
                     <div class="collection_element">
                         <a href="{% url 'movies:detail' movie.pk %}">
-                            <img class="moviePoster_sm" src="{{movie.poster.url}}" />
+                            <img crossorigin class="moviePoster_sm" src="{{movie.poster.url}}" />
                         </a>
                         <div class="collection__element_title">
                             <span>{{movie.title}}</span>
@@ -150,7 +150,7 @@
                     {% for videoart in videoarts_loved %}
                     <div class="collection_element">
                         <a href="{% url 'videoarts:detail' videoart.pk %}">
-                        <img class="moviePoster_sm" src="{{videoart.poster.url}}" />
+                        <img crossorigin class="moviePoster_sm" src="{{videoart.poster.url}}" />
                         </a>
                         <div class="collection__element_title">
                             <span>{{videoart.title}}</span>
@@ -172,7 +172,7 @@
                     {% for review in movie_reviews_loved %}
                     <div class="collection_element">
                         <a href="{% url 'reviews:detail-movie' review.pk %}">
-                            <img class="moviePoster_sm" src="{{review.movie.poster.url}}" />
+                            <img crossorigin class="moviePoster_sm" src="{{review.movie.poster.url}}" />
                         </a>
                         <div class="collection__element_title">
                             <span>{{review.title}}</span>
@@ -194,7 +194,7 @@
                     {% for review in videoart_reviews_loved %}
                     <div class="collection_element">
                         <a href="{% url 'reviews:detail-videoart' review.pk %}">
-                            <img class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
+                            <img crossorigin class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
                         </a>
                         <div class="collection__element_title">
                             <span>{{review.title}}</span>
@@ -237,7 +237,7 @@
                 {% for review in movie_reviews_uploaded %}
                 <div class="activity_element">
                     <a href="{% url 'reviews:detail-movie' review.pk %}">
-                        <img class="moviePoster_sm" src="{{review.movie.poster.url}}" />
+                        <img crossorigin class="moviePoster_sm" src="{{review.movie.poster.url}}" />
                     </a>
                     <div class="activity__element_title">
                         <span>{{review.title}}</span>
@@ -259,7 +259,7 @@
                 {% for review in videoart_reviews_uploaded %}
                 <div class="activity_element">
                     <a href="{% url 'reviews:detail-videoart' review.pk %}">
-                        <img class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
+                        <img crossorigin class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
                     </a>
                     <div class="activity__element_title">
                         <span>{{review.title}}</span>
@@ -289,7 +289,7 @@
                 {% for movie in movies_loved %}
                 <div class="collection_element">
                     <a href="{% url 'movies:detail' movie.pk %}">
-                        <img class="moviePoster_sm" src="{{movie.poster.url}}" />
+                        <img crossorigin class="moviePoster_sm" src="{{movie.poster.url}}" />
                     </a>
                     <div class="collection__element_title">
                         <span>{{movie.title}}</span>
@@ -312,7 +312,7 @@
                 {% for videoart in videoarts_loved %}
                 <div class="collection_element">
                     <a href="{% url 'videoarts:detail' videoart.pk %}">
-                    <img class="moviePoster_sm" src="{{videoart.poster.url}}" />
+                    <img crossorigin class="moviePoster_sm" src="{{videoart.poster.url}}" />
                     </a>
                     <div class="collection__element_title">
                         <span>{{videoart.title}}</span>
@@ -334,7 +334,7 @@
                 {% for review in movie_reviews_loved %}
                 <div class="collection_element">
                     <a href="{% url 'reviews:detail-movie' review.pk %}">
-                        <img class="moviePoster_sm" src="{{review.movie.poster.url}}" />
+                        <img crossorigin class="moviePoster_sm" src="{{review.movie.poster.url}}" />
                     </a>
                     <div class="collection__element_title">
                         <span>{{review.title}}</span>
@@ -356,7 +356,7 @@
                 {% for review in videoart_reviews_loved %}
                 <div class="collection_element">
                     <a href="{% url 'reviews:detail-videoart' review.pk %}">
-                        <img class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
+                        <img crossorigin class="moviePoster_sm" src="{{review.videoart.poster.url}}" />
                     </a>
                     <div class="collection__element_title">
                         <span>{{review.title}}</span>
