@@ -7,8 +7,10 @@ class StaticStorage(GoogleCloudStorage):
 
     bucket_name = setting('GS_BUCKET_NAME')
     location = "static/"
+    
 
 class UploadStorage(GoogleCloudStorage):
 
     bucket_name = setting('GS_BUCKET_NAME')
     location = "uploads/"
+    GS_FILE_OVERWRITE = False

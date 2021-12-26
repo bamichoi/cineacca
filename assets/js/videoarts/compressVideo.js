@@ -10,9 +10,14 @@ let dT = new DataTransfer();
 const handleCompress = async (e) => {
     const { files } = e.target;
     const { name : rawVideo, size : rawVideoSize } = files[0];
-    const limit = 500 * 1024 * 1024
+    const sizeLimit = 500 * 1024 * 1024
     
-
+    if (rawVideoSize > sizeLimit) {
+        window.alert("Il video si deve essre meno di 500MB")
+        videoInput.value="";
+        return
+    } 
+    
     window.alert(
     "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
     submitBtn.innerText = "Compressing..."

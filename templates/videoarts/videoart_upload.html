@@ -14,7 +14,7 @@
         <p class="menu_description">Si prega di compilare il seguente modulo per il caricamento</p> 
     </div>
     <div class="upload_form">
-        <form id="upload_video_form" method="post" enctype="multipart/form-data" crossorigin>
+        <form id="upload_video_form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 {% if form.non_field_errors %}
                     {% for error in form.non_field_errors %}
