@@ -25,7 +25,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 from django.contrib import messages
 from . import models, forms, mixins
-
+from config import settings
 # Create your views here.
 
 
@@ -422,6 +422,7 @@ def send_verify_email(request, pk):
 
 class ResetPasswordView(PasswordResetView):
     template_name = "users/reset-password.html"
+    from_email = settings.EMAIL_FROM
     success_url = reverse_lazy("users:reset-password-done")
     email_template_name = "emails/reset-password-email.html"
     html_email_template_name = "emails/reset-password-email.html"

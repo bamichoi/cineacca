@@ -212,7 +212,7 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.environ.get("ADMIN_GMAIL_PASSWORD")
 EMAIL_PORT = 587    
 EMAIL_USE_TLS = True
-EMAIL_FROM = "noreply@cineacca.com" 
+EMAIL_FROM = "noreply@cineacca.com"     
 
 #getting credential
 
