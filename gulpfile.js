@@ -24,6 +24,7 @@ const email = () => {
     .pipe(gulp.dest("backend/static/email/css")); 
 }
 
+
 const js = () => {
   const bro = require("gulp-bro");
   const babelify = require("babelify")
