@@ -23,8 +23,7 @@
         {% endfor %}
         {% for today_videoart in today_videoarts %}
         <div class="today-movies_content" data-url="{% url 'videoarts:detail' today_videoart.pk %}">
-            <div class="today-movie_thumbnail" style="background-image: url({{today_videoart.thumbnail.url}})">
-                </div>
+            <img class="today-movie_thumbnail" crossorigin src={{today_videoart.thumbnail.url}}/>
             <h1>{{today_videoart.title}}</h1>
             <p>{{today_videoart.description}}</p>
         </div>

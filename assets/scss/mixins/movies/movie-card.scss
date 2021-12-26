@@ -18,7 +18,13 @@
   padding: 0.6rem 0.8rem;
   border-radius: 0.3rem;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-  background: linear-gradient(135deg, #d8dcdd, $cineH_white);
+  background: linear-gradient(
+    135deg,
+    rgba(224, 224, 224, 1) 0%,
+    rgba(249, 250, 251, 1) 20%,
+    rgba(249, 250, 251, 1) 80%,
+    rgba(224, 224, 224, 1) 100%
+  );
   color: $cineH_black;
   min-height: 15.6rem;
   .movie-card_thumbnail {

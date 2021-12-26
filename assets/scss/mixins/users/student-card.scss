@@ -4,7 +4,12 @@
   border-radius: 0.7rem;
   height: 10.5rem;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-  background-color: $cineH_white;
+  background: linear-gradient(
+    135deg,
+    rgba(249, 250, 251, 1) 20%,
+    rgba(249, 250, 251, 1) 30%,
+    rgba(224, 224, 224, 1) 100%
+  );
   color: $cineH_black;
   .namecard_row {
     margin: 1rem;
