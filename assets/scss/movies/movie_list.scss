@@ -1,5 +1,5 @@
 #movie-list_title {
-  background-color: #c8d6e5;
+  background: $title_background;
   height: 1.2rem;
   width: fit-content;
   margin-top: 3rem;
@@ -20,7 +20,11 @@
 
 .search_bar {
   height: 3.9rem;
-  background-color: #b2bec3;
+  background: radial-gradient(
+    circle,
+    rgba(210, 220, 224, 1) 36%,
+    rgba(178, 190, 195, 1) 100%
+  );
   display: flex;
   justify-content: center;
   align-items: center;

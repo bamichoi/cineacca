@@ -2,7 +2,7 @@
   font-family: "Noto Sans Hanunoo", sans-serif;
   position: relative;
   .today-movies_title {
-    background-color: #c8d6e5;
+    background: $title_background;
     height: 1.2rem;
     width: fit-content;
     h1 {
@@ -143,7 +143,7 @@
     justify-content: space-between;
     color: $cineH_black;
     div {
-      background-color: #c8d6e5;
+      background: $title_background;
       height: 1.2rem;
       width: fit-content;
       h1 {

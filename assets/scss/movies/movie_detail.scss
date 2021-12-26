@@ -6,6 +6,8 @@
 }
 
 #detail_title_container {
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +15,11 @@
   width: 100%;
   padding-top: 2rem;
   padding-bottom: 1.1rem;
-  background-color: $cineH_black;
+  background: radial-gradient(
+    circle,
+    rgba(89, 104, 130, 1) 30%,
+    rgba(55, 65, 81, 1) 100%
+  );
 
   .detail_title {
     font-family: "Reem Kufi", sans-serif;
@@ -60,7 +66,13 @@
 }
 
 .detail_description {
-  background-color: $cineH_black;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  background: radial-gradient(
+    circle,
+    rgba(89, 104, 130, 1) 30%,
+    rgba(55, 65, 81, 1) 100%
+  );
   width: 100%;
   color: white;
   padding-top: 1.2rem;
@@ -291,6 +303,11 @@
   justify-content: center;
   align-items: center;
   background-color: #c8d6e4;
+  background: linear-gradient(
+    135deg,
+    rgba(200, 214, 229, 1) 20%,
+    rgba(214, 224, 224, 1) 80%
+  );
   box-shadow: 0.2rem 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
 }

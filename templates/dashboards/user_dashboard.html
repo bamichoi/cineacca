@@ -8,7 +8,7 @@
 
 {% if user_obj.account_type == "student" %}
 <div class="dashboard__user">
-        <div class="profile_avatar" style="background-image:url({{user_obj.avatar.url}}); "></div>
+        <img class="profile_avatar" crossorigin src={{user_obj.avatar.url}} />
         <div class="dashboard__username">
             <div class ="dashboard__user_first_name">
                 <div>{{user_obj.first_name}}</div>

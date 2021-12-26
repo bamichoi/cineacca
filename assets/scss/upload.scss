@@ -9,7 +9,7 @@
   width: 28rem;
   margin-bottom: 0.3rem;
   div {
-    background-color: #c8d6e5;
+    background: $title_background;
     height: 1.2rem;
     width: fit-content;
     margin-bottom: 0.5rem;
@@ -33,6 +33,11 @@
       box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
       padding: 2rem 4rem;
       background-color: #aacccc;
+      background: linear-gradient(
+        135deg,
+        rgba(170, 204, 204, 1),
+        rgba(200, 214, 229, 1)
+      );
       color: white;
       margin-bottom: 1rem;
       margin-top: 1.5rem;

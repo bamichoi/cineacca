@@ -1,6 +1,10 @@
 .dashboard__user {
   width: 100%;
-  background-color: #c8d6e5;
+  background: linear-gradient(
+    135deg,
+    rgba(200, 214, 229, 1) 20%,
+    rgba(214, 224, 224, 1) 80%
+  );
   color: $cineH_black;
   padding: 1rem;
   box-sizing: border-box;
@@ -10,6 +14,8 @@
   box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
   .profile_avatar {
     margin-bottom: 0;
+    object-fit: cover;
+    object-position: center center;
   }
   .dashboard__username {
     display: flex;
@@ -36,7 +42,11 @@
   margin-bottom: 3rem;
   color: $cineH_black;
   font-family: "Reem Kufi", sans-serif;
-  background-color: #aacccc;
+  background: radial-gradient(
+    circle,
+    rgba(214, 224, 224, 1) 21%,
+    rgba(170, 204, 204, 1) 80%
+  );
   padding: 1rem 0rem;
   box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
 }
