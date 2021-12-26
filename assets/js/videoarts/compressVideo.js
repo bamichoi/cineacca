@@ -8,14 +8,18 @@ let newFile;
 let dT = new DataTransfer();
 
 const handleCompress = async (e) => {
+    const { files } = e.target;
+    const { name : rawVideo, size : rawVideoSize } = files[0];
+    const limit = 500 * 1024 * 1024
+    
+
     window.alert(
     "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
     submitBtn.innerText = "Compressing..."
     submitBtn.disabled = true;
     submitBtn.style.backgroundColor = "#ced6e0"
 
-    const { files } = e.target;
-    const { name : rawVideo } = files[0];
+    
     const videoName = rawVideo.slice(0, -4);
     const time = new Date().getTime();
     const newVideoName = videoName + time + "";

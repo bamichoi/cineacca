@@ -16,7 +16,6 @@ const changeTodayUrl = async () => {
     while (true) {
         for (const todayUrl of todayUrls){
             todayLink.setAttribute("href", todayUrl)
-            console.log(todayUrl)
             await timer(6000)
         }  
     }
