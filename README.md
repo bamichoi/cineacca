@@ -27,6 +27,7 @@ Development in progress
 ## 배포 관련
 
 - [ ] 모바일 반응형.. (최종보스)
+- [ ] 업로드 파일명 검증.
 
 ### Base
 
