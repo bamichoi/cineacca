@@ -12,6 +12,40 @@ body {
   margin: 0 10rem;
 }
 
+#overview_mobile {
+  display: none;
+  width: 100%;
+  height: 100%;
+  font-family: "Reem Kufi", sans-serif;
+  i {
+    font-size: 5rem;
+    color: yellow;
+    margin-bottom: 0.5rem;
+  }
+  span {
+    margin-bottom: 0.1rem;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    overflow-y: hidden;
+  }
+  #overview_mobile {
+    display: block;
+    position: absolute;
+    background-color: $cineH_black;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
 header {
   background-color: $cineH_black;
   background: linear-gradient(135deg, #4b6584, $cineH_black);

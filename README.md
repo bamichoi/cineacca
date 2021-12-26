@@ -31,7 +31,7 @@ Development in progress
 - [ ] 색깔 고르기
 - [ ] 문구대수정
 - [x] 비디오 압축시 오버레이
-- [ ] sendgrid
+- [x] sendgrid
 
 
 
