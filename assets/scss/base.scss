@@ -17,6 +17,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: "Reem Kufi", sans-serif;
+
   i {
     font-size: 5rem;
     color: yellow;
@@ -46,7 +47,7 @@ body {
   #overview_mobile {
     display: block;
     position: absolute;
-    background-color: $cineH_black;
+    background: linear-gradient(135deg, #4b6584, $cineH_black);
     top: 0;
     right: 0;
     z-index: 100;
