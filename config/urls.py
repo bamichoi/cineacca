@@ -16,6 +16,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+import os
 
 urlpatterns = [
     path("", include("core.urls", namespace="core")),
@@ -23,5 +24,5 @@ urlpatterns = [
     path("videoarts/", include("videoarts.urls", namespace="videoarts")),
     path("users/", include("users.urls", namespace="users")),
     path("reviews/", include("reviews.urls", namespace="reviews")),
-    path("1283tous/", admin.site.urls),
+    path(os.environ.get("ADMIN"), admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
