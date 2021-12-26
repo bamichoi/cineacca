@@ -14,3 +14,4 @@ class UploadStorage(GoogleCloudStorage):
     bucket_name = setting('GS_BUCKET_NAME')
     location = "uploads/"
     GS_FILE_OVERWRITE = False
+    file_overwrite = False

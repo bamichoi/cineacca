@@ -226,7 +226,6 @@ if DEBUG is False :
     #STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
     GS_BUCKET_NAME = "cineacca_bucket"
     GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
-    GS_FILE_OVERWRITE = False
 
     sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),
