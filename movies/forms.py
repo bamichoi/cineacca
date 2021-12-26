@@ -218,11 +218,13 @@ class MovieUpdateForm(forms.ModelForm):
         
         movie = super().save(commit=False)
         video = self.cleaned_data.get("video")
-        video_path = video.temporary_file_path()
-        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
-        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
-        movie.duration = duration
-        
+        try: 
+            video_path = video.temporary_file_path()
+            get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+            duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+            movie.duration = duration
+        except :
+            pass
         """
         def clean_video(self):
             raw_video = self.cleaned_data.get("video")

@@ -141,31 +141,14 @@ class VideoArtUpdateForm(forms.ModelForm):
     def save(self, *args, **kwargs):
 
         videoart = super().save(commit=False)
-        videoart.video = self.cleaned_data.get("video")
-        video_path = videoart.video.path
-        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
-        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
-        videoart.duration = duration
-        
-        """
-        def clean_video(self):
-            raw_video = self.cleaned_data.get("video")
-            timestamp = int(time())
-            try:
-                raw_video_path = raw_video.temporary_file_path()
-                video_name = f"{raw_video}".split(".")[0]
-                subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -b:v 1000k -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
-                return f"videoart_files/{video_name}_{timestamp}.mp4"
-            except:
-                return raw_video
-
-        videoart = super().save(commit=False)
-        videoart.video = clean_video(self)
-        video_path = videoart.video.path
-        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
-        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) # 바로 int로 구하는 커맨드 라인이 있을 것이야.
-        videoart.duration = duration
-         """
+        video = self.cleaned_data.get("video")
+        try: 
+            video_path = video.temporary_file_path()
+            get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
+            duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
+            videoart.duration = duration
+        except :
+            pass
 
         super().save()
        
