@@ -16,9 +16,6 @@ const handleCompress = async (e) => {
     const sizeLimit = 1000 * 1024 * 1024
     console.log(files, files.length) 
 
-    if (files.length > 1) {
-           console.log(files.length)
-    }
     if (rawVideoSize > sizeLimit) {
         window.alert("Il video orginale si deve essre meno di 1GB")
         videoInput.value="";
