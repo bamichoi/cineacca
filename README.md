@@ -31,6 +31,7 @@ Development in progress
 - [ ] 내 프사바꾸깅
 - [ ] 탈퇴성공페이지
 - [ ] 업로드 제한 500mb 해제 검토
+- [ ] google 검색 노출
 
 ### Base
 

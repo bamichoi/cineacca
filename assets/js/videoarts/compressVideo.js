@@ -13,7 +13,7 @@ let percent;
 const handleCompress = async (e) => {
     const { files } = e.target;
     const { name : rawVideo, size : rawVideoSize } = files[0];
-    const sizeLimit = 100 * 1024 * 1024
+    const sizeLimit = 1000 * 1024 * 1024
     console.log(files, files.length) 
 
     if (files.length > 1) {
