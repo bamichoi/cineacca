@@ -178,7 +178,6 @@ class StudentListView(ListView):
         qs = super().get_queryset().filter(account_type="student").order_by("?")
 
         if filter_by != "None" and filter_by is not None:
-            print(filter_by, type(filter_by))
             qs = qs.filter(works=filter_by).order_by("?")
 
         if sort_by == "az":
