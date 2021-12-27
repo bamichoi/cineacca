@@ -26,7 +26,7 @@
                     {% if user_obj.email_verified == False %}
                         <span><i class="fas fa-exclamation-circle"></i>Email non verificato</span>
                         {% if user_obj.email == request.user.email %}
-                        <a href="{% url 'users:send_verify_email' user_obj.pk %}"><span id="email_verify_link"><i class="fas fa-sign-in-alt"></i> Verifica l'indirizzo email.</span></a>
+                        <a href="{% url 'users:send_verify_email' user_obj.pk %}"><span id="email_verify_link"><i class="fas fa-sign-in-alt"></i> Verifica l'indirizzo email</span></a>
                         {% endif %}
                     {% else %}
                         <span><i class="fas fa-check-circle"></i>Email verificato</span>
