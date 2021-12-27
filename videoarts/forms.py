@@ -157,11 +157,11 @@ class DeleteVideoArtForm(forms.Form):
 
     agree = forms.BooleanField(
         required=False,
-        label="Sì, ho capito. Sono d'accordo di eliminarlo",
+        label="Si, ho capito, procedi",
         widget=forms.CheckboxInput,
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Inserisci il tuo password"})
+        widget=forms.PasswordInput(attrs={"placeholder": "Inserisci la tua password"})
     )
 
     def __init__(self, user, *args, **kwargs):
@@ -172,9 +172,9 @@ class DeleteVideoArtForm(forms.Form):
         password = self.cleaned_data.get("password")
         user = self.user
         if not user.check_password(password):
-            raise forms.ValidationError("Il password non è corretto")
+            raise forms.ValidationError("la password non è corretto")
 
     def clean_agree(self):
         agree = self.cleaned_data.get("agree")
         if agree == False:
-            raise forms.ValidationError("Non sei d'accordo dell'eliminazione")
+            raise forms.ValidationError("Non hai acconsentito all'eliminazione")

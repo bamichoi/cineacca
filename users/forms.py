@@ -174,7 +174,7 @@ class DeleteAccountForm(forms.Form):
     def clean_agree(self):
         agree = self.cleaned_data.get("agree")
         if agree == False:
-            raise forms.ValidationError("Non sei d'accordo della secessione")
+            raise forms.ValidationError("Non hai acconsentito alla secessione")
 
 
 class CustomPasswordResetForm(PasswordResetForm):

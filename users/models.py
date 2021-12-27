@@ -81,13 +81,13 @@ class User(AbstractUser):
     last_name = models.CharField(_("Cognome"), max_length=50, blank=False)
 
     email = models.EmailField(
-        _("Indrizzo di email"), unique=True
+        _("Indrizzo email"), unique=True
     )  # _ 는 ugettext_lazy()의 별칭. 언어설정에 따라 출력되는 문자열을 변환해주는 함수다.
     USERNAME_FIELD = "email"  # email을 username처럼 사용하기.
     REQUIRED_FIELDS = (
         []
     )  # AbsractUser에는 email이 Required로 잡혀있으나 USERNAME_FIELD로 사용되는 필드는 REQUIRED에 있으면 안된다.
-    school = models.CharField(_("appartenuto a"), max_length=100, null=True, blank=True)
+    school = models.CharField(_("appartenente a"), max_length=100, null=True, blank=True)
     avatar = ProcessedImageField(
         upload_to="user_avatars", 
         default="default_images/default_avatar.jpeg",

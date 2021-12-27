@@ -18,8 +18,8 @@
             <i class="fas fa-exclamation-triangle"></i> Attenzione
         </div>
         <div id="delete-movie_text">
-            <p>Se elimini questo video, si perde tutte le data riguarda il film e non si può restaurarle.<br>
-                Se l'hai capito bene e sicuramente vuoi eliminarlo, segli checkbox ed inserisci la password. </p>
+            <p>Eliminando questo video, l'operazione sarà irreversibile.
+                Sei sicuro di voler procedere?</p>
         </div>
         
         {% csrf_token %}
@@ -43,7 +43,7 @@
                 <button>Elimina questo video</button>
             </div>
             <span class="last-caution">
-                <i class="fas fa-exclamation-triangle"></i> Cliccando questo bottone, questo video si elimina subito.</span>
+                <i class="fas fa-exclamation-triangle"></i>Cliccando qui, il tuo video verrà eliminato immediatamente</span>
     </form>
 </div>
 
