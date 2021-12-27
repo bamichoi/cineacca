@@ -118,6 +118,8 @@
 .upload_submit {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   button {
     margin-top: 3rem;
     background-color: #ca5b4c;
@@ -129,5 +131,23 @@
     border-radius: 0.7rem;
     width: 20rem;
     cursor: pointer;
+  }
+  #progress {
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    width: 19rem;
+    height: 1rem;
+    background-color: white;
+    span {
+      background: linear-gradient(
+        135deg,
+        rgba(170, 204, 204, 1) 25%,
+        rgba(200, 214, 229, 1) 75%
+      );
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      width: 0;
+    }
   }
 }
