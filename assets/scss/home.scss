@@ -1,5 +1,5 @@
 .today-movies {
-  font-family: "Noto Sans Hanunoo", sans-serif;
+  font-family: $normal_text_font;
   position: relative;
   .today-movies_title {
     background: $title_background;
@@ -137,7 +137,7 @@
 
 .new-movies {
   margin-top: 4rem;
-  font-family: "Noto Sans Hanunoo", sans-serif;
+  font-family: $normal_text_font;
   .new-movies_title {
     display: flex;
     justify-content: space-between;

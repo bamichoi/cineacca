@@ -98,7 +98,7 @@
 #delete-movie_advice {
   width: 21rem;
   font-size: 1.2rem;
-  font-family: "Noto Sans Hanunoo", sans-serif;
+  font-family: $normal_text_font;
   margin-bottom: 0.5rem;
   margin-top: 1rem;
   color: $cineH_black;
@@ -111,7 +111,7 @@
   border: 0.1rem #aacccc solid;
   padding: 0.7rem 1rem;
   border-radius: 0.5rem;
-  font-family: "Noto Sans Hanunoo", sans-serif;
+  font-family: $normal_text_font;
   font-size: 0.9rem;
   display: flex;
   justify-content: center;

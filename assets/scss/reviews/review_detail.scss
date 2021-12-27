@@ -39,6 +39,7 @@
     border-right: 0.1rem solid rgba(0, 0, 0, 0.1);
     color: $cineH_black;
     padding-right: 2rem;
+    font-family: $normal_text_font;
     div {
       margin-bottom: 0.5rem;
     }
@@ -111,7 +112,7 @@
     .review_detail__content {
       width: 100%;
       line-height: 1.1rem;
-      font-family: "Noto Sans Hanunoo", sans-serif;
+      font-family: $normal_text_font;
     }
   }
 }
