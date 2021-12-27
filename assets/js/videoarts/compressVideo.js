@@ -14,7 +14,11 @@ const handleCompress = async (e) => {
     const { files } = e.target;
     const { name : rawVideo, size : rawVideoSize } = files[0];
     const sizeLimit = 100 * 1024 * 1024
-    
+    console.log(files, files.length) 
+
+    if (files.length > 1) {
+           console.log(files.length)
+    }
     if (rawVideoSize > sizeLimit) {
         window.alert("Il video orginale si deve essre meno di 1GB")
         videoInput.value="";
@@ -31,8 +35,8 @@ const handleCompress = async (e) => {
     const videoName = rawVideo.slice(0, -4);
     const time = new Date().getTime();
     const newVideoName = videoName + time + "";
-    console.log(newVideoName);
-    const ffmpeg = createFFmpeg({ log: true });
+    console.log(newVideoName)
+    const ffmpeg = createFFmpeg({ log: false });
     await ffmpeg.load();
     
 
@@ -50,10 +54,15 @@ const handleCompress = async (e) => {
 
     newFile = new File([data], newVideoName, {type:"video/mp4", lastModified:new Date().getTime()});
 
+    if (dT.items.length > 0 ) {
+        dT.items.clear()
+    }
     dT.items.add(newFile);
     videoInput.files = dT.files
+    console.log(dT.items)
 
     window.alert("La compressione video è finita! Ora puoi caricare video. Grazie per la pazienza.")
+    console.log(files, files.length) 
     submitBtn.innerText = "Carica"
     submitBtn.disabled = false;
     progress.hidden = true;

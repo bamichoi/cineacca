@@ -53,7 +53,7 @@ class Movie(core_model.TimeStampedModel):
     )
 
     """staff info field"""
-    team = models.CharField(_("truppe"), max_length=300, null=True, blank=True)
+    team = models.CharField(_("troupe"), max_length=300, null=True, blank=True)
     director = models.CharField(_("regia"), max_length=300, null=True, blank=False)
     assistant_director = models.CharField(
         _("aiuto regia"), max_length=300, null=True, blank=True
