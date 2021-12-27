@@ -75,6 +75,8 @@ MIDDLEWARE = [
     
 ]
 
+
+
 CORS_ALLOWED_ORIGINS = [
     "https://cineacca.com",
     "https://storage.googleapis.com",
@@ -218,7 +220,9 @@ EMAIL_FROM = os.environ.get("EMAIL_FROM")
 
 
 if DEBUG is False :
-
+    
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
     ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com',]
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
