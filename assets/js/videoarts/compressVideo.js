@@ -35,7 +35,6 @@ const handleCompress = async (e) => {
     const videoName = rawVideo.slice(0, -4);
     const time = new Date().getTime();
     const newVideoName = videoName + time + "";
-    console.log(newVideoName)
     const ffmpeg = createFFmpeg({ log: false });
     await ffmpeg.load();
     
@@ -59,10 +58,8 @@ const handleCompress = async (e) => {
     }
     dT.items.add(newFile);
     videoInput.files = dT.files
-    console.log(dT.items)
 
     window.alert("La compressione video è finita! Ora puoi caricare video. Grazie per la pazienza.")
-    console.log(files, files.length) 
     submitBtn.innerText = "Carica"
     submitBtn.disabled = false;
     progress.hidden = true;
