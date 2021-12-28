@@ -22,21 +22,23 @@
     width: 100%;
     font-weight: 600;
     height: 40rem;
-
+    border-radius: 1.5rem;
     .today-movies_content {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
+      border-radius: inherit;
       .today_overview {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.15);
         z-index: 99;
+        border-radius: inherit;
       }
       .today-movie_thumbnail {
         position: absolute;
@@ -45,6 +47,7 @@
         width: 100%;
         height: 100%;
         background-size: cover;
+        border-radius: inherit;
       }
       h1 {
         padding: 2rem 2rem;
@@ -99,6 +102,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    font-family: "Reem Kufi", sans-serif;
     i {
       font-size: 5rem;
       margin-right: 1rem;
