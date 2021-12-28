@@ -18,7 +18,7 @@
     <div class="review_detail_container" data-obj="videoart">
         <div class="review_detail_movieInfo">
             <a href="{% url 'videoarts:detail' review.videoart.pk %}">
-                    <img class="moviePoster_md" src="{{review.videoart.poster.url}}" />
+                    <img class="moviePoster_md" crossorigin src="{{review.videoart.poster.url}}" />
             </a>
             <div class="review_detail__movieTitle">
                 {{review.videoart.title}} 
@@ -90,7 +90,7 @@
     <div class="review_detail_container modify_detail_container">
         <div class="review_detail_movieInfo detail_movieInfo__modify">
             <a href="{% url 'videoarts:detail' review.videoart.pk %}">
-                    <img class="moviePoster_md" src="{{review.videoart.poster.url}}" />
+                    <img class="moviePoster_md" crossorigin src="{{review.videoart.poster.url}}" />
             </a>
             <div class="review_detail__movieTitle">
                 {{review.videoart.title}} 

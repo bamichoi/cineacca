@@ -18,7 +18,7 @@
     <div class="review_detail_container" data-obj="movie">   
         <div class="review_detail_movieInfo">
             <a href="{% url 'movies:detail' review.movie.pk %}">
-                    <img class="moviePoster_md" src="{{review.movie.poster.url}}" />
+                    <img class="moviePoster_md" crossorigin src="{{review.movie.poster.url}}" />
             </a>
             <div class="review_detail__movieTitle">
                 {{review.movie.title}} 
@@ -91,7 +91,7 @@
     <div class="review_detail_container modify_detail_container">
         <div class="review_detail_movieInfo detail_movieInfo__modify">
             <a href="{% url 'movies:detail' review.movie.pk %}">
-                    <img class="moviePoster_md" src="{{review.movie.poster.url}}" />
+                    <img class="moviePoster_md" crossorigin src="{{review.movie.poster.url}}" />
             </a>
             <div class="review_detail__movieTitle">
                 {{review.movie.title}} 
