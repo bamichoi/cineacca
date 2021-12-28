@@ -201,7 +201,10 @@ def create_review(request, pk):
             review = models.Review.objects.create(
                 user=user, title=title, rate=rate, content=content, movie=movie
             )
-            locale.setlocale(locale.LC_TIME, "it_IT")
+            try:
+                locale.setlocale(locale.LC_TIME, "it_IT.UTF-8")
+            except:
+                locale.setlocale(locale.LC_TIME, "it_IT.utf8")
             created = review.created.now().strftime("%d-%B-%Y-%H:%M")
             movie.rating = get_rating(movie, "movie")
             movie.save()

@@ -121,7 +121,6 @@ class MovieUploadForm(forms.ModelForm):
             return video
 
     def save(self, *args, **kwargs):
-        
         movie = super().save(commit=False)
         video = self.cleaned_data.get("video")
         video_path = video.temporary_file_path()

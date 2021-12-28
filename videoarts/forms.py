@@ -112,6 +112,7 @@ class VideoArtUpdateForm(forms.ModelForm):
         video = self.cleaned_data.get("video")
         try: 
             video_path = video.temporary_file_path()
+            print(video_path)
             get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
             duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
             videoart.duration = duration
