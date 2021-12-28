@@ -14,17 +14,20 @@
     </div>
     <div class="today-movies_list">
         {% for today_movie in today_movies %}
+       
         <div class="today-movies_content" data-url="{% url 'movies:detail' today_movie.pk %}">
-            <img class="today-movie_thumbnail" crossorigin src={{today_movie.thumbnail.url}}/>
             <h1>{{today_movie.title}}</h1>
             <p>{{today_movie.description}}</p>
+            <div class="today_overview"></div>
+            <img class="today-movie_thumbnail" crossorigin src={{today_movie.thumbnail.url}}/>
         </div>
         {% endfor %}
         {% for today_videoart in today_videoarts %}
         <div class="today-movies_content" data-url="{% url 'videoarts:detail' today_videoart.pk %}">
-            <img class="today-movie_thumbnail" crossorigin src={{today_videoart.thumbnail.url}}/>
             <h1>{{today_videoart.title}}</h1>
             <p>{{today_videoart.description}}</p>
+            <div class="today_overview"></div>
+            <img class="today-movie_thumbnail" crossorigin src={{today_videoart.thumbnail.url}}/>
         </div>
         {% endfor %}
     </div>

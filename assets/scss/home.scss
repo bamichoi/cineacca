@@ -22,15 +22,24 @@
     width: 100%;
     font-weight: 600;
     height: 40rem;
+
     .today-movies_content {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
+      .today_overview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 99;
+      }
       .today-movie_thumbnail {
         position: absolute;
-        opacity: 0.8;
         left: 0;
         top: 0;
         width: 100%;
@@ -42,6 +51,7 @@
         color: $cineH_white;
         font-size: 3.7rem;
         position: relative;
+        z-index: 100;
       }
       p {
         padding: 0rem 2.2rem;
@@ -51,6 +61,7 @@
         line-height: 1.2rem;
         position: relative;
         font-weight: 400;
+        z-index: 100;
       }
       a {
         text-decoration: none;
