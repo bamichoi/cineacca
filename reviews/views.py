@@ -201,7 +201,7 @@ def create_review(request, pk):
             review = models.Review.objects.create(
                 user=user, title=title, rate=rate, content=content, movie=movie
             )
-            locale.setlocale(locale.LC_TIME, "it_IT.UTF-8")
+            locale.setlocale(locale.LC_ALL, "it_IT.UTF-8")
             created = review.created.now().strftime("%d-%B-%Y-%H:%M")
             movie.rating = get_rating(movie, "movie")
             movie.save()
@@ -210,7 +210,8 @@ def create_review(request, pk):
             review = models.VideoArtReview.objects.create(
                 user=user, title=title, rate=rate, content=content, videoart=videoart
             )
-            created = review.created.strftime("%d-%B-%Y-%H:%m")
+            locale.setlocale(locale.LC_ALL, "it_IT.UTF-8")
+            created = review.created.strftime("%d-%B-%Y-%H:%M")
             videoart.rating = get_rating(videoart, "videoart")
             videoart.save()
         return JsonResponse(
