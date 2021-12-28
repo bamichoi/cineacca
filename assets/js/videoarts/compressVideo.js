@@ -20,6 +20,7 @@ const handleSizeValidation = (e) => {
         window.alert("l'immagine si deve essre meno di 10MB") // 대신에 django errer 띄울수 있는지 확인
         e.target.value="";
     }
+
 }
 
 const handleCompress = async (e) => {
