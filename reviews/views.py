@@ -204,8 +204,7 @@ def create_review(request, pk):
             locale.setlocale(locale.LC_ALL, "it_IT.UTF-8")
             created = review.created.now().strftime("%d-%B-%Y-%H:%M")
             movie.rating = get_rating(movie, "movie")
-            movie.save() 
-            
+            movie.save()
         else:
             videoart = videoart_models.VideoArt.objects.get(pk=pk)
             review = models.VideoArtReview.objects.create(
