@@ -61,7 +61,7 @@
                     {% if user.avatar  %} 
                         src={{user.avatar.url}}
                     {% endif %} />
-                    <a href="{% url 'users:user_profile' user.pk %}"><div class="user-menu__loggedin">Profilo mio</div></a>
+                    <a href="{% url 'users:user_profile' user.pk %}"><div class="user-menu__loggedin">Il mio profilo</div></a>
                     {% if user.account_type == "student" %}
                         <a href="{% url 'core:upload' %}"><div class="user-menu__loggedin" >Upload</div></a>
                     {% endif %}

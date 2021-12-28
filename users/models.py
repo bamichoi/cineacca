@@ -130,7 +130,7 @@ class User(AbstractUser):
             if settings.DEBUG is True :
                 domain = "http://127.0.0.1:8000"
             else :
-                domain = "https://cineacca.herokuapp.com"
+                domain = "https://cineacca.com"
             html_message = render_to_string(
                 "emails/verify_email.html", {"secret": secret, "domain": domain}
             )

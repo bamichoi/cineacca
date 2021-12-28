@@ -1,5 +1,3 @@
-from django.db.models.query import QuerySet
-from django.forms import widgets
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
@@ -9,16 +7,13 @@ from django.views.generic import (
     View,
     FormView,
     UpdateView,
-    DeleteView,
 )
 from django.core.paginator import Paginator
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.db.models import Q
-from reviews import forms as review_form
 from . import models
 from . import forms
 from users import mixins as user_mixins
-from django.http import HttpResponse
 
 
 

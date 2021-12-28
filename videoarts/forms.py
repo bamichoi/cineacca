@@ -1,11 +1,7 @@
 from django import forms
-from django.forms import widgets
-from django.forms.widgets import ClearableFileInput
 from django.utils.translation import gettext_lazy as _
-from pilkit.processors.resize import Thumbnail
 from . import models
 from movies import forms as movie_forms
-from time import time
 import subprocess
 
 class VideoArtUploadForm(forms.ModelForm):
@@ -41,7 +37,6 @@ class VideoArtUploadForm(forms.ModelForm):
         else:
             raise forms.ValidationError("Thumnail è necessario")
 
-    
     def clean_poster(self):
         poster = self.cleaned_data.get('poster')
         if poster and (type(poster) != str):
@@ -56,41 +51,14 @@ class VideoArtUploadForm(forms.ModelForm):
                 raise forms.ValidationError("Il video si deve essre meno di 1GB")
             return video
 
-    
 
     def save(self, *args, **kwargs):
-
- 
         videoart = super().save(commit=False)
         video = self.cleaned_data.get("video")
         video_path = video.temporary_file_path()
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
         videoart.duration = duration    
-
-
-        """
-        def compress_video(self):
-            raw_video = self.cleaned_data.get("video")
-            timestamp = int(time())
-            raw_video_path = raw_video.temporary_file_path()
-            path_list = raw_video_path.split("/")
-            path_list.pop()
-            temp_path = '/'.join(str(x) for x in path_list)
-            video_name = f"{raw_video}".split(".")[0]
-            # 로컬 - subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -crf 28 -acodec mp3 -y uploads/videoart_files/{video_name}_{timestamp}.mp4", shell=True)
-            subprocess.run(f"ffmpeg -i {raw_video_path} -vcodec h264 -crf 28 -acodec mp3 -y {temp_path}/{video_name}_{timestamp}.mp4", shell=True)
-            subprocess.run(f"gsutil cp {temp_path}/{video_name}_{timestamp}.mp4 gs://cineacca_bucket/uploads/videoart_files/" , shell=True)
-            return f"videoart_files/{video_name}_{timestamp}.mp4"
-    
-        videoart = super().save(commit=False)
-        videoart.video = compress_video(self)
-        video_path = video.temporary_file_path()
-        get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
-        duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
-        videoart.duration = duration
-        """
-
         return videoart
 
     

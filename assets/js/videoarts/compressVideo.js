@@ -1,6 +1,8 @@
 import regeneratorRuntime from "regenerator-runtime";;
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const videoInput = document.getElementById("id_video");
+const posterInput = document.getElementById("id_poster");
+const thumbnailInput = document.getElementById("id_thumbnail");
 const submitDiv = document.querySelector(".upload_submit");
 const submitBtn = submitDiv.querySelector("button");
 const progress = document.getElementById("progress");
@@ -10,17 +12,27 @@ let newFile;
 let dT = new DataTransfer();
 let percent;
 
+const handleSizeValidation = (e) => {
+    const { files } = e.target;
+    const { size } = files[0];
+    const sizeLimit = 10 * 1024 * 1024
+    if ( size > sizeLimit ) {
+        window.alert("l'immagine si deve essre meno di 10MB") // 대신에 django errer 띄울수 있는지 확인
+        e.target.value="";
+    }
+}
+
 const handleCompress = async (e) => {
     const { files } = e.target;
     const { name : rawVideo, size : rawVideoSize } = files[0];
-    const sizeLimit = 1000 * 1024 * 1024
-    console.log(files, files.length) 
+    const sizeLimit = 1000 * 1024 * 1024 
 
     if (rawVideoSize > sizeLimit) {
         window.alert("Il video orginale si deve essre meno di 1GB")
         videoInput.value="";
         return
     } 
+
     
     window.alert(
     "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
@@ -67,8 +79,9 @@ const handleCompress = async (e) => {
 
 
 
-videoInput.addEventListener("change", handleCompress)
-
+videoInput.addEventListener("change", handleCompress);
+posterInput.addEventListener("change", handleSizeValidation);
+thumbnailInput.addEventListener("change", handleSizeValidation);
 
 
 

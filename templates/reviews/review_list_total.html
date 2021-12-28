@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <p class="menu_description">I reviews più preferiti in questo momento</p>
+    <p class="menu_description">Le recensioni di film più aprezzate del momento</p>
 
     <div class="reviews_list_grid">
         {%for review in top_reviews %}
@@ -28,7 +28,7 @@
             <h1>&nbsp;TOP REVIEWS - VIDEO ART&nbsp;&nbsp;&nbsp;</h1>
         </div>
     </div>
-    <p class="menu_description">I reviews più preferiti in questo momento</p>
+    <p class="menu_description">Le recensioni di videoart più aprezzate del momento</p>
     <div class="reviews_list_grid">
         {%for review in top_videoart_reviews  %}
             {% include "mixins/reviews/review-card.html" with obj="videoart" %}
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="reviews_list_subtitle">
-        <p class="menu_description">I nuovi reviews freschi scritti da poco</p>
+        <p class="menu_description">Le recensioni di film più recenti</p>
         <span><a href="{% url 'reviews:list-movie' %}">Scopri di più <i class="fas fa-sign-in-alt"></i></a></span>  
     </div>
    
@@ -62,7 +62,7 @@
     </div>
 
     <div class="reviews_list_subtitle">
-        <p class="menu_description">I nuovi reviews freschi scritti da poco</p>
+        <p class="menu_description">Le recensioni di videoart più recent</p>
         <span><a href="{% url 'reviews:list-videoart' %}">Scopri di più <i class="fas fa-sign-in-alt"></i></a></span>  
     </div>
 

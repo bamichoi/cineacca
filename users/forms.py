@@ -153,7 +153,7 @@ class DeleteAccountForm(forms.Form):
 
     agree = forms.BooleanField(
         required=False,
-        label="Sì, ho capito. Sono d'accordo della secessione.",
+        label="Si, ho capito, voglio procedere.",
         widget=forms.CheckboxInput,
     )
 

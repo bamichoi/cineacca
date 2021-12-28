@@ -74,7 +74,7 @@ class Movie(core_model.TimeStampedModel):
     costume_designer = models.CharField(_("costume"), max_length=300, blank=True)
     makeup_artist = models.CharField(_("trucco"), max_length=300, blank=True)
     spacial_effect_supervisor = models.CharField(
-        _("effetto speciale"), max_length=300, blank=True
+        _("effetti speciali"), max_length=300, blank=True
     )
     sound_designer = models.CharField(_("sound"), max_length=300, blank=True)
     animator = models.CharField(_("animazione"), max_length=300, blank=True)
