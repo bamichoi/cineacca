@@ -201,8 +201,8 @@ def create_review(request, pk):
             review = models.Review.objects.create(
                 user=user, title=title, rate=rate, content=content, movie=movie
             )
-            locale.setlocale(locale.LC_ALL, "it_IT.UTF-8")
-            created = review.created.now().strftime("%d-%B-%Y-%H:%M")
+            locale.setlocale(locale.LC_ALL, "it_IT.UTF-8") # !) 이 부분 잘 이해 못했다.
+            created = review.created.now().strftime("%d-%B-%Y-%H:%M") # localse.setlocale 없이 그대로 넘겨주면 utc0 시간으로 나온다.
             movie.rating = get_rating(movie, "movie")
             movie.save()
         else:

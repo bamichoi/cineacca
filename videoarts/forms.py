@@ -4,6 +4,7 @@ from . import models
 from movies import forms as movie_forms
 import subprocess
 
+
 class VideoArtUploadForm(forms.ModelForm):
     class Meta:
         model = models.VideoArt
@@ -55,13 +56,12 @@ class VideoArtUploadForm(forms.ModelForm):
     def save(self, *args, **kwargs):
         videoart = super().save(commit=False)
         video = self.cleaned_data.get("video")
-        video_path = video.temporary_file_path()
+        video_path = video.temporary_file_path() 
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
         videoart.duration = duration    
         return videoart
 
-    
 
 class VideoArtUpdateForm(forms.ModelForm):
     class Meta:

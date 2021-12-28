@@ -15,8 +15,7 @@
     <div class="today-movies_list">
         {% for today_movie in today_movies %}
         <div class="today-movies_content" data-url="{% url 'movies:detail' today_movie.pk %}">
-            <div class="today-movie_thumbnail" style="background-image: url({{today_movie.thumbnail.url}})">
-                </div>
+            <img class="today-movie_thumbnail" crossorigin src={{today_movie.thumbnail.url}}/>
             <h1>{{today_movie.title}}</h1>
             <p>{{today_movie.description}}</p>
         </div>
