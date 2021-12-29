@@ -12,14 +12,14 @@ Python with Django Framework, HTML, SCSS and JavaScript
 
 ## 개발 기간 Period of development
 
-2021년 7월 31일 - 
-31 July 2021 - 
+2021년 7월 31일 - 2021년 12월 28일
+July 31, 2021 - December 28, 2021
 
 
 ## 현재 상태 Current State
 
-개발중
-Development in progress
+서비스 중
+Now available
 
 
 ## TO DO LIST 
@@ -30,8 +30,8 @@ Development in progress
 - [ ] 업로드 파일명 검증.
 - [ ] 내 프사바꾸깅
 - [ ] 탈퇴성공페이지
-- [ ] 업로드 제한 500mb 해제 검토
 - [ ] google 검색 노출
+- [ ] 버킷 공개 정책 검토
 
 ### Base
 
