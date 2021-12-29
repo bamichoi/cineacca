@@ -26,10 +26,10 @@ const handleSizeValidation = (e) => {
 const handleCompress = async (e) => {
     const { files } = e.target;
     const { name : rawVideo, size : rawVideoSize } = files[0];
-    const sizeLimit = 1000 * 1024 * 1024 
+    const sizeLimit = 1500 * 1024 * 1024 
 
     if (rawVideoSize > sizeLimit) {
-        window.alert("Il video orginale si deve essre meno di 1GB")
+        window.alert("Il video orginale si deve essre meno di 1.5GB")
         videoInput.value="";
         return
     } 
@@ -45,7 +45,7 @@ const handleCompress = async (e) => {
     const videoName = rawVideo.slice(0, -4);
     const time = new Date().getTime();
     const newVideoName = videoName + time + "";
-    const ffmpeg = createFFmpeg({ log: false });
+    const ffmpeg = createFFmpeg({ log: true });
     await ffmpeg.load();
     
 
@@ -74,7 +74,7 @@ const handleCompress = async (e) => {
     submitBtn.disabled = false;
     progress.hidden = true;
     submitBtn.style.backgroundColor = "#ca5b4c"
-    
+    console.log(videoInput.files[0].size);
 
 }
 
