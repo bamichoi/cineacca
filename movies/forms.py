@@ -113,11 +113,11 @@ class MovieUploadForm(forms.ModelForm):
             return poster
     
     
-    def clean_video(self):
+    def clean_video(self): # 원본파일은 frontend에서 validation 하고 output은 용량이 크면 서버에서 응답이 끊기게 됨. 이제 사실상 필요없는 부분.
         video = self.cleaned_data.get("video")
         if video:
-            if video.size > 1000*1024*1024:
-                raise forms.ValidationError("Il video si deve essre meno di 1GB")
+            if video.size > 1500*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 1.5GB")
             return video
 
     def save(self, *args, **kwargs):
