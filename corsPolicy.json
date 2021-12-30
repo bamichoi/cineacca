@@ -2,7 +2,8 @@
   {
     "origin": ["*"],
     "method": ["GET", "PUT", "DELETE", "OPTION"],
-    "responseHeader": ["accept",
+    "responseHeader": [
+      "accept",
       "accept-encoding",
       "authorization",
       "content-type",
