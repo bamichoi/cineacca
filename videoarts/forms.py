@@ -14,8 +14,26 @@ class VideoArtUploadForm(forms.ModelForm):
             "poster",
             "title",
             "year",
-            "artist",
             "description",
+            "artist",
+            "performer",
+            "curator",
+            "screenwriter",
+            "casting",
+            "director_of_photograpy",
+            "editor",
+            "audio_director",
+            "phonic",
+            "music",
+            "art_director",
+            "assistant_director",
+            "edition_secretary",
+            "costume_designer",
+            "makeup_artist",
+            "spacial_effect_supervisor",
+            "sound_designer",
+            "animator",
+            "character_designer",
         )
         widgets = {
             "video": forms.FileInput(attrs={"accept": "video/mp4"}),
@@ -23,9 +41,56 @@ class VideoArtUploadForm(forms.ModelForm):
             "year": forms.TextInput(
                 attrs={"placeholder": "l'anno in cui il video è uscito"}
             ),
-            "artist": forms.TextInput(attrs={"placeholder": "Il nome di artista"}),
             "description": forms.Textarea(
                 attrs={"placeholder": "una descrizione del video "}
+            ),
+            "artist": forms.TextInput(attrs={"placeholder": "regista (*neccessario)"}),
+            "performer": forms.TextInput(attrs={"placeholder": "performer (*opzionale)"}),
+            "curator": forms.TextInput(attrs={"placeholder": "curatore (*opzionale)"}),
+            "artist": forms.TextInput(attrs={"placeholder": "regista (*neccessario)"}),
+            "screenwriter": forms.TextInput(
+                attrs={"placeholder": "sceneggiatore (*opzionale)"}
+            ),
+            "casting": forms.TextInput(
+                attrs={"placeholder": "attori/attrice (*opzionale)"}
+            ),
+            "editor": forms.TextInput(attrs={"placeholder": "montatore (*opzionale)"}),
+            "director_of_photograpy": forms.TextInput(
+                attrs={"placeholder": "direttore della fotografia (*opzionale)"}
+            ),
+            "audio_director": forms.TextInput(
+                attrs={"placeholder": "direttore dell'audio (*opzionale)"}
+            ),
+            "phonic": forms.TextInput(
+                attrs={"placeholder": "fonico di presa diretta (*opzionale)"}
+            ),
+            "assistant_director": forms.TextInput(
+                attrs={"placeholder": "aiuto regista (*opzionale)"}
+            ),
+            "edition_secretary": forms.TextInput(
+                attrs={"placeholder": "segretaria di edizione (*opzionale)"}
+            ),
+            "music": forms.TextInput(attrs={"placeholder": "compositore (*opzionale)"}),
+            "art_director": forms.TextInput(
+                attrs={"placeholder": "scenografo (*opzionale)"}
+            ),
+            "costume_designer": forms.TextInput(
+                attrs={"placeholder": "costumista (*opzionale)"}
+            ),
+            "makeup_artist": forms.TextInput(
+                attrs={"placeholder": "truccatore (*opzionale)"}
+            ),
+            "spacial_effect_supervisor": forms.TextInput(
+                attrs={"placeholder": "VFX artista (*opzionale)"}
+            ),
+            "sound_designer": forms.TextInput(
+                attrs={"placeholder": "sound designer (*opzionale)"}
+            ),
+            "animator": forms.TextInput(
+                attrs={"placeholder": "animatore (*opzionale)"}
+            ),
+            "character_designer": forms.TextInput(
+                attrs={"placeholder": "character designer (*opzionale)"}
             ),
         }
 
@@ -72,8 +137,26 @@ class VideoArtUpdateForm(forms.ModelForm):
             "poster",
             "title",
             "year",
-            "artist",
             "description",
+            "artist",
+            "performer",
+            "curator",
+            "screenwriter",
+            "casting",
+            "director_of_photograpy",
+            "editor",
+            "audio_director",
+            "phonic",
+            "music",
+            "art_director",
+            "assistant_director",
+            "edition_secretary",
+            "costume_designer",
+            "makeup_artist",
+            "spacial_effect_supervisor",
+            "sound_designer",
+            "animator",
+            "character_designer",
         )
         widgets = {
             "video": movie_forms.CustomClearableFileInput(

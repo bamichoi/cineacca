@@ -24,6 +24,7 @@
             <div class="upload_form__sections">
                 <div class="video-section">
                     {% for field in form %}
+                        {% if field.name == "video" or field.name == "thumbnail" or field.name == "poster" or field.name == "title" or field.name == "description" or field.name == "year" or field.name == "team" %}
                             <div class="upload_form_field">
                                 <div class="upload_form_label">{{field.label}}</div>
                                 {{field}}
@@ -33,15 +34,32 @@
                                 {% endfor %}
                                 {% endif %}
                             </div>
+                            {% endif %}
                     {% endfor %}
+                </div>
+                <hr class="videoart_hr">
+                <div class="staff-section">
+                    {% for field in form %}
+                        {% if field.name != "video" and field.name != "thumbnail" and field.name != "poster" and field.name != "title" and field.name != "description" and field.name != "year" and field.name != "team" %}
+                            <div class="upload_form_field">
+                                <div class="upload_form_label">{{field.label}}</div>
+                                {{field}}
+                                {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>  
                     <div class="upload_submit">
                         <button>Carica</button>
                         <div id="progress" hidden>
                             <span id="progress_bar"></span>
                         </div>
-                    </div>
-                </div>  
-            </div>            
+                    </div>    
         </form> 
     </div>   
 </div>

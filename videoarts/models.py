@@ -34,7 +34,6 @@ class VideoArt(core_model.TimeStampedModel):
         "users.user", related_name="videoarts", on_delete=models.CASCADE
     )
     title = models.CharField(_("titolo"), max_length=300, blank=False)
-    artist = models.CharField(_("artista"), max_length=300, null=True, blank=False)
     duration = models.IntegerField(_("durata"), default=0)
     description = models.TextField(_("descrizione"), max_length=1000)
     year = models.IntegerField(
@@ -53,6 +52,40 @@ class VideoArt(core_model.TimeStampedModel):
         default=0,
         blank=True,
     )
+
+    """staff info field"""
+
+    team = models.CharField(_("troupe"), max_length=300, null=True, blank=True)
+    artist = models.CharField(_("regia"), max_length=300, null=True, blank=False)
+    performer = models.CharField(_("performance"), max_length=300, null=True, blank=True)
+    curator = models.CharField(_("curazione"),  max_length=300, null=True, blank=True)
+    assistant_director = models.CharField(
+        _("aiuto regia"), max_length=300, null=True, blank=True
+    )
+    screenwriter = models.CharField(_("sceneggiatura"), max_length=300, blank=True)
+    casting = models.CharField(_("attori"), max_length=300, blank=True)
+    editor = models.CharField(_("montaggio"), max_length=300, blank=True)
+    director_of_photograpy = models.CharField(
+        _("fotografia"), max_length=300, blank=True
+    )
+    audio_director = models.CharField(_("audio"), max_length=300, blank=True)
+    phonic = models.CharField(_("fonico di presa diretta"), max_length=300, blank=True)
+    edition_secretary = models.CharField(
+        _("segretaria di edizione"), max_length=300, blank=True
+    )
+    music = models.CharField(_("musica"), max_length=300, blank=True)
+    art_director = models.CharField(_("scenografia"), max_length=300, blank=True)
+    costume_designer = models.CharField(_("costume"), max_length=300, blank=True)
+    makeup_artist = models.CharField(_("trucco"), max_length=300, blank=True)
+    spacial_effect_supervisor = models.CharField(
+        _("effetti speciali"), max_length=300, blank=True
+    )
+    sound_designer = models.CharField(_("sound"), max_length=300, blank=True)
+    animator = models.CharField(_("animazione"), max_length=300, blank=True)
+    character_designer = models.CharField(
+        _("character design"), max_length=300, blank=True
+    )
+
 
     def __str__(self):
         return self.title

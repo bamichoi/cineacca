@@ -52,6 +52,7 @@
         <div class="description__title">
         </div>  
         <div class="description__content">
+            <p>{{videoart.description}}</p>
         </div>
         <a href="{% url 'users:user_profile' videoart.user.pk %}">
         <div class="description__user">
@@ -76,8 +77,24 @@
             <div class="info__staff videoarts_card">
                 <h1>{{videoart.title}}&nbsp;({{videoart.year}})</h1>
                 <ul>
-                    <li><span>{{videoart.artist}}</span></li>
-                    <li class="videoart_card__description"><span>{{videoart.description}}</span></li>
+                    {% if videoart.team %} <li class="team"><span>prodotto da</span><span class="team_name">&nbsp;{{videoart.team}}</span></li>{% endif %}
+                    <li><span>regia:</span> {{videoart.artist}} </li>
+                    {% if videoart.performer %}<li><span>performance:</span> {{videoart.performer}} </li>{% endif %}
+                    {% if videoart.curator %}<li><span>curazione:</span> {{videoart.screenwriter}} </li>{% endif %}
+                    {% if videoart.screenwriter %}<li><span>sceneggiatura:</span> {{videoart.screenwriter}} </li>{% endif %}
+                    {% if videoart.casting %}<li><span>attori:</span> {{videoart.casting}}</li>{% endif %}
+                    {% if videoart.editor %}<li><span>montaggio:</span> {{videoart.editor}}</li>{% endif %}
+                    {% if videoart.director_of_photograpy %}<li><span>fotografia:</span> {{videoart.director_of_photograpy}}</li>{% endif %}
+                    {% if videoart.audio_director %}<li><span>audio:</span> {{videoart.audio_director}}</li>{% endif %}
+                    {% if videoart.edition_secretary %}<li><span>segretaria di edizione:</span> {{videoart.edition_secretary}}</li>{% endif %}
+                    {% if videoart.music %}<li><span>musica:</span> {{videoart.music}}</li>{% endif %}
+                    {% if videoart.art_director %}<li><span>scenografia:</span> {{videoart.art_director}}</li>{% endif %}
+                    {% if videoart.costume_designer %}<li><span>costume:</span> {{videoart.costume_designer}}</li>{% endif %}
+                    {% if videoart.makeup_artist %}<li><span>makeup artist:</span> {{videoart.makeup_artist}}</li>{% endif %}
+                    {% if videoart.spacial_effect_supervisor %}<li><span>vfx:</span> : {{videoart.spacial_effect_supervisor}}</li>{% endif %}
+                    {% if videoart.sound_designer %}<li><span>sound_designer:</span> {{videoart.sound_designer}}</li>{% endif %}
+                    {% if videoart.animator %}<li><span>animazione:</span> {{videoart.animator}}</li>{% endif %}
+                    {% if videoart.character_designer %}<li><span>character design:</span> {{videoart.character_designer}}</li>{% endif %}
                 </ul>
             </div>
         </div>
