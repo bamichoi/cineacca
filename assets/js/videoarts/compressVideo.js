@@ -75,6 +75,7 @@ const handleCompress = async (e) => {
     progress.hidden = true;
     submitBtn.style.backgroundColor = "#ca5b4c"
     console.log(videoInput.files[0].size);
+    console.log(videoInput.files[0])
 
 }
 

@@ -28,6 +28,7 @@ class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
     def form_valid(self, form):
         videoart = form.save()
         videoart.user = self.request.user
+        print(videoart.video, videoart.video.path)
         videoart.save()
         return redirect(reverse("videoarts:detail", kwargs={"pk": videoart.pk}))
     
