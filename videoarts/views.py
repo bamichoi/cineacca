@@ -31,7 +31,8 @@ class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
         print(videoart.video, videoart.video.path)
         videoart.save()
         return redirect(reverse("videoarts:detail", kwargs={"pk": videoart.pk}))
-    
+    form_valid.delay()
+        
 
 
 

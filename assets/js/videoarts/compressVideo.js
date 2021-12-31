@@ -57,15 +57,17 @@ const handleCompress = async (e) => {
         submitBtn.innerText = `Compressing... ${percent}%`
       });
 
-    await ffmpeg.run('-i', rawVideo, '-vcodec', 'h264', '-crf', '28', '-acodec', 'mp3', '-f', 'mp4', 'output.mp4');
+    await ffmpeg.run('-i', rawVideo, '-vcodec', 'h264', '-crf', '28', '-acodec', 'mp3', 'output.mp4');
     
     const data = ffmpeg.FS('readFile', 'output.mp4'); 
 
     newFile = new File([data], newVideoName, {type:"video/mp4", lastModified:new Date().getTime()});
+    console.log(newFile)
 
     if (dT.items.length > 0 ) {
         dT.items.clear()
     }
+    
     dT.items.add(newFile);
     videoInput.files = dT.files
 
@@ -75,7 +77,6 @@ const handleCompress = async (e) => {
     progress.hidden = true;
     submitBtn.style.backgroundColor = "#ca5b4c"
     console.log(videoInput.files[0].size);
-    console.log(videoInput.files[0])
 
 }
 
