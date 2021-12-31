@@ -27,6 +27,8 @@ google-cloud-storage = "*"
 "google.api-core" = "*"
 django-cors-headers = "*"
 django-rq = "*"
+rq = "*"
+redis = "*"
 
 [dev-packages]
 flake8 = "*"
