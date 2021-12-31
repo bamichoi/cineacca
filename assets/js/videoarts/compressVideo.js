@@ -26,10 +26,10 @@ const handleSizeValidation = (e) => {
 const handleCompress = async (e) => {
     const { files } = e.target;
     const { name : rawVideo, size : rawVideoSize } = files[0];
-    const sizeLimit = 1500 * 1024 * 1024 
+    const sizeLimit = 500 * 1024 * 1024 
 
     if (rawVideoSize > sizeLimit) {
-        window.alert("Il video orginale si deve essre meno di 1.5GB")
+        window.alert("Attualmente, a causa di problemi del server, il caricamento limita la capacità a 500 mb per un breve periodo. Se il problema viene risolto, allenteremo le restrizioni. Ci scusiamo per l'inconveniente.")
         videoInput.value="";
         return
     } 
