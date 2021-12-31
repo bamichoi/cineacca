@@ -32,7 +32,7 @@ Now available
 - [ ] google 검색 노출
 - [ ] 버킷 공개 정책 검토
 - [ ] Help center 페이지
-
+- [ ] 플레이어 스페이스바
 ### Base
 
 - [ ] Header 그라데이션

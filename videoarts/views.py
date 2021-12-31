@@ -14,8 +14,7 @@ from django.db.models import Q
 from . import models
 from . import forms
 from users import mixins as user_mixins
-
-
+from django_rq import job
 
 class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
 
@@ -24,6 +23,7 @@ class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
     form_class = forms.VideoArtUploadForm
     template_name = "videoarts/videoart_upload.html"
 
+    @job('high')
     def form_valid(self, form):
         videoart = form.save()
         videoart.user = self.request.user
