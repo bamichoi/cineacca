@@ -62,7 +62,6 @@ const handleCompress = async (e) => {
     const data = ffmpeg.FS('readFile', 'output.mp4'); 
 
     newFile = new File([data], newVideoName, {type:"video/mp4", lastModified:new Date().getTime()});
-    console.log(newFile)
 
     if (dT.items.length > 0 ) {
         dT.items.clear()
@@ -70,8 +69,6 @@ const handleCompress = async (e) => {
     
     dT.items.add(newFile);
     videoInput.files = dT.files
-    console.log(videoInput.files)
-    console.log(videoInput.value)
 
     window.alert("La compressione video è finita! Ora puoi caricare video. Grazie per la pazienza.")
     submitBtn.innerText = "Carica"
