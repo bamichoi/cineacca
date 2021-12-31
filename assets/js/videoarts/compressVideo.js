@@ -70,6 +70,8 @@ const handleCompress = async (e) => {
     
     dT.items.add(newFile);
     videoInput.files = dT.files
+    console.log(videoInput.files)
+    console.log(videoInput.value)
 
     window.alert("La compressione video è finita! Ora puoi caricare video. Grazie per la pazienza.")
     submitBtn.innerText = "Carica"
