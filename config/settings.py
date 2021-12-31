@@ -215,7 +215,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_FROM = os.environ.get("EMAIL_FROM")    
 
-# django-rq
+# django-rq queue classes
 
 RQ_QUEUES = {
     'default': {
@@ -253,7 +253,7 @@ if DEBUG is False :
     
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
-    ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com',]
+    ALLOWED_HOSTS = ["cineacca.herokuapp.com", 'cineacca.com', 'www.cineacca.com']
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"

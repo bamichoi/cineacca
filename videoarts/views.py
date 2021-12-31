@@ -16,6 +16,7 @@ from . import forms
 from users import mixins as user_mixins
 from django_rq import job
 
+
 class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
 
     """VideoartUpload View Definition"""
@@ -29,6 +30,8 @@ class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
         videoart.user = self.request.user
         videoart.save()
         return redirect(reverse("videoarts:detail", kwargs={"pk": videoart.pk}))
+    form_valid.delay()
+    
 
 
 
