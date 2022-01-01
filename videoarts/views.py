@@ -23,7 +23,7 @@ class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
     form_class = forms.VideoArtUploadForm
     template_name = "videoarts/videoart_upload.html"
 
-    @job('high')
+    @job('high',  timeout=5000)
     def form_valid(self, form):
         videoart = form.save()
         videoart.user = self.request.user
