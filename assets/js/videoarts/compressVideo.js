@@ -1,5 +1,4 @@
 import regeneratorRuntime from "regenerator-runtime";;
-import axios from "axios";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const videoInput = document.getElementById("id_video");
 const posterInput = document.getElementById("id_poster");
@@ -11,6 +10,7 @@ const progressBar = document.getElementById("progress_bar");
 
 let newFile;
 let dT = new DataTransfer();
+let data = new FormData();
 let percent;
 
 const handleSizeValidation = (e) => {
@@ -25,19 +25,20 @@ const handleSizeValidation = (e) => {
 }
 
 const handleCompress = async (e) => {
+
     const { files } = e.target;
     const { name : rawVideo, size : rawVideoSize } = files[0];
-    const sizeLimit = 500 * 1024 * 1024 
+    const sizeLimit = 1500 * 1024 * 1024 
 
     if (rawVideoSize > sizeLimit) {
-        window.alert("Attualmente, a causa di problemi del server, il caricamento limita la capacità a 500 mb per un breve periodo. Se il problema viene risolto, allenteremo le restrizioni. Ci scusiamo per l'inconveniente.")
+        window.alert("Il file originale dovrebbe essere meno di 1.5GB")
         videoInput.value="";
         return
     } 
 
     
     window.alert(
-    "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
+    "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. A volte, anche dopo la compressione, se la dimensione del file è troppo grande per essere gestita dal server, potrebbe essere necessario modificare l'estrazione del video originale o ridurre ulteriormente le dimensioni. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
     
     submitBtn.disabled = true;
     progress.hidden = false
@@ -58,31 +59,34 @@ const handleCompress = async (e) => {
         submitBtn.innerText = `Compressing... ${percent}%`
       });
 
-    await ffmpeg.run('-i', rawVideo, '-vcodec', 'h264', '-crf', '28', '-acodec', 'mp3', 'output.mp4');
+    await ffmpeg.run('-i', rawVideo, '-vcodec', 'h264', '-crf', '30', '-acodec', 'mp3', 'output.mp4');
     
     const data = ffmpeg.FS('readFile', 'output.mp4'); 
 
     newFile = new File([data], newVideoName, {type:"video/mp4", lastModified:new Date().getTime()});
 
+    if (newFile > 150 * 100 * 100 ) {
+        window.alert("La compressione è completa, ma il file è ancora troppo grande per essere elaborato dal server. In questo caso, è necessario modificare il metodo di estrazione del file originale o ridurne le dimensioni. Tuttavia, se non riesci a ridurre le dimensioni del file o se riduci le dimensioni, la qualità si deteriora notevolmente, contatta cineacca@gmail e ti aiuteremo a caricarlo entro 24 ore. Ci scusiamo per gli eventuali disagi")
+        videoInput.value="";
+        return
+    }
+
     if (dT.items.length > 0 ) {
         dT.items.clear()
     }
-    
     dT.items.add(newFile);
     videoInput.files = dT.files
+    console.log(videoInput.files[0].size)
 
-    console.log(videoInput.value)
 
     window.alert("La compressione video è finita! Ora puoi caricare video. Grazie per la pazienza.")
     submitBtn.innerText = "Carica"
     submitBtn.disabled = false;
     progress.hidden = true;
     submitBtn.style.backgroundColor = "#ca5b4c"
-    console.log(videoInput.files[0].size);
+    
 
 }
-
-
 
 videoInput.addEventListener("change", handleCompress);
 posterInput.addEventListener("change", handleSizeValidation);

@@ -43,5 +43,5 @@ urlpatterns = [
         review_views.update_review,
         name="update",
     ),
-    path("api/<int:pk>/fav/", review_views.switch_fav_view, name="fav"),
+    path("api/<int:pk>/fav/", review_views.switch_fav_view, name="fav")
 ]
