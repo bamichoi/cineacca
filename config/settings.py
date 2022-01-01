@@ -221,10 +221,10 @@ EMAIL_FROM = os.environ.get("EMAIL_FROM")
 
 RQ_QUEUES = {
     'default': {
-        'HOST': 'redistogo',
-        'PORT': 11911,
-        'DB': 1,
-        'PASSWORD': os.getenv('REDISTOGO_PW'),
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': 'some-password',
         'DEFAULT_TIMEOUT': 360,
     },
     'with-sentinel': {

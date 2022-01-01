@@ -113,8 +113,12 @@ class VideoArtUploadForm(forms.ModelForm):
     def clean_video(self):
         video = self.cleaned_data.get("video")
         if video:
+            print(dir(video))
             if video.size > 1500*1024*1024:
                 raise forms.ValidationError("Il video si deve essre meno di 1.5GB")
+            if video.size > 150 * 1024 * 1024:
+                video_path = video.temporary_file_path()
+                subprocess.run(f"gsutil cp {video_path} gs://cineacca_bucket/uploads/videoart_files/" , shell=True)
             return video
 
 
@@ -125,6 +129,8 @@ class VideoArtUploadForm(forms.ModelForm):
         get_duration =  subprocess.check_output(['ffprobe', '-i', f'{video_path}', '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")])
         duration = int(float(get_duration.decode('utf-8').replace("\n", ""))) 
         videoart.duration = duration    
+        if video.size > 150 * 1024 * 1024:
+            videoart.video = f"videoart_files/{video}.mp4"
         return videoart
 
 
