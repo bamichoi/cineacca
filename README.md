@@ -83,7 +83,7 @@ Now available
 - [ ] 포인터 이동시 썸네일, 시간정보 표시
 - [ ] 지속적 기능개선
 - [ ] 플레이어 스페이스바 및 단축키
-- [x] poster 표시 - fontawesome 충돌 해결
+- [ ] poster 표시 - fontawesome 충돌 해결
 
 ### Upload Movie, Upload Videoart
    
