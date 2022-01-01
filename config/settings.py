@@ -221,9 +221,9 @@ EMAIL_FROM = os.environ.get("EMAIL_FROM")
 
 RQ_QUEUES = {
     'default': {
-        'HOST': 'localhost',
-        'PORT': 6379,
-        'DB': 0,
+        'HOST': 'redistogo',
+        'PORT': 11911,
+        'DB': 1,
         'PASSWORD': 'some-password',
         'DEFAULT_TIMEOUT': 360,
     },
