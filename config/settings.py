@@ -224,7 +224,7 @@ RQ_QUEUES = {
         'HOST': 'redistogo',
         'PORT': 11911,
         'DB': 1,
-        'PASSWORD': 'some-password',
+        'PASSWORD': os.getenv('REDISTOGO_PW'),
         'DEFAULT_TIMEOUT': 360,
     },
     'with-sentinel': {
