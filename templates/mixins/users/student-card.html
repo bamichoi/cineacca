@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="namecard_row">
-            <span>{{student.school}}</span>
+            <span>{% if sutdent.school == "None" %}{{student.school}}{% endif %}</span>
         </div>
         <div class="namecard_row">
             <span>
@@ -40,8 +40,6 @@
                     <i class="fas fa-magic ico_makeup"></i>  
                 {% elif work.name == "musica" %}
                     <i class="fas fa-music ico_music"></i>
-                {% else %}
-                    <span></span>
             {% endif %}     
         {% endfor %}
         </span>
