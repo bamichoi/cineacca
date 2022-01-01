@@ -14,7 +14,6 @@ from django.db.models import Q
 from . import models
 from . import forms
 from users import mixins as user_mixins
-from django_rq import job
 
 class VideoArtUpload(user_mixins.MoiveUploadPermissionView, FormView):
 
