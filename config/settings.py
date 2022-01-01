@@ -12,7 +12,6 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 import django_heroku
 import dj_database_url
-import json
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -56,7 +55,6 @@ THIRD_PARTY_APPS = [
     "storages", 
     "imagekit", 
     'django_cleanup.apps.CleanupConfig',
-    "django_rq",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -216,37 +214,6 @@ EMAIL_HOST_PASSWORD = os.environ.get("ADMIN_GMAIL_PASSWORD")
 EMAIL_PORT = 587    
 EMAIL_USE_TLS = True
 EMAIL_FROM = os.environ.get("EMAIL_FROM")    
-
-# django-rq queue classes
-
-RQ_QUEUES = {
-    'default': {
-        'HOST': 'localhost',
-        'PORT': 6379,
-        'DB': 0,
-        'PASSWORD': 'some-password',
-        'DEFAULT_TIMEOUT': 360,
-    },
-    'with-sentinel': {
-        'SENTINELS': [('localhost', 26736), ('localhost', 26737)],
-        'MASTER_NAME': 'redismaster',
-        'DB': 0,
-        'PASSWORD': 'secret',
-        'SOCKET_TIMEOUT': None,
-        'CONNECTION_KWARGS': {
-            'socket_connect_timeout': 0.3
-        },
-    },
-    'high': {
-        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
-        'DEFAULT_TIMEOUT': 500,
-    },
-    'low': {
-        'HOST': 'localhost',
-        'PORT': 6379,
-        'DB': 0,
-    }
-}
 
 
 # production mode config

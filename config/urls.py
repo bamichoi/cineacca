@@ -26,8 +26,3 @@ urlpatterns = [
     path("reviews/", include("reviews.urls", namespace="reviews")),
     path(os.environ.get("ADMIN"), admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-urlpatterns += [
-    path('django-rq/', include('django_rq.urls'))
-]
