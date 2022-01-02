@@ -42,7 +42,7 @@
                 {% endif %}
                 </div>
                 
-                <div>{% if user_obj.school == "None" %}{{user_obj.school}}{% endif %}</div>
+                <div>{% if user_obj.school %}{{user_obj.school}}{% endif %}</div>
                 <div id="profile_works">
                     {% for work in user_obj.works.all %}
                         {% if work.name == "regia" %} <!-- !) {{work}}는 되는데 .name 해줘야하는 이유? -->
