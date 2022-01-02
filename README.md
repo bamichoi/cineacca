@@ -29,7 +29,7 @@ Now available
 
 ### To Do
 
-- [x] 50mb 압축면제 : attivate
+- [x] 50mb 이하 압축면제 : attivate
 - [x] crf-30 시험 : 화질은 거의 차이 없는 듯. 114mb 파일 기준 용량 차이 약 2mb 유의미한 차이인가? 
 - [ ] footer
 - [ ] 모바일 반응형.. (최종보스)
@@ -41,7 +41,7 @@ Now available
 - [ ] movie/videoarts 공유하고 있는 부분 이름 video로 교체
 - [ ] CSS 중복제거
 - [ ] css 및 template 디렉토리 구조 개선
-- [ ] 리뷰연속작성시 js단에서 추가해주는 newreview가 갱신되는문제
+- [ ] 리뷰연속작성시 js단에서 추가해주는 new review가 갱신되는문제
 - [ ] api url 개선
 - [ ] sinossi, review, biografia : textarea white-space 문제
   
@@ -90,7 +90,8 @@ Now available
 ### Upload Movie, Upload Videoart
    
 - [ ] locandina 및 poster 미리보기 적용
-
+- [ ] video art cover image를 locandina로 바꾸기
+ 
 ### Update Movie, Update Videoart
 
 - [x] 업로드된 파일명 길때 폼 찌그러듦 해결 (임시해결 추후보강)

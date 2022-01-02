@@ -15,7 +15,8 @@
     "@ffmpeg/ffmpeg": "^0.10.1",
     "axios": "^0.21.4",
     "regenerator-runtime": "^0.13.9",
-    "video.js": "^7.17.0"
+    "video.js": "^7.17.0",
+    "videojs-hotkeys": "^0.2.27"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
