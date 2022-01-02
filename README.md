@@ -6,9 +6,9 @@
 이탈리아 영화 아카데미 학생들의 단편 영화를 스트리밍하는 서비스.  
 A service that streams short films from students of the Italian Academy of Film Arts.
 
-## 개발 도구 Development languages and tools
+## 개발 도구 Development languages and Framework
 
-Python with Django Framework, HTML, SCSS and JavaScript
+Python with Django, HTML, SCSS and JavaScript
 
 ## 개발 기간 Period of development
 
@@ -37,7 +37,7 @@ Now available
 - [ ] Help center 페이지
 - [ ] google 검색 노출
 - [ ] 버킷 공개 정책 검토
-- [ ] update thumbnail 필드 custom widget 적용안됨***
+- [ ] update thumbnail 필드 custom widget 적용안됨
 - [ ] movie/videoarts 공유하고 있는 부분 이름 video로 교체
 - [ ] CSS 중복제거
 - [ ] css 및 template 디렉토리 구조 개선
@@ -106,7 +106,7 @@ Now available
 
 ### Student List
 
-- [ ] 네임카드 배경 커스터마이징***
+- [x] 네임카드 배경 커스터마이징
 - [ ] 학교이름으로 필터링 제공
 
 ### Student Search
