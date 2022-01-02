@@ -95,6 +95,14 @@ class User(AbstractUser):
         format='JPEG',
         options={'quality': 100}
     )
+    sfondo = ProcessedImageField(
+        upload_to="user_backgroundImg", 
+        processors=[Transpose(), ResizeToFill(200, 200)],
+        format='JPEG',
+        options={'quality': 100},
+        null=True,
+        blank=True
+    )
     biography = models.TextField(_("biografia"), null=True, blank=True)
     account_type = models.CharField(
         _("tipo d'account"),

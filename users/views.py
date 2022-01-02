@@ -244,7 +244,7 @@ class SearchView(View):
         sort = self.request.GET.get("sort_by")
 
         if keyword:  # keyword 값이 비어있지 않다면
-            result_qs = models.User.objects.filter(
+            result_qs = models.User.objects.filter(account_type="student").filter(
                 Q(first_name__contains=keyword) | Q(last_name__contains=keyword)
             ).order_by(
                 "-date_joined"

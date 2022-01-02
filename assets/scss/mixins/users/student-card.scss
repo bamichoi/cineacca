@@ -2,6 +2,7 @@
   font-family: "Reem Kufi", sans-serif;
   padding: 0.1rem;
   border-radius: 0.7rem;
+  position: relative;
   height: 10.5rem;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
   background: linear-gradient(
@@ -11,6 +12,9 @@
     rgba(224, 224, 224, 1) 100%
   );
   color: $cineH_black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   .namecard_row {
     margin: 1rem;
   }

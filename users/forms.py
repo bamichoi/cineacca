@@ -10,11 +10,12 @@ from . import models
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = models.User
-        fields = ("first_name", "last_name", "avatar", "school", "biography", "works")
+        fields = ("first_name", "last_name", "avatar", "sfondo", "school", "biography", "works")
         labels = {"works": "Lavori preferiti"}
         widgets = {
             "works": widgets.CheckboxSelectMultiple,
             "avatar": movie_form.CustomClearableFileInput,
+            "sfondo": movie_form.CustomClearableFileInput,
         }
 
 

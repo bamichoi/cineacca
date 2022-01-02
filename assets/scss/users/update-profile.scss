@@ -65,6 +65,15 @@
       padding: 0.5rem;
       background-color: white;
     }
+    #namecard_background-clear_id {
+      width: 1.5rem;
+      padding: 0;
+      display: inline;
+    }
+    label[for="namecard_background-clear_id"] {
+      font-size: 1rem;
+      color: $cineH_black;
+    }
     textarea {
       width: 20rem;
       border-radius: 0.7rem;
@@ -95,6 +104,14 @@
           margin-right: 0.5rem;
         }
       }
+    }
+  }
+  .update-profile_form_field:nth-child(7) {
+    margin-bottom: 1.5rem;
+    a {
+      color: $cineH_black;
+      font-size: 0.5rem;
+      display: block;
     }
   }
   .update-profile_submit {

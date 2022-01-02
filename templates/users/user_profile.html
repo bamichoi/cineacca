@@ -13,7 +13,16 @@
         </div>
         <p class="menu_description">Il profilo di {{user_obj.first_name}} {{user_obj.last_name}}</p>    
     </div>
-    <div id="profile_container">
+    <div id="profile_container"
+    {% if user_obj.sfondo %}
+    style="background-image: linear-gradient(
+        to top, 
+    rgba(249, 250, 251, 0.7) 20%,
+    rgba(249, 250, 251, 1) 100%), 
+    url({{user_obj.sfondo.url}});
+    "
+    {% endif %}
+    >
         <div class="profile_container_row">
             {% if user_obj.avatar %}
                 <img class="profile_avatar" crossorigin src={{user_obj.avatar.url}}/>

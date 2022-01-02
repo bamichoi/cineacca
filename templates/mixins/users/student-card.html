@@ -1,5 +1,13 @@
 <a class="card_link" href="{% url 'users:user_profile' student.pk %}">
-    <div class="student-namecard">
+    <div class="student-namecard" 
+    {% if student.sfondo %}
+    style="background-image: radial-gradient(
+        circle, 
+    rgba(249, 250, 251, 0.7) 20%,
+    rgba(249, 250, 251, 1) 100%), 
+    url({{student.sfondo.url}});"
+    {% endif %}
+    >
         <div class="namecard_row">
             <img class="user_avatar_medium_st" crossorigin src={{student.avatar.url}} />
             <div class="namecard_fullname">
