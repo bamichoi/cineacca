@@ -32,6 +32,7 @@ Now available
 - [x] 50mb 이하 압축면제 : attivate
 - [x] crf-30 시험 : 화질은 거의 차이 없는 듯. 114mb 파일 기준 용량 차이 약 2mb 유의미한 차이인가? 
 - [ ] footer
+- [ ] video/film 삭제 시 리스트로 이동
 - [ ] 모바일 반응형.. (최종보스)
 - [ ] 업로드 파일명 검증
 - [ ] Help center 페이지
