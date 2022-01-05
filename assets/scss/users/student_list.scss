@@ -120,3 +120,35 @@
     text-decoration: none;
   }
 }
+
+@media screen and (max-width: 600px) {
+  #student-list_title {
+    height: 0.6rem;
+    h1 {
+      font-size: 1rem;
+      margin-left: 0.2rem;
+      top: -0.6rem;
+    }
+  }
+  #student_filter-by {
+    box-sizing: border-box;
+    .filter-box:first-child {
+      margin-left: 0.5rem;
+    }
+    .filter-box {
+      margin-right: 0.5rem;
+      a {
+        font-size: 0.1rem;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  #student-list_grid {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    padding: 0 1rem;
+  }
+}

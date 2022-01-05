@@ -45,7 +45,7 @@ class VideoArtUploadForm(forms.ModelForm):
             ),
             "artist": forms.TextInput(attrs={"placeholder": "regista (*neccessario)"}),
             "performer": forms.TextInput(attrs={"placeholder": "performer (*opzionale)"}),
-            "curator": forms.TextInput(attrs={"placeholder": "curatore (*opzionale)"}),
+            "curator": forms.TextInput(attrs={"placeholder": "curatori (*opzionale)"}),
             "artist": forms.TextInput(attrs={"placeholder": "regista (*neccessario)"}),
             "screenwriter": forms.TextInput(
                 attrs={"placeholder": "sceneggiatore (*opzionale)"}
@@ -184,8 +184,8 @@ class VideoArtUpdateForm(forms.ModelForm):
     def clean_video(self):
         video = self.cleaned_data.get("video")
         if video:
-            if video.size > 1000*1024*1024:
-                raise forms.ValidationError("Il video si deve essre meno di 1GB")
+            if video.size > 1500*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 1.5GB")
             return video
 
     def save(self, *args, **kwargs):

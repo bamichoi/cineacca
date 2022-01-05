@@ -191,8 +191,8 @@ class MovieUpdateForm(forms.ModelForm):
     def clean_video(self):
         video = self.cleaned_data.get("video")
         if video:
-            if video.size > 1000*1024*1024:
-                raise forms.ValidationError("Il video si deve essre meno di 1GB")
+            if video.size > 1500*1024*1024:
+                raise forms.ValidationError("Il video si deve essre meno di 1.5GB")
             return video
 
     def save(self, *args, **kwargs):

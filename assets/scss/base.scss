@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap");
+
 body {
   background-color: #f1f2f6;
   display: flex;
@@ -13,54 +14,6 @@ body {
   min-width: 1150px;
   background-color: #f1f2f6;
   margin: 0 10rem;
-}
-
-#overview_mobile {
-  display: none;
-  width: 100%;
-  height: 100%;
-  font-family: "Reem Kufi", sans-serif;
-
-  i {
-    font-size: 5rem;
-    color: yellow;
-    margin-bottom: 0.5rem;
-  }
-  div {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    span {
-      color: white;
-      text-align: center;
-      line-height: 1.5rem;
-    }
-    #overview_cienacca {
-      margin-top: 2rem;
-    }
-  }
-}
-
-@media screen and (max-width: 500px) {
-  body,
-  html {
-    overflow-y: hidden;
-  }
-  #overview_mobile {
-    display: block;
-    position: absolute;
-    background: linear-gradient(135deg, #4b6584, $cineH_black);
-    top: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: fixed;
-  }
 }
 
 header {
@@ -176,9 +129,6 @@ header {
   }
 }
 
-main {
-}
-
 footer {
   color: #858585;
   padding: 10rem 0rem;
@@ -193,5 +143,115 @@ footer {
 
   span {
     margin-top: 2rem;
+  }
+}
+
+#overview_mobile {
+  display: none;
+  width: 100%;
+  height: 100%;
+  font-family: "Reem Kufi", sans-serif;
+
+  i {
+    font-size: 5rem;
+    color: yellow;
+    margin-bottom: 0.5rem;
+  }
+  div {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+      color: white;
+      text-align: center;
+      line-height: 1.5rem;
+    }
+    #overview_cienacca {
+      margin-top: 2rem;
+    }
+  }
+}
+
+// mobile
+
+@media screen and (max-width: 600px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  #overview_mobile {
+    display: block;
+    position: absolute;
+    background: linear-gradient(135deg, #4b6584, $cineH_black);
+    top: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #wrapper {
+    min-width: 100%;
+  }
+
+  header {
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1rem;
+    padding-bottom: 0.7rem;
+    height: 5rem;
+    #header_title {
+      div {
+        padding-bottom: 1rem;
+        a {
+          font-size: 2rem;
+        }
+        span {
+          font-size: 0.5rem;
+        }
+      }
+    }
+    #nav {
+      margin-top: 0.6rem;
+      nav {
+        ul {
+          a {
+            li {
+              span {
+                font-size: 0.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .user_avatar_small {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  #user-menu {
+    margin-right: 0.5rem;
+
+    a {
+      div {
+        width: fit-content;
+        font-size: 0.5rem;
+      }
+      .user-menu__loggedin {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  footer {
+    span {
+      font-size: 0.5rem;
+      text-align: center;
+    }
   }
 }

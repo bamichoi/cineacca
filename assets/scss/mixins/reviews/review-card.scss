@@ -89,3 +89,20 @@
   border-radius: 1.1rem;
   background-size: cover;
 }
+
+@media screen and (max-width: 600px) {
+  .review_card {
+    width: 90vw;
+    box-sizing: border-box;
+    .review_card__row {
+      width: 100%;
+      justify-content: space-between;
+      .review_card__reviewInfo {
+        .review_card__metadata {
+          max-width: 80%;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}

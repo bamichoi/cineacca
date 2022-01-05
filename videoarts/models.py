@@ -58,7 +58,7 @@ class VideoArt(core_model.TimeStampedModel):
     team = models.CharField(_("troupe"), max_length=300, null=True, blank=True)
     artist = models.CharField(_("regia"), max_length=300, null=True, blank=False)
     performer = models.CharField(_("performance"), max_length=300, null=True, blank=True)
-    curator = models.CharField(_("curazione"),  max_length=300, null=True, blank=True)
+    curator = models.CharField(_("curatori"),  max_length=300, null=True, blank=True)
     assistant_director = models.CharField(
         _("aiuto regia"), max_length=300, null=True, blank=True
     )

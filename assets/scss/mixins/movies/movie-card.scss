@@ -67,3 +67,10 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .movie-card {
+    width: 85vw;
+    height: auto;
+  }
+}
