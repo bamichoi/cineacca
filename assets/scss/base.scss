@@ -21,6 +21,7 @@ body {
   height: 100%;
   font-family: "Reem Kufi", sans-serif;
   position: fixed;
+
   i {
     font-size: 5rem;
     color: yellow;
@@ -46,7 +47,6 @@ body {
 @media screen and (max-width: 500px) {
   body {
     overflow-y: hidden;
-    position: fixed;
   }
   #overview_mobile {
     display: block;
