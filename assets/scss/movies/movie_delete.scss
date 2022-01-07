@@ -116,3 +116,43 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 600px) {
+  #delete-movie_title {
+    width: 90%;
+    div {
+      height: 0.6rem;
+      h1 {
+        font-size: 1rem;
+        top: -0.6rem;
+      }
+    }
+  }
+  .delete-movie_form {
+    width: 90%;
+    box-sizing: border-box;
+    padding: 2rem 0rem;
+    align-items: center;
+    .delete-movie_form_field {
+      width: 80%;
+      .delete-movie_form_label {
+        font-size: 1rem;
+      }
+      input {
+        width: 90%;
+      }
+    }
+    .delete-movie_submit {
+      button {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+  }
+  #delete-movie_advice {
+    width: 90%;
+  }
+  #delete-movie_text {
+    width: 80%;
+  }
+}

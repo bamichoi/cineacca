@@ -144,6 +144,7 @@ class ChangePasswordView(mixins.LoggedInOnlyView, PasswordChangeView):
     # !) Form 을 따로 사용하는게 더 좋을까나?
 
     template_name = "users/change-password.html"
+    success_url = reverse_lazy("core:home") # 비번 변경후 성공메세지 띄우고 로그아웃 다시 로그인하게 하기
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
