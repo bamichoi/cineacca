@@ -10,7 +10,6 @@ const progressBar = document.getElementById("progress_bar");
 
 let newFile;
 let dT = new DataTransfer();
-let data = new FormData();
 let percent;
 
 const handleSizeValidation = (e) => {
@@ -18,7 +17,7 @@ const handleSizeValidation = (e) => {
     const { size } = files[0];
     const sizeLimit = 10 * 1024 * 1024
     if ( size > sizeLimit ) {
-        window.alert("l'immagine si deve essre meno di 10MB") // 대신에 django errer 띄울수 있는지 확인
+        window.alert("l'immagine si deve essre meno di 10MB")
         e.target.value="";
     }
 
@@ -35,9 +34,9 @@ const handleCompress = async (e) => {
         videoInput.value="";
         return
     } 
-    /* if ( rawVideoSize < 50 * 1024 * 1024 ) {
+    if ( rawVideoSize < 50 * 1024 * 1024 ) {
         return
-    } */
+    }
 
     window.alert(
     "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. A volte, anche dopo la compressione, se la dimensione del file è troppo grande per essere gestita dal server, potrebbe essere necessario modificare l'estrazione del video originale o ridurre ulteriormente le dimensioni. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
