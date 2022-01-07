@@ -63,7 +63,7 @@
                     {% endif %} />
                     <a href="{% url 'users:user_profile' user.pk %}"><div class="user-menu__loggedin">Il mio profilo</div></a>
                     {% if user.account_type == "student" %}
-                        <a href="{% url 'core:upload' %}"><div class="user-menu__loggedin" >Upload</div></a>
+                        <a class="user-menu_upload" href="{% url 'core:upload' %}"><div class="user-menu__loggedin" >Upload</div></a>
                     {% endif %}
                     <a href="{% url 'users:logout' %}"><div class="user-menu__loggedin logout_btn">Logout</div></a>    
                 {% else %}

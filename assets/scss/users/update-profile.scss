@@ -139,3 +139,41 @@
     font-family: "Reem Kufi", sans-serif;
   }
 }
+
+@media screen and (max-width: 600px) {
+  #update-profile_title {
+    width: 90%;
+    box-sizing: border-box;
+    div {
+      height: 0.6rem;
+      h1 {
+        font-size: 1rem;
+        top: -0.6rem;
+      }
+    }
+  }
+  .update-profile_form {
+    width: 90%;
+    box-sizing: border-box;
+    padding: 2rem 1rem;
+    align-items: center;
+    form {
+      width: 80%;
+    }
+    .update-profile_form_field {
+      width: 100%;
+      .update-profile_form_label {
+        font-size: 1rem;
+      }
+      input,
+      textarea {
+        width: 90%;
+      }
+    }
+    .update-profile_submit {
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

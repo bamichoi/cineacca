@@ -75,3 +75,29 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .signup_form {
+    width: 90%;
+    box-sizing: border-box;
+    padding: 2rem 0rem;
+    align-items: center;
+    form {
+      width: 80%;
+    }
+    .signup_form_field {
+      width: 100%;
+      .signup_form_label {
+        font-size: 1rem;
+      }
+      input {
+        width: 90%;
+      }
+    }
+    .signup_submit {
+      button {
+        width: 60%;
+      }
+    }
+  }
+}

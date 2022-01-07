@@ -70,3 +70,32 @@
 #hepl_email {
   font-weight: 600;
 }
+
+@media screen and (max-width: 600px) {
+  .alarme_title {
+    div {
+      height: 0.6rem;
+      h1 {
+        font-size: 1rem;
+        top: -0.6rem;
+      }
+    }
+  }
+  .alarme_container {
+    width: 90%;
+    box-sizing: border-box;
+    padding-right: 2%;
+    padding-left: 2%;
+    span {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  }
+  .welcome {
+    span:nth-child(3) {
+      font-size: 1rem;
+      margin: 2rem;
+      font-weight: 600;
+    }
+  }
+}

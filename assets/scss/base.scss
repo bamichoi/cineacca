@@ -236,7 +236,9 @@ footer {
   }
   #user-menu {
     margin-right: 0.5rem;
-
+    .user-menu_upload {
+      display: none;
+    }
     a {
       div {
         width: fit-content;

@@ -67,3 +67,28 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  #signup_wrapper {
+    #signup_title {
+      width: 100%;
+      padding-left: 10%;
+      div {
+        height: 0.6rem;
+        h1 {
+          font-size: 1rem;
+          top: -0.6rem;
+        }
+      }
+    }
+  }
+  #signup_type {
+    width: 100%;
+    a {
+      div {
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+    }
+  }
+}

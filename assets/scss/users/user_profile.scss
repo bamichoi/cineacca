@@ -163,3 +163,62 @@
     margin-bottom: 0;
   }
 }
+
+@media screen and (max-width: 600px) {
+  #profile_title {
+    width: 90%;
+    div {
+      height: 0.6rem;
+      h1 {
+        font-size: 1rem;
+        top: -0.6rem;
+      }
+    }
+  }
+  #profile_container {
+    width: 90%;
+    box-sizing: border-box;
+    padding: 1rem;
+    .profile_container_row {
+      width: 100%;
+      .profile_bio {
+        font-size: 0.8rem;
+      }
+    }
+    .profile_container_row:first-child {
+      #profile_info {
+        width: 50%;
+        box-sizing: border-box;
+        #profile_info_firstname,
+        #profile_info_lastname {
+          font-size: 1rem;
+        }
+        #profile_info_email {
+          font-size: 1rem;
+        }
+        #profile_works {
+          i {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+    .profile_avatar {
+      width: 40%;
+      height: 40%;
+      border-radius: 20%;
+    }
+  }
+  .profile_menu {
+    width: 90%;
+    a {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      div {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+  }
+}
