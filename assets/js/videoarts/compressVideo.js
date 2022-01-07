@@ -34,9 +34,9 @@ const handleCompress = async (e) => {
         videoInput.value="";
         return
     } 
-    if ( rawVideoSize < 50 * 1024 * 1024 ) {
+   /*  if ( rawVideoSize < 50 * 1024 * 1024 ) {
         return
-    }
+    } */
 
     window.alert(
     "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. A volte, anche dopo la compressione, se la dimensione del file è troppo grande per essere gestita dal server, potrebbe essere necessario modificare l'estrazione del video originale o ridurre ulteriormente le dimensioni. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
@@ -63,9 +63,10 @@ const handleCompress = async (e) => {
     await ffmpeg.run('-i', rawVideo, '-vcodec', 'libx264', '-crf', '30', '-acodec', 'mp3', 'output.mp4');
     
     const data = ffmpeg.FS('readFile', 'output.mp4'); 
-
-    newFile = new File([data], newVideoName, {type:"video/mp4", lastModified:new Date().getTime()});
-
+      
+    newFile = new File([data], `${newVideoName}.mp4`, {type:"video/mp4", lastModified:new Date().getTime()});
+    console.log(newFile)
+    
     if (newFile > 150 * 100 * 100 ) {
         window.alert("La compressione è completa, ma il file è ancora troppo grande per essere elaborato dal server. In questo caso, potrebbe essere necessario modificare il metodo di estrazione del file originale o ridurne le dimensioni. Tuttavia, se il problema si ripete o non è più possibile ridurre le dimensioni a causa della qualità dell'immagine, si prega di contattarci per assistenza cineacca@gmail Ti aiuteremo a caricare entro 24 ore. Ci scusiamo per gli eventuali disagi causati.")
         videoInput.value="";
@@ -78,6 +79,7 @@ const handleCompress = async (e) => {
     dT.items.add(newFile);
     videoInput.files = dT.files
     console.log(videoInput.files[0].size)
+    console.log(videoInput.files[0])
 
 
     window.alert("La compressione video è finita! Ora puoi caricare video. Grazie per la pazienza.")
