@@ -35,9 +35,9 @@ const handleCompress = async (e) => {
         videoInput.value="";
         return
     } 
-    if ( rawVideoSize < 50 * 1024 * 1024 ) {
+    /* if ( rawVideoSize < 50 * 1024 * 1024 ) {
         return
-    }
+    } */
 
     window.alert(
     "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. A volte, anche dopo la compressione, se la dimensione del file è troppo grande per essere gestita dal server, potrebbe essere necessario modificare l'estrazione del video originale o ridurre ulteriormente le dimensioni. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
@@ -61,7 +61,7 @@ const handleCompress = async (e) => {
         submitBtn.innerText = `Compressing... ${percent}%`
       });
 
-    await ffmpeg.run('-i', rawVideo, '-vcodec', 'h264', '-crf', '30', '-acodec', 'mp3', 'output.mp4');
+    await ffmpeg.run('-i', rawVideo, '-vcodec', 'h264', '-crf', '30', '-pix_fmt', 'yuv420p', '-acodec', 'mp3', 'output.mp4');
     
     const data = ffmpeg.FS('readFile', 'output.mp4'); 
 
