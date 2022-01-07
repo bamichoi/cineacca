@@ -34,6 +34,7 @@ Now available
 - [ ] 영상
 ### To Do
 
+- [ ] h264 libx264차이?????
 - [x] 50mb 이하 압축면제 : attivate
 - [x] crf-30 시험 : 화질은 거의 차이 없는 듯. 114mb 파일 기준 용량 차이 약 2mb 유의미한 차이인가? 
 - [ ] footer
@@ -91,7 +92,7 @@ Now available
 - [ ] 자막기능
 - [ ] 포인터 이동시 썸네일, 시간정보 표시
 - [x] 플레이어 스페이스바 및 단축키
-- [x] poster 표시 - fontawesome 충돌 해결
+- [ ] poster 표시 - fontawesome 충돌 해결 ***난제..
 
 ### Upload Movie, Upload Videoart
    
