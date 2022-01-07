@@ -125,3 +125,46 @@
   width: 12rem;
   height: 17rem;
 }
+
+@media screen and (max-width: 600px) {
+  .review_detail_warpper {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .review_detail_title {
+    height: 0.6rem;
+    h1 {
+      font-size: 1rem;
+      top: -0.6rem;
+    }
+  }
+  .review_detail_container {
+    flex-direction: column;
+    align-items: center;
+    .review_detail_movieInfo {
+      border-right: 0rem;
+      border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+    }
+    .review_detail_reviewInfo {
+      .review_detail_reviewInfo__row {
+        margin-left: 0rem;
+        margin-top: 1.5rem;
+        margin-bottom: 2.5rem;
+        .review_detail__title {
+          font-size: 1.7rem;
+        }
+      }
+      .review_detail__row {
+        .review_detail__rating {
+          font-size: 1.5rem;
+        }
+        .review_detail__user {
+          font-size: 0.8rem;
+        }
+      }
+      .review_detail__content {
+        margin-top: 2rem;
+      }
+    }
+  }
+}

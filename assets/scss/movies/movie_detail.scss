@@ -345,3 +345,102 @@
     color: #ca5b4c;
   }
 }
+
+@media screen and (max-width: 600px) {
+  #detail_title_container {
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+    .nowShowing {
+      h1 {
+        font-size: 1rem;
+      }
+    }
+    .movieTitle {
+      width: 100%;
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .detail_description {
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+    .description__title {
+      h1 {
+        font-size: 1rem;
+      }
+    }
+    .description__content {
+      padding: 0 1rem 1rem 1rem;
+      p {
+        font-size: 0.7rem;
+      }
+    }
+    .description__user {
+      .descriptrion__user__name {
+        font-size: 0.6rem;
+        div:first-child {
+          font-size: 0.5rem;
+        }
+      }
+    }
+  }
+  .detail_movieInfo {
+    width: 90%;
+    .movieInfo__row {
+      flex-direction: column;
+      .info__moviePoster {
+        border-right: 0rem;
+        border-bottom: dotted 0.3rem rgba(0, 0, 0, 0.1);
+        padding-right: 0rem;
+        .moviePoster_lg {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .info__staff {
+        padding: 0rem;
+        font-size: 0.5rem;
+        margin-top: 1rem;
+        h1 {
+          font-size: 1rem;
+        }
+        ul {
+          li {
+            font-size: 0.8rem;
+            span {
+              font-family: "Reem Kufi", sans-serif;
+              font-size: 0.8rem;
+              white-space: pre-wrap;
+            }
+          }
+          .team {
+            .team_name {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
+    .movieInfo__row:nth-child(2) {
+      justify-content: center;
+      .movie_like_it,
+      .copy_link {
+        button {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  .movie__modify {
+    justify-content: center;
+    div {
+      font-size: 0.8rem;
+      width: 4rem;
+    }
+  }
+  .reviewForm_container {
+    padding: 1rem 0rem;
+    width: 90%;
+  }
+}

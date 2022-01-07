@@ -107,3 +107,28 @@
     height: 6rem;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .review_title_field {
+    margin-top: 1rem;
+  }
+  .review_title_field,
+  .review_content_field {
+    width: 70%;
+    align-items: center;
+    label {
+      width: 110%;
+      text-align: start;
+    }
+    input,
+    textarea {
+      width: 100%;
+    }
+  }
+  #review_form {
+    .write_btn {
+      justify-content: center;
+      width: 90%;
+    }
+  }
+}

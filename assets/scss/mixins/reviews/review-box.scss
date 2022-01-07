@@ -139,3 +139,23 @@
   background-position: center center;
   background-size: cover;
 }
+
+@media screen and (max-width: 600px) {
+  .user_avatar_medium {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+  .review_box {
+    flex-direction: column;
+    .review_box__user_container {
+      border-right: none;
+      border-bottom: 0.2rem solid #ca5b4c;
+    }
+    .review_box__content_container {
+      padding: 0;
+      .review_title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

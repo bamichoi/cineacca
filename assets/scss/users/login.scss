@@ -122,3 +122,45 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  #login_title {
+    width: 100%;
+    padding-left: 10%;
+    div {
+      height: 0.6rem;
+      h1 {
+        top: -0.6rem;
+        font-size: 1rem;
+      }
+    }
+  }
+  #login_container {
+    width: 90%;
+    padding: 2rem 0.5rem;
+    box-sizing: border-box;
+    form {
+      width: 100%;
+      box-sizing: border-box;
+      .login_field {
+        padding-left: 1%;
+        .login_field-label {
+          font-size: 1rem;
+        }
+        input {
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 0.8rem;
+        }
+      }
+      div:last-child {
+        button {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  #login_help {
+    font-size: 0.8rem;
+  }
+}
