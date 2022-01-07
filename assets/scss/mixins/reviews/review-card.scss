@@ -98,8 +98,13 @@
       width: 100%;
       justify-content: space-between;
       .review_card__reviewInfo {
+        .review_card__title {
+          font-size: 1rem;
+          min-width: 37vw;
+          max-width: 37vw;
+        }
         .review_card__metadata {
-          max-width: 80%;
+          max-width: 39vw;
           justify-content: space-between;
         }
       }

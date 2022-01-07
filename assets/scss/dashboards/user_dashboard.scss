@@ -119,3 +119,76 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(1, 1fr);
 }
+
+@media screen and (max-width: 600px) {
+  .dashboard__user {
+    width: 100%;
+    border-radius: 0;
+    .profile_avatar {
+      width: 35%;
+      height: 35%;
+    }
+    .dashboard__username {
+      font-size: 1.5rem;
+    }
+  }
+  .dashboard_title {
+    margin-top: 10%;
+    box-sizing: border-box;
+  }
+  .activity_grid,
+  .collection_grid {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    justify-items: center;
+    .activity__container,
+    .collection__container {
+      width: 100%;
+      height: 90%;
+      box-sizing: border-box;
+      .activity__title,
+      .collection__title {
+        font-size: 1rem;
+        margin-left: 2%;
+      }
+      .activity__content,
+      .collection__content {
+        height: 24vh;
+        width: 100vw;
+        padding: 2%;
+        .activity_more,
+        .collection_more {
+          margin-right: 5%;
+          a {
+            font-size: 0.5rem;
+          }
+        }
+        .activity_elements,
+        .collection_elements {
+          .activity_element,
+          .collection_element {
+            width: 22vw;
+            height: 20vh;
+            margin-right: 5%;
+            img {
+              width: 22vw;
+              height: 16vh;
+            }
+            .activity__element_title,
+            .collection__element_title {
+              width: 100%;
+              text-align: center;
+              span {
+                font-size: 0.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .pubblic {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}

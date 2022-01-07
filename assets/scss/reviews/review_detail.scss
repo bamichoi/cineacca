@@ -145,6 +145,10 @@
       border-right: 0rem;
       border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
     }
+    .detail_movieInfo__modify {
+      border-right: none;
+      border-bottom: 0.1rem solid #aacccc;
+    }
     .review_detail_reviewInfo {
       .review_detail_reviewInfo__row {
         margin-left: 0rem;
@@ -160,6 +164,14 @@
         }
         .review_detail__user {
           font-size: 0.8rem;
+        }
+        .review_detail__modify_rating {
+          .modify_stars_slider {
+            margin-top: 0rem;
+          }
+          .review_detail__user {
+            display: none;
+          }
         }
       }
       .review_detail__content {

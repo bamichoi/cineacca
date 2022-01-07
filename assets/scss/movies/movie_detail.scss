@@ -424,6 +424,7 @@
     }
     .movieInfo__row:nth-child(2) {
       justify-content: center;
+      flex-direction: row;
       .movie_like_it,
       .copy_link {
         button {
@@ -442,5 +443,10 @@
   .reviewForm_container {
     padding: 1rem 0rem;
     width: 90%;
+    .text_verified_only,
+    .text_login_only {
+      padding: 0 2%;
+      font-size: 0.8rem;
+    }
   }
 }

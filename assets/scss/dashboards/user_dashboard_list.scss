@@ -48,3 +48,24 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .dashboard_list_grid {
+    grid-template-columns: repeat(3, 1fr);
+    .dashboard_list_element {
+      width: 22vw;
+      img {
+        width: 22vw;
+        height: 16vh;
+      }
+    }
+  }
+  .dashboard_list_title__container {
+    .dashboard_list_title {
+      margin-top: 5rem;
+      h1 {
+        font-size: 1rem;
+      }
+    }
+  }
+}

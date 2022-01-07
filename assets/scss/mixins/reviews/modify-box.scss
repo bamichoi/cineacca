@@ -147,6 +147,7 @@
     .modify_form {
       flex-direction: column;
       .modify_box__user_container {
+        width: 100%;
         border-right: none;
         border-bottom: 0.2rem solid #aacccc;
       }
