@@ -60,11 +60,11 @@ const handleCompress = async (e) => {
         submitBtn.innerText = `Compressing... ${percent}%`
       });
 
-    await ffmpeg.run('-i', rawVideo, '-vcodec', 'libx264', '-crf', '30', '-acodec', 'mp3', 'output.mp4');
+    await ffmpeg.run('-i', rawVideo, '-vcodec', 'h264', '-crf', '30', 'output.mp4');
     
     const data = ffmpeg.FS('readFile', 'output.mp4'); 
       
-    newFile = new File([data], newVideoName, {type:"video/mp4", lastModified:new Date().getTime()});
+    newFile = new File([data], `${newVideoName}.mp4`, {type:"video/mp4", lastModified:new Date().getTime()});
     console.log(newFile)
 
     if (newFile > 150 * 100 * 100 ) {
