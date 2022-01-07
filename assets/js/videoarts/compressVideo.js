@@ -61,7 +61,7 @@ const handleCompress = async (e) => {
         submitBtn.innerText = `Compressing... ${percent}%`
       });
 
-    await ffmpeg.run('-i', rawVideo, '-vcodec', 'h264', '-crf', '30', '-pix_fmt', 'yuv420p', '-acodec', 'mp3', 'output.mp4');
+    await ffmpeg.run('-i', rawVideo, '-vcodec', 'libx264', '-crf', '30', '-pix_fmt', 'yuv420p', '-acodec', 'mp3', 'output.mp4');
     
     const data = ffmpeg.FS('readFile', 'output.mp4'); 
 
