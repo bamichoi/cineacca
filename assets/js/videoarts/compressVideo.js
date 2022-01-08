@@ -34,7 +34,7 @@ const handleCompress = async (e) => {
         videoInput.value="";
         return
     } 
-    if ( rawVideoSize < 200 * 1024 * 1024 ) {
+    if ( rawVideoSize < 100 * 1024 * 1024 ) {
         return
     }
 
