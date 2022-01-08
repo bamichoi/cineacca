@@ -3,8 +3,8 @@
   padding: 0.8rem 2rem;
   position: absolute;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-  animation: flash 3s forwards;
   display: flex;
+  animation: flash 3s forwards;
   justify-content: center;
   align-items: center;
   border-radius: 1rem;
@@ -52,5 +52,46 @@
   100% {
     right: 10.6rem;
     top: -10rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flash-message {
+    width: fit-content;
+    padding: 0.8rem 2rem;
+    position: absolute;
+    box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+    animation: flash 3s forwards;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    span {
+      font-family: "Reem Kufi", sans-serif;
+      font-size: 1.2rem;
+    }
+  }
+  @keyframes flash {
+    0% {
+      top: -10vh;
+    }
+
+    20% {
+      top: 15vh; //13.7
+    }
+
+    50% {
+      top: 15vh;
+    }
+    70% {
+      top: -10vh;
+    }
+
+    90% {
+      top: -10vh;
+    }
+
+    100% {
+      top: -10vh;
+    }
   }
 }

@@ -10,4 +10,5 @@ class CorsHeaders:
         response.headers["Cross-Origin-Resource-Policy"] = "cross-origin" 
         response.headers["Cross-Origin-Embedder-Policy"] = "credentialless"
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin" 
+        response.headers["Cache-Control"] = "no-store" 
         return response
