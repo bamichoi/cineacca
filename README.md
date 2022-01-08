@@ -39,7 +39,7 @@ Now available
 - [ ] footer
 - [ ] 비번 변경후 로그아웃하여 다시 로그인하게하기
 - [ ] video/film 삭제 시 리스트로 이동
-- [ ] 모바일 반응형.. (최종보스)
+- [x] 모바일 반응형..(최종보스) -인줄 알았는데?
 - [ ] 업로드 파일명 검증
 - [ ] Help center 페이지
 - [ ] google 검색 노출
@@ -91,7 +91,7 @@ Now available
 - [ ] 자막기능
 - [ ] 포인터 이동시 썸네일, 시간정보 표시
 - [x] 플레이어 스페이스바 및 단축키
-- [ ] poster 표시 - fontawesome 충돌 해결 ***난제..
+- [x] poster 표시 - fontawesome 충돌 해결 캐쉬 저장하지 않음으로 해결..
 
 ### Upload Movie, Upload Videoart
    
