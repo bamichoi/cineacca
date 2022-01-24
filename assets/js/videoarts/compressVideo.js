@@ -34,9 +34,7 @@ const handleCompress = async (e) => {
         videoInput.value="";
         return
     } 
-    if ( rawVideoSize < 50 * 1024 * 1024 ) {
-        return
-    }
+  
 
     window.alert(
     "Ora inizia la compresseione video. A seconda dell'ambiente e delle dimesioni del file, potrebbe volerci parecchio tempo. A volte, anche dopo la compressione, se la dimensione del file è troppo grande per essere gestita dal server, potrebbe essere necessario modificare l'estrazione del video originale o ridurre ulteriormente le dimensioni. Si prega di evitare di fare un altro lavoro il più possibile. Non appena è finito ti faremo sapre. Si prega di attendere fino al termine del lavoro.")
@@ -67,8 +65,8 @@ const handleCompress = async (e) => {
     newFile = new File([data], `${newVideoName}.mp4`, {type:"video/mp4", lastModified:new Date().getTime()});
     console.log(newFile)
 
-    if (newFile > 150 * 1024 * 1024 ) {
-        window.alert("La compressione è completa, ma il file è ancora troppo grande per essere elaborato dal server. In questo caso, potrebbe essere necessario modificare il metodo di estrazione del file originale o ridurne le dimensioni. Tuttavia, se il problema si ripete o non è più possibile ridurre le dimensioni a causa della qualità dell'immagine, si prega di contattarci per assistenza cineacca@gmail Ti aiuteremo a caricare entro 24 ore. Ci scusiamo per gli eventuali disagi causati.")
+    if (newFile.size > 150 * 1024 * 1024 ) {
+        window.alert("Anche se abbiamo fatto la compresseione video, il file è ancora troppo grande per essere elaborato dal server. In questo caso, potrebbe essere necessario modificare il metodo di estrazione del file originale o ridurne le dimensioni. Tuttavia, se il problema si ripete o non è più possibile ridurre le dimensioni a causa della qualità del video, si prega di contattarci per assistenza cineacca@gmail Ti aiuteremo a caricare entro 24 ore. Ci scusiamo per gli eventuali disagi causati.")
         videoInput.value="";
         return
     }
