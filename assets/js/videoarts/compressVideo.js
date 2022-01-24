@@ -67,7 +67,7 @@ const handleCompress = async (e) => {
     newFile = new File([data], `${newVideoName}.mp4`, {type:"video/mp4", lastModified:new Date().getTime()});
     console.log(newFile)
 
-    if (newFile > 150 * 100 * 100 ) {
+    if (newFile > 150 * 1024 * 1024 ) {
         window.alert("La compressione è completa, ma il file è ancora troppo grande per essere elaborato dal server. In questo caso, potrebbe essere necessario modificare il metodo di estrazione del file originale o ridurne le dimensioni. Tuttavia, se il problema si ripete o non è più possibile ridurre le dimensioni a causa della qualità dell'immagine, si prega di contattarci per assistenza cineacca@gmail Ti aiuteremo a caricare entro 24 ore. Ci scusiamo per gli eventuali disagi causati.")
         videoInput.value="";
         return
