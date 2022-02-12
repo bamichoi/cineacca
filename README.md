@@ -1,148 +1,64 @@
-# 씨네아카 CINEACCA 
+# 치네아카 CINEACCA 
 
-
-## 서비스 개요 Service Information
-
-이탈리아 영화 아카데미 학생들의 단편 영화를 스트리밍하는 서비스.  
-A service that streams short films from students of the Italian Academy of Film Arts.
-
-## 개발 도구 Development languages and Framework
-
-Python with Django, HTML, SCSS and JavaScript
-
-## 개발 기간 Period of development
-
-2021년 7월 31일 - 2021년 12월 28일
-July 31, 2021 - December 28, 2021
-
-
-## 현재 상태 Current State
-
-서비스 중
-Now available
-
-
-## TO DO LIST 
-
-### 앞으로 해야할 것들
-
-- [ ] 검색할때 대소문자 무시
+이탈리아 학생 단편영화 스트리밍 플랫폼🎬  
+Italian student short film streaming plattform  
   
-### To Do
+## 💻사용 언어 Languages
 
-- [ ] h264 libx264차이?????
-- [x] 50mb 이하 압축면제 : attivate
-- [x] crf-30 시험 : 화질은 거의 차이 없는 듯. 114mb 파일 기준 용량 차이 약 2mb 유의미한 차이인가? 
-- [ ] footer
-- [ ] 비번 변경후 로그아웃하여 다시 로그인하게하기
-- [ ] video/film 삭제 시 리스트로 이동
-- [x] 모바일 반응형..(최종보스) -인줄 알았는데?
-- [ ] 업로드 파일명 검증
-- [ ] Help center 페이지
-- [ ] google 검색 노출
-- [ ] 버킷 공개 정책 검토
-- [ ] update thumbnail 필드 custom widget 적용안됨
-- [ ] movie/videoarts 공유하고 있는 부분 이름 video로 교체
-- [ ] CSS 중복제거
-- [ ] css 및 template 디렉토리 구조 개선
-- [ ] 리뷰연속작성시 js단에서 추가해주는 new review가 갱신되는문제
-- [ ] api url 개선
-- [ ] sinossi, review, biografia : textarea white-space 문제
+Frontend : Javascript, HTML, SCSS  
+Backend : Django🐍
+
+## ⏱개발 기간 Development period
   
-### Base
+2021년 7월 31일 - 2021년 12월 28일 (약 5개월)  
+July 31, 2021 - December 28, 2021  
   
-### Home
-
-- [ ] today 로직 개선
-- [ ] 캐치프레이즈 변경 : eg) the playground of cineasti indipendenti
-
-### About
-
-- [ ] 신설예정
+## 🔍현재 상태 Current State  
   
-### Festival
-- [ ] 신설예정
+🟢 서비스 중  
+Now available  
 
-### Reviews
 
-### News
+## 📝 개발자 노트 Developer Note
 
-- [ ] 신설예정
 
-### MovieTalk
+### 아이디어와 서비스 기획 Idea and planning service
 
-- [ ] 신설예정
+다니던 영화학교 친구들이 졸업을 앞둔 시점에서 기념할 수 있는 졸업작품 전시회 같은 웹사이트를 목표로 시작했다. 
+그리고 개발 과정에서 아이디어를 확장시켜 영화를 공부하는 학생들이 자신들의 단편 영화 작품을 다른 학생들이나 대중에게 보여주고 평가와 의견이 오가는 공간을 만들어보면 꽤 근사할 것 같았다. 
+대부분의 이런 학생들은 자신만의 Youtube 채널을 이용하고 있는데 당연히 노출될 기회도 적고, 자신과 비슷한 활동을 하고 있는 학생들을 찾기도 어렵다. 
+하지만 학생 영화를 전문적으로 다루는 서비스라면 그들의 작품들이 플랫폼에서 주목받기 더 쉬울 것이고 결과물에 대한 질 높은 피드백들이 오갈 수 있을 것이라 생각했다.
+그렇다면 학생들에게 자신의 분야에 대한 자극과 동기부여 그리고 평가와 성장의 공간으로서 Youtube나 Vimeo 보다 더 매력적인 플랫폼이 될 수 있을것이다.
+또한 뿐만 아니라, 전문 종사자들에게도 필드의 미래를 엿볼 수 있는 아주 흥미로운 공간이 될 수 있지 않을까 생각했다.
 
-### Login
+### 개발 과정에서의 문제 Problems & solution in development
 
-### Signup
+- 비디오 압축 Compress video 
+  Video file upload 는 가장 힘든 파트 중 하나 였다. Django로 file upload 를 구현하는 것은 간단하지만, 문제는 다루는 파일이 그리 간단하지 않다는 것에 있다. 서비스는 짧은 비디오가 아닌 대게 최소 10분 이상의 비디오 파일을 다루게 될 것이다. 용량이 굉장히 클 것이고 이 비디오 파일을 압축하는 과정이 필요했다.압축에는 ffmpeg를 사용했고 로컬에서 시험하며 모든 비디오에 적용될 수 있는 적절한 압축 조건을 찾았다. 압축은 빨랐고 결과물도 아주 좋았다. 하지만 product 에서 나의 Heroku 서버는 아주 작은 비디오 압축에서조차 이 프로세스를 버텨내지 못했다. 나는 티어가 높은 서버의 사용료를 지불할 수 없었으므로 Nomad Coder애서 Youtube 클론 수업에서 다뤄봤던 ffmpeg wasm을 사용하기로 했다. 즉, 서버 리소스 대신에 브라우저에서 유저의 컴퓨터로 압축을 진행하는 것이다. 이 과정에서 많은 시행착오가 있었던 것 같다. 이렇게 하면 시간이 훨씬 더 오래 걸린다는 단점이 있지만 내게 주어진 조건에서는 최선의 방법이었던 것 같다.
 
-### Email 
+- 배포 그리고 공포의 과금사태 Deploy and unexpected charges
+  처음으로 AWS 배포에 도전했다. 생소한 개념들이 많아서 굉장히 혼란스럽고 어려웠다. EC2, S3, RDS를 이용하여 겨우 배포했는데, upload file을 처리할때 Nginx Request Entity Too Large 에러가 났다. 검색해보니 Nginx의 기본 설정 때문이었고 수정이 가능했다. 그리고 여러가지 작동 시험을 하며 그렇게 1주일 정도가  지났는데 doc을 읽다가 우연히 내가 선택한 티어가 과금이 된다는 사실을 알게 되었다. 지불내역을 보니 약 30만원 가량이 청구 되어있었다. RDS에서 돈이 무지막지하게 빠져나가고 있었는데 왜인지는 모르겠지만 내가 선택한 밀라노 리전에서는 다시 확인해봐도 프리티어 옵션이 없었다. 부랴부랴 모든 것을 삭제하고 Heroku에 재배포하기로 했다. Heroku 배포는 훨씬 더 간단했으며 더 저렴했다. 스토리지는 S3 대신에 GCS를 선택했다. 과금은 다행히 AWS측에서 잘 해결해주었다.
 
-### Detail
 
-- [ ] 리뷰수정 텍스트area 콜럼조정
+### 배포 이후의 문제 Problems & solution in product
 
-### VideoPlayer - video.js
+- 비디오 압축 과정에서의 좋지 않은 유저경험 Bad UX in the video compression process
+  서비스 오픈 후 공통된 의견 중 하나는 압축과정에서 시간이 너무 많이 걸린다는 것이었다. 하지만 서버를 이용한 압축을 할 수 없었지만 적어도 유저가 얼마나 더 기다려야하는지 모른채로 답답해하지 않도록 Upload Form에서 압축이 시작되면 Progress Bar를 추가해 진행도를 보여주었고 이제 한결 낫다는 반응이었다.
 
-- [ ] 자막기능
-- [ ] 포인터 이동시 썸네일, 시간정보 표시
-- [x] 플레이어 스페이스바 및 단축키
-- [x] poster 표시 - fontawesome 충돌 해결 캐쉬 저장하지 않음으로 해결..
+- 서버의 한계 Limitations of Heroku servers
+  간혹 비디오 압축 과정이 끝나고 Form을 submit하면 App이 crash 되면서 upload에 실패하는 문제들이 보고 되었다. H13 에러였고 request 시간 초과로 인한 문제였다. Heroku는 30초 이상이 걸리는 연결에 대해서 자동으로 중지시켜버린다. upload의 요청시간은 파일의 용량이나 인터넷 상태에 따라서 달라질 수 있고 가뜩이나 인터넷이 빠르지 않은 이탈리아에서는 최종 파일의 용량이 그리 크지 않은데도 30초 이내 request가 처리되지 못하고 업로드가 실패하는 경우가 많았다.
+  문제 해결을 위해 검색을 하며 redis, salary 등을 통한 비동기처리를 하면 되지 않을까 생각했다. 즉, 업로드 작업을 30초 제한과 상관없이 백그라운드에서 수행하여 완료할 수 있지 않을까 싶었지만 예상처럼 작동하지 않았고 30초 룰은 이것과는 상관이 없다는 것을 알게 되었다. 결국 AWS나 GCS로 다시 이전하는 것이 유일한 방법인데, DB를 dump하고 restore하는 과정을 해결하지 못하고 있다.
 
-### Upload Movie, Upload Videoart
-   
-- [ ] locandina 및 poster 미리보기 적용
-- [ ] video art cover image를 locandina로 바꾸기
- 
-### Update Movie, Update Videoart
 
-- [x] 업로드된 파일명 길때 폼 찌그러듦 해결 (임시해결 추후보강)
-- [ ] locandina 미리보기 적용
+### 이 프로젝트를 통해 배운 것 So What I learn
 
-### Delete Movie
-
--[ ] 동의 체크박스 에러메세지 아래로 내리기
-
-### Movie List
-
-### Movie Search
-
-### Student List
-
-- [x] 네임카드 배경 커스터마이징
-- [ ] 학교이름으로 필터링 제공
-
-### Student Search
-
-- [ ] 소속으로 검색 제공
-- [ ] 필터된 쿼리셋에 키워드 검색가능하게 하기
-
-### Login
+- 이 프로젝트를 하면서 개발이 어떻게 이루어지는지 전반적인 과정을 이해할 수 있었다. 다음부터는 더 계획적이고 체계적으로 개발을 진행할 수 있을 것 같다.
   
-- [ ] 구글 연동 로그인
-- [ ] 로그인 후 이전 페이지 이동
+- Django와 Python 그리고 javascript 사용에 많이 익숙해졌다. 클론 코딩에서 배운 것들을 토대로 직접 프로젝트를 구현하다보니 Django의 패턴들이 점점 눈에 들어오기 시작했다. 클론 코딩에서 해보지 않았던 것들을 직접 찾아 배워야하는 경우도 많아서 사용하고 있는 언어나 프레임워크에 대해서 이해도가 조금은 더 넓어진것 같다.
+  
+- 배포 과정 전반에 대해서도 많이 배웠다. 2번의 배포를 통해 AWS와 Heroku가 어떻게 다른지 알게 되었고, 그 절차에 대해서도 대략적으로 이해할 수 있게 되었다 또한 어디를 통해 배포할 것인지 선택할 때 고려해야할 점이 무엇인지 알게 되었다. 
+  
+- Document 읽기와 검색에 익숙해졌다. 내가 배우지 않은 것을 어떻게 검색해서 찾을 수 있는 지 감을 잡았다. 왜 검색도 실력이라고 하는지 이제는 이해가 되었다.
+  또 doc에서 원하는 정보를 찾아내는 일도 점점 수월해졌다. 프로젝트 후반부로 갈수록 Slack 채널 등에 질문을 하기전에 문제의 원인과 해결책을 혼자서 찾아내는 경우가 많아졌다.
 
-### Profile - Student/Pubblic
-
-- [ ] 디자인개선
-
-### Dashboard
-
-- [ ] 대시보드 상단 유저 바 네임카드 커스터마이징과 함께 연동(검토중)
-- [ ] dashboard 인증후에만 사용되도록
-
-### Update profile
-
-- [ ] works 필드 리스타일링
-- [ ] update Movie 처럼 스타일 구조 바꾸기(검토)
-
-### Change Password
-
-### Reset Password
-
-###  Delete Account
-
--[ ] 동의 체크박스 에러메세지 아래로 내리기
--[ ] 탈퇴성공페이지 만들기
-
+  
