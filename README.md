@@ -44,10 +44,10 @@ Now available
 
 ### 배포 이후의 문제 Problems & solution in product
 
-- 비디오 압축 과정에서의 좋지 않은 유저경험 Bad UX in the video compression process
+- 비디오 압축 과정에서의 좋지 않은 유저경험 Bad UX in the video compression process  
   서비스 오픈 후 공통된 의견 중 하나는 압축과정에서 시간이 너무 많이 걸린다는 것이었다. 하지만 서버를 이용한 압축을 할 수 없었지만 적어도 유저가 얼마나 더 기다려야하는지 모른채로 답답해하지 않도록 Upload Form에서 압축이 시작되면 Progress Bar를 추가해 진행도를 보여주었고 이제 한결 낫다는 반응이었다.
 
-- 서버의 한계 Limitations of Heroku servers
+- 서버의 한계 Limitations of Heroku servers  
   간혹 비디오 압축 과정이 끝나고 Form을 submit하면 App이 crash 되면서 upload에 실패하는 문제들이 보고 되었다. H13 에러였고 request 시간 초과로 인한 문제였다. Heroku는 30초 이상이 걸리는 연결에 대해서 자동으로 중지시켜버린다. upload의 요청시간은 파일의 용량이나 인터넷 상태에 따라서 달라질 수 있고 가뜩이나 인터넷이 빠르지 않은 이탈리아에서는 최종 파일의 용량이 그리 크지 않은데도 30초 이내 request가 처리되지 못하고 업로드가 실패하는 경우가 많았다.
   문제 해결을 위해 검색을 하며 redis, salary 등을 통한 비동기처리를 하면 되지 않을까 생각했다. 즉, 업로드 작업을 30초 제한과 상관없이 백그라운드에서 수행하여 완료할 수 있지 않을까 싶었지만 예상처럼 작동하지 않았고 30초 룰은 이것과는 상관이 없다는 것을 알게 되었다. 결국 AWS나 GCS로 다시 이전하는 것이 유일한 방법인데, DB를 dump하고 restore하는 과정을 해결하지 못하고 있다.
 
