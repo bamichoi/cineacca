@@ -2,7 +2,9 @@
 
 이탈리아 학생 단편영화 스트리밍 플랫폼🎬  
 Italian student short film streaming plattform  
-  
+
+https://cineacca.com
+
 ## 💻사용 언어 Languages
 
 Frontend : Javascript, HTML, SCSS  
@@ -10,8 +12,8 @@ Backend : Django🐍
 
 ## ⏱개발 기간 Development period
   
-2021년 7월 31일 - 2021년 12월 28일 (약 5개월)  
-July 31, 2021 - December 28, 2021  
+2021년 7월 31일 ~ 2021년 12월 28일 (약 5개월)  
+July 31, 2021 ~ December 28, 2021  
   
 ## 🔍현재 상태 Current State  
   
