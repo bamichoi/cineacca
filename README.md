@@ -21,7 +21,7 @@ July 31, 2021 ~ December 28, 2021
 Now available  
 
 
-## 📝 개발자 노트 Developer Note
+## 📝 개발자 노트 Developer Review
 
 
 ### 아이디어와 서비스 기획 Idea and planning service
