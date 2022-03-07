@@ -19,8 +19,7 @@ from . import models
 from . import forms
 from users import mixins as user_mixins
 from videoarts import models as videoart_models
-import subprocess
-import json
+
 
 # Create your views here.
 
@@ -73,11 +72,7 @@ class UpdateMovie(user_mixins.MovieUpdateDeletePermissionView, UpdateView):
         return reverse("movies:detail", kwargs={"pk": pk})
 
 
-""" class DeleteMovie(user_mixins.MovieUpdateDeletePermissionView, DeleteView):
 
-    model = models.Movie
-    template_name = "movies/movie_delete.html"
-    success_url = reverse_lazy("movies:list")"""
 
 
 @login_required(login_url="/users/login/")
@@ -90,7 +85,7 @@ def delete_movie(request, pk):
         if request.method == "POST":
             form = forms.DeleteMovieForm(
                 request.user, request.POST
-            )  # !) request.POST 넣어줘야하는 이유..?
+            ) 
 
             if form.is_valid():
                 movie.delete()

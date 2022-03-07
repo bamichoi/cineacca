@@ -5,6 +5,9 @@ Italian student short film streaming platform
 
 https://cineacca.com
 
+인스타그램
+https://www.instagram.com/cineacca/  
+
 ## 💻개발 언어 및 환경 Languages
 
 Frontend : JavaScript, HTML, SCSS  
